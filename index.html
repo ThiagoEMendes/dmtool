@@ -33,24 +33,36 @@
       font-weight: bold;
     }
   </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjyWDtsSTa8Wb162xFujBt_q3KfKlOP98",
+      authDomain: "dmtool-89d0d.firebaseapp.com",
+      projectId: "dmtool-89d0d",
+      storageBucket: "dmtool-89d0d.firebasestorage.app",
+      messagingSenderId: "389362217807",
+      appId: "1:389362217807:web:2805220ee73ce3c0c28b3a",
+      measurementId: "G-FW1DFRKRPR"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 </head>
 <body>
 
   <h1>Calculadora de Carboidratos e Insulina</h1>
 
   <label for="glicemia">Glicemia Atual (mg/dL):</label>
-  <input type="number" id="glicemia" min="40" placeholder="Carregando..." disabled>
+  <input type="number" id="glicemia" min="40" placeholder="Digite a glicemia">
 
   <br><br>
 
   <label for="alimento">Alimento:</label>
-  <select id="alimento">
-    <option value="arroz">Arroz</option>
-    <option value="batata">Batata</option>
-    <option value="pão">Pão</option>
-    <option value="banana">Banana</option>
-    <option value="maçã">Maçã</option>
-  </select>
+  <select id="alimento"></select>
 
   <label for="peso">Peso (g):</label>
   <input type="number" id="peso" min="1" placeholder="100">
@@ -74,20 +86,32 @@
   <div id="insulina">Total de Insulina Recomendada: 0U</div>
 
   <script>
-    const tabelaCarboidratos = {
-      "arroz": 28,
-      "batata": 17,
-      "pão": 49,
-      "banana": 23,
-      "maçã": 14
-    };
-
+    let tabelaCarboidratos = {};
     const GLICEMIA_ALVO = 130;
     const FATOR_CORRECAO = 30;
     const RELACAO_IC = 5;
     const MAX_CORRECAO = 5;
 
     let alimentos = [];
+
+    async function carregarAlimentosDoFirebase() {
+      const snapshot = await db.collection("alimentos").get();
+      const select = document.getElementById("alimento");
+      select.innerHTML = "";
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const nome = data.nome;
+        const carboidrato = data.carboidrato || data.percentual_de_cho || data.percentualDeCHO;
+
+        tabelaCarboidratos[nome] = carboidrato;
+
+        const option = document.createElement("option");
+        option.value = nome;
+        option.textContent = nome;
+        select.appendChild(option);
+      });
+    }
 
     function adicionarAlimento() {
       const nome = document.getElementById('alimento').value;
@@ -163,43 +187,7 @@
       calcularInsulina(totalCarbo);
     });
 
-    async function obterGlicemiaDoHTML() {
-      try {
-        const response = await fetch("https://julianafernandesmendes.fly.dev/clock/bgclock");
-        if (!response.ok) throw new Error("Erro ao carregar a página");
-
-        const html = await response.text();
-
-        // Cria DOM virtual para buscar texto
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-
-        // Procura texto contendo "mg/dL" e extrai o número
-        const texto = doc.body.innerText;
-        const match = texto.match(/(\d{2,3})\s*mg\/dL/i); // captura número antes de "mg/dL"
-
-        if (!match) throw new Error("Glicemia não encontrada na página");
-
-        const glicemia = parseFloat(match[1]);
-
-        const input = document.getElementById('glicemia');
-        input.value = glicemia;
-        input.disabled = false;
-
-        const totalCarbo = alimentos.reduce((sum, item) => sum + item.carbo, 0);
-        calcularInsulina(totalCarbo);
-
-      } catch (e) {
-        alert("⚠️ Não foi possível obter a glicemia automaticamente. Insira manualmente.");
-        const input = document.getElementById('glicemia');
-        input.placeholder = "Digite manualmente";
-        input.disabled = false;
-      }
-    }
-
-    window.onload = obterGlicemiaDoHTML;
+    window.onload = carregarAlimentosDoFirebase;
   </script>
-
 </body>
 </html>
-

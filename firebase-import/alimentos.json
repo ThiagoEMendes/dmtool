@@ -1,0 +1,374 @@
+[
+  {
+    "nome": "Arroz",
+    "percentual_de_cho": 23
+  },
+  {
+    "nome": "Farofa",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "Batata Cozida",
+    "percentual_de_cho": 18
+  },
+  {
+    "nome": "Batata Frita",
+    "percentual_de_cho": 25
+  },
+  {
+    "nome": "Nuggets",
+    "percentual_de_cho": 23
+  },
+  {
+    "nome": "Batata palha",
+    "percentual_de_cho": 40
+  },
+  {
+    "nome": "Torta de frango",
+    "percentual_de_cho": 40
+  },
+  {
+    "nome": "Bolo sem farinha de trigo",
+    "percentual_de_cho": 30
+  },
+  {
+    "nome": "Biscoito Vitarella",
+    "percentual_de_cho": 71
+  },
+  {
+    "nome": "Nutella",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "Salgado",
+    "percentual_de_cho": 33
+  },
+  {
+    "nome": "Milho Espiga",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "Leite fermentado",
+    "percentual_de_cho": 11
+  },
+  {
+    "nome": "Morango",
+    "percentual_de_cho": 6
+  },
+  {
+    "nome": "Uva",
+    "percentual_de_cho": 12
+  },
+  {
+    "nome": "Biscoito waffler chocolate",
+    "percentual_de_cho": 67
+  },
+  {
+    "nome": "feijão",
+    "percentual_de_cho": 18
+  },
+  {
+    "nome": "Pão",
+    "percentual_de_cho": 50
+  },
+  {
+    "nome": "mandioca cozida",
+    "percentual_de_cho": 30
+  },
+  {
+    "nome": "Biscoito wafer piraquê",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "Maçã",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "macarrão",
+    "percentual_de_cho": 23
+  },
+  {
+    "nome": "biscoito chocolate",
+    "percentual_de_cho": 63
+  },
+  {
+    "nome": "Biscoito wafer limão",
+    "percentual_de_cho": 71
+  },
+  {
+    "nome": "purê de batatas",
+    "percentual_de_cho": 18
+  },
+  {
+    "nome": "batata doce",
+    "percentual_de_cho": 20
+  },
+  {
+    "nome": "chocolate",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "cuscuz",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "café com leite ml",
+    "percentual_de_cho": 10
+  },
+  {
+    "nome": "cookie",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "bisnaguinha",
+    "percentual_de_cho": 56
+  },
+  {
+    "nome": "pizza",
+    "percentual_de_cho": 18
+  },
+  {
+    "nome": "biscoito polvilho",
+    "percentual_de_cho": 68
+  },
+  {
+    "nome": "suco de uva",
+    "percentual_de_cho": 21
+  },
+  {
+    "nome": "pimentinha",
+    "percentual_de_cho": 26
+  },
+  {
+    "nome": "petir four casadinho",
+    "percentual_de_cho": 80
+  },
+  {
+    "nome": "pão de queijo",
+    "percentual_de_cho": 45
+  },
+  {
+    "nome": "sorvete",
+    "percentual_de_cho": 35
+  },
+  {
+    "nome": "wafer grande",
+    "percentual_de_cho": 32
+  },
+  {
+    "nome": "manga",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "biscoito queijo palito",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "doritos",
+    "percentual_de_cho": 65
+  },
+  {
+    "nome": "biscoito de arroz doce",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "pipoca",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "wafer morango piraque ",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "banana prata",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "milho lata",
+    "percentual_de_cho": 20
+  },
+  {
+    "nome": "pão careca",
+    "percentual_de_cho": 52
+  },
+  {
+    "nome": "bolo simples trigo",
+    "percentual_de_cho": 50
+  },
+  {
+    "nome": "pera",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "panetone",
+    "percentual_de_cho": 48
+  },
+  {
+    "nome": "bolo de limão",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "pão com patê de atum",
+    "percentual_de_cho": 55
+  },
+  {
+    "nome": "chantilly",
+    "percentual_de_cho": 20
+  },
+  {
+    "nome": "prestígio",
+    "percentual_de_cho": 66
+  },
+  {
+    "nome": "steak de frango",
+    "percentual_de_cho": 18
+  },
+  {
+    "nome": "suco de maracujá",
+    "percentual_de_cho": 19
+  },
+  {
+    "nome": "biscoito do ursinho",
+    "percentual_de_cho": 73
+  },
+  {
+    "nome": "bombom eclipse",
+    "percentual_de_cho": 59
+  },
+  {
+    "nome": "bombom triple choc",
+    "percentual_de_cho": 71
+  },
+  {
+    "nome": "kiwi",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "pitaya",
+    "percentual_de_cho": 14
+  },
+  {
+    "nome": "melão",
+    "percentual_de_cho": 6
+  },
+  {
+    "nome": "biscoito caseiro",
+    "percentual_de_cho": 70
+  },
+  {
+    "nome": "suco de maracujá",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "laranja",
+    "percentual_de_cho": 11
+  },
+  {
+    "nome": "balinha",
+    "percentual_de_cho": 100
+  },
+  {
+    "nome": "lasanha",
+    "percentual_de_cho": 25
+  },
+  {
+    "nome": "ovomaltine",
+    "percentual_de_cho": 90
+  },
+  {
+    "nome": "biscoito wafer baunilha",
+    "percentual_de_cho": 64
+  },
+  {
+    "nome": "biscoito de sal com gergelim",
+    "percentual_de_cho": 59
+  },
+  {
+    "nome": "canudo chocolate",
+    "percentual_de_cho": 59
+  },
+  {
+    "nome": "miojo",
+    "percentual_de_cho": 25
+  },
+  {
+    "nome": "ovo mexido",
+    "percentual_de_cho": 3
+  },
+  {
+    "nome": "queijo mussarela",
+    "percentual_de_cho": 3
+  },
+  {
+    "nome": "farinha lactea",
+    "percentual_de_cho": 73
+  },
+  {
+    "nome": "leite condensado",
+    "percentual_de_cho": 53
+  },
+  {
+    "nome": "biscoitinho tucs",
+    "percentual_de_cho": 73
+  },
+  {
+    "nome": "pão com peito de peru e queijo",
+    "percentual_de_cho": 50
+  },
+  {
+    "nome": "suco de couve, maracujá e kiwui",
+    "percentual_de_cho": 15
+  },
+  {
+    "nome": "misto quente",
+    "percentual_de_cho": 53
+  },
+  {
+    "nome": "rap 10",
+    "percentual_de_cho": 49
+  },
+  {
+    "nome": "cookie chocolate ",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "biscoito equilibri",
+    "percentual_de_cho": 72
+  },
+  {
+    "nome": "salgado calabresa big san",
+    "percentual_de_cho": 39
+  },
+  {
+    "nome": "pão de mel",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "bolo aniversario",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "salgadinhos",
+    "percentual_de_cho": 40
+  },
+  {
+    "nome": "salada de frutas",
+    "percentual_de_cho": 25
+  },
+  {
+    "nome": "skiny",
+    "percentual_de_cho": 74
+  },
+  {
+    "nome": "cookie caseiro",
+    "percentual_de_cho": 60
+  },
+  {
+    "nome": "sopa",
+    "percentual_de_cho": 17
+  },
+  {
+    "nome": "mini pão careca",
+    "percentual_de_cho": 25
+  }
+]
