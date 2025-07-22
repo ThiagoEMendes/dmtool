@@ -12,9 +12,85 @@
       margin: 0;
     }
 
+    /* Container do botão menu */
+    .menu-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    /* Botão hamburguer */
+    #menuButton {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0;
+    }
+
+    #menuButton:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+    }
+
+    /* As 3 linhas do hamburguer */
+    .bar {
+      width: 28px;
+      height: 3px;
+      background-color: #3498db;
+      border-radius: 2px;
+      transition: background-color 0.3s ease;
+    }
+
+    #menuButton:hover .bar {
+      background-color: #2980b9;
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 44px;
+      left: 0;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      min-width: 160px;
+      font-size: 1em;
+      overflow: hidden;
+    }
+
+    .dropdown-menu.show {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
     h1 {
       text-align: center;
       color: #2c3e50;
+      margin-top: 60px; /* para não ficar escondido atrás do menu fixo */
     }
 
     .card {
@@ -117,6 +193,18 @@
 </head>
 
 <body>
+  <div class="menu-container">
+    <button id="menuButton" aria-label="Abrir menu da aplicação" aria-haspopup="true" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="dropdown-menu" id="dropdownMenu" role="menu" aria-hidden="true">
+      <a href="index.html" role="menuitem" tabindex="-1">Calculadora</a>
+      <a href="alimentos.html" role="menuitem" tabindex="-1">Gerenciar Alimentos</a>
+    </div>
+  </div>
+
   <h1>Calculadora de Carboidratos e Insulina</h1>
 
   <div class="card">
@@ -166,6 +254,38 @@
   </div>
 
   <script>
+    // Controle do menu dropdown
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuButton.addEventListener('click', () => {
+      const isShown = dropdownMenu.classList.toggle('show');
+      dropdownMenu.setAttribute('aria-hidden', !isShown);
+      menuButton.setAttribute('aria-expanded', isShown);
+      if(isShown) {
+        dropdownMenu.querySelector('a').focus();
+      }
+    });
+
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', (e) => {
+      if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+        dropdownMenu.setAttribute('aria-hidden', 'true');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdownMenu.classList.remove('show');
+        dropdownMenu.setAttribute('aria-hidden', 'true');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.focus();
+      }
+    });
+
     let tabelaCarboidratos = {};
     const GLICEMIA_ALVO = 130;
     const FATOR_CORRECAO = 30;
