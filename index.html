@@ -27,7 +27,7 @@
       margin-bottom: 5px;
     }
 
-    input, select, button {
+    input, button {
       font-size: 1em;
       padding: 10px;
       border-radius: 5px;
@@ -92,13 +92,11 @@
       appId: "1:389362217807:web:2805220ee73ce3c0c28b3a",
       measurementId: "G-FW1DFRKRPR"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
 </head>
 <body>
-
   <h1>Calculadora de Carboidratos e Insulina</h1>
 
   <div class="form-group">
@@ -109,7 +107,8 @@
   <div class="form-inline">
     <div class="form-group" style="flex:1">
       <label for="alimento">Alimento:</label>
-      <select id="alimento"></select>
+      <input list="listaAlimentos" id="alimento" placeholder="Digite o nome do alimento">
+      <datalist id="listaAlimentos"></datalist>
     </div>
 
     <div class="form-group" style="flex:1">
@@ -140,31 +139,33 @@
   <script>
     let tabelaCarboidratos = {};
     const RELACAO_IC = 5;
-
     let alimentos = [];
 
     async function carregarAlimentosDoFirebase() {
       const snapshot = await db.collection("alimentos").get();
-      const select = document.getElementById("alimento");
-      select.innerHTML = "";
+      const datalist = document.getElementById("listaAlimentos");
+      datalist.innerHTML = "";
 
       snapshot.forEach(doc => {
         const data = doc.data();
         const nome = data.nome;
         const carboidrato = data.carboidrato || data.percentual_de_cho || data.percentualDeCHO;
-
         tabelaCarboidratos[nome] = carboidrato;
 
         const option = document.createElement("option");
         option.value = nome;
-        option.textContent = nome;
-        select.appendChild(option);
+        datalist.appendChild(option);
       });
     }
 
     function adicionarAlimento() {
       const nome = document.getElementById('alimento').value;
       const peso = parseFloat(document.getElementById('peso').value);
+
+      if (!tabelaCarboidratos[nome]) {
+        alert("Alimento não encontrado na base de dados.");
+        return;
+      }
 
       if (isNaN(peso) || peso <= 0) {
         alert("Digite um peso válido.");
@@ -236,8 +237,7 @@
       const totalInsulina = doseCarbo + doseCorrecao;
 
       document.getElementById("insulina").innerText =
-        `Total de Insulina Recomendada: ${totalInsulina.toFixed(2)}U 
-        (Alimentos: ${doseCarbo.toFixed(2)}U + Correção: ${doseCorrecao.toFixed(2)}U)`;
+        `Total de Insulina Recomendada: ${totalInsulina.toFixed(2)}U\n(Alimentos: ${doseCarbo.toFixed(2)}U + Correção: ${doseCorrecao.toFixed(2)}U)`;
     }
 
     document.getElementById('glicemia').addEventListener('input', () => {
@@ -249,4 +249,3 @@
   </script>
 </body>
 </html>
-
