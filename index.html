@@ -126,9 +126,14 @@
 
   <div class="card">
     <label for="alimento">Alimento:</label>
-    <select id="alimento">
-      <option value="" disabled selected>Digite o nome do alimento</option>
-    </select>
+    <input
+      list="listaAlimentos"
+      id="alimento"
+      name="alimento"
+      placeholder="Digite o nome do alimento"
+      autocomplete="off"
+    />
+    <datalist id="listaAlimentos"></datalist>
 
     <label for="peso">Quantidade (g ou ml):</label>
     <input type="number" id="peso" inputmode="numeric" min="1" placeholder="Ex: 100" />
@@ -170,8 +175,8 @@
 
     async function carregarAlimentosDoFirebase() {
       const snapshot = await db.collection("alimentos").get();
-      const select = document.getElementById("alimento");
-      select.innerHTML = '<option value="" disabled selected>Digite o nome do alimento</option>';
+      const dataList = document.getElementById("listaAlimentos");
+      dataList.innerHTML = "";
 
       snapshot.forEach(doc => {
         const data = doc.data();
@@ -181,17 +186,21 @@
 
         const option = document.createElement("option");
         option.value = nome;
-        option.textContent = nome;
-        select.appendChild(option);
+        dataList.appendChild(option);
       });
     }
 
     function adicionarAlimento() {
-      const nome = document.getElementById('alimento').value;
+      const nome = document.getElementById('alimento').value.trim();
       const peso = parseFloat(document.getElementById('peso').value);
 
       if (!nome) {
-        alert("Escolha um alimento.");
+        alert("Digite o nome do alimento.");
+        return;
+      }
+
+      if (!(nome in tabelaCarboidratos)) {
+        alert("Alimento não encontrado na lista. Digite um nome válido.");
         return;
       }
 
@@ -205,6 +214,10 @@
 
       alimentos.push({ nome, peso, carbo: carboTotal });
       atualizarTabela();
+
+      // Limpa os campos
+      document.getElementById('alimento').value = "";
+      document.getElementById('peso').value = "";
     }
 
     function removerAlimento(index) {
