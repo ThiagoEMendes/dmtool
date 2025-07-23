@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Calculadora de Carboidratos e Insulina</title>
+  <title>Calculadora de Proteína e Gordura</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -206,12 +206,7 @@
     </div>
   </div>
 
-  <h1>Calculadora de Carboidratos e Insulina</h1>
-
-  <div class="card">
-    <label for="glicemia">Glicemia Atual (mg/dL):</label>
-    <input type="number" id="glicemia" inputmode="numeric" min="40" placeholder="Ex: 110" />
-  </div>
+  <h1>Calculadora de Proteína e Gordura</h1>
 
   <div class="card">
     <label for="alimento">Alimento:</label>
@@ -236,7 +231,8 @@
         <tr>
           <th>Alimento</th>
           <th>Quantidade</th>
-          <th>CHO</th>
+          <th>Proteína (g)</th>
+          <th>Gordura (g)</th>
           <th>Remover</th>
         </tr>
       </thead>
@@ -244,13 +240,8 @@
     </table>
 
     <div class="result-section">
-      <button class="result-button" id="choTotal">CHO Total: 0g</button>
-      <button class="result-button" id="insulinaTotal">Insulina Recomendada: 0U</button>
-
-      <div class="secondary-info" id="detalhesInsulina">
-        Insulina por CHO: 0U<br>
-        Insulina de Correção: 0U
-      </div>
+      <button class="result-button" id="proteinaTotal">Proteína Total: 0g</button>
+      <button class="result-button" id="gorduraTotal">Gordura Total: 0g</button>
     </div>
   </div>
 
@@ -287,9 +278,7 @@
       }
     });
 
-    let tabelaCarboidratos = {};
-    const GLICEMIA_ALVO = 130;
-    const RELACAO_IC = 5;
+    let tabelaNutrientes = {};
     let alimentos = [];
 
     async function carregarAlimentosDoFirebase() {
@@ -300,8 +289,11 @@
       snapshot.forEach(doc => {
         const data = doc.data();
         const nome = data.nome;
-        const carboidrato = data.carboidrato || data.percentual_de_cho || data.percentualDeCHO;
-        tabelaCarboidratos[nome] = carboidrato;
+        // Pode ter nomes diferentes para os campos, tente os mais comuns:
+        const proteina = data.percentual_de_proteina || data.proteina || 0;
+        const gordura = data.percentual_de_gordura || data.gordura || 0;
+
+        tabelaNutrientes[nome] = { proteina, gordura };
 
         const option = document.createElement("option");
         option.value = nome;
@@ -318,7 +310,7 @@
         return;
       }
 
-      if (!(nome in tabelaCarboidratos)) {
+      if (!(nome in tabelaNutrientes)) {
         alert("Alimento não encontrado na lista. Digite um nome válido.");
         return;
       }
@@ -328,10 +320,11 @@
         return;
       }
 
-      const carboPor100g = tabelaCarboidratos[nome];
-      const carboTotal = (carboPor100g * peso) / 100;
+      const nutrientes = tabelaNutrientes[nome];
+      const proteinaTotal = (nutrientes.proteina * peso) / 100;
+      const gorduraTotal = (nutrientes.gordura * peso) / 100;
 
-      alimentos.push({ nome, peso, carbo: carboTotal });
+      alimentos.push({ nome, peso, proteina: proteinaTotal, gordura: gorduraTotal });
       atualizarTabela();
 
       // Limpa os campos
@@ -348,58 +341,26 @@
       const tbody = document.querySelector("#tabelaAlimentos tbody");
       tbody.innerHTML = "";
 
-      let totalCarbo = 0;
+      let totalProteina = 0;
+      let totalGordura = 0;
 
       alimentos.forEach((item, index) => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${item.nome}</td>
           <td>${item.peso}g/ml</td>
-          <td>${item.carbo.toFixed(2)}g</td>
+          <td>${item.proteina.toFixed(2)}</td>
+          <td>${item.gordura.toFixed(2)}</td>
           <td><button onclick="removerAlimento(${index})">Remover</button></td>
         `;
         tbody.appendChild(row);
-        totalCarbo += item.carbo;
+        totalProteina += item.proteina;
+        totalGordura += item.gordura;
       });
 
-      document.getElementById("choTotal").innerText = `CHO Total: ${totalCarbo.toFixed(2)}g`;
-      calcularInsulina(totalCarbo);
+      document.getElementById("proteinaTotal").innerText = `Proteína Total: ${totalProteina.toFixed(2)}g`;
+      document.getElementById("gorduraTotal").innerText = `Gordura Total: ${totalGordura.toFixed(2)}g`;
     }
-
-    // Função alterada conforme os intervalos que você pediu
-    function calcularInsulina(totalCarbo) {
-      const glicemiaAtual = parseFloat(document.getElementById('glicemia').value);
-      let doseCarbo = totalCarbo / RELACAO_IC;
-      let doseCorrecao = 0;
-
-      if (!isNaN(glicemiaAtual) && glicemiaAtual > GLICEMIA_ALVO) {
-        if (glicemiaAtual >= 131 && glicemiaAtual <= 160) {
-          doseCorrecao = 1;
-        } else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) {
-          doseCorrecao = 2;
-        } else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) {
-          doseCorrecao = 3;
-        } else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) {
-          doseCorrecao = 4;
-        } else if (glicemiaAtual >= 251) {
-          doseCorrecao = 5;
-        }
-      }
-
-      const totalInsulina = doseCarbo + doseCorrecao;
-
-      document.getElementById("insulinaTotal").innerText =
-        `Insulina Recomendada: ${totalInsulina.toFixed(2)}U`;
-
-      document.getElementById("detalhesInsulina").innerHTML =
-        `Insulina por CHO: ${doseCarbo.toFixed(2)}U<br>` +
-        `Insulina de Correção: ${doseCorrecao.toFixed(2)}U`;
-    }
-
-    document.getElementById('glicemia').addEventListener('input', () => {
-      const totalCarbo = alimentos.reduce((sum, item) => sum + item.carbo, 0);
-      calcularInsulina(totalCarbo);
-    });
 
     window.onload = carregarAlimentosDoFirebase;
   </script>
