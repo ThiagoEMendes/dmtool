@@ -288,9 +288,7 @@
 
     let tabelaCarboidratos = {};
     const GLICEMIA_ALVO = 130;
-    const FATOR_CORRECAO = 30;
     const RELACAO_IC = 5;
-    const MAX_CORRECAO = 5;
     let alimentos = [];
 
     async function carregarAlimentosDoFirebase() {
@@ -367,14 +365,24 @@
       calcularInsulina(totalCarbo);
     }
 
+    // Função alterada conforme os intervalos que você pediu
     function calcularInsulina(totalCarbo) {
       const glicemiaAtual = parseFloat(document.getElementById('glicemia').value);
       let doseCarbo = totalCarbo / RELACAO_IC;
       let doseCorrecao = 0;
 
       if (!isNaN(glicemiaAtual) && glicemiaAtual > GLICEMIA_ALVO) {
-        doseCorrecao = (glicemiaAtual - GLICEMIA_ALVO) / FATOR_CORRECAO;
-        if (doseCorrecao > MAX_CORRECAO) doseCorrecao = MAX_CORRECAO;
+        if (glicemiaAtual >= 131 && glicemiaAtual <= 160) {
+          doseCorrecao = 1;
+        } else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) {
+          doseCorrecao = 2;
+        } else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) {
+          doseCorrecao = 3;
+        } else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) {
+          doseCorrecao = 4;
+        } else if (glicemiaAtual >= 251) {
+          doseCorrecao = 5;
+        }
       }
 
       const totalInsulina = doseCarbo + doseCorrecao;
