@@ -8,9 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "brew": "^0.0.8",
     "firebase-admin": "^13.4.0"
-  }
+  },
+  "description": ""
 }
