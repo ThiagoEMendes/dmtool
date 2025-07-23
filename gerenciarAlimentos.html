@@ -112,7 +112,6 @@
       width: 100%;
       box-sizing: border-box;
     }
-
   </style>
 
   <!-- Firebase SDK -->
@@ -132,9 +131,8 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let alimentosData = []; // manter dados carregados para filtro
+    let alimentosData = [];
 
-    // Exibe mensagem temporária
     function mostrarMensagem(texto, isError = false) {
       const msgDiv = document.getElementById('mensagem');
       msgDiv.textContent = texto;
@@ -145,32 +143,29 @@
       }, 4000);
     }
 
-    // Carregar alimentos do Firestore ordenados por nome
     async function carregarAlimentos() {
       const tbody = document.querySelector("#tabelaAlimentos tbody");
-      tbody.innerHTML = ""; // limpa tabela
+      tbody.innerHTML = "";
 
       try {
         const snapshot = await db.collection("alimentos").orderBy("nome").get();
 
         if (snapshot.empty) {
-          tbody.innerHTML = '<tr><td colspan="3">Nenhum alimento cadastrado.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="5">Nenhum alimento cadastrado.</td></tr>';
           alimentosData = [];
           return;
         }
 
-        alimentosData = []; // limpa array local
+        alimentosData = [];
 
         snapshot.forEach(doc => {
           const data = doc.data();
-
-          let carbo = parseFloat(data.carboidrato ?? data.percentual_de_cho ?? data.percentualDeCHO);
-          if (isNaN(carbo)) carbo = 0;
-
           alimentosData.push({
             id: doc.id,
             nome: data.nome || "(Sem nome)",
-            carbo: carbo
+            cho: parseFloat(data.percentual_de_cho) || 0,
+            proteina: parseFloat(data.percentual_de_proteina) || 0,
+            gordura: parseFloat(data.percentual_de_gordura) || 0
           });
         });
 
@@ -182,13 +177,12 @@
       }
     }
 
-    // Renderiza a tabela com base num array (filtrado ou completo)
     function renderizarTabela(lista) {
       const tbody = document.querySelector("#tabelaAlimentos tbody");
       tbody.innerHTML = "";
 
       if (lista.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="3">Nenhum alimento encontrado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5">Nenhum alimento encontrado.</td></tr>';
         return;
       }
 
@@ -196,14 +190,15 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${item.nome}</td>
-          <td>${item.carbo.toFixed(2)}</td>
+          <td>${item.cho.toFixed(2)}</td>
+          <td>${item.proteina.toFixed(2)}</td>
+          <td>${item.gordura.toFixed(2)}</td>
           <td><button class="remove-btn" onclick="removerAlimento('${item.id}')">Remover</button></td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // Remove alimento por ID
     async function removerAlimento(id) {
       if (!confirm("Tem certeza que deseja remover este alimento?")) return;
 
@@ -211,33 +206,29 @@
         await db.collection("alimentos").doc(id).delete();
         mostrarMensagem("Alimento removido com sucesso!");
         await carregarAlimentos();
-        aplicarFiltro(); // reaplica filtro após atualização
+        aplicarFiltro();
       } catch (error) {
         console.error("Erro ao remover alimento:", error);
         mostrarMensagem("Erro ao remover alimento.", true);
       }
     }
 
-    // Adicionar novo alimento
     async function adicionarAlimento() {
-      const nomeInput = document.getElementById('novoNome');
-      const carboInput = document.getElementById('novoCarbo');
-
-      const nome = nomeInput.value.trim();
-      const carboStr = carboInput.value.trim();
-      const carbo = parseFloat(carboStr.replace(',', '.'));
+      const nome = document.getElementById('novoNome').value.trim();
+      const cho = parseFloat(document.getElementById('novoCarbo').value.replace(',', '.'));
+      const proteina = parseFloat(document.getElementById('novoProteina').value.replace(',', '.'));
+      const gordura = parseFloat(document.getElementById('novoGordura').value.replace(',', '.'));
 
       if (!nome) {
         mostrarMensagem("Informe o nome do alimento.", true);
         return;
       }
-      if (!carboStr || isNaN(carbo) || carbo < 0) {
-        mostrarMensagem("Informe um valor válido para carboidratos.", true);
+      if (isNaN(cho) || cho < 0 || isNaN(proteina) || proteina < 0 || isNaN(gordura) || gordura < 0) {
+        mostrarMensagem("Informe valores válidos para todos os campos.", true);
         return;
       }
 
       try {
-        // Verifica se alimento já existe (case insensitive)
         const nomeLower = nome.toLowerCase();
         const exists = alimentosData.some(a => a.nome.toLowerCase() === nomeLower);
         if (exists) {
@@ -247,12 +238,16 @@
 
         await db.collection("alimentos").add({
           nome,
-          carboidrato: carbo
+          percentual_de_cho: cho,
+          percentual_de_proteina: proteina,
+          percentual_de_gordura: gordura
         });
 
         mostrarMensagem("Alimento adicionado com sucesso!");
-        nomeInput.value = "";
-        carboInput.value = "";
+        document.getElementById('novoNome').value = "";
+        document.getElementById('novoCarbo').value = "";
+        document.getElementById('novoProteina').value = "";
+        document.getElementById('novoGordura').value = "";
         await carregarAlimentos();
         aplicarFiltro();
       } catch (error) {
@@ -261,14 +256,12 @@
       }
     }
 
-    // Aplica filtro na tabela de alimentos baseado no input
     function aplicarFiltro() {
       const filtro = document.getElementById('filtroAlimento').value.toLowerCase().trim();
       if (!filtro) {
         renderizarTabela(alimentosData);
         return;
       }
-
       const filtrados = alimentosData.filter(item => item.nome.toLowerCase().includes(filtro));
       renderizarTabela(filtrados);
     }
@@ -299,6 +292,12 @@
       <label for="novoCarbo">Carboidratos (g/100g):</label>
       <input type="text" id="novoCarbo" placeholder="Ex: 28" autocomplete="off" />
 
+      <label for="novoProteina">Proteína (g/100g):</label>
+      <input type="text" id="novoProteina" placeholder="Ex: 3.5" autocomplete="off" />
+
+      <label for="novoGordura">Gordura (g/100g):</label>
+      <input type="text" id="novoGordura" placeholder="Ex: 1.2" autocomplete="off" />
+
       <button id="btnAdicionar" type="submit">Adicionar Alimento</button>
 
       <div id="mensagem"></div>
@@ -313,7 +312,9 @@
       <thead>
         <tr>
           <th>Nome</th>
-          <th>Carboidratos (g/100g)</th>
+          <th>Carboidratos</th>
+          <th>Proteína</th>
+          <th>Gordura</th>
           <th>Ação</th>
         </tr>
       </thead>
