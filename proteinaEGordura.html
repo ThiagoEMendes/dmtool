@@ -12,7 +12,6 @@
       margin: 0;
     }
 
-    /* Container do botão menu */
     .menu-container {
       position: fixed;
       top: 10px;
@@ -20,7 +19,6 @@
       z-index: 1000;
     }
 
-    /* Botão hamburguer */
     #menuButton {
       background: none;
       border: none;
@@ -38,7 +36,6 @@
       outline-offset: 2px;
     }
 
-    /* As 3 linhas do hamburguer */
     .bar {
       width: 28px;
       height: 3px;
@@ -51,7 +48,6 @@
       background-color: #2980b9;
     }
 
-    /* Dropdown menu */
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -90,7 +86,7 @@
     h1 {
       text-align: center;
       color: #2c3e50;
-      margin-top: 60px; /* para não ficar escondido atrás do menu fixo */
+      margin-top: 60px;
     }
 
     .card {
@@ -174,8 +170,6 @@
       }
     }
   </style>
-
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
   <script>
@@ -183,40 +177,114 @@
       apiKey: "AIzaSyBjyWDtsSTa8Wb162xFujBt_q3KfKlOP98",
       authDomain: "dmtool-89d0d.firebaseapp.com",
       projectId: "dmtool-89d0d",
-      storageBucket: "dmtool-89d0d.firebasestorage.app",
+      storageBucket: "dmtool-89d0d.appspot.com",
       messagingSenderId: "389362217807",
       appId: "1:389362217807:web:2805220ee73ce3c0c28b3a"
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
+
+    let alimentos = [];
+    let tabelaNutrientes = {};
+    let tipoCalculo = 'gramas';
+
+    async function carregarAlimentosDoFirebase() {
+      const snapshot = await db.collection("alimentos").get();
+      const dataList = document.getElementById("listaAlimentos");
+      dataList.innerHTML = "";
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        tabelaNutrientes[data.nome] = data;
+
+        const option = document.createElement("option");
+        option.value = data.nome;
+        dataList.appendChild(option);
+      });
+    }
+
+    function adicionarAlimento() {
+      const nome = document.getElementById('alimento').value.trim();
+      const peso = parseFloat(document.getElementById('peso').value);
+
+      if (!nome || !(nome in tabelaNutrientes)) return alert("Alimento inválido");
+      const dados = tabelaNutrientes[nome];
+
+      let proteina = 0, gordura = 0, quantidade = "";
+
+      if (tipoCalculo === 'gramas') {
+        if (isNaN(peso) || peso <= 0) return alert("Informe a quantidade em g/ml");
+        proteina = (dados.proteina * peso) / 100;
+        gordura = (dados.gordura * peso) / 100;
+        quantidade = peso + " g/ml";
+      } else {
+        proteina = (dados.proteina * 1);
+        gordura = (dados.gordura * 1);
+        quantidade = dados.medida_caseira;
+      }
+
+      alimentos.push({ nome, quantidade, proteina, gordura });
+      atualizarTabela();
+      document.getElementById('alimento').value = "";
+      document.getElementById('peso').value = "";
+    }
+
+    function removerAlimento(index) {
+      alimentos.splice(index, 1);
+      atualizarTabela();
+    }
+
+    function atualizarTabela() {
+      const tbody = document.querySelector("#tabelaAlimentos tbody");
+      tbody.innerHTML = "";
+      let totalProteina = 0;
+      let totalGordura = 0;
+
+      alimentos.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.nome}</td>
+          <td>${item.quantidade}</td>
+          <td>${item.proteina.toFixed(2)}</td>
+          <td>${item.gordura.toFixed(2)}</td>
+          <td><button onclick="removerAlimento(${index})">Remover</button></td>
+        `;
+        tbody.appendChild(row);
+        totalProteina += item.proteina;
+        totalGordura += item.gordura;
+      });
+
+      document.getElementById("proteinaTotal").innerText = `Proteína Total: ${totalProteina.toFixed(2)}g`;
+      document.getElementById("gorduraTotal").innerText = `Gordura Total: ${totalGordura.toFixed(2)}g`;
+    }
+
+    window.onload = carregarAlimentosDoFirebase;
   </script>
 </head>
-
 <body>
   <div class="menu-container">
-    <button id="menuButton" aria-label="Abrir menu da aplicação" aria-haspopup="true" aria-expanded="false">
+    <button id="menuButton">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
-    <div class="dropdown-menu" id="dropdownMenu" role="menu" aria-hidden="true">
-      <a href="index.html" role="menuitem" tabindex="-1">Calculadora</a>
-      <a href="gerenciarAlimentos.html" role="menuitem" tabindex="-1">Gerenciar Alimentos</a>
-      <a href="proteinaEGordura.html" role="menuitem" tabindex="-1">Proteína e Gordura</a>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">Calculadora</a>
+      <a href="gerenciarAlimentos.html">Gerenciar Alimentos</a>
+      <a href="proteinaEGordura.html">Proteína e Gordura</a>
     </div>
   </div>
-
   <h1>Calculadora de Proteína e Gordura</h1>
 
   <div class="card">
+    <label for="tipo">Tipo de Cálculo:</label>
+    <select id="tipo" onchange="tipoCalculo = this.value">
+      <option value="gramas">Gramas/ml</option>
+      <option value="caseira">Medida caseira</option>
+    </select>
+
     <label for="alimento">Alimento:</label>
-    <input
-      list="listaAlimentos"
-      id="alimento"
-      name="alimento"
-      placeholder="Digite o nome do alimento"
-      autocomplete="off"
-    />
+    <input list="listaAlimentos" id="alimento" placeholder="Digite o nome do alimento" />
     <datalist id="listaAlimentos"></datalist>
 
     <label for="peso">Quantidade (g ou ml):</label>
@@ -244,125 +312,5 @@
       <button class="result-button" id="gorduraTotal">Gordura Total: 0g</button>
     </div>
   </div>
-
-  <script>
-    // Controle do menu dropdown
-    const menuButton = document.getElementById('menuButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    menuButton.addEventListener('click', () => {
-      const isShown = dropdownMenu.classList.toggle('show');
-      dropdownMenu.setAttribute('aria-hidden', !isShown);
-      menuButton.setAttribute('aria-expanded', isShown);
-      if(isShown) {
-        dropdownMenu.querySelector('a').focus();
-      }
-    });
-
-    // Fechar menu ao clicar fora
-    document.addEventListener('click', (e) => {
-      if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownMenu.classList.remove('show');
-        dropdownMenu.setAttribute('aria-hidden', 'true');
-        menuButton.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Fechar menu ao pressionar ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        dropdownMenu.classList.remove('show');
-        dropdownMenu.setAttribute('aria-hidden', 'true');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.focus();
-      }
-    });
-
-    let tabelaNutrientes = {};
-    let alimentos = [];
-
-    async function carregarAlimentosDoFirebase() {
-      const snapshot = await db.collection("alimentos").get();
-      const dataList = document.getElementById("listaAlimentos");
-      dataList.innerHTML = "";
-
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const nome = data.nome;
-        // Pode ter nomes diferentes para os campos, tente os mais comuns:
-        const proteina = data.percentual_de_proteina || data.proteina || 0;
-        const gordura = data.percentual_de_gordura || data.gordura || 0;
-
-        tabelaNutrientes[nome] = { proteina, gordura };
-
-        const option = document.createElement("option");
-        option.value = nome;
-        dataList.appendChild(option);
-      });
-    }
-
-    function adicionarAlimento() {
-      const nome = document.getElementById('alimento').value.trim();
-      const peso = parseFloat(document.getElementById('peso').value);
-
-      if (!nome) {
-        alert("Digite o nome do alimento.");
-        return;
-      }
-
-      if (!(nome in tabelaNutrientes)) {
-        alert("Alimento não encontrado na lista. Digite um nome válido.");
-        return;
-      }
-
-      if (isNaN(peso) || peso <= 0) {
-        alert("Digite uma quantidade válida.");
-        return;
-      }
-
-      const nutrientes = tabelaNutrientes[nome];
-      const proteinaTotal = (nutrientes.proteina * peso) / 100;
-      const gorduraTotal = (nutrientes.gordura * peso) / 100;
-
-      alimentos.push({ nome, peso, proteina: proteinaTotal, gordura: gorduraTotal });
-      atualizarTabela();
-
-      // Limpa os campos
-      document.getElementById('alimento').value = "";
-      document.getElementById('peso').value = "";
-    }
-
-    function removerAlimento(index) {
-      alimentos.splice(index, 1);
-      atualizarTabela();
-    }
-
-    function atualizarTabela() {
-      const tbody = document.querySelector("#tabelaAlimentos tbody");
-      tbody.innerHTML = "";
-
-      let totalProteina = 0;
-      let totalGordura = 0;
-
-      alimentos.forEach((item, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.nome}</td>
-          <td>${item.peso}g/ml</td>
-          <td>${item.proteina.toFixed(2)}</td>
-          <td>${item.gordura.toFixed(2)}</td>
-          <td><button onclick="removerAlimento(${index})">Remover</button></td>
-        `;
-        tbody.appendChild(row);
-        totalProteina += item.proteina;
-        totalGordura += item.gordura;
-      });
-
-      document.getElementById("proteinaTotal").innerText = `Proteína Total: ${totalProteina.toFixed(2)}g`;
-      document.getElementById("gorduraTotal").innerText = `Gordura Total: ${totalGordura.toFixed(2)}g`;
-    }
-
-    window.onload = carregarAlimentosDoFirebase;
-  </script>
 </body>
 </html>

@@ -2,7 +2,7 @@ const admin = require("firebase-admin");
 const fs = require("fs");
 
 // Carrega a chave do Firebase
-const serviceAccount = require("../keys/serviceAccountKey.json");
+const serviceAccount = require("../../keys/serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -23,15 +23,37 @@ try {
   process.exit(1);
 }
 
+function calcularPercentuais(item) {
+  const energiaTotal = item.energia || 0;
+  const carbo = item.carboidrato || 0;
+  const proteina = item.proteina || 0;
+  const gordura = item.gordura || 0;
+
+  const energiaCHO = carbo * 4;
+  const energiaPROT = proteina * 4;
+  const energiaGORD = gordura * 9;
+
+  if (energiaTotal > 0) {
+    item.percentual_de_cho = Math.round((energiaCHO / energiaTotal) * 100);
+    item.percentual_de_proteina = Math.round((energiaPROT / energiaTotal) * 100);
+    item.percentual_de_gordura = Math.round((energiaGORD / energiaTotal) * 100);
+  } else {
+    item.percentual_de_cho = 0;
+    item.percentual_de_proteina = 0;
+    item.percentual_de_gordura = 0;
+  }
+}
+
 async function importar() {
   let contador = 0;
 
   for (const item of alimentos) {
-    // Validação básica
-    if (!item.nome || typeof item.percentual_de_cho !== "number") {
+    if (!item.nome || typeof item.energia !== "number") {
       console.warn(`Item inválido (ignorado):`, item);
       continue;
     }
+
+    calcularPercentuais(item);
 
     try {
       await db.collection("alimentos").add(item);

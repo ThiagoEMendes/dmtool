@@ -1,3584 +1,1298 @@
 [
   {
-    "nome": "Arroz, integral, cozido",
-    "percentual_de_proteina": 2.6,
-    "percentual_de_gordura": 1,
-    "percentual_de_cho": 25.8
-  },
-  {
-    "nome": "Arroz, integral, cru",
-    "percentual_de_proteina": 7.3,
-    "percentual_de_gordura": 1.9,
-    "percentual_de_cho": 77.5
-  },
-  {
-    "nome": "Arroz, tipo 1, cozido",
-    "percentual_de_proteina": 2.5,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 28.1
-  },
-  {
-    "nome": "Arroz, tipo 1, cru",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 78.8
-  },
-  {
-    "nome": "Arroz, tipo 2, cozido",
-    "percentual_de_proteina": 2.6,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 28.2
-  },
-  {
-    "nome": "Arroz, tipo 2, cru",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 78.9
-  },
-  {
-    "nome": "Aveia, flocos, crua",
-    "percentual_de_proteina": 13.9,
-    "percentual_de_gordura": 8.5,
-    "percentual_de_cho": 66.6
-  },
-  {
-    "nome": "Biscoito, doce, maisena",
-    "percentual_de_proteina": 8.1,
-    "percentual_de_gordura": 12,
-    "percentual_de_cho": 75.2
-  },
-  {
-    "nome": "Biscoito, doce, recheado com chocolate",
-    "percentual_de_proteina": 6.4,
-    "percentual_de_gordura": 19.6,
-    "percentual_de_cho": 70.5
-  },
-  {
-    "nome": "Biscoito, doce, recheado com morango",
-    "percentual_de_proteina": 5.7,
-    "percentual_de_gordura": 19.6,
-    "percentual_de_cho": 71
-  },
-  {
-    "nome": "Biscoito, doce, wafer, recheado de chocolate",
-    "percentual_de_proteina": 5.6,
-    "percentual_de_gordura": 24.7,
-    "percentual_de_cho": 67.5
-  },
-  {
-    "nome": "Biscoito, doce, wafer, recheado de morango",
-    "percentual_de_proteina": 4.5,
-    "percentual_de_gordura": 26.4,
-    "percentual_de_cho": 67.4
-  },
-  {
-    "nome": "Biscoito, salgado, cream cracker",
-    "percentual_de_proteina": 10.1,
-    "percentual_de_gordura": 14.4,
-    "percentual_de_cho": 68.7
-  },
-  {
-    "nome": "Bolo, mistura para",
-    "percentual_de_proteina": 6.2,
-    "percentual_de_gordura": 6.1,
-    "percentual_de_cho": 84.7
-  },
-  {
-    "nome": "Bolo, pronto, aipim",
-    "percentual_de_proteina": 4.4,
-    "percentual_de_gordura": 12.7,
-    "percentual_de_cho": 47.9
-  },
-  {
-    "nome": "Bolo, pronto, chocolate",
-    "percentual_de_proteina": 6.2,
-    "percentual_de_gordura": 18.5,
-    "percentual_de_cho": 54.7
-  },
-  {
-    "nome": "Bolo, pronto, coco",
-    "percentual_de_proteina": 5.7,
-    "percentual_de_gordura": 11.3,
-    "percentual_de_cho": 52.3
-  },
-  {
-    "nome": "Bolo, pronto, milho",
-    "percentual_de_proteina": 4.8,
-    "percentual_de_gordura": 12.4,
-    "percentual_de_cho": 45.1
-  },
-  {
-    "nome": "Canjica, branca, crua",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 1,
-    "percentual_de_cho": 78.1
-  },
-  {
-    "nome": "Canjica, com leite integral",
-    "percentual_de_proteina": 2.4,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 23.6
-  },
-  {
-    "nome": "Cereais, milho, flocos, com sal",
-    "percentual_de_proteina": 7.3,
-    "percentual_de_gordura": 1.6,
-    "percentual_de_cho": 80.8
-  },
-  {
-    "nome": "Cereais, milho, flocos, sem sal",
-    "percentual_de_proteina": 6.9,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 80.4
-  },
-  {
-    "nome": "Cereais, mingau, milho, infantil",
-    "percentual_de_proteina": 6.4,
-    "percentual_de_gordura": 1.1,
-    "percentual_de_cho": 87.3
-  },
-  {
-    "nome": "Cereais, mistura para vitamina, trigo, cevada e aveia",
-    "percentual_de_proteina": 8.9,
-    "percentual_de_gordura": 2.1,
-    "percentual_de_cho": 81.6
-  },
-  {
-    "nome": "Cereal matinal, milho",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 1,
-    "percentual_de_cho": 83.8
-  },
-  {
-    "nome": "Cereal matinal, milho, açúcar",
-    "percentual_de_proteina": 4.7,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 88.8
-  },
-  {
-    "nome": "Creme de arroz, pó",
-    "percentual_de_proteina": 7,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 83.9
-  },
-  {
-    "nome": "Creme de milho, pó",
-    "percentual_de_proteina": 4.8,
-    "percentual_de_gordura": 1.6,
-    "percentual_de_cho": 86.1
-  },
-  {
-    "nome": "Curau, milho verde",
-    "percentual_de_proteina": 2.4,
-    "percentual_de_gordura": 1.6,
-    "percentual_de_cho": 13.9
-  },
-  {
-    "nome": "Curau, milho verde, mistura para",
-    "percentual_de_proteina": 2.2,
-    "percentual_de_gordura": 13.4,
-    "percentual_de_cho": 79.8
-  },
-  {
-    "nome": "Farinha, de arroz, enriquecida",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 85.5
-  },
-  {
-    "nome": "Farinha, de centeio, integral",
-    "percentual_de_proteina": 12.5,
-    "percentual_de_gordura": 1.8,
-    "percentual_de_cho": 73.3
-  },
-  {
-    "nome": "Farinha, de milho, amarela",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 1.5,
-    "percentual_de_cho": 79.1
-  },
-  {
-    "nome": "Farinha, de rosca",
-    "percentual_de_proteina": 11.4,
-    "percentual_de_gordura": 1.5,
-    "percentual_de_cho": 75.8
-  },
-  {
-    "nome": "Farinha, de trigo",
-    "percentual_de_proteina": 9.8,
-    "percentual_de_gordura": 1.4,
-    "percentual_de_cho": 75.1
-  },
-  {
-    "nome": "Farinha, láctea, de cereais",
-    "percentual_de_proteina": 11.9,
-    "percentual_de_gordura": 5.8,
-    "percentual_de_cho": 77.8
-  },
-  {
-    "nome": "Lasanha, massa fresca, cozida",
-    "percentual_de_proteina": 5.8,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 32.5
-  },
-  {
-    "nome": "Lasanha, massa fresca, crua",
-    "percentual_de_proteina": 7,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 45.1
-  },
-  {
-    "nome": "Macarrão, instantâneo",
-    "percentual_de_proteina": 8.8,
-    "percentual_de_gordura": 17.2,
-    "percentual_de_cho": 62.4
-  },
-  {
-    "nome": "Macarrão, trigo, cru",
-    "percentual_de_proteina": 10,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 77.9
-  },
-  {
-    "nome": "Macarrão, trigo, cru, com ovos",
-    "percentual_de_proteina": 10.3,
-    "percentual_de_gordura": 2,
-    "percentual_de_cho": 76.6
-  },
-  {
-    "nome": "Milho, amido, cru",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": "Tr",
-    "percentual_de_cho": 87.1
-  },
-  {
-    "nome": "Milho, fubá, cru",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 1.9,
-    "percentual_de_cho": 78.9
-  },
-  {
-    "nome": "Milho, verde, cru",
-    "percentual_de_proteina": 6.6,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 28.6
-  },
-  {
-    "nome": "Milho, verde, enlatado, drenado",
-    "percentual_de_proteina": 3.2,
-    "percentual_de_gordura": 2.4,
-    "percentual_de_cho": 17.1
-  },
-  {
-    "nome": "Mingau tradicional, pó",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 89.3
-  },
-  {
-    "nome": "Pamonha, barra para cozimento, pré-cozida",
-    "percentual_de_proteina": 2.6,
-    "percentual_de_gordura": 4.8,
-    "percentual_de_cho": 30.7
-  },
-  {
-    "nome": "Pão, aveia, forma",
-    "percentual_de_proteina": 12.4,
-    "percentual_de_gordura": 5.7,
-    "percentual_de_cho": 59.6
-  },
-  {
-    "nome": "Pão, de soja",
-    "percentual_de_proteina": 11.3,
-    "percentual_de_gordura": 3.6,
-    "percentual_de_cho": 56.5
-  },
-  {
-    "nome": "Pão, glúten, forma",
-    "percentual_de_proteina": 12,
-    "percentual_de_gordura": 2.7,
-    "percentual_de_cho": 44.1
-  },
-  {
-    "nome": "Pão, milho, forma",
-    "percentual_de_proteina": 8.3,
-    "percentual_de_gordura": 3.1,
-    "percentual_de_cho": 56.4
-  },
-  {
-    "nome": "Pão, trigo, forma, integral",
-    "percentual_de_proteina": 9.4,
-    "percentual_de_gordura": 3.7,
-    "percentual_de_cho": 49.9
-  },
-  {
-    "nome": "Pão, trigo, francês",
-    "percentual_de_proteina": 8,
-    "percentual_de_gordura": 3.1,
-    "percentual_de_cho": 58.6
-  },
-  {
-    "nome": "Pão, trigo, sovado",
-    "percentual_de_proteina": 8.4,
-    "percentual_de_gordura": 2.8,
-    "percentual_de_cho": 61.5
-  },
-  {
-    "nome": "Pastel, de carne, cru",
-    "percentual_de_proteina": 10.7,
-    "percentual_de_gordura": 8.8,
-    "percentual_de_cho": 42
-  },
-  {
-    "nome": "Pastel, de carne, frito",
-    "percentual_de_proteina": 10.1,
-    "percentual_de_gordura": 20.1,
-    "percentual_de_cho": 43.8
-  },
-  {
-    "nome": "Pastel, de queijo, cru",
-    "percentual_de_proteina": 9.9,
-    "percentual_de_gordura": 9.6,
-    "percentual_de_cho": 45.9
-  },
-  {
-    "nome": "Pastel, de queijo, frito",
-    "percentual_de_proteina": 8.7,
-    "percentual_de_gordura": 22.7,
-    "percentual_de_cho": 48.1
-  },
-  {
-    "nome": "Pastel, massa, crua",
-    "percentual_de_proteina": 6.9,
-    "percentual_de_gordura": 5.5,
-    "percentual_de_cho": 57.4
-  },
-  {
-    "nome": "Pastel, massa, frita",
-    "percentual_de_proteina": 6,
-    "percentual_de_gordura": 40.9,
-    "percentual_de_cho": 49.3
-  },
-  {
-    "nome": "Pipoca, com óleo de soja, sem sal",
-    "percentual_de_proteina": 9.9,
-    "percentual_de_gordura": 15.9,
-    "percentual_de_cho": 70.3
-  },
-  {
-    "nome": "Polenta, pré-cozida",
-    "percentual_de_proteina": 2.3,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 23.3
-  },
-  {
-    "nome": "Torrada, pão francês",
-    "percentual_de_proteina": 10.5,
-    "percentual_de_gordura": 3.3,
-    "percentual_de_cho": 74.6
-  },
-  {
-    "nome": "Abóbora, cabotian, cozida",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 10.8
-  },
-  {
-    "nome": "Abóbora, cabotian, crua",
-    "percentual_de_proteina": 1.7,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 8.4
-  },
-  {
-    "nome": "Abóbora, menina brasileira, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 3.3
-  },
-  {
-    "nome": "Abóbora, moranga, crua",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.7
-  },
-  {
-    "nome": "Abóbora, moranga, refogada",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.8,
-    "percentual_de_cho": 6
-  },
-  {
-    "nome": "Abóbora, pescoço, crua",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 6.1
-  },
-  {
-    "nome": "Abobrinha, italiana, cozida",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 3
-  },
-  {
-    "nome": "Abobrinha, italiana, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.3
-  },
-  {
-    "nome": "Abobrinha, italiana, refogada",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.8,
-    "percentual_de_cho": 4.2
-  },
-  {
-    "nome": "Abobrinha, paulista, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.9
-  },
-  {
-    "nome": "Acelga, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.6
-  },
-  {
-    "nome": "Agrião, cru",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 2.3
-  },
-  {
-    "nome": "Aipo, cru",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.3
-  },
-  {
-    "nome": "Alface, americana, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 1.7
-  },
-  {
-    "nome": "Alface, crespa, crua",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 1.7
-  },
-  {
-    "nome": "Alface, lisa, crua",
-    "percentual_de_proteina": 1.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.4
-  },
-  {
-    "nome": "Alface, roxa, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 2.5
-  },
-  {
-    "nome": "Alfavaca, crua",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 5.2
-  },
-  {
-    "nome": "Alho, cru",
-    "percentual_de_proteina": 7,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 23.9
-  },
-  {
-    "nome": "Alho-poró, cru",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 6.9
-  },
-  {
-    "nome": "Almeirão, cru",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 3.3
-  },
-  {
-    "nome": "Almeirão, refogado",
-    "percentual_de_proteina": 1.7,
-    "percentual_de_gordura": 4.8,
-    "percentual_de_cho": 5.7
-  },
-  {
-    "nome": "Batata, baroa, cozida",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 18.9
-  },
-  {
-    "nome": "Batata, baroa, crua",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 24
-  },
-  {
-    "nome": "Batata, doce, cozida",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 18.4
-  },
-  {
-    "nome": "Batata, doce, crua",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 28.2
-  },
-  {
-    "nome": "Batata, frita, tipo chips, industrializada",
-    "percentual_de_proteina": 5.6,
-    "percentual_de_gordura": 36.6,
-    "percentual_de_cho": 51.2
-  },
-  {
-    "nome": "Batata, inglesa, cozida",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 11.9
-  },
-  {
-    "nome": "Batata, inglesa, crua",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 14.7
-  },
-  {
-    "nome": "Batata, inglesa, frita",
-    "percentual_de_proteina": 5,
-    "percentual_de_gordura": 13.1,
-    "percentual_de_cho": 35.6
-  },
-  {
-    "nome": "Batata, inglesa, sauté",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 14.1
-  },
-  {
-    "nome": "Berinjela, cozida",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.5
-  },
-  {
-    "nome": "Berinjela, crua",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.4
-  },
-  {
-    "nome": "Beterraba, cozida",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.2
-  },
-  {
-    "nome": "Beterraba, crua",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 11.1
-  },
-  {
-    "nome": "Biscoito, polvilho doce",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 12.2,
-    "percentual_de_cho": 80.5
-  },
-  {
-    "nome": "Brócolis, cozido",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 4.4
-  },
-  {
-    "nome": "Brócolis, cru",
-    "percentual_de_proteina": 3.6,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 4
-  },
-  {
-    "nome": "Cará, cozido",
-    "percentual_de_proteina": 1.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 18.9
-  },
-  {
-    "nome": "Cará, cru",
-    "percentual_de_proteina": 2.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 23
-  },
-  {
-    "nome": "Caruru, cru",
-    "percentual_de_proteina": 3.2,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 6
-  },
-  {
-    "nome": "Catalonha, crua",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 4.8
-  },
-  {
-    "nome": "Catalonha, refogada",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 4.8,
-    "percentual_de_cho": 4.8
-  },
-  {
-    "nome": "Cebola, crua",
-    "percentual_de_proteina": 1.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 8.9
-  },
-  {
-    "nome": "Cebolinha, crua",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 3.4
-  },
-  {
-    "nome": "Cenoura, cozida",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 6.7
-  },
-  {
-    "nome": "Cenoura, crua",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 7.7
-  },
-  {
-    "nome": "Chicória, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.9
-  },
-  {
-    "nome": "Chuchu, cozido",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 4.8
-  },
-  {
-    "nome": "Chuchu, cru",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.1
-  },
-  {
-    "nome": "Coentro, folhas desidratadas",
-    "percentual_de_proteina": 20.9,
-    "percentual_de_gordura": 10.4,
-    "percentual_de_cho": 48
-  },
-  {
-    "nome": "Couve, manteiga, crua",
-    "percentual_de_proteina": 2.9,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 4.3
-  },
-  {
-    "nome": "Couve, manteiga, refogada",
-    "percentual_de_proteina": 1.7,
-    "percentual_de_gordura": 6.6,
-    "percentual_de_cho": 8.7
-  },
-  {
-    "nome": "Couve-flor, crua",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 4.5
-  },
-  {
-    "nome": "Couve-flor, cozida",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 3.9
-  },
-  {
-    "nome": "Espinafre, Nova Zelândia, cru",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 2.6
-  },
-  {
-    "nome": "Espinafre, Nova Zelândia, refogado",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 5.4,
-    "percentual_de_cho": 4.2
-  },
-  {
-    "nome": "Farinha, de mandioca, crua",
-    "percentual_de_proteina": 1.6,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 87.9
-  },
-  {
-    "nome": "Farinha, de mandioca, torrada",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 89.2
-  },
-  {
-    "nome": "Farinha, de puba",
-    "percentual_de_proteina": 1.6,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 87.3
-  },
-  {
-    "nome": "Fécula, de mandioca",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 81.1
-  },
-  {
-    "nome": "Feijão, broto, cru",
-    "percentual_de_proteina": 4.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.8
-  },
-  {
-    "nome": "Inhame, cru",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 23.2
-  },
-  {
-    "nome": "Jiló, cru",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 6.2
-  },
-  {
-    "nome": "Jurubeba, crua",
-    "percentual_de_proteina": 4.4,
-    "percentual_de_gordura": 3.9,
-    "percentual_de_cho": 23.1
-  },
-  {
-    "nome": "Mandioca, cozida",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 30.1
-  },
-  {
-    "nome": "Mandioca, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 36.2
-  },
-  {
-    "nome": "Mandioca, farofa, temperada",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 9.1,
-    "percentual_de_cho": 80.3
-  },
-  {
-    "nome": "Mandioca, frita",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 11.2,
-    "percentual_de_cho": 50.3
-  },
-  {
-    "nome": "Manjericão, cru",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 3.6
-  },
-  {
-    "nome": "Maxixe, cru",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.7
-  },
-  {
-    "nome": "Mostarda, folha, crua",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 3.2
-  },
-  {
-    "nome": "Nhoque, batata, cozido",
-    "percentual_de_proteina": 5.9,
-    "percentual_de_gordura": 1.9,
-    "percentual_de_cho": 36.8
-  },
-  {
-    "nome": "Nabo, cru",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.1
-  },
-  {
-    "nome": "Palmito, juçara, em conserva",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 4.3
-  },
-  {
-    "nome": "Palmito, pupunha, em conserva",
-    "percentual_de_proteina": 2.5,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 5.5
-  },
-  {
-    "nome": "Pão, de queijo, assado",
-    "percentual_de_proteina": 5.1,
-    "percentual_de_gordura": 24.6,
-    "percentual_de_cho": 34.2
-  },
-  {
-    "nome": "Pão, de queijo, cru",
-    "percentual_de_proteina": 3.6,
-    "percentual_de_gordura": 14,
-    "percentual_de_cho": 38.5
-  },
-  {
-    "nome": "Pepino, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 2
-  },
-  {
-    "nome": "Pimentão, amarelo, cru",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 6
-  },
-  {
-    "nome": "Pimentão, verde, cru",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 4.9
-  },
-  {
-    "nome": "Pimentão, vermelho, cru",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 5.5
-  },
-  {
-    "nome": "Polvilho, doce",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 86.8
-  },
-  {
-    "nome": "Quiabo, cru",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 6.4
-  },
-  {
-    "nome": "Rabanete, cru",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.7
-  },
-  {
-    "nome": "Repolho, branco, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 3.9
-  },
-  {
-    "nome": "Repolho, roxo, cru",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.2
-  },
-  {
-    "nome": "Repolho, roxo, refogado",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 7.6
-  },
-  {
-    "nome": "Rúcula, crua",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 2.2
-  },
-  {
-    "nome": "Salsa, crua",
-    "percentual_de_proteina": 3.3,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 5.7
-  },
-  {
-    "nome": "Seleta de legumes, enlatada",
-    "percentual_de_proteina": 3.4,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 12.7
-  },
-  {
-    "nome": "Serralha, crua",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 4.9
-  },
-  {
-    "nome": "Taioba, crua",
-    "percentual_de_proteina": 2.9,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 5.4
-  },
-  {
-    "nome": "Tomate, com semente, cru",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 3.1
-  },
-  {
-    "nome": "Tomate, extrato",
-    "percentual_de_proteina": 2.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 15
-  },
-  {
-    "nome": "Tomate, molho industrializado",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 7.7
-  },
-  {
-    "nome": "Tomate, purê",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 6.9
-  },
-  {
-    "nome": "Tomate, salada",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 5.1
-  },
-  {
-    "nome": "Vagem, crua",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 5.3
-  },
-  {
-    "nome": "Abacate, cru",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 8.4,
-    "percentual_de_cho": 6
-  },
-  {
-    "nome": "Abacaxi, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 12.3
-  },
-  {
-    "nome": "Abacaxi, polpa, congelada",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.8
-  },
-  {
-    "nome": "Abiu, cru",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 14.9
-  },
-  {
-    "nome": "Açaí, polpa, com xarope de guaraná e glucose",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 3.7,
-    "percentual_de_cho": 21.5
-  },
-  {
-    "nome": "Açaí, polpa, congelada",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 3.9,
-    "percentual_de_cho": 6.2
-  },
-  {
-    "nome": "Acerola, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 8
-  },
-  {
-    "nome": "Acerola, polpa, congelada",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 5.5
-  },
-  {
-    "nome": "Ameixa, calda, enlatada",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 46.9
-  },
-  {
-    "nome": "Ameixa, crua",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 13.9
-  },
-  {
-    "nome": "Ameixa, em calda, enlatada, drenada",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 47.7
-  },
-  {
-    "nome": "Atemóia, crua",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 25.3
-  },
-  {
-    "nome": "Banana, da terra, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 33.7
-  },
-  {
-    "nome": "Banana, doce em barra",
-    "percentual_de_proteina": 2.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 75.7
-  },
-  {
-    "nome": "Banana, figo, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 27.8
-  },
-  {
-    "nome": "Banana, maçã, crua",
-    "percentual_de_proteina": 1.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 22.3
-  },
-  {
-    "nome": "Banana, nanica, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 23.8
-  },
-  {
-    "nome": "Banana, ouro, crua",
-    "percentual_de_proteina": 1.5,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 29.3
-  },
-  {
-    "nome": "Banana, pacova, crua",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 20.3
-  },
-  {
-    "nome": "Banana, prata, crua",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 26
-  },
-  {
-    "nome": "Cacau, cru",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 19.4
-  },
-  {
-    "nome": "Cajá-Manga, cru",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 11.4
-  },
-  {
-    "nome": "Cajá, polpa, congelada",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 6.4
-  },
-  {
-    "nome": "Caju, cru",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 10.3
-  },
-  {
-    "nome": "Caju, polpa, congelada",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 9.4
-  },
-  {
-    "nome": "Caju, suco concentrado, envasado",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 10.7
-  },
-  {
-    "nome": "Caqui, chocolate, cru",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 19.3
-  },
-  {
-    "nome": "Carambola, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 11.5
-  },
-  {
-    "nome": "Ciriguela, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 18.9
-  },
-  {
-    "nome": "Cupuaçu, cru",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 1,
-    "percentual_de_cho": 10.4
-  },
-  {
-    "nome": "Cupuaçu, polpa, congelada",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 11.4
-  },
-  {
-    "nome": "Figo, cru",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 10.2
-  },
-  {
-    "nome": "Figo, enlatado, em calda",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 50.3
-  },
-  {
-    "nome": "Fruta-pão, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 17.2
-  },
-  {
-    "nome": "Goiaba, branca, com casca, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 12.4
-  },
-  {
-    "nome": "Goiaba, doce em pasta",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 74.1
-  },
-  {
-    "nome": "Goiaba, doce, cascão",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 78.7
-  },
-  {
-    "nome": "Goiaba, vermelha, com casca, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 13
-  },
-  {
-    "nome": "Graviola, crua",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 15.8
-  },
-  {
-    "nome": "Graviola, polpa, congelada",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 9.8
-  },
-  {
-    "nome": "Jabuticaba, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 15.3
-  },
-  {
-    "nome": "Jaca, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 22.5
-  },
-  {
-    "nome": "Jambo, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 6.5
-  },
-  {
-    "nome": "Jamelão, cru",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 10.6
-  },
-  {
-    "nome": "Kiwi, cru",
-    "percentual_de_proteina": 1.3,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 11.5
-  },
-  {
-    "nome": "Laranja, baía, crua",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 11.5
-  },
-  {
-    "nome": "Laranja, baía, suco",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 8.7
-  },
-  {
-    "nome": "Laranja, da terra, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 12.9
-  },
-  {
-    "nome": "Laranja, da terra, suco",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 9.6
-  },
-  {
-    "nome": "Laranja, lima, crua",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 11.5
-  },
-  {
-    "nome": "Laranja, lima, suco",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 9.2
-  },
-  {
-    "nome": "Laranja, pêra, crua",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 8.9
-  },
-  {
-    "nome": "Laranja, pêra, suco",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.6
-  },
-  {
-    "nome": "Laranja, valência, crua",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 11.7
-  },
-  {
-    "nome": "Laranja, valência, suco",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 8.6
-  },
-  {
-    "nome": "Limão, cravo, suco",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 5.2
-  },
-  {
-    "nome": "Limão, galego, suco",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 7.3
-  },
-  {
-    "nome": "Limão, tahiti, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 11.1
-  },
-  {
-    "nome": "Maçã, Argentina, com casca, crua",
-    "percentual_de_proteina": 0.2,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 16.6
-  },
-  {
-    "nome": "Maçã, Fuji, com casca, crua",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 15.2
-  },
-  {
-    "nome": "Macaúba, crua",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 40.7,
-    "percentual_de_cho": 13.9
-  },
-  {
-    "nome": "Mamão, doce em calda, drenado",
-    "percentual_de_proteina": 0.2,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 54
-  },
-  {
-    "nome": "Mamão, Formosa, cru",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 11.6
-  },
-  {
-    "nome": "Mamão, Papaia, cru",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 10.4
-  },
-  {
-    "nome": "Mamão verde, doce em calda, drenado",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 57.6
-  },
-  {
-    "nome": "Manga, Haden, crua",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 16.7
-  },
-  {
-    "nome": "Manga, Palmer, crua",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 19.4
-  },
-  {
-    "nome": "Manga, polpa, congelada",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 12.5
-  },
-  {
-    "nome": "Manga, Tommy Atkins, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 12.8
-  },
-  {
-    "nome": "Maracujá, cru",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 2.1,
-    "percentual_de_cho": 12.3
-  },
-  {
-    "nome": "Maracujá, polpa, congelada",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 9.6
-  },
-  {
-    "nome": "Maracujá, suco concentrado, envasado",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 9.6
-  },
-  {
-    "nome": "Melancia, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 8.1
-  },
-  {
-    "nome": "Melão, cru",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 7.5
-  },
-  {
-    "nome": "Mexerica, Murcote, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 14.9
-  },
-  {
-    "nome": "Mexerica, Rio, crua",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 9.3
-  },
-  {
-    "nome": "Morango, cru",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 6.8
-  },
-  {
-    "nome": "Nêspera, crua",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 11.5
-  },
-  {
-    "nome": "Pequi, cru",
-    "percentual_de_proteina": 2.3,
-    "percentual_de_gordura": 18,
-    "percentual_de_cho": 13
-  },
-  {
-    "nome": "Pêra, Park, crua",
-    "percentual_de_proteina": 0.2,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 16.1
-  },
-  {
-    "nome": "Pêra, Williams, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 14
-  },
-  {
-    "nome": "Pêssego, Aurora, cru",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 9.3
-  },
-  {
-    "nome": "Pêssego, enlatado, em calda",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 16.9
-  },
-  {
-    "nome": "Pinha, crua",
-    "percentual_de_proteina": 1.5,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 22.4
-  },
-  {
-    "nome": "Pitanga, crua",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 10.2
-  },
-  {
-    "nome": "Pitanga, polpa, congelada",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 4.8
-  },
-  {
-    "nome": "Romã, crua",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 15.1
-  },
-  {
-    "nome": "Tamarindo, cru",
-    "percentual_de_proteina": 3.2,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 72.5
-  },
-  {
-    "nome": "Tangerina, Poncã, crua",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 9.6
-  },
-  {
-    "nome": "Tangerina, Poncã, suco",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 8.8
-  },
-  {
-    "nome": "Tucumã, cru",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 19.1,
-    "percentual_de_cho": 26.5
-  },
-  {
-    "nome": "Umbu, cru",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 9.4
-  },
-  {
-    "nome": "Umbu, polpa, congelada",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 8.8
-  },
-  {
-    "nome": "Uva, Itália, crua",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 13.6
-  },
-  {
-    "nome": "Uva, Rubi, crua",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 12.7
-  },
-  {
-    "nome": "Uva, suco concentrado, envasado",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 14.7
-  },
-  {
-    "nome": "Azeite, de dendê",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Azeite, de oliva, extra virgem",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Manteiga, com sal",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 82.4,
-    "percentual_de_cho": 0.1
-  },
-  {
-    "nome": "Manteiga, sem sal",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 86,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Margarina, com óleo hidrogenado, com sal (65% de lipídeos)",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 67.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Margarina, com óleo hidrogenado, sem sal (80% de lipídeos)",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 81.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Margarina, com óleo interesterificado, com sal (65%de lipídeos)",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 67.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Margarina, com óleo interesterificado, sem sal (65% de lipídeos)",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 67.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de babaçu",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de canola",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de girassol",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de milho",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de pequi",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Óleo, de soja",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 100,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Abadejo, filé, congelado, assado",
-    "percentual_de_proteina": 23.5,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Abadejo, filé, congelado,cozido",
-    "percentual_de_proteina": 19.3,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Abadejo, filé, congelado, cru",
-    "percentual_de_proteina": 13.1,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Abadejo, filé, congelado, grelhado",
-    "percentual_de_proteina": 27.6,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Atum, conserva em óleo",
-    "percentual_de_proteina": 26.2,
-    "percentual_de_gordura": 6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Atum, fresco, cru",
-    "percentual_de_proteina": 25.7,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Bacalhau, salgado, cru",
-    "percentual_de_proteina": 29,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Bacalhau, salgado, refogado",
-    "percentual_de_proteina": 24,
-    "percentual_de_gordura": 3.6,
-    "percentual_de_cho": 1.2
-  },
-  {
-    "nome": "Cação, posta, com farinha de trigo, frita",
-    "percentual_de_proteina": 25,
-    "percentual_de_gordura": 10,
-    "percentual_de_cho": 3.1
-  },
-  {
-    "nome": "Cação, posta, cozida",
-    "percentual_de_proteina": 25.6,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Cação, posta, crua",
-    "percentual_de_proteina": 17.9,
-    "percentual_de_gordura": 0.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Camarão, Rio Grande, grande, cozido",
-    "percentual_de_proteina": 19,
-    "percentual_de_gordura": 1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Camarão, Rio Grande, grande, cru",
-    "percentual_de_proteina": 10,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Camarão, Sete Barbas, sem cabeça, com casca, frito",
-    "percentual_de_proteina": 18.4,
-    "percentual_de_gordura": 15.6,
-    "percentual_de_cho": 2.9
-  },
-  {
-    "nome": "Caranguejo, cozido",
-    "percentual_de_proteina": 18.5,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corimba, cru",
-    "percentual_de_proteina": 17.4,
-    "percentual_de_gordura": 6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corimbatá, assado",
-    "percentual_de_proteina": 19.9,
-    "percentual_de_gordura": 19.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corimbatá, cozido",
-    "percentual_de_proteina": 20.1,
-    "percentual_de_gordura": 16.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corvina de água doce, crua",
-    "percentual_de_proteina": 18.9,
-    "percentual_de_gordura": 2.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corvina do mar, crua",
-    "percentual_de_proteina": 18.6,
-    "percentual_de_gordura": 1.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corvina grande, assada",
-    "percentual_de_proteina": 26.8,
-    "percentual_de_gordura": 3.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Corvina grande, cozida",
-    "percentual_de_proteina": 23.4,
-    "percentual_de_gordura": 2.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Dourada de água doce, fresca",
-    "percentual_de_proteina": 18.8,
-    "percentual_de_gordura": 5.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lambari, congelado, cru",
-    "percentual_de_proteina": 16.8,
-    "percentual_de_gordura": 6.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lambari, congelado, frito",
-    "percentual_de_proteina": 28.4,
-    "percentual_de_gordura": 22.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lambari, fresco, cru",
-    "percentual_de_proteina": 15.7,
-    "percentual_de_gordura": 9.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Manjuba, com farinha de trigo, frita",
-    "percentual_de_proteina": 23.5,
-    "percentual_de_gordura": 22.6,
-    "percentual_de_cho": 10.2
-  },
-  {
-    "nome": "Manjuba, frita",
-    "percentual_de_proteina": 30.1,
-    "percentual_de_gordura": 24.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Merluza, filé, assado",
-    "percentual_de_proteina": 26.6,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Merluza, filé, cru",
-    "percentual_de_proteina": 16.6,
-    "percentual_de_gordura": 2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Merluza, filé, frito",
-    "percentual_de_proteina": 26.9,
-    "percentual_de_gordura": 8.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pescada, branca, crua",
-    "percentual_de_proteina": 16.3,
-    "percentual_de_gordura": 4.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pescada, branca, frita",
-    "percentual_de_proteina": 27.4,
-    "percentual_de_gordura": 11.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pescada, filé, com farinha de trigo, frito",
-    "percentual_de_proteina": 21.4,
-    "percentual_de_gordura": 19.1,
-    "percentual_de_cho": 5
-  },
-  {
-    "nome": "Pescada, filé, cru",
-    "percentual_de_proteina": 16.7,
-    "percentual_de_gordura": 4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pescada, filé, frito",
-    "percentual_de_proteina": 28.6,
-    "percentual_de_gordura": 3.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pescada, filé, molho escabeche",
-    "percentual_de_proteina": 11.8,
-    "percentual_de_gordura": 8,
-    "percentual_de_cho": 5
-  },
-  {
-    "nome": "Pescadinha, crua",
-    "percentual_de_proteina": 15.5,
-    "percentual_de_gordura": 1.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pintado, assado",
-    "percentual_de_proteina": 36.5,
-    "percentual_de_gordura": 4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pintado, cru",
-    "percentual_de_proteina": 18.6,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Pintado, grelhado",
-    "percentual_de_proteina": 30.8,
-    "percentual_de_gordura": 2.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porquinho, cru",
-    "percentual_de_proteina": 20.5,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Salmão, filé, com pele, fresco,  grelhado",
-    "percentual_de_proteina": 23.9,
-    "percentual_de_gordura": 14,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Salmão, sem pele, fresco, cru",
-    "percentual_de_proteina": 19.3,
-    "percentual_de_gordura": 9.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Salmão, sem pele, fresco, grelhado",
-    "percentual_de_proteina": 26.1,
-    "percentual_de_gordura": 14.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Sardinha, assada",
-    "percentual_de_proteina": 32.2,
-    "percentual_de_gordura": 3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Sardinha, conserva em óleo",
-    "percentual_de_proteina": 15.9,
-    "percentual_de_gordura": 24,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Sardinha, frita",
-    "percentual_de_proteina": 33.4,
-    "percentual_de_gordura": 12.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Sardinha, inteira, crua",
-    "percentual_de_proteina": 21.1,
-    "percentual_de_gordura": 2.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Tucunaré, filé, congelado, cru",
-    "percentual_de_proteina": 18,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Apresuntado",
-    "percentual_de_proteina": 13.5,
-    "percentual_de_gordura": 6.7,
-    "percentual_de_cho": 2.9
-  },
-  {
-    "nome": "Caldo de carne, tablete",
-    "percentual_de_proteina": 7.8,
-    "percentual_de_gordura": 16.6,
-    "percentual_de_cho": 15.1
-  },
-  {
-    "nome": "Caldo de galinha, tablete",
-    "percentual_de_proteina": 6.3,
-    "percentual_de_gordura": 20.4,
-    "percentual_de_cho": 10.6
-  },
-  {
-    "nome": "Carne, bovina, acém, moído, cozido",
-    "percentual_de_proteina": 26.7,
-    "percentual_de_gordura": 10.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, acém, moído, cru",
-    "percentual_de_proteina": 19.4,
-    "percentual_de_gordura": 5.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, acém, sem gordura, cozido",
-    "percentual_de_proteina": 27.3,
-    "percentual_de_gordura": 10.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, acém, sem gordura, cru",
-    "percentual_de_proteina": 20.8,
-    "percentual_de_gordura": 6.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, almôndegas, cruas",
-    "percentual_de_proteina": 12.3,
-    "percentual_de_gordura": 11.2,
-    "percentual_de_cho": 9.8
-  },
-  {
-    "nome": "Carne, bovina, almôndegas, fritas",
-    "percentual_de_proteina": 18.2,
-    "percentual_de_gordura": 15.8,
-    "percentual_de_cho": 14.3
-  },
-  {
-    "nome": "Carne, bovina, bucho, cozido",
-    "percentual_de_proteina": 21.6,
-    "percentual_de_gordura": 4.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, bucho, cru",
-    "percentual_de_proteina": 20.5,
-    "percentual_de_gordura": 5.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, capa de contra-filé, com gordura, crua",
-    "percentual_de_proteina": 19.2,
-    "percentual_de_gordura": 15,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, capa de contra-filé, com gordura, grelhada",
-    "percentual_de_proteina": 30.7,
-    "percentual_de_gordura": 20,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, capa de contra-filé, sem gordura, crua",
-    "percentual_de_proteina": 21.5,
-    "percentual_de_gordura": 4.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, capa de contra-filé, sem gordura, grelhada",
-    "percentual_de_proteina": 35.1,
-    "percentual_de_gordura": 10,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, charque, cozido",
-    "percentual_de_proteina": 36.4,
-    "percentual_de_gordura": 11.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, charque, cru",
-    "percentual_de_proteina": 22.7,
-    "percentual_de_gordura": 16.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé, à milanesa",
-    "percentual_de_proteina": 20.6,
-    "percentual_de_gordura": 24,
-    "percentual_de_cho": 12.2
-  },
-  {
-    "nome": "Carne, bovina, contra-filé de costela, cru",
-    "percentual_de_proteina": 19.8,
-    "percentual_de_gordura": 13.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé de costela, grelhado",
-    "percentual_de_proteina": 29.9,
-    "percentual_de_gordura": 16.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé, com gordura, cru",
-    "percentual_de_proteina": 21.2,
-    "percentual_de_gordura": 12.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé, com gordura, grelhado",
-    "percentual_de_proteina": 32.4,
-    "percentual_de_gordura": 15.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé, sem gordura, cru",
-    "percentual_de_proteina": 24,
-    "percentual_de_gordura": 6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, contra-filé, sem gordura, grelhado",
-    "percentual_de_proteina": 35.9,
-    "percentual_de_gordura": 4.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, costela, assada",
-    "percentual_de_proteina": 28.8,
-    "percentual_de_gordura": 27.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, costela, crua",
-    "percentual_de_proteina": 16.7,
-    "percentual_de_gordura": 31.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, coxão duro, sem gordura, cozido",
-    "percentual_de_proteina": 31.9,
-    "percentual_de_gordura": 8.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, coxão duro, sem gordura, cru",
-    "percentual_de_proteina": 21.5,
-    "percentual_de_gordura": 6.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, coxão mole, sem gordura, cozido",
-    "percentual_de_proteina": 32.4,
-    "percentual_de_gordura": 8.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, coxão mole, sem gordura, cru",
-    "percentual_de_proteina": 21.2,
-    "percentual_de_gordura": 8.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, cupim, assado",
-    "percentual_de_proteina": 28.6,
-    "percentual_de_gordura": 23,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, cupim, cru",
-    "percentual_de_proteina": 19.5,
-    "percentual_de_gordura": 15.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, fígado, cru",
-    "percentual_de_proteina": 20.7,
-    "percentual_de_gordura": 5.4,
-    "percentual_de_cho": 1.1
-  },
-  {
-    "nome": "Carne, bovina, fígado, grelhado",
-    "percentual_de_proteina": 29.9,
-    "percentual_de_gordura": 9,
-    "percentual_de_cho": 4.2
-  },
-  {
-    "nome": "Carne, bovina, filé mingnon, sem gordura, cru",
-    "percentual_de_proteina": 21.6,
-    "percentual_de_gordura": 5.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, filé mingnon, sem gordura, grelhado",
-    "percentual_de_proteina": 32.8,
-    "percentual_de_gordura": 8.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, flanco, sem gordura, cozido",
-    "percentual_de_proteina": 29.4,
-    "percentual_de_gordura": 7.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, flanco, sem gordura, cru",
-    "percentual_de_proteina": 20,
-    "percentual_de_gordura": 6.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, fraldinha, com gordura, cozida",
-    "percentual_de_proteina": 24.2,
-    "percentual_de_gordura": 26,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, fraldinha, com gordura, crua",
-    "percentual_de_proteina": 17.6,
-    "percentual_de_gordura": 16.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, lagarto, cozido",
-    "percentual_de_proteina": 32.9,
-    "percentual_de_gordura": 9.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, lagarto, cru",
-    "percentual_de_proteina": 20.5,
-    "percentual_de_gordura": 5.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, língua, cozida",
-    "percentual_de_proteina": 21.4,
-    "percentual_de_gordura": 24.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, língua, crua",
-    "percentual_de_proteina": 17.1,
-    "percentual_de_gordura": 15.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, maminha, crua",
-    "percentual_de_proteina": 20.9,
-    "percentual_de_gordura": 7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, maminha, grelhada",
-    "percentual_de_proteina": 30.7,
-    "percentual_de_gordura": 2.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, miolo de alcatra, sem gordura, cru",
-    "percentual_de_proteina": 21.6,
-    "percentual_de_gordura": 7.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, miolo de alcatra, sem gordura, grelhado",
-    "percentual_de_proteina": 31.9,
-    "percentual_de_gordura": 11.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, músculo, sem gordura, cozido",
-    "percentual_de_proteina": 31.2,
-    "percentual_de_gordura": 6.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, músculo, sem gordura, cru",
-    "percentual_de_proteina": 21.6,
-    "percentual_de_gordura": 5.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, paleta, com gordura, crua",
-    "percentual_de_proteina": 21.4,
-    "percentual_de_gordura": 7.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, paleta, sem gordura, cozida",
-    "percentual_de_proteina": 29.7,
-    "percentual_de_gordura": 7.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, paleta, sem gordura, crua",
-    "percentual_de_proteina": 21,
-    "percentual_de_gordura": 5.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, patinho, sem gordura, cru",
-    "percentual_de_proteina": 21.7,
-    "percentual_de_gordura": 4.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, patinho, sem gordura, grelhado",
-    "percentual_de_proteina": 35.9,
-    "percentual_de_gordura": 7.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, peito, sem gordura, cozido",
-    "percentual_de_proteina": 22.2,
-    "percentual_de_gordura": 27,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, peito, sem gordura, cru",
-    "percentual_de_proteina": 17.6,
-    "percentual_de_gordura": 20.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, picanha, com gordura, crua",
-    "percentual_de_proteina": 18.8,
-    "percentual_de_gordura": 14.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, picanha, com gordura, grelhada",
-    "percentual_de_proteina": 26.4,
-    "percentual_de_gordura": 19.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, picanha, sem gordura, crua",
-    "percentual_de_proteina": 21.3,
-    "percentual_de_gordura": 4.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, picanha, sem gordura, grelhada",
-    "percentual_de_proteina": 31.9,
-    "percentual_de_gordura": 11.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, seca, cozida",
-    "percentual_de_proteina": 26.9,
-    "percentual_de_gordura": 21.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Carne, bovina, seca, crua",
-    "percentual_de_proteina": 19.7,
-    "percentual_de_gordura": 25.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Coxinha de frango, frita",
-    "percentual_de_proteina": 9.6,
-    "percentual_de_gordura": 11.8,
-    "percentual_de_cho": 34.5
-  },
-  {
-    "nome": "Croquete, de carne, cru",
-    "percentual_de_proteina": 12,
-    "percentual_de_gordura": 15.6,
-    "percentual_de_cho": 13.9
-  },
-  {
-    "nome": "Croquete, de carne, frito",
-    "percentual_de_proteina": 16.9,
-    "percentual_de_gordura": 22.7,
-    "percentual_de_cho": 18.1
-  },
-  {
-    "nome": "Empada de frango, pré-cozida, assada",
-    "percentual_de_proteina": 6.9,
-    "percentual_de_gordura": 15.6,
-    "percentual_de_cho": 47.5
-  },
-  {
-    "nome": "Empada, de frango, pré-cozida",
-    "percentual_de_proteina": 7.3,
-    "percentual_de_gordura": 22.9,
-    "percentual_de_cho": 35.5
-  },
-  {
-    "nome": "Frango, asa, com pele, crua",
-    "percentual_de_proteina": 18.1,
-    "percentual_de_gordura": 15.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, caipira, inteiro, com pele, cozido",
-    "percentual_de_proteina": 23.9,
-    "percentual_de_gordura": 15.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, caipira, inteiro, sem pele, cozido",
-    "percentual_de_proteina": 29.6,
-    "percentual_de_gordura": 7.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, coração, cru",
-    "percentual_de_proteina": 12.6,
-    "percentual_de_gordura": 18.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, coração, grelhado",
-    "percentual_de_proteina": 22.4,
-    "percentual_de_gordura": 12.1,
-    "percentual_de_cho": 0.6
-  },
-  {
-    "nome": "Frango, coxa, com pele, assada",
-    "percentual_de_proteina": 28.5,
-    "percentual_de_gordura": 10.4,
-    "percentual_de_cho": 0.1
-  },
-  {
-    "nome": "Frango, coxa, com pele, crua",
-    "percentual_de_proteina": 17.1,
-    "percentual_de_gordura": 9.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, coxa, sem pele, cozida",
-    "percentual_de_proteina": 26.9,
-    "percentual_de_gordura": 5.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, coxa, sem pele, crua",
-    "percentual_de_proteina": 17.8,
-    "percentual_de_gordura": 4.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, fígado, cru",
-    "percentual_de_proteina": 17.6,
-    "percentual_de_gordura": 3.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, filé, à milanesa",
-    "percentual_de_proteina": 28.5,
-    "percentual_de_gordura": 7.8,
-    "percentual_de_cho": 7.5
-  },
-  {
-    "nome": "Frango, inteiro, com pele, cru",
-    "percentual_de_proteina": 16.4,
-    "percentual_de_gordura": 17.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, inteiro, sem pele, assado",
-    "percentual_de_proteina": 28,
-    "percentual_de_gordura": 7.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, inteiro, sem pele, cozido",
-    "percentual_de_proteina": 25,
-    "percentual_de_gordura": 7.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, inteiro, sem pele, cru",
-    "percentual_de_proteina": 20.6,
-    "percentual_de_gordura": 4.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, peito, com pele, assado",
-    "percentual_de_proteina": 33.4,
-    "percentual_de_gordura": 7.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, peito, com pele, cru",
-    "percentual_de_proteina": 20.8,
-    "percentual_de_gordura": 6.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, peito, sem pele, cozido",
-    "percentual_de_proteina": 31.5,
-    "percentual_de_gordura": 3.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, peito, sem pele, cru",
-    "percentual_de_proteina": 21.5,
-    "percentual_de_gordura": 3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, peito, sem pele, grelhado",
-    "percentual_de_proteina": 32,
-    "percentual_de_gordura": 2.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, sobrecoxa, com pele, assada",
-    "percentual_de_proteina": 28.7,
-    "percentual_de_gordura": 15.2,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, sobrecoxa, com pele, crua",
-    "percentual_de_proteina": 15.5,
-    "percentual_de_gordura": 20.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, sobrecoxa, sem pele, assada",
-    "percentual_de_proteina": 29.2,
-    "percentual_de_gordura": 12,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Frango, sobrecoxa, sem pele, crua",
-    "percentual_de_proteina": 17.6,
-    "percentual_de_gordura": 9.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Hambúrguer, bovino, cru",
-    "percentual_de_proteina": 13.2,
-    "percentual_de_gordura": 16.2,
-    "percentual_de_cho": 4.2
-  },
-  {
-    "nome": "Hambúrguer, bovino, frito",
-    "percentual_de_proteina": 20,
-    "percentual_de_gordura": 17,
-    "percentual_de_cho": 6.3
-  },
-  {
-    "nome": "Hambúrguer, bovino, grelhado",
-    "percentual_de_proteina": 13.2,
-    "percentual_de_gordura": 12.4,
-    "percentual_de_cho": 11.3
-  },
-  {
-    "nome": "Lingüiça, frango, crua",
-    "percentual_de_proteina": 14.2,
-    "percentual_de_gordura": 17.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lingüiça, frango, frita",
-    "percentual_de_proteina": 18.3,
-    "percentual_de_gordura": 18.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lingüiça, frango, grelhada",
-    "percentual_de_proteina": 18.2,
-    "percentual_de_gordura": 18.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lingüiça, porco, crua",
-    "percentual_de_proteina": 16.1,
-    "percentual_de_gordura": 17.6,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lingüiça, porco, frita",
-    "percentual_de_proteina": 20.5,
-    "percentual_de_gordura": 21.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Lingüiça, porco, grelhada",
-    "percentual_de_proteina": 23.2,
-    "percentual_de_gordura": 21.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Mortadela",
-    "percentual_de_proteina": 12,
-    "percentual_de_gordura": 21.6,
-    "percentual_de_cho": 5.8
-  },
-  {
-    "nome": "Peru, congelado, assado",
-    "percentual_de_proteina": 26.2,
-    "percentual_de_gordura": 5.7,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Peru, congelado, cru",
-    "percentual_de_proteina": 18.1,
-    "percentual_de_gordura": 1.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, bisteca, crua",
-    "percentual_de_proteina": 21.5,
-    "percentual_de_gordura": 8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, bisteca, frita",
-    "percentual_de_proteina": 33.7,
-    "percentual_de_gordura": 18.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, bisteca, grelhada",
-    "percentual_de_proteina": 28.9,
-    "percentual_de_gordura": 17.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, costela, assada",
-    "percentual_de_proteina": 30.2,
-    "percentual_de_gordura": 30.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, costela, crua",
-    "percentual_de_proteina": 18,
-    "percentual_de_gordura": 19.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, lombo, assado",
-    "percentual_de_proteina": 35.7,
-    "percentual_de_gordura": 6.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, lombo, cru",
-    "percentual_de_proteina": 22.6,
-    "percentual_de_gordura": 8.8,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, orelha, salgada, crua",
-    "percentual_de_proteina": 18.5,
-    "percentual_de_gordura": 19.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, pernil, assado",
-    "percentual_de_proteina": 32.1,
-    "percentual_de_gordura": 13.9,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, pernil, cru",
-    "percentual_de_proteina": 20.1,
-    "percentual_de_gordura": 11.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Porco, rabo, salgado, cru",
-    "percentual_de_proteina": 15.6,
-    "percentual_de_gordura": 34.5,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Presunto, com capa de gordura",
-    "percentual_de_proteina": 14.4,
-    "percentual_de_gordura": 6.8,
-    "percentual_de_cho": 1.4
-  },
-  {
-    "nome": "Presunto, sem capa de gordura",
-    "percentual_de_proteina": 14.3,
-    "percentual_de_gordura": 2.7,
-    "percentual_de_cho": 2.1
-  },
-  {
-    "nome": "Quibe, assado",
-    "percentual_de_proteina": 14.6,
-    "percentual_de_gordura": 2.7,
-    "percentual_de_cho": 12.9
-  },
-  {
-    "nome": "Quibe, cru",
-    "percentual_de_proteina": 12.4,
-    "percentual_de_gordura": 1.7,
-    "percentual_de_cho": 10.8
-  },
-  {
-    "nome": "Quibe, frito",
-    "percentual_de_proteina": 14.9,
-    "percentual_de_gordura": 15.8,
-    "percentual_de_cho": 12.3
-  },
-  {
-    "nome": "Salame",
-    "percentual_de_proteina": 25.8,
-    "percentual_de_gordura": 30.6,
-    "percentual_de_cho": 2.9
-  },
-  {
-    "nome": "Toucinho, cru",
-    "percentual_de_proteina": 11.5,
-    "percentual_de_gordura": 60.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Toucinho, frito",
-    "percentual_de_proteina": 27.3,
-    "percentual_de_gordura": 64.3,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Bebida láctea, pêssego",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 1.9,
-    "percentual_de_cho": 7.6
-  },
-  {
-    "nome": "Creme de Leite",
-    "percentual_de_proteina": 1.5,
-    "percentual_de_gordura": 22.5,
-    "percentual_de_cho": 4.5
-  },
-  {
-    "nome": "Iogurte, natural",
-    "percentual_de_proteina": 4.1,
-    "percentual_de_gordura": 3,
-    "percentual_de_cho": 1.9
-  },
-  {
-    "nome": "Iogurte, natural, desnatado",
-    "percentual_de_proteina": 3.8,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 5.8
-  },
-  {
-    "nome": "Iogurte, sabor abacaxi",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Iogurte, sabor morango",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 2.3,
-    "percentual_de_cho": 9.7
-  },
-  {
-    "nome": "Iogurte, sabor pêssego",
-    "percentual_de_proteina": 2.5,
-    "percentual_de_gordura": 2.3,
-    "percentual_de_cho": 9.4
-  },
-  {
-    "nome": "Leite, condensado",
-    "percentual_de_proteina": 7.7,
-    "percentual_de_gordura": 6.7,
-    "percentual_de_cho": 57
-  },
-  {
-    "nome": "Leite, de cabra",
-    "percentual_de_proteina": 3.1,
-    "percentual_de_gordura": 3.8,
-    "percentual_de_cho": 5.2
-  },
-  {
-    "nome": "Leite, de vaca, achocolatado",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 2.2,
-    "percentual_de_cho": 14.2
-  },
-  {
-    "nome": "Leite, de vaca, desnatado, pó",
-    "percentual_de_proteina": 34.7,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 53
-  },
-  {
-    "nome": "Leite, de vaca, desnatado, UHT",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Leite, de vaca, integral",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Leite, de vaca, integral, pó",
-    "percentual_de_proteina": 25.4,
-    "percentual_de_gordura": 26.9,
-    "percentual_de_cho": 39.2
-  },
-  {
-    "nome": "Leite, fermentado",
-    "percentual_de_proteina": 1.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 15.7
-  },
-  {
-    "nome": "Queijo, minas, frescal",
-    "percentual_de_proteina": 17.4,
-    "percentual_de_gordura": 20.2,
-    "percentual_de_cho": 3.2
-  },
-  {
-    "nome": "Queijo, minas, meia cura",
-    "percentual_de_proteina": 21.2,
-    "percentual_de_gordura": 24.6,
-    "percentual_de_cho": 3.6
-  },
-  {
-    "nome": "Queijo, mozarela",
-    "percentual_de_proteina": 22.6,
-    "percentual_de_gordura": 25.2,
-    "percentual_de_cho": 3
-  },
-  {
-    "nome": "Queijo, parmesão",
-    "percentual_de_proteina": 35.6,
-    "percentual_de_gordura": 33.5,
-    "percentual_de_cho": 1.7
-  },
-  {
-    "nome": "Queijo, pasteurizado",
-    "percentual_de_proteina": 9.4,
-    "percentual_de_gordura": 27.4,
-    "percentual_de_cho": 5.7
-  },
-  {
-    "nome": "Queijo, petit suisse, morango",
-    "percentual_de_proteina": 5.8,
-    "percentual_de_gordura": 2.8,
-    "percentual_de_cho": 18.5
-  },
-  {
-    "nome": "Queijo, prato",
-    "percentual_de_proteina": 22.7,
-    "percentual_de_gordura": 29.1,
-    "percentual_de_cho": 1.9
-  },
-  {
-    "nome": "Queijo, requeijão, cremoso",
-    "percentual_de_proteina": 9.6,
-    "percentual_de_gordura": 23.4,
-    "percentual_de_cho": 2.4
-  },
-  {
-    "nome": "Queijo, ricota",
-    "percentual_de_proteina": 12.6,
-    "percentual_de_gordura": 8.1,
-    "percentual_de_cho": 3.8
-  },
-  {
-    "nome": "Bebida isotônica, sabores variados",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 6.4
-  },
-  {
-    "nome": "Café, infusão 10%",
-    "percentual_de_proteina": 0.7,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 1.5
-  },
-  {
-    "nome": "Cana, aguardente 1",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Cana, caldo de",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 18.2
-  },
-  {
-    "nome": "Cerveja, pilsen 2",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 3.3
-  },
-  {
-    "nome": "Chá, erva-doce, infusão 5%",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0.4
-  },
-  {
-    "nome": "Chá, mate, infusão 5%",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 0.6
-  },
-  {
-    "nome": "Chá, preto, infusão 5%",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0.6
-  },
-  {
-    "nome": "Coco, água de",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 5.3
-  },
-  {
-    "nome": "Refrigerante, tipo água tônica",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 8
-  },
-  {
-    "nome": "Refrigerante, tipo cola",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 8.7
-  },
-  {
-    "nome": "Refrigerante, tipo guaraná",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 10
-  },
-  {
-    "nome": "Refrigerante, tipo laranja",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 11.8
-  },
-  {
-    "nome": "Refrigerante, tipo limão",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 10.3
-  },
-  {
-    "nome": "Omelete, de queijo",
-    "percentual_de_proteina": 15.6,
-    "percentual_de_gordura": 22,
-    "percentual_de_cho": 0.4
-  },
-  {
-    "nome": "Ovo, de codorna, inteiro, cru",
-    "percentual_de_proteina": 13.7,
-    "percentual_de_gordura": 12.7,
-    "percentual_de_cho": 0.8
-  },
-  {
-    "nome": "Ovo, de galinha, clara, cozida/10minutos",
-    "percentual_de_proteina": 13.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Ovo, de galinha, gema, cozida/10minutos",
-    "percentual_de_proteina": 15.9,
-    "percentual_de_gordura": 30.8,
-    "percentual_de_cho": 1.6
-  },
-  {
-    "nome": "Ovo, de galinha, inteiro, cozido/10minutos",
-    "percentual_de_proteina": 13.3,
-    "percentual_de_gordura": 9.5,
-    "percentual_de_cho": 0.6
-  },
-  {
-    "nome": "Ovo, de galinha, inteiro, cru",
-    "percentual_de_proteina": 13,
-    "percentual_de_gordura": 8.9,
-    "percentual_de_cho": 1.6
-  },
-  {
-    "nome": "Ovo, de galinha, inteiro, frito",
-    "percentual_de_proteina": 15.6,
-    "percentual_de_gordura": 18.6,
-    "percentual_de_cho": 1.2
-  },
-  {
-    "nome": "Achocolatado, pó",
-    "percentual_de_proteina": 4.2,
-    "percentual_de_gordura": 2.2,
-    "percentual_de_cho": 91.2
-  },
-  {
-    "nome": "Açúcar, cristal",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 99.6
-  },
-  {
-    "nome": "Açúcar, mascavo",
-    "percentual_de_proteina": 0.8,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 94.5
-  },
-  {
-    "nome": "Açúcar, refinado",
-    "percentual_de_proteina": 0.3,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 99.5
-  },
-  {
-    "nome": "Chocolate, ao leite",
-    "percentual_de_proteina": 7.2,
-    "percentual_de_gordura": 30.3,
-    "percentual_de_cho": 59.6
-  },
-  {
-    "nome": "Chocolate, ao leite, com castanha do Pará",
-    "percentual_de_proteina": 7.4,
-    "percentual_de_gordura": 34.2,
-    "percentual_de_cho": 55.4
-  },
-  {
-    "nome": "Chocolate, ao leite, dietético",
-    "percentual_de_proteina": 6.9,
-    "percentual_de_gordura": 33.8,
-    "percentual_de_cho": 56.3
-  },
-  {
-    "nome": "Chocolate, meio amargo",
-    "percentual_de_proteina": 4.9,
-    "percentual_de_gordura": 29.9,
-    "percentual_de_cho": 62.4
-  },
-  {
-    "nome": "Cocada branca",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 13.6,
-    "percentual_de_cho": 81.4
-  },
-  {
-    "nome": "Doce, de abóbora, cremoso",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 54.6
-  },
-  {
-    "nome": "Doce, de leite, cremoso",
-    "percentual_de_proteina": 5.5,
-    "percentual_de_gordura": 6,
-    "percentual_de_cho": 59.5
-  },
-  {
-    "nome": "Geléia, mocotó, natural",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 24.2
-  },
-  {
-    "nome": "Glicose de milho",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 79.4
-  },
-  {
-    "nome": "Maria mole",
-    "percentual_de_proteina": 3.8,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 73.6
-  },
-  {
-    "nome": "Maria mole, coco queimado",
-    "percentual_de_proteina": 3.9,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 75.1
-  },
-  {
-    "nome": "Marmelada",
-    "percentual_de_proteina": 0.4,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 70.8
-  },
-  {
-    "nome": "Mel, de abelha",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 84
-  },
-  {
-    "nome": "Melado",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 76.6
-  },
-  {
-    "nome": "Quindim",
-    "percentual_de_proteina": 4.7,
-    "percentual_de_gordura": 24.4,
-    "percentual_de_cho": 46.3
-  },
-  {
-    "nome": "Rapadura",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 90.8
-  },
-  {
-    "nome": "Café, pó, torrado",
-    "percentual_de_proteina": 14.7,
-    "percentual_de_gordura": 11.9,
-    "percentual_de_cho": 65.8
-  },
-  {
-    "nome": "Capuccino, pó",
-    "percentual_de_proteina": 11.3,
-    "percentual_de_gordura": 8.6,
-    "percentual_de_cho": 73.6
-  },
-  {
-    "nome": "Fermento em pó, químico",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 0.1,
-    "percentual_de_cho": 43.9
-  },
-  {
-    "nome": "Fermento, biológico, levedura, tablete",
-    "percentual_de_proteina": 17,
-    "percentual_de_gordura": 1.5,
-    "percentual_de_cho": 7.7
-  },
-  {
-    "nome": "Gelatina, sabores variados, pó",
-    "percentual_de_proteina": 8.9,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 89.2
-  },
-  {
-    "nome": "Sal, dietético",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Sal, grosso",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Shoyu",
-    "percentual_de_proteina": 3.3,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 11.6
-  },
-  {
-    "nome": "Tempero a base de sal",
-    "percentual_de_proteina": 2.7,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 2.1
-  },
-  {
-    "nome": "Azeitona, preta, conserva",
-    "percentual_de_proteina": 1.2,
-    "percentual_de_gordura": 20.3,
-    "percentual_de_cho": 5.5
-  },
-  {
-    "nome": "Azeitona, verde, conserva",
-    "percentual_de_proteina": 0.9,
-    "percentual_de_gordura": 14.2,
-    "percentual_de_cho": 4.1
-  },
-  {
-    "nome": "Chantilly, spray, com gordura vegetal",
-    "percentual_de_proteina": 0.5,
-    "percentual_de_gordura": 27.3,
-    "percentual_de_cho": 16.9
-  },
-  {
-    "nome": "Leite, de coco",
-    "percentual_de_proteina": 1,
-    "percentual_de_gordura": 18.4,
-    "percentual_de_cho": 2.2
-  },
-  {
-    "nome": "Maionese, tradicional com ovos",
-    "percentual_de_proteina": 0.6,
-    "percentual_de_gordura": 30.5,
-    "percentual_de_cho": 7.9
-  },
-  {
-    "nome": "Acarajé",
-    "percentual_de_proteina": 8.3,
-    "percentual_de_gordura": 19.9,
-    "percentual_de_cho": 19.1
-  },
-  {
-    "nome": "Arroz carreteiro",
-    "percentual_de_proteina": 10.8,
-    "percentual_de_gordura": 7.1,
-    "percentual_de_cho": 11.6
-  },
-  {
-    "nome": "Baião de dois, arroz e feijão-de-corda",
-    "percentual_de_proteina": 6.2,
-    "percentual_de_gordura": 3.2,
-    "percentual_de_cho": 20.4
-  },
-  {
-    "nome": "Barreado",
-    "percentual_de_proteina": 18.3,
-    "percentual_de_gordura": 9.5,
-    "percentual_de_cho": 0.2
-  },
-  {
-    "nome": "Bife à cavalo, com contra filé",
-    "percentual_de_proteina": 23.7,
-    "percentual_de_gordura": 21.1,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Bolinho de arroz",
-    "percentual_de_proteina": 8,
-    "percentual_de_gordura": 8.3,
-    "percentual_de_cho": 41.7
-  },
-  {
-    "nome": "Camarão à baiana",
-    "percentual_de_proteina": 7.9,
-    "percentual_de_gordura": 6,
-    "percentual_de_cho": 3.2
-  },
-  {
-    "nome": "Charuto, de repolho",
-    "percentual_de_proteina": 6.8,
-    "percentual_de_gordura": 1.1,
-    "percentual_de_cho": 10.1
-  },
-  {
-    "nome": "Cuscuz, de milho, cozido com sal",
-    "percentual_de_proteina": 2.2,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 25.3
-  },
-  {
-    "nome": "Cuscuz, paulista",
-    "percentual_de_proteina": 2.6,
-    "percentual_de_gordura": 4.6,
-    "percentual_de_cho": 22.5
-  },
-  {
-    "nome": "Cuxá, molho",
-    "percentual_de_proteina": 5.6,
-    "percentual_de_gordura": 3.6,
-    "percentual_de_cho": 5.7
-  },
-  {
-    "nome": "Dobradinha",
-    "percentual_de_proteina": 19.8,
-    "percentual_de_gordura": 4.4,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Estrogonofe de carne",
-    "percentual_de_proteina": 15,
-    "percentual_de_gordura": 10.8,
-    "percentual_de_cho": 3
-  },
-  {
-    "nome": "Estrogonofe de frango",
-    "percentual_de_proteina": 17.6,
-    "percentual_de_gordura": 8,
-    "percentual_de_cho": 2.6
-  },
-  {
-    "nome": "Feijão tropeiro mineiro",
-    "percentual_de_proteina": 10.2,
-    "percentual_de_gordura": 6.8,
-    "percentual_de_cho": 19.6
-  },
-  {
-    "nome": "Feijoada",
-    "percentual_de_proteina": 8.7,
-    "percentual_de_gordura": 6.5,
-    "percentual_de_cho": 11.6
-  },
-  {
-    "nome": "Frango, com açafrão",
-    "percentual_de_proteina": 9.7,
-    "percentual_de_gordura": 6.2,
-    "percentual_de_cho": 4.1
-  },
-  {
-    "nome": "Macarrão, molho bolognesa",
-    "percentual_de_proteina": 4.9,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 22.5
-  },
-  {
-    "nome": "Maniçoba",
-    "percentual_de_proteina": 10,
-    "percentual_de_gordura": 8.7,
-    "percentual_de_cho": 3.4
-  },
-  {
-    "nome": "Quibebe",
-    "percentual_de_proteina": 8.6,
-    "percentual_de_gordura": 2.7,
-    "percentual_de_cho": 6.6
-  },
-  {
-    "nome": "Salada, de legumes, com maionese",
-    "percentual_de_proteina": 1.1,
-    "percentual_de_gordura": 7,
-    "percentual_de_cho": 8.9
-  },
-  {
-    "nome": "Salada, de legumes, cozida no vapor",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 7.1
-  },
-  {
-    "nome": "Salpicão, de frango",
-    "percentual_de_proteina": 13.9,
-    "percentual_de_gordura": 7.8,
-    "percentual_de_cho": 4.6
-  },
-  {
-    "nome": "Sarapatel",
-    "percentual_de_proteina": 18.5,
-    "percentual_de_gordura": 4.4,
-    "percentual_de_cho": 1.1
-  },
-  {
-    "nome": "Tabule",
-    "percentual_de_proteina": 2,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 10.6
-  },
-  {
-    "nome": "Tacacá",
-    "percentual_de_proteina": 7,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 3.4
-  },
-  {
-    "nome": "Tapioca, com manteiga",
-    "percentual_de_proteina": 0.1,
-    "percentual_de_gordura": 10.9,
-    "percentual_de_cho": 63.6
-  },
-  {
-    "nome": "Tucupi, com pimenta-de-cheiro",
-    "percentual_de_proteina": 2.1,
-    "percentual_de_gordura": 0.3,
-    "percentual_de_cho": 4.7
-  },
-  {
-    "nome": "Vaca atolada",
-    "percentual_de_proteina": 5.1,
-    "percentual_de_gordura": 9.3,
-    "percentual_de_cho": 10.1
-  },
-  {
-    "nome": "Vatapá",
-    "percentual_de_proteina": 6,
-    "percentual_de_gordura": 23.2,
-    "percentual_de_cho": 9.7
-  },
-  {
-    "nome": "Virado à paulista",
-    "percentual_de_proteina": 10.2,
-    "percentual_de_gordura": 25.6,
-    "percentual_de_cho": 14.1
-  },
-  {
-    "nome": "Yakisoba",
-    "percentual_de_proteina": 7.5,
-    "percentual_de_gordura": 2.6,
-    "percentual_de_cho": 18.3
-  },
-  {
-    "nome": "Amendoim, grão, cru",
-    "percentual_de_proteina": 27.2,
-    "percentual_de_gordura": 43.9,
-    "percentual_de_cho": 20.3
-  },
-  {
-    "nome": "Amendoim, torrado, salgado",
-    "percentual_de_proteina": 22.5,
-    "percentual_de_gordura": 54,
-    "percentual_de_cho": 18.7
-  },
-  {
-    "nome": "Ervilha, em vagem",
-    "percentual_de_proteina": 7.5,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 14.2
-  },
-  {
-    "nome": "Ervilha, enlatada, drenada",
-    "percentual_de_proteina": 4.6,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 13.4
-  },
-  {
-    "nome": "Feijão, carioca, cozido",
-    "percentual_de_proteina": 4.8,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 13.6
-  },
-  {
-    "nome": "Feijão, carioca, cru",
-    "percentual_de_proteina": 20,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 61.2
-  },
-  {
-    "nome": "Feijão, fradinho, cozido",
-    "percentual_de_proteina": 5.1,
-    "percentual_de_gordura": 0.6,
-    "percentual_de_cho": 13.5
-  },
-  {
-    "nome": "Feijão, fradinho, cru",
-    "percentual_de_proteina": 20.2,
-    "percentual_de_gordura": 2.4,
-    "percentual_de_cho": 61.2
-  },
-  {
-    "nome": "Feijão, jalo, cozido",
-    "percentual_de_proteina": 6.1,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 16.5
-  },
-  {
-    "nome": "Feijão, jalo, cru",
-    "percentual_de_proteina": 20.1,
-    "percentual_de_gordura": 0.9,
-    "percentual_de_cho": 61.5
-  },
-  {
-    "nome": "Feijão, preto, cozido",
-    "percentual_de_proteina": 4.5,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 14
-  },
-  {
-    "nome": "Feijão, preto, cru",
-    "percentual_de_proteina": 21.3,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 58.8
-  },
-  {
-    "nome": "Feijão, rajado, cozido",
-    "percentual_de_proteina": 5.5,
-    "percentual_de_gordura": 0.4,
-    "percentual_de_cho": 15.3
-  },
-  {
-    "nome": "Feijão, rajado, cru",
-    "percentual_de_proteina": 17.3,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 62.9
-  },
-  {
-    "nome": "Feijão, rosinha, cozido",
-    "percentual_de_proteina": 4.5,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 11.8
-  },
-  {
-    "nome": "Feijão, rosinha, cru",
-    "percentual_de_proteina": 20.9,
-    "percentual_de_gordura": 1.3,
-    "percentual_de_cho": 62.2
-  },
-  {
-    "nome": "Feijão, roxo, cozido",
-    "percentual_de_proteina": 5.7,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 12.9
-  },
-  {
-    "nome": "Feijão, roxo, cru",
-    "percentual_de_proteina": 22.2,
-    "percentual_de_gordura": 1.2,
-    "percentual_de_cho": 60
-  },
-  {
-    "nome": "Grão-de-bico, cru",
-    "percentual_de_proteina": 21.2,
-    "percentual_de_gordura": 5.4,
-    "percentual_de_cho": 57.9
-  },
-  {
-    "nome": "Guandu, cru",
-    "percentual_de_proteina": 19,
-    "percentual_de_gordura": 2.1,
-    "percentual_de_cho": 64
-  },
-  {
-    "nome": "Lentilha, cozida",
-    "percentual_de_proteina": 6.3,
-    "percentual_de_gordura": 0.5,
-    "percentual_de_cho": 16.3
-  },
-  {
-    "nome": "Lentilha, crua",
-    "percentual_de_proteina": 23.2,
-    "percentual_de_gordura": 0.8,
-    "percentual_de_cho": 62
-  },
-  {
-    "nome": "Paçoca, amendoim",
-    "percentual_de_proteina": 16,
-    "percentual_de_gordura": 26.1,
-    "percentual_de_cho": 52.4
-  },
-  {
-    "nome": "Pé-de-moleque, amendoim",
-    "percentual_de_proteina": 13.2,
-    "percentual_de_gordura": 28,
-    "percentual_de_cho": 54.7
-  },
-  {
-    "nome": "Soja, farinha",
-    "percentual_de_proteina": 36,
-    "percentual_de_gordura": 14.6,
-    "percentual_de_cho": 38.4
-  },
-  {
-    "nome": "Soja, extrato solúvel, natural, fluido",
-    "percentual_de_proteina": 2.4,
-    "percentual_de_gordura": 1.6,
-    "percentual_de_cho": 4.3
-  },
-  {
-    "nome": "Soja, extrato solúvel, pó",
-    "percentual_de_proteina": 35.7,
-    "percentual_de_gordura": 26.2,
-    "percentual_de_cho": 28.5
-  },
-  {
-    "nome": "Soja, queijo (tofu)",
-    "percentual_de_proteina": 6.6,
-    "percentual_de_gordura": 4,
-    "percentual_de_cho": 2.1
-  },
-  {
-    "nome": "Tremoço, cru",
-    "percentual_de_proteina": 33.6,
-    "percentual_de_gordura": 10.3,
-    "percentual_de_cho": 43.8
-  },
-  {
-    "nome": "Tremoço, em conserva",
-    "percentual_de_proteina": 11.1,
-    "percentual_de_gordura": 3.8,
-    "percentual_de_cho": 12.4
-  },
-  {
-    "nome": "Amêndoa, torrada, salgada",
-    "percentual_de_proteina": 18.6,
-    "percentual_de_gordura": 47.3,
-    "percentual_de_cho": 29.5
-  },
-  {
-    "nome": "Castanha-de-caju, torrada, salgada",
-    "percentual_de_proteina": 18.5,
-    "percentual_de_gordura": 46.3,
-    "percentual_de_cho": 29.1
-  },
-  {
-    "nome": "Castanha-do-Brasil, crua",
-    "percentual_de_proteina": 14.5,
-    "percentual_de_gordura": 63.5,
-    "percentual_de_cho": 15.1
-  },
-  {
-    "nome": "Coco, cru",
-    "percentual_de_proteina": 3.7,
-    "percentual_de_gordura": 42,
-    "percentual_de_cho": 10.4
-  },
-  {
-    "nome": "Coco, verde cru",
-    "percentual_de_proteina": 0,
-    "percentual_de_gordura": 0,
-    "percentual_de_cho": 0
-  },
-  {
-    "nome": "Farinha, de mesocarpo de babaçu, crua",
-    "percentual_de_proteina": 1.4,
-    "percentual_de_gordura": 0.2,
-    "percentual_de_cho": 79.2
-  },
-  {
-    "nome": "Gergelim, semente",
-    "percentual_de_proteina": 21.2,
-    "percentual_de_gordura": 50.4,
-    "percentual_de_cho": 21.6
-  },
-  {
-    "nome": "Linhaça, semente",
-    "percentual_de_proteina": 14.1,
-    "percentual_de_gordura": 32.3,
-    "percentual_de_cho": 43.3
-  },
-  {
-    "nome": "Pinhão, cozido",
-    "percentual_de_proteina": 3,
-    "percentual_de_gordura": 0.7,
-    "percentual_de_cho": 43.9
-  },
-  {
-    "nome": "Pupunha, cozida",
-    "percentual_de_proteina": 2.5,
-    "percentual_de_gordura": 12.8,
-    "percentual_de_cho": 29.6
-  },
-  {
-    "nome": "Noz, crua",
-    "percentual_de_proteina": 14,
-    "percentual_de_gordura": 59.4,
-    "percentual_de_cho": 18.4
+    "nome": "Aipim cozido",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "3 colheres de sopa cheias picado",
+    "energia": 107.82,
+    "proteina": 0.54,
+    "carboidrato": 26.01,
+    "gordura": 0.18
+  },
+  {
+    "nome": "Amido de Milho",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "2 colheres de sopa rasas",
+    "energia": 70.32,
+    "proteina": 0.06,
+    "carboidrato": 17.52,
+    "gordura": 0
+  },
+  {
+    "nome": "Aveia em flocos",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "2 colheres de sopa cheias",
+    "energia": 104.62,
+    "proteina": 4.5,
+    "carboidrato": 15.76,
+    "gordura": 2.62
+  },
+  {
+    "nome": "Batata doce cozida",
+    "quantidade_mg_l": 126,
+    "medida_caseira": "3 colheres de sopa cheias picado (3x3 cm)",
+    "energia": 129.99,
+    "proteina": 1.38,
+    "carboidrato": 30.24,
+    "gordura": 0.39
+  },
+  {
+    "nome": "Cream craker integral",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "4 unidades",
+    "energia": 114.51,
+    "proteina": 2.25,
+    "carboidrato": 18.75,
+    "gordura": 3.39
+  },
+  {
+    "nome": "Farinha de tapioca",
+    "quantidade_mg_l": 40,
+    "medida_caseira": "2 colheres de sopa",
+    "energia": 138.07,
+    "proteina": 0.1,
+    "carboidrato": 34.4,
+    "gordura": 0.01
+  },
+  {
+    "nome": "Granola",
+    "quantidade_mg_l": 40,
+    "medida_caseira": "1/2 xícara de chá",
+    "energia": 162.6,
+    "proteina": 4.4,
+    "carboidrato": 25,
+    "gordura": 5
+  },
+  {
+    "nome": "Inhame cozido",
+    "quantidade_mg_l": 105,
+    "medida_caseira": "3 colheres de sopa cheias picado",
+    "energia": 108.6,
+    "proteina": 1.89,
+    "carboidrato": 24.99,
+    "gordura": 0.12
+  },
+  {
+    "nome": "Milho cozido",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "1 espiga",
+    "energia": 131.6,
+    "proteina": 3.3,
+    "carboidrato": 27.8,
+    "gordura": 0.8
+  },
+  {
+    "nome": "Pão com fibras",
+    "quantidade_mg_l": 50,
+    "medida_caseira": "2 fatias",
+    "energia": 117.92,
+    "proteina": 5.78,
+    "carboidrato": 21.9,
+    "gordura": 0.8
+  },
+  {
+    "nome": "Pão forma branco",
+    "quantidade_mg_l": 50,
+    "medida_caseira": "2 fatias",
+    "energia": 124.18,
+    "proteina": 4.34,
+    "carboidrato": 24.5,
+    "gordura": 0.98
+  },
+  {
+    "nome": "Pão frances",
+    "quantidade_mg_l": 50,
+    "medida_caseira": "1 unidade",
+    "energia": 134.3,
+    "proteina": 4.65,
+    "carboidrato": 28.7,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Torrada industrializada",
+    "quantidade_mg_l": 32,
+    "medida_caseira": "4 unidades",
+    "energia": 119.16,
+    "proteina": 4.24,
+    "carboidrato": 22.4,
+    "gordura": 1.4
+  },
+  {
+    "nome": "Leite semi-desnatado líquido",
+    "quantidade_mg_l": 165,
+    "medida_caseira": "1 copo pequeno cheio",
+    "energia": 74.79,
+    "proteina": 5.12,
+    "carboidrato": 8.74,
+    "gordura": 2.15
+  },
+  {
+    "nome": "Leite semi-desnatado em pó",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "2 colheres de sopa cheias",
+    "energia": 82.5,
+    "proteina": 6.26,
+    "carboidrato": 8.74,
+    "gordura": 2.5
+  },
+  {
+    "nome": "Leite desnatado líquido",
+    "quantidade_mg_l": 200,
+    "medida_caseira": "1 copo duplo raso",
+    "energia": 70.6,
+    "proteina": 7.2,
+    "carboidrato": 10,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Leite desnatado em pó",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "2 colheres de sopa cheias",
+    "energia": 70.64,
+    "proteina": 6.94,
+    "carboidrato": 10.36,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Coalhada desnatada",
+    "quantidade_mg_l": 130,
+    "medida_caseira": "1 pote",
+    "energia": 42.4,
+    "proteina": 4.6,
+    "carboidrato": 6,
+    "gordura": 0
+  },
+  {
+    "nome": "Iogurte natural integral",
+    "quantidade_mg_l": 85,
+    "medida_caseira": "1/2 pote",
+    "energia": 53.14,
+    "proteina": 3.37,
+    "carboidrato": 6.45,
+    "gordura": 1.54
+  },
+  {
+    "nome": "Iogurte natural desnatado",
+    "quantidade_mg_l": 185,
+    "medida_caseira": "1 pote",
+    "energia": 79.16,
+    "proteina": 7.95,
+    "carboidrato": 11.84,
+    "gordura": 0
+  },
+  {
+    "nome": "Iogurte sabores light",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "1 pote",
+    "energia": 34.88,
+    "proteina": 3.72,
+    "carboidrato": 5,
+    "gordura": 0
+  },
+  {
+    "nome": "Queijo minas frescal",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "1 fatia pequena",
+    "energia": 68.87,
+    "proteina": 4.99,
+    "carboidrato": 1,
+    "gordura": 4.99
+  },
+  {
+    "nome": "Queijo ricota",
+    "quantidade_mg_l": 70,
+    "medida_caseira": "1 fatia grande",
+    "energia": 66.5,
+    "proteina": 4.9,
+    "carboidrato": 0.7,
+    "gordura": 4.9
+  },
+  {
+    "nome": "Queijo cottage",
+    "quantidade_mg_l": 45,
+    "medida_caseira": "2 colheres de sopa rasas",
+    "energia": 55.34,
+    "proteina": 5.76,
+    "carboidrato": 1.46,
+    "gordura": 2.94
+  },
+  {
+    "nome": "Ovo",
+    "quantidade_mg_l": 45,
+    "medida_caseira": "1 unidade",
+    "energia": 70.9,
+    "proteina": 5.76,
+    "carboidrato": 0.31,
+    "gordura": 5.18
+  },
+  {
+    "nome": "Queijo prato",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1/2 fatia media (aquela de supermercado)",
+    "energia": 52.08,
+    "proteina": 3.66,
+    "carboidrato": 0,
+    "gordura": 4.16
+  },
+  {
+    "nome": "Requeijão light",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "1 colher de sopa cheia",
+    "energia": 54,
+    "proteina": 3.5,
+    "carboidrato": 1,
+    "gordura": 4
+  },
+  {
+    "nome": "Requeijão comum",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1 colher de sopa rasa",
+    "energia": 40.1,
+    "proteina": 1.65,
+    "carboidrato": 0.5,
+    "gordura": 3.5
+  },
+  {
+    "nome": "Abacaxi",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "2 fatias finas",
+    "energia": 58.2,
+    "proteina": 0.4,
+    "carboidrato": 13.7,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Acerola",
+    "quantidade_mg_l": 200,
+    "medida_caseira": "17 unidades",
+    "energia": 72.08,
+    "proteina": 0.85,
+    "carboidrato": 15.64,
+    "gordura": 0.68
+  },
+  {
+    "nome": "Água de coco",
+    "quantidade_mg_l": 240,
+    "medida_caseira": "1 copo duplo cheio",
+    "energia": 43.49,
+    "proteina": 0.31,
+    "carboidrato": 9.91,
+    "gordura": 0.29
+  },
+  {
+    "nome": "Ameixa preta fresca",
+    "quantidade_mg_l": 155,
+    "medida_caseira": "3 unidades grandes",
+    "energia": 69.39,
+    "proteina": 1.26,
+    "carboidrato": 15.75,
+    "gordura": 0.15
+  },
+  {
+    "nome": "Ameixa vermelha",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "6 unidades pequenas",
+    "energia": 54,
+    "proteina": 0,
+    "carboidrato": 13.5,
+    "gordura": 0
+  },
+  {
+    "nome": "Ameixa seca",
+    "quantidade_mg_l": 40,
+    "medida_caseira": "8 unidades médias",
+    "energia": 74.4,
+    "proteina": 0.96,
+    "carboidrato": 17.28,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Banana d´água",
+    "quantidade_mg_l": 70,
+    "medida_caseira": "1 unidade média",
+    "energia": 68.04,
+    "proteina": 0.84,
+    "carboidrato": 15.54,
+    "gordura": 0.28
+  },
+  {
+    "nome": "Banana-da-terra",
+    "quantidade_mg_l": 50,
+    "medida_caseira": "1/2 unidade grande",
+    "energia": 58.5,
+    "proteina": 1.1,
+    "carboidrato": 13.3,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Banana-maçã",
+    "quantidade_mg_l": 65,
+    "medida_caseira": "1 unidade média",
+    "energia": 72.45,
+    "proteina": 1.11,
+    "carboidrato": 16.71,
+    "gordura": 0.13
+  },
+  {
+    "nome": "Banana-ouro",
+    "quantidade_mg_l": 80,
+    "medida_caseira": "2 unidades médias",
+    "energia": 82.8,
+    "proteina": 1.92,
+    "carboidrato": 18.24,
+    "gordura": 0.24
+  },
+  {
+    "nome": "Banana-passa",
+    "quantidade_mg_l": 42,
+    "medida_caseira": "3 unidades grandes",
+    "energia": 64.05,
+    "proteina": 0.72,
+    "carboidrato": 15.09,
+    "gordura": 0.09
+  },
+  {
+    "nome": "Banana-prata",
+    "quantidade_mg_l": 55,
+    "medida_caseira": "1 unidade grande",
+    "energia": 54.57,
+    "proteina": 0.72,
+    "carboidrato": 12.54,
+    "gordura": 0.17
+  },
+  {
+    "nome": "Cajá",
+    "quantidade_mg_l": 150,
+    "medida_caseira": "2 unidades grandes",
+    "energia": 77.04,
+    "proteina": 0.3,
+    "carboidrato": 18.6,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Caju",
+    "quantidade_mg_l": 160,
+    "medida_caseira": "2 unidades pequenas",
+    "energia": 82.24,
+    "proteina": 1.28,
+    "carboidrato": 18.56,
+    "gordura": 0.32
+  },
+  {
+    "nome": "Caqui",
+    "quantidade_mg_l": 85,
+    "medida_caseira": "1 unidade pequena",
+    "energia": 73.78,
+    "proteina": 0.68,
+    "carboidrato": 17,
+    "gordura": 0.34
+  },
+  {
+    "nome": "Carambola",
+    "quantidade_mg_l": 210,
+    "medida_caseira": "2 unidades grandes",
+    "energia": 67.58,
+    "proteina": "01.06",
+    "carboidrato": 15.34,
+    "gordura": 0.22
+  },
+  {
+    "nome": "Cereja",
+    "quantidade_mg_l": 48,
+    "medida_caseira": "7 unidades",
+    "energia": 67.83,
+    "proteina": 0.84,
+    "carboidrato": 15.96,
+    "gordura": 0.07
+  },
+  {
+    "nome": "Damasco seco",
+    "quantidade_mg_l": 50,
+    "medida_caseira": "7 unidades",
+    "energia": 64.12,
+    "proteina": 1.54,
+    "carboidrato": 14.49,
+    "gordura": 0
+  },
+  {
+    "nome": "Figo",
+    "quantidade_mg_l": 110,
+    "medida_caseira": "2 unidades médias",
+    "energia": 75.72,
+    "proteina": 1.32,
+    "carboidrato": 17.16,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Fruta do conde",
+    "quantidade_mg_l": 60,
+    "medida_caseira": "1 unidade média",
+    "energia": 63.96,
+    "proteina": 0.96,
+    "carboidrato": 14.76,
+    "gordura": 0.12
+  },
+  {
+    "nome": "Goiaba pequena",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "1unidade pequena",
+    "energia": 76.4,
+    "proteina": 0.9,
+    "carboidrato": 17.3,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Jaca",
+    "quantidade_mg_l": 95,
+    "medida_caseira": "8 bagos",
+    "energia": 66,
+    "proteina": 2.6,
+    "carboidrato": 13,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Jabuticaba",
+    "quantidade_mg_l": 160,
+    "medida_caseira": "1 copo duplo cheio",
+    "energia": 76.96,
+    "proteina": 1.6,
+    "carboidrato": 17.28,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Jambo",
+    "quantidade_mg_l": 80,
+    "medida_caseira": "2 unidades médias",
+    "energia": 44.96,
+    "proteina": 0.64,
+    "carboidrato": 10.24,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Kiwi",
+    "quantidade_mg_l": 115,
+    "medida_caseira": "1.5 unid média",
+    "energia": 76.53,
+    "proteina": 1.13,
+    "carboidrato": 16.9,
+    "gordura": 0.49
+  },
+  {
+    "nome": "Laranja",
+    "quantidade_mg_l": 180,
+    "medida_caseira": "1 unidade média",
+    "energia": 86.85,
+    "proteina": 1.13,
+    "carboidrato": 19.48,
+    "gordura": 0.49
+  },
+  {
+    "nome": "Maçã",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "1 unidade pequena",
+    "energia": 58.23,
+    "proteina": 0.27,
+    "carboidrato": 13.68,
+    "gordura": 0.27
+  },
+  {
+    "nome": "Mamão",
+    "quantidade_mg_l": 170,
+    "medida_caseira": "1 fatia média",
+    "energia": 61.37,
+    "proteina": 0.85,
+    "carboidrato": 14.11,
+    "gordura": 0.17
+  },
+  {
+    "nome": "Mamão papaya",
+    "quantidade_mg_l": 155,
+    "medida_caseira": "1/2 unidade média",
+    "energia": 55.96,
+    "proteina": 0.77,
+    "carboidrato": 12.86,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Manga espada",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "2 unidades pequenas",
+    "energia": 78.48,
+    "proteina": 0.6,
+    "carboidrato": 18.48,
+    "gordura": 0.24
+  },
+  {
+    "nome": "Maracujá",
+    "quantidade_mg_l": 45,
+    "medida_caseira": "1 unidade média",
+    "energia": 44.91,
+    "proteina": 0.99,
+    "carboidrato": 9.54,
+    "gordura": 0.31
+  },
+  {
+    "nome": "Melancia",
+    "quantidade_mg_l": 370,
+    "medida_caseira": "1 fatia grande",
+    "energia": 89.17,
+    "proteina": 1.85,
+    "carboidrato": 19.61,
+    "gordura": 0.37
+  },
+  {
+    "nome": "Melão",
+    "quantidade_mg_l": 230,
+    "medida_caseira": "2 fatias grandes",
+    "energia": 63.84,
+    "proteina": 1.16,
+    "carboidrato": 14.26,
+    "gordura": 0.24
+  },
+  {
+    "nome": "Morango",
+    "quantidade_mg_l": 200,
+    "medida_caseira": "10 unidades grandes",
+    "energia": 79.8,
+    "proteina": 1.6,
+    "carboidrato": 17,
+    "gordura": 0.6
+  },
+  {
+    "nome": "Pêra",
+    "quantidade_mg_l": 130,
+    "medida_caseira": "1 undidade média",
+    "energia": 80.86,
+    "proteina": 0.39,
+    "carboidrato": 19.24,
+    "gordura": 0.26
+  },
+  {
+    "nome": "Pêssego",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "2 unidades médias",
+    "energia": 57,
+    "proteina": 0.96,
+    "carboidrato": 12.48,
+    "gordura": 0.36
+  },
+  {
+    "nome": "Salada de frutas sem calda",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "4 colheres de sopa cheias",
+    "energia": 58.74,
+    "proteina": 0.73,
+    "carboidrato": 13.55,
+    "gordura": 0.18
+  },
+  {
+    "nome": "Tangerina",
+    "quantidade_mg_l": 135,
+    "medida_caseira": "1 unidade média",
+    "energia": 65.11,
+    "proteina": 0.95,
+    "carboidrato": 14.72,
+    "gordura": 0.27
+  },
+  {
+    "nome": "Uva",
+    "quantidade_mg_l": 80,
+    "medida_caseira": "10 unidades",
+    "energia": 61,
+    "proteina": 0.5,
+    "carboidrato": 13.4,
+    "gordura": 0.6
+  },
+  {
+    "nome": "Uva passa",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "2 colheres de sopa rasas",
+    "energia": 64,
+    "proteina": 0.48,
+    "carboidrato": 15.52,
+    "gordura": 0
+  },
+  {
+    "nome": "Yacon",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "4 colheres de sopa cheias",
+    "energia": 36.92,
+    "proteina": 0.82,
+    "carboidrato": 8.41,
+    "gordura": 0
+  },
+  {
+    "nome": "Feijão preto cozido",
+    "quantidade_mg_l": 140,
+    "medida_caseira": "1 concha média cheia",
+    "energia": 96.74,
+    "proteina": 6.16,
+    "carboidrato": 17.08,
+    "gordura": 0.42
+  },
+  {
+    "nome": "Feijão branco cozido",
+    "quantidade_mg_l": 65,
+    "medida_caseira": "1 concha pequena rasa",
+    "energia": 92.63,
+    "proteina": 6.32,
+    "carboidrato": 16.32,
+    "gordura": 0.23
+  },
+  {
+    "nome": "Grão de bico",
+    "quantidade_mg_l": 66,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 89.76,
+    "proteina": 4.35,
+    "carboidrato": 15.12,
+    "gordura": 1.32
+  },
+  {
+    "nome": "Lentilha cozida",
+    "quantidade_mg_l": 78,
+    "medida_caseira": "1/2 concha média",
+    "energia": 81.7,
+    "proteina": 5.55,
+    "carboidrato": 14.2,
+    "gordura": 0.3
+  },
+  {
+    "nome": "Ervilha vagem cozida",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 86.19,
+    "proteina": 4.2,
+    "carboidrato": 17.01,
+    "gordura": 0.15
+  },
+  {
+    "nome": "Ervilha enlatada",
+    "quantidade_mg_l": 135,
+    "medida_caseira": "5 colheres de sopa cheias",
+    "energia": 89.6,
+    "proteina": 4.75,
+    "carboidrato": 16.75,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Proteína de soja",
+    "quantidade_mg_l": 72,
+    "medida_caseira": "3 colheres de sopa",
+    "energia": 60.84,
+    "proteina": 9,
+    "carboidrato": 5.4,
+    "gordura": 0.36
+  },
+  {
+    "nome": "Arroz integral cozido",
+    "quantidade_mg_l": 60,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 154.05,
+    "proteina": 2.91,
+    "carboidrato": 27.57,
+    "gordura": 3.57
+  },
+  {
+    "nome": "Arroz cozido",
+    "quantidade_mg_l": 75,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 123.51,
+    "proteina": 1.74,
+    "carboidrato": 24.21,
+    "gordura": 2.19
+  },
+  {
+    "nome": "Angu",
+    "quantidade_mg_l": 105,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 130.71,
+    "proteina": 3.48,
+    "carboidrato": 27.51,
+    "gordura": 0.75
+  },
+  {
+    "nome": "Aipim cozido",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "3 colheres de sopa cheias picado",
+    "energia": 107.82,
+    "proteina": 0.54,
+    "carboidrato": 26.01,
+    "gordura": 0.18
+  },
+  {
+    "nome": "Batata baroa cozida",
+    "quantidade_mg_l": 105,
+    "medida_caseira": "3 colheres de sopa cheias picada",
+    "energia": 140.61,
+    "proteina": 1.65,
+    "carboidrato": 32.76,
+    "gordura": 0.33
+  },
+  {
+    "nome": "Batata doce cozida",
+    "quantidade_mg_l": 126,
+    "medida_caseira": "3 colheres de sopa cheias picada",
+    "energia": 129.99,
+    "proteina": 1.38,
+    "carboidrato": 30.24,
+    "gordura": 0.39
+  },
+  {
+    "nome": "Batata inglesa",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "4 colheres de sopa cheias picada",
+    "energia": 102.68,
+    "proteina": 2.4,
+    "carboidrato": 23,
+    "gordura": 0.12
+  },
+  {
+    "nome": "Inhame cozido",
+    "quantidade_mg_l": 140,
+    "medida_caseira": "4 colheres de sopa cheias picado",
+    "energia": 144.8,
+    "proteina": 2.52,
+    "carboidrato": 33.32,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Macarrão integral",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "1 colher de servir bem cheia",
+    "energia": 154.72,
+    "proteina": 5.6,
+    "carboidrato": 32,
+    "gordura": 0.48
+  },
+  {
+    "nome": "Macarrão comum",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "1 colher de servir bem cheia",
+    "energia": 109.2,
+    "proteina": 3.4,
+    "carboidrato": 23,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Farinha de mandioca",
+    "quantidade_mg_l": 36,
+    "medida_caseira": "3 colheres de sopa rasas",
+    "energia": 127.92,
+    "proteina": 0.6,
+    "carboidrato": 31.11,
+    "gordura": 0.12
+  },
+  {
+    "nome": "Farofa simples",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "1 colher de sopa cheia",
+    "energia": 141.18,
+    "proteina": 0.54,
+    "carboidrato": 23.64,
+    "gordura": 4.94
+  },
+  {
+    "nome": "Abóbora madura cozida",
+    "quantidade_mg_l": 36,
+    "medida_caseira": "1 colher de sopa cheia picada",
+    "energia": 25.2,
+    "proteina": 0.65,
+    "carboidrato": 5.29,
+    "gordura": 0.16
+  },
+  {
+    "nome": "Abobrinha cozida",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "1 colher de sopa cheia picada",
+    "energia": 16.68,
+    "proteina": 0.6,
+    "carboidrato": 3.3,
+    "gordura": 0.12
+  },
+  {
+    "nome": "Berinjela ensopada",
+    "quantidade_mg_l": 25,
+    "medida_caseira": "1 colher de sopa cheia",
+    "energia": 17.35,
+    "proteina": 0.19,
+    "carboidrato": 1.2,
+    "gordura": 1.31
+  },
+  {
+    "nome": "Beterraba cozida",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "1 colher de sopa cheia picada ou fatiada",
+    "energia": 8.82,
+    "proteina": 0.2,
+    "carboidrato": 1.96,
+    "gordura": 0.02
+  },
+  {
+    "nome": "Beterraba crua ralada",
+    "quantidade_mg_l": 16,
+    "medida_caseira": "1 colher de sopa cheia",
+    "energia": 7.34,
+    "proteina": 0.27,
+    "carboidrato": 1.52,
+    "gordura": 0.02
+  },
+  {
+    "nome": "Cenoura cozida",
+    "quantidade_mg_l": 25,
+    "medida_caseira": "1 colher de sopa cheia picada",
+    "energia": 13.5,
+    "proteina": 0.33,
+    "carboidrato": 2.91,
+    "gordura": 0.06
+  },
+  {
+    "nome": "Cenoura crua ralada",
+    "quantidade_mg_l": 12,
+    "medida_caseira": "1 colher de sopa cheia picada",
+    "energia": 7.42,
+    "proteina": 0.65,
+    "carboidrato": 1.16,
+    "gordura": 0.02
+  },
+  {
+    "nome": "Chuchu cozido",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "1 colher de sopa cheia picada",
+    "energia": 8.73,
+    "proteina": 0.22,
+    "carboidrato": 1.85,
+    "gordura": 0.05
+  },
+  {
+    "nome": "Jiló cozido",
+    "quantidade_mg_l": 30,
+    "medida_caseira": "1colher de sopa rasa",
+    "energia": 15.68,
+    "proteina": 0.5,
+    "carboidrato": 2.52,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Quiabo refogado",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "1colher de sopa rasa",
+    "energia": 18.04,
+    "proteina": 0.43,
+    "carboidrato": 1.74,
+    "gordura": "01.04"
+  },
+  {
+    "nome": "Vagem cozida",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "1 colher de sopa cheia",
+    "energia": 11.8,
+    "proteina": 0.6,
+    "carboidrato": 1.9,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Atum",
+    "quantidade_mg_l": 80,
+    "medida_caseira": "5 colheres de sopa cheias",
+    "energia": 119.5,
+    "proteina": 20.95,
+    "carboidrato": "01.05",
+    "gordura": 3.5
+  },
+  {
+    "nome": "Sardinha",
+    "quantidade_mg_l": 83,
+    "medida_caseira": "3 unidades pequenas",
+    "energia": 146.3,
+    "proteina": 17.9,
+    "carboidrato": 0,
+    "gordura": 8.3
+  },
+  {
+    "nome": "File de peixe ensopado",
+    "quantidade_mg_l": 120,
+    "medida_caseira": "1 unidade pequena",
+    "energia": 156.17,
+    "proteina": 21.52,
+    "carboidrato": 2.29,
+    "gordura": 6.77
+  },
+  {
+    "nome": "Peixe em posta ensopado",
+    "quantidade_mg_l": 150,
+    "medida_caseira": "1 unidade pequena",
+    "energia": 195.22,
+    "proteina": 26.9,
+    "carboidrato": 2.87,
+    "gordura": 8.46
+  },
+  {
+    "nome": "File de peito assado",
+    "quantidade_mg_l": 140,
+    "medida_caseira": "1 unidade pequena",
+    "energia": 169.96,
+    "proteina": 25.48,
+    "carboidrato": 0,
+    "gordura": 7.56
+  },
+  {
+    "nome": "Coxa sem pele",
+    "quantidade_mg_l": 110,
+    "medida_caseira": "2 unidades grandes",
+    "energia": 133.54,
+    "proteina": 20.02,
+    "carboidrato": 0,
+    "gordura": 5.94
+  },
+  {
+    "nome": "Sobrecoxa sem pele",
+    "quantidade_mg_l": 95,
+    "medida_caseira": "1 unidade grande",
+    "energia": 115.33,
+    "proteina": 17.29,
+    "carboidrato": 0,
+    "gordura": 5.13
+  },
+  {
+    "nome": "Bife",
+    "quantidade_mg_l": 80,
+    "medida_caseira": "1 unidade ppequena",
+    "energia": 182.5,
+    "proteina": 22.36,
+    "carboidrato": 0,
+    "gordura": 10.34
+  },
+  {
+    "nome": "Carne assada",
+    "quantidade_mg_l": 75,
+    "medida_caseira": "1 fatia pequena",
+    "energia": 215.8,
+    "proteina": 18.94,
+    "carboidrato": 0,
+    "gordura": 15.56
+  },
+  {
+    "nome": "Carne ensopada",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "3 colheres de sopa cheias",
+    "energia": 167.31,
+    "proteina": 19.35,
+    "carboidrato": 0,
+    "gordura": 9.99
+  },
+  {
+    "nome": "Carne moída",
+    "quantidade_mg_l": 100,
+    "medida_caseira": "4 colheres de sopa cheias",
+    "energia": 195.36,
+    "proteina": 21.8,
+    "carboidrato": 1.84,
+    "gordura": 11.2
+  },
+  {
+    "nome": "Ovos",
+    "quantidade_mg_l": 90,
+    "medida_caseira": "2 unidades",
+    "energia": 141.8,
+    "proteina": 11.52,
+    "carboidrato": 0.62,
+    "gordura": 10.36
+  },
+  {
+    "nome": "Azeite",
+    "quantidade_mg_l": 5,
+    "medida_caseira": "1 colher de sobremesa rasa",
+    "energia": 44.72,
+    "proteina": 0,
+    "carboidrato": 0.02,
+    "gordura": 4.96
+  },
+  {
+    "nome": "Manteiga",
+    "quantidade_mg_l": 5,
+    "medida_caseira": "1 colher de chá cheia",
+    "energia": 37.08,
+    "proteina": 0,
+    "carboidrato": 0,
+    "gordura": 4.12
+  },
+  {
+    "nome": "Margarina",
+    "quantidade_mg_l": 8,
+    "medida_caseira": "1 colher de chá cheia",
+    "energia": 54.86,
+    "proteina": 0.05,
+    "carboidrato": 0.03,
+    "gordura": "06.06"
+  },
+  {
+    "nome": "Margarina light",
+    "quantidade_mg_l": 8,
+    "medida_caseira": "1 colher de chá cheia",
+    "energia": 27.09,
+    "proteina": 0,
+    "carboidrato": 0,
+    "gordura": "03.01"
+  },
+  {
+    "nome": "Maionese",
+    "quantidade_mg_l": 17,
+    "medida_caseira": "1 colher de sobremesa cheia",
+    "energia": 66.54,
+    "proteina": 0.19,
+    "carboidrato": 2.36,
+    "gordura": 6.26
+  },
+  {
+    "nome": "Maionese light",
+    "quantidade_mg_l": 17,
+    "medida_caseira": "1 colher de sobremesa cheia",
+    "energia": 52.87,
+    "proteina": 1.36,
+    "carboidrato": 0,
+    "gordura": 5.27
+  },
+  {
+    "nome": "Óleo de coco",
+    "quantidade_mg_l": 6.5,
+    "medida_caseira": "1 colher de sobremesa rasa",
+    "energia": 54,
+    "proteina": 0,
+    "carboidrato": 0,
+    "gordura": 6
+  },
+  {
+    "nome": "Semente de Chia",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 57.5,
+    "proteina": 3.1,
+    "carboidrato": 0.7,
+    "gordura": 4.7
+  },
+  {
+    "nome": "Gérmen de Trigo",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 33,
+    "proteina": 3,
+    "carboidrato": 3,
+    "gordura": 1
+  },
+  {
+    "nome": "Quinua em Flocos",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 38.88,
+    "proteina": 7.25,
+    "carboidrato": 1.3,
+    "gordura": 0.52
+  },
+  {
+    "nome": "Linhaça Dourada",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 77.9,
+    "proteina": 2.9,
+    "carboidrato": 5.1,
+    "gordura": 5.1
+  },
+  {
+    "nome": "Farelo de aveia",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 33.9,
+    "proteina": 1.8,
+    "carboidrato": 4.2,
+    "gordura": 1.1
+  },
+  {
+    "nome": "Farelo de Trigo",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 8,
+    "proteina": 1,
+    "carboidrato": 1,
+    "gordura": 0
+  },
+  {
+    "nome": "Amaranto Flocos",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 39.18,
+    "proteina": 0.76,
+    "carboidrato": 8,
+    "gordura": 0.46
+  },
+  {
+    "nome": "Açúcar",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sobremesa rasa",
+    "energia": 40,
+    "proteina": 0,
+    "carboidrato": 10,
+    "gordura": 0
+  },
+  {
+    "nome": "Açúcar mascavo",
+    "quantidade_mg_l": 11,
+    "medida_caseira": "1 colher de sopa rasa",
+    "energia": 40.49,
+    "proteina": 0.04,
+    "carboidrato": 9.97,
+    "gordura": 0.05
+  },
+  {
+    "nome": "Geleia",
+    "quantidade_mg_l": 20,
+    "medida_caseira": "1 colher de sopa rasa",
+    "energia": 49.54,
+    "proteina": 0.02,
+    "carboidrato": 12.32,
+    "gordura": 0.02
+  },
+  {
+    "nome": "Mel",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 46.92,
+    "proteina": 0.03,
+    "carboidrato": 11.7,
+    "gordura": 0
+  },
+  {
+    "nome": "Melado de Cana",
+    "quantidade_mg_l": 16,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 47.07,
+    "proteina": 0.08,
+    "carboidrato": 11.62,
+    "gordura": 0.03
+  },
+  {
+    "nome": "Castanha de cajú",
+    "quantidade_mg_l": 12.5,
+    "medida_caseira": "5 unidades",
+    "energia": 63.1,
+    "proteina": 2.45,
+    "carboidrato": 5.9,
+    "gordura": 3.3
+  },
+  {
+    "nome": "Castanha do pará",
+    "quantidade_mg_l": 12,
+    "medida_caseira": "3 unidades",
+    "energia": 82.08,
+    "proteina": 1.68,
+    "carboidrato": 1.56,
+    "gordura": 7.68
+  },
+  {
+    "nome": "Nozes",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "2 unidades inteiras",
+    "energia": 69.84,
+    "proteina": 1.48,
+    "carboidrato": 1.58,
+    "gordura": 6.4
+  },
+  {
+    "nome": "Pasta de amendoim integral",
+    "quantidade_mg_l": 15,
+    "medida_caseira": "1 colher de sopa",
+    "energia": 92.7,
+    "proteina": 3.8,
+    "carboidrato": 1.6,
+    "gordura": 7.9
+  },
+  {
+    "nome": "Amendoim torrado com sal",
+    "quantidade_mg_l": 10,
+    "medida_caseira": "1 colher de sobremesa rasa",
+    "energia": 63.77,
+    "proteina": 2.32,
+    "carboidrato": 2.17,
+    "gordura": "05.09"
+  },
+  {
+    "nome": "Abacate",
+    "quantidade_mg_l": 45,
+    "medida_caseira": "1 colher de sopa cheia picado",
+    "energia": 79.56,
+    "proteina": 0.81,
+    "carboidrato": 2.88,
+    "gordura": 7.2
+  },
+  {
+    "nome": "Whey Protein concentrado Performance (BIO Whey)",
+    "quantidade_mg_l": 28,
+    "medida_caseira": "1 copo medidor",
+    "energia": 99.2,
+    "proteina": 20,
+    "carboidrato": 3,
+    "gordura": 0.8
+  },
+  {
+    "nome": "Whey Protein Isolado Performance (ISO Whey)",
+    "quantidade_mg_l": 33,
+    "medida_caseira": "1 copo medidor",
+    "energia": 108,
+    "proteina": 27,
+    "carboidrato": 0,
+    "gordura": 0
+  },
+  {
+    "nome": "Whey Protein Blend Performance (BIO Whey)",
+    "quantidade_mg_l": 31,
+    "medida_caseira": "1 copo medidor",
+    "energia": 123.5,
+    "proteina": 25,
+    "carboidrato": 2.5,
+    "gordura": 1.5
+  },
+  {
+    "nome": "Pure BEEF (Ptn da carne)",
+    "quantidade_mg_l": 29,
+    "medida_caseira": "1 copo medidor",
+    "energia": 103.31,
+    "proteina": 23,
+    "carboidrato": 1.5,
+    "gordura": 0.59
+  },
+  {
+    "nome": "Whey Protein concentrado Probiótica",
+    "quantidade_mg_l": 33,
+    "medida_caseira": "3 colheres de sopa",
+    "energia": 130,
+    "proteina": 23,
+    "carboidrato": 4.1,
+    "gordura": 2.4
+  },
+  {
+    "nome": "Whey Protein Isolado Probiótica",
+    "quantidade_mg_l": 21.3,
+    "medida_caseira": "1  copo medidor",
+    "energia": 78.32,
+    "proteina": 18.3,
+    "carboidrato": 0.83,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Whey Protein Blend Probiótica (3 WP)",
+    "quantidade_mg_l": 32,
+    "medida_caseira": "2 copos medidores",
+    "energia": 126.3,
+    "proteina": 24,
+    "carboidrato": 3.3,
+    "gordura": 1.9
+  },
+  {
+    "nome": "Veg Protein Probiótica",
+    "quantidade_mg_l": 25,
+    "medida_caseira": "1 copo medidor",
+    "energia": 86.4,
+    "proteina": 17,
+    "carboidrato": 2.8,
+    "gordura": 0.8
   }
 ]

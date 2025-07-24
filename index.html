@@ -12,7 +12,6 @@
       margin: 0;
     }
 
-    /* Container do botão menu */
     .menu-container {
       position: fixed;
       top: 10px;
@@ -20,7 +19,6 @@
       z-index: 1000;
     }
 
-    /* Botão hamburguer */
     #menuButton {
       background: none;
       border: none;
@@ -38,7 +36,6 @@
       outline-offset: 2px;
     }
 
-    /* As 3 linhas do hamburguer */
     .bar {
       width: 28px;
       height: 3px;
@@ -51,7 +48,6 @@
       background-color: #2980b9;
     }
 
-    /* Dropdown menu */
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -90,7 +86,7 @@
     h1 {
       text-align: center;
       color: #2c3e50;
-      margin-top: 60px; /* para não ficar escondido atrás do menu fixo */
+      margin-top: 60px;
     }
 
     .card {
@@ -175,7 +171,6 @@
     }
   </style>
 
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
   <script>
@@ -200,9 +195,9 @@
       <span class="bar"></span>
     </button>
     <div class="dropdown-menu" id="dropdownMenu" role="menu" aria-hidden="true">
-      <a href="index.html" role="menuitem" tabindex="-1">Calculadora</a>
-      <a href="gerenciarAlimentos.html" role="menuitem" tabindex="-1">Gerenciar Alimentos</a>
-      <a href="proteinaEGordura.html" role="menuitem" tabindex="-1">Proteína e Gordura</a>
+      <a href="index.html" role="menuitem">Calculadora</a>
+      <a href="gerenciarAlimentos.html" role="menuitem">Gerenciar Alimentos</a>
+      <a href="proteinaEGordura.html" role="menuitem">Proteína e Gordura</a>
     </div>
   </div>
 
@@ -214,17 +209,17 @@
   </div>
 
   <div class="card">
+    <label for="tipoCalculo">Tipo de Cálculo:</label>
+    <select id="tipoCalculo">
+      <option value="gramas">Gramas / mL</option>
+      <option value="medida">Medida Caseira</option>
+    </select>
+
     <label for="alimento">Alimento:</label>
-    <input
-      list="listaAlimentos"
-      id="alimento"
-      name="alimento"
-      placeholder="Digite o nome do alimento"
-      autocomplete="off"
-    />
+    <input list="listaAlimentos" id="alimento" name="alimento" placeholder="Digite o nome do alimento" autocomplete="off" />
     <datalist id="listaAlimentos"></datalist>
 
-    <label for="peso">Quantidade (g ou ml):</label>
+    <label for="peso">Quantidade (g/ml ou número de medidas):</label>
     <input type="number" id="peso" inputmode="numeric" min="1" placeholder="Ex: 100" />
 
     <button onclick="adicionarAlimento()">Adicionar</button>
@@ -246,7 +241,6 @@
     <div class="result-section">
       <button class="result-button" id="choTotal">CHO Total: 0g</button>
       <button class="result-button" id="insulinaTotal">Insulina Recomendada: 0U</button>
-
       <div class="secondary-info" id="detalhesInsulina">
         Insulina por CHO: 0U<br>
         Insulina de Correção: 0U
@@ -255,7 +249,6 @@
   </div>
 
   <script>
-    // Controle do menu dropdown
     const menuButton = document.getElementById('menuButton');
     const dropdownMenu = document.getElementById('dropdownMenu');
 
@@ -263,12 +256,9 @@
       const isShown = dropdownMenu.classList.toggle('show');
       dropdownMenu.setAttribute('aria-hidden', !isShown);
       menuButton.setAttribute('aria-expanded', isShown);
-      if(isShown) {
-        dropdownMenu.querySelector('a').focus();
-      }
+      if (isShown) dropdownMenu.querySelector('a').focus();
     });
 
-    // Fechar menu ao clicar fora
     document.addEventListener('click', (e) => {
       if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
         dropdownMenu.classList.remove('show');
@@ -277,7 +267,6 @@
       }
     });
 
-    // Fechar menu ao pressionar ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         dropdownMenu.classList.remove('show');
@@ -287,7 +276,7 @@
       }
     });
 
-    let tabelaCarboidratos = {};
+    let tabelaAlimentos = {};
     const GLICEMIA_ALVO = 130;
     const RELACAO_IC = 5;
     let alimentos = [];
@@ -299,12 +288,10 @@
 
       snapshot.forEach(doc => {
         const data = doc.data();
-        const nome = data.nome;
-        const carboidrato = data.carboidrato || data.percentual_de_cho || data.percentualDeCHO;
-        tabelaCarboidratos[nome] = carboidrato;
+        tabelaAlimentos[data.nome] = data;
 
         const option = document.createElement("option");
-        option.value = nome;
+        option.value = data.nome;
         dataList.appendChild(option);
       });
     }
@@ -312,29 +299,30 @@
     function adicionarAlimento() {
       const nome = document.getElementById('alimento').value.trim();
       const peso = parseFloat(document.getElementById('peso').value);
+      const tipoCalculo = document.getElementById('tipoCalculo').value;
 
-      if (!nome) {
-        alert("Digite o nome do alimento.");
-        return;
+      if (!nome || !(nome in tabelaAlimentos)) return alert("Alimento não encontrado.");
+      if (isNaN(peso) || peso <= 0) return alert("Digite uma quantidade válida.");
+
+      const dados = tabelaAlimentos[nome];
+      let carboTotal = 0;
+      let descricaoQuantidade = '';
+
+      if (tipoCalculo === 'gramas') {
+        const carboPor100g = dados.carboidrato || 0;
+        carboTotal = (carboPor100g * peso) / 100;
+        descricaoQuantidade = `${peso} g/ml`;
+      } else if (tipoCalculo === 'medida') {
+        const baseMedida = dados.quantidade_mg_l || 0;
+        const carboPor100 = dados.carboidrato || 0;
+        const fator = peso;
+        carboTotal = (carboPor100 * baseMedida * fator) / 100;
+        descricaoQuantidade = `${peso}x ${dados.medida_caseira || 'medida'}`;
       }
 
-      if (!(nome in tabelaCarboidratos)) {
-        alert("Alimento não encontrado na lista. Digite um nome válido.");
-        return;
-      }
-
-      if (isNaN(peso) || peso <= 0) {
-        alert("Digite uma quantidade válida.");
-        return;
-      }
-
-      const carboPor100g = tabelaCarboidratos[nome];
-      const carboTotal = (carboPor100g * peso) / 100;
-
-      alimentos.push({ nome, peso, carbo: carboTotal });
+      alimentos.push({ nome, descricaoQuantidade, carbo: carboTotal });
       atualizarTabela();
 
-      // Limpa os campos
       document.getElementById('alimento').value = "";
       document.getElementById('peso').value = "";
     }
@@ -354,7 +342,7 @@
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${item.nome}</td>
-          <td>${item.peso}g/ml</td>
+          <td>${item.descricaoQuantidade}</td>
           <td>${item.carbo.toFixed(2)}g</td>
           <td><button onclick="removerAlimento(${index})">Remover</button></td>
         `;
@@ -366,24 +354,17 @@
       calcularInsulina(totalCarbo);
     }
 
-    // Função alterada conforme os intervalos que você pediu
     function calcularInsulina(totalCarbo) {
       const glicemiaAtual = parseFloat(document.getElementById('glicemia').value);
       let doseCarbo = totalCarbo / RELACAO_IC;
       let doseCorrecao = 0;
 
       if (!isNaN(glicemiaAtual) && glicemiaAtual > GLICEMIA_ALVO) {
-        if (glicemiaAtual >= 131 && glicemiaAtual <= 160) {
-          doseCorrecao = 1;
-        } else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) {
-          doseCorrecao = 2;
-        } else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) {
-          doseCorrecao = 3;
-        } else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) {
-          doseCorrecao = 4;
-        } else if (glicemiaAtual >= 251) {
-          doseCorrecao = 5;
-        }
+        if (glicemiaAtual >= 131 && glicemiaAtual <= 160) doseCorrecao = 1;
+        else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) doseCorrecao = 2;
+        else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) doseCorrecao = 3;
+        else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) doseCorrecao = 4;
+        else if (glicemiaAtual >= 251) doseCorrecao = 5;
       }
 
       const totalInsulina = doseCarbo + doseCorrecao;
