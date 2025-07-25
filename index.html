@@ -296,93 +296,97 @@
       });
     }
 
-    function adicionarAlimento() {
-      const nome = document.getElementById('alimento').value.trim();
-      const peso = parseFloat(document.getElementById('peso').value);
-      const tipoCalculo = document.getElementById('tipoCalculo').value;
+   <!-- ... [todo o HTML permanece o mesmo até o script final] ... -->
 
-      if (!nome || !(nome in tabelaAlimentos)) return alert("Alimento não encontrado.");
-      if (isNaN(peso) || peso <= 0) return alert("Digite uma quantidade válida.");
 
-      const dados = tabelaAlimentos[nome];
-      let carboTotal = 0;
-      let descricaoQuantidade = '';
+  // ... [código do menu, carregamento, variáveis e funções auxiliares]
 
-      if (tipoCalculo === 'gramas') {
-        const carboPor100g = dados.carboidrato || 0;
-        carboTotal = (carboPor100g * peso) / 100;
-        descricaoQuantidade = `${peso} g/ml`;
-      } else if (tipoCalculo === 'medida') {
-        const baseMedida = dados.quantidade_mg_l || 0;
-        const carboPor100 = dados.carboidrato || 0;
-        const fator = peso;
-        carboTotal = (carboPor100 * baseMedida * fator) / 100;
-        descricaoQuantidade = `${peso}x ${dados.medida_caseira || 'medida'}`;
-      }
+  function adicionarAlimento() {
+    const nome = document.getElementById('alimento').value.trim();
+    const peso = parseFloat(document.getElementById('peso').value);
+    const tipoCalculo = document.getElementById('tipoCalculo').value;
 
-      alimentos.push({ nome, descricaoQuantidade, carbo: carboTotal });
-      atualizarTabela();
+    if (!nome || !(nome in tabelaAlimentos)) return alert("Alimento não encontrado.");
+    if (isNaN(peso) || peso <= 0) return alert("Digite uma quantidade válida.");
 
-      document.getElementById('alimento').value = "";
-      document.getElementById('peso').value = "";
+    const dados = tabelaAlimentos[nome];
+    let carboTotal = 0;
+    let descricaoQuantidade = '';
+
+    if (tipoCalculo === 'gramas') {
+      const carboMedida = dados.carboidrato || 0;
+      const pesoMedida = dados.quantidade_mg_l || 100;
+      carboTotal = (peso * carboMedida) / pesoMedida;
+      descricaoQuantidade = `${peso} g/ml`;
+    } else if (tipoCalculo === 'medida') {
+      const carboPorMedida = dados.carboidrato || 0;
+      carboTotal = peso * carboPorMedida;
+      descricaoQuantidade = `${peso}x ${dados.medida_caseira || 'medida'}`;
     }
 
-    function removerAlimento(index) {
-      alimentos.splice(index, 1);
-      atualizarTabela();
-    }
+    alimentos.push({ nome, descricaoQuantidade, carbo: carboTotal });
+    atualizarTabela();
 
-    function atualizarTabela() {
-      const tbody = document.querySelector("#tabelaAlimentos tbody");
-      tbody.innerHTML = "";
+    document.getElementById('alimento').value = "";
+    document.getElementById('peso').value = "";
+  }
 
-      let totalCarbo = 0;
+  function removerAlimento(index) {
+    alimentos.splice(index, 1);
+    atualizarTabela();
+  }
 
-      alimentos.forEach((item, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.nome}</td>
-          <td>${item.descricaoQuantidade}</td>
-          <td>${item.carbo.toFixed(2)}g</td>
-          <td><button onclick="removerAlimento(${index})">Remover</button></td>
-        `;
-        tbody.appendChild(row);
-        totalCarbo += item.carbo;
-      });
+  function atualizarTabela() {
+    const tbody = document.querySelector("#tabelaAlimentos tbody");
+    tbody.innerHTML = "";
 
-      document.getElementById("choTotal").innerText = `CHO Total: ${totalCarbo.toFixed(2)}g`;
-      calcularInsulina(totalCarbo);
-    }
+    let totalCarbo = 0;
 
-    function calcularInsulina(totalCarbo) {
-      const glicemiaAtual = parseFloat(document.getElementById('glicemia').value);
-      let doseCarbo = totalCarbo / RELACAO_IC;
-      let doseCorrecao = 0;
-
-      if (!isNaN(glicemiaAtual) && glicemiaAtual > GLICEMIA_ALVO) {
-        if (glicemiaAtual >= 131 && glicemiaAtual <= 160) doseCorrecao = 1;
-        else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) doseCorrecao = 2;
-        else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) doseCorrecao = 3;
-        else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) doseCorrecao = 4;
-        else if (glicemiaAtual >= 251) doseCorrecao = 5;
-      }
-
-      const totalInsulina = doseCarbo + doseCorrecao;
-
-      document.getElementById("insulinaTotal").innerText =
-        `Insulina Recomendada: ${totalInsulina.toFixed(2)}U`;
-
-      document.getElementById("detalhesInsulina").innerHTML =
-        `Insulina por CHO: ${doseCarbo.toFixed(2)}U<br>` +
-        `Insulina de Correção: ${doseCorrecao.toFixed(2)}U`;
-    }
-
-    document.getElementById('glicemia').addEventListener('input', () => {
-      const totalCarbo = alimentos.reduce((sum, item) => sum + item.carbo, 0);
-      calcularInsulina(totalCarbo);
+    alimentos.forEach((item, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.nome}</td>
+        <td>${item.descricaoQuantidade}</td>
+        <td>${item.carbo.toFixed(2)}g</td>
+        <td><button onclick="removerAlimento(${index})">Remover</button></td>
+      `;
+      tbody.appendChild(row);
+      totalCarbo += item.carbo;
     });
 
-    window.onload = carregarAlimentosDoFirebase;
+    document.getElementById("choTotal").innerText = `CHO Total: ${totalCarbo.toFixed(2)}g`;
+    calcularInsulina(totalCarbo);
+  }
+
+  function calcularInsulina(totalCarbo) {
+    const glicemiaAtual = parseFloat(document.getElementById('glicemia').value);
+    let doseCarbo = totalCarbo / RELACAO_IC;
+    let doseCorrecao = 0;
+
+    if (!isNaN(glicemiaAtual) && glicemiaAtual > GLICEMIA_ALVO) {
+      if (glicemiaAtual >= 131 && glicemiaAtual <= 160) doseCorrecao = 1;
+      else if (glicemiaAtual >= 161 && glicemiaAtual <= 190) doseCorrecao = 2;
+      else if (glicemiaAtual >= 191 && glicemiaAtual <= 220) doseCorrecao = 3;
+      else if (glicemiaAtual >= 221 && glicemiaAtual <= 250) doseCorrecao = 4;
+      else if (glicemiaAtual >= 251) doseCorrecao = 5;
+    }
+
+    const totalInsulina = doseCarbo + doseCorrecao;
+
+    document.getElementById("insulinaTotal").innerText =
+      `Insulina Recomendada: ${totalInsulina.toFixed(2)}U`;
+
+    document.getElementById("detalhesInsulina").innerHTML =
+      `Insulina por CHO: ${doseCarbo.toFixed(2)}U<br>` +
+      `Insulina de Correção: ${doseCorrecao.toFixed(2)}U`;
+  }
+
+  document.getElementById('glicemia').addEventListener('input', () => {
+    const totalCarbo = alimentos.reduce((sum, item) => sum + item.carbo, 0);
+    calcularInsulina(totalCarbo);
+  });
+
+  window.onload = carregarAlimentosDoFirebase;
   </script>
 </body>
 </html>
