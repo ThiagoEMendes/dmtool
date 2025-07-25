@@ -53,7 +53,7 @@ async function importar() {
       continue;
     }
 
-    calcularPercentuais(item);
+    //calcularPercentuais(item);
 
     try {
       await db.collection("alimentos").add(item);
