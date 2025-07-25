@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gerenciar Alimentos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3em;
+    }
+
+    .menu-btn {
+      font-size: 1.8em;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      z-index: 1000;
+      overflow: hidden;
+      min-width: 200px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #2c3e50;
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      max-width: 700px;
+      width: 90%;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      margin-left: 8px;
+      margin-top: 10px;
+    }
+
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .expand {
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .detalhes {
+      display: none;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+
+    @media screen and (max-width: 500px) {
+      header h1 {
+        font-size: 1em;
+      }
+      .menu {
+        right: 10px;
+      }
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Gerenciar Alimentos</h1>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Calculadora de Carboidratos</a>
+      <a href="proteinaEGordura.html">Cálculo de Proteína e Gordura</a>
+    </div>
+  </header>
+
+  <div class="card">
+    <form id="formAdicionar">
+      <label for="nome">Nome do Alimento</label>
+      <input type="text" id="nome" required>
+      <label for="medida">Medida Caseira / Porção</label>
+      <input type="text" id="medida" required>
+      <label for="quantidade">Quantidade (g/ml)</label>
+      <input type="number" step="0.01" id="quantidade" required>
+      <label for="carbo">Carboidrato (g)</label>
+      <input type="number" step="0.01" id="carbo" required>
+      <label for="proteina">Proteína (g)</label>
+      <input type="number" step="0.01" id="proteina">
+      <label for="energia">Energia (kcal)</label>
+      <input type="number" step="0.01" id="energia">
+      <label for="gordura">Gordura (g)</label>
+      <input type="number" step="0.01" id="gordura">
+      <button type="submit">Cadastrar Alimento</button>
+      <div id="mensagem" class="message"></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <label for="filtro">Filtrar Alimentos</label>
+    <input type="text" id="filtro" placeholder="Digite o nome...">
+    <div id="lista"></div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjyWDtsSTa8Wb162xFujBt_q3KfKlOP98",
+      authDomain: "dmtool-89d0d.firebaseapp.com",
+      projectId: "dmtool-89d0d",
+      storageBucket: "dmtool-89d0d.appspot.com",
+      messagingSenderId: "389362217807",
+      appId: "1:389362217807:web:2805220ee73ce3c0c28b3a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    async function carregarAlimentos(filtro = '') {
+      const lista = document.getElementById('lista');
+      lista.innerHTML = '';
+      const snapshot = await db.collection("alimentos").orderBy("nome").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (!data.nome.toLowerCase().includes(filtro.toLowerCase())) return;
+
+        const div = document.createElement('div');
+        const header = document.createElement('div');
+        header.className = 'expand';
+        header.textContent = `+ ${data.nome}`;
+        const detalhes = document.createElement('div');
+        detalhes.className = 'detalhes';
+        detalhes.innerHTML = `
+          <p><strong>Medida:</strong> ${data.medida_caseira}</p>
+          <p><strong>Quantidade:</strong> ${data.quantidade_mg_l} g/ml</p>
+          <p><strong>Carboidrato:</strong> ${data.carboidrato} g</p>
+          <p><strong>Proteína:</strong> ${data.proteina || 0} g</p>
+          <p><strong>Gordura:</strong> ${data.gordura || 0} g</p>
+          <p><strong>Energia:</strong> ${data.energia || 0} kcal</p>
+          <button onclick="editarAlimento('${doc.id}')">Editar</button>
+          <button class="remove-btn" onclick="removerAlimento('${doc.id}')">Excluir</button>
+        `;
+        header.onclick = () => {
+          detalhes.style.display = detalhes.style.display === 'none' ? 'block' : 'none';
+        };
+        div.appendChild(header);
+        div.appendChild(detalhes);
+        lista.appendChild(div);
+      });
+    }
+
+    document.getElementById('formAdicionar').onsubmit = async (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const medida = document.getElementById('medida').value.trim();
+      const quantidade = parseFloat(document.getElementById('quantidade').value);
+      const carboidrato = parseFloat(document.getElementById('carbo').value);
+      const proteina = parseFloat(document.getElementById('proteina').value);
+      const energia = parseFloat(document.getElementById('energia').value);
+      const gordura = parseFloat(document.getElementById('gordura').value);
+
+      if (!nome || !medida || isNaN(quantidade) || isNaN(carboidrato)) {
+        return mostrarMensagem('Preencha os campos obrigatórios.', true);
+      }
+
+      try {
+        await db.collection('alimentos').add({
+          nome, medida_caseira: medida, quantidade_mg_l: quantidade,
+          carboidrato, proteina, energia, gordura
+        });
+        mostrarMensagem('Alimento cadastrado com sucesso!');
+        document.getElementById('formAdicionar').reset();
+        carregarAlimentos();
+      } catch (err) {
+        mostrarMensagem('Erro ao cadastrar.', true);
+      }
+    };
+
+    function mostrarMensagem(msg, erro = false) {
+      const el = document.getElementById('mensagem');
+      el.textContent = msg;
+      el.className = 'message ' + (erro ? 'error' : 'success');
+      setTimeout(() => el.textContent = '', 3000);
+    }
+
+    async function removerAlimento(id) {
+      if (confirm('Tem certeza que deseja excluir este alimento?')) {
+        await db.collection('alimentos').doc(id).delete();
+        carregarAlimentos();
+      }
+    }
+
+    async function editarAlimento(id) {
+      const doc = await db.collection('alimentos').doc(id).get();
+      const data = doc.data();
+      const novoCarbo = prompt("Novo valor de carboidrato:", data.carboidrato);
+      if (novoCarbo !== null) {
+        await db.collection('alimentos').doc(id).update({ carboidrato: parseFloat(novoCarbo) });
+        carregarAlimentos();
+      }
+    }
+
+    document.getElementById('filtro').addEventListener('input', e => {
+      carregarAlimentos(e.target.value);
+    });
+
+    window.onload = carregarAlimentos;
+  </script>
+</body>
+</html>

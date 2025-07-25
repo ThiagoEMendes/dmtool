@@ -56,7 +56,7 @@
       background-color: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       border-radius: 8px;
-      min-width: 160px;
+      min-width: 180px;
       font-size: 1em;
       overflow: hidden;
     }
@@ -139,13 +139,6 @@
 
     .result-section {
       margin-top: 20px;
-    }
-
-    .secondary-info {
-      text-align: center;
-      font-size: 1em;
-      color: #555;
-      margin-top: 10px;
     }
 
     table {
@@ -258,22 +251,40 @@
       document.getElementById("gorduraTotal").innerText = `Gordura Total: ${totalGordura.toFixed(2)}g`;
     }
 
-    window.onload = carregarAlimentosDoFirebase;
+    window.onload = function () {
+      carregarAlimentosDoFirebase();
+
+      // Menu dropdown toggle
+      const menuButton = document.getElementById("menuButton");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+
+      menuButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("show");
+      });
+
+      // Fecha menu ao clicar fora
+      window.addEventListener("click", (e) => {
+        if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+    };
   </script>
 </head>
 <body>
   <div class="menu-container">
-    <button id="menuButton">
+    <button id="menuButton" aria-label="Abrir menu" title="Menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
     <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Calculadora</a>
-      <a href="gerenciarAlimentos.html">Gerenciar Alimentos</a>
-      <a href="proteinaEGordura.html">Proteína e Gordura</a>
+      <a href="index.html">🏠 Página Principal</a>
+      <a href="gerenciarAlimentos.html">📋 Gerenciar Alimentos</a>
+      <a href="proteinaEGordura.html">🥩 Proteína e Gordura</a>
     </div>
   </div>
+
   <h1>Calculadora de Proteína e Gordura</h1>
 
   <div class="card">
