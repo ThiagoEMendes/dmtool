@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -325,3 +326,332 @@
   </div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Proteína e Gordura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      padding: 10px;
+      margin: 0;
+    }
+
+    .menu-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    #menuButton {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0;
+    }
+
+    #menuButton:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
+    }
+
+    .bar {
+      width: 28px;
+      height: 3px;
+      background-color: #3498db;
+      border-radius: 2px;
+      transition: background-color 0.3s ease;
+    }
+
+    #menuButton:hover .bar {
+      background-color: #2980b9;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 44px;
+      left: 0;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      min-width: 180px;
+      font-size: 1em;
+      overflow: hidden;
+    }
+
+    .dropdown-menu.show {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    .result-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .result-section {
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjyWDtsSTa8Wb162xFujBt_q3KfKlOP98",
+      authDomain: "dmtool-89d0d.firebaseapp.com",
+      projectId: "dmtool-89d0d",
+      storageBucket: "dmtool-89d0d.appspot.com",
+      messagingSenderId: "389362217807",
+      appId: "1:389362217807:web:2805220ee73ce3c0c28b3a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let alimentos = [];
+    let tabelaNutrientes = {};
+    let tipoCalculo = 'gramas';
+
+    async function carregarAlimentosDoFirebase() {
+      const snapshot = await db.collection("alimentos").get();
+      const dataList = document.getElementById("listaAlimentos");
+      dataList.innerHTML = "";
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        tabelaNutrientes[data.nome] = data;
+
+        const option = document.createElement("option");
+        option.value = data.nome;
+        dataList.appendChild(option);
+      });
+    }
+
+    function adicionarAlimento() {
+      const nome = document.getElementById('alimento').value.trim();
+      const peso = parseFloat(document.getElementById('peso').value);
+
+      if (!nome || !(nome in tabelaNutrientes)) return alert("Alimento inválido");
+      const dados = tabelaNutrientes[nome];
+
+      let proteina = 0, gordura = 0, quantidade = "";
+
+      if (tipoCalculo === 'gramas') {
+        if (isNaN(peso) || peso <= 0) return alert("Informe a quantidade em g/ml");
+        proteina = (dados.proteina * peso) / 100;
+        gordura = (dados.gordura * peso) / 100;
+        quantidade = peso + " g/ml";
+      } else {
+        proteina = (dados.proteina * 1);
+        gordura = (dados.gordura * 1);
+        quantidade = dados.medida_caseira;
+      }
+
+      alimentos.push({ nome, quantidade, proteina, gordura });
+      atualizarTabela();
+      document.getElementById('alimento').value = "";
+      document.getElementById('peso').value = "";
+    }
+
+    function removerAlimento(index) {
+      alimentos.splice(index, 1);
+      atualizarTabela();
+    }
+
+    function atualizarTabela() {
+      const tbody = document.querySelector("#tabelaAlimentos tbody");
+      tbody.innerHTML = "";
+      let totalProteina = 0;
+      let totalGordura = 0;
+
+      alimentos.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.nome}</td>
+          <td>${item.quantidade}</td>
+          <td>${item.proteina.toFixed(2)}</td>
+          <td>${item.gordura.toFixed(2)}</td>
+          <td><button onclick="removerAlimento(${index})">Remover</button></td>
+        `;
+        tbody.appendChild(row);
+        totalProteina += item.proteina;
+        totalGordura += item.gordura;
+      });
+
+      document.getElementById("proteinaTotal").innerText = `Proteína Total: ${totalProteina.toFixed(2)}g`;
+      document.getElementById("gorduraTotal").innerText = `Gordura Total: ${totalGordura.toFixed(2)}g`;
+    }
+
+    window.onload = function () {
+      carregarAlimentosDoFirebase();
+
+      // Menu dropdown toggle
+      const menuButton = document.getElementById("menuButton");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+
+      menuButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("show");
+      });
+
+      // Fecha menu ao clicar fora
+      window.addEventListener("click", (e) => {
+        if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+  <div class="menu-container">
+    <button id="menuButton" aria-label="Abrir menu" title="Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">🏠 Página Principal</a>
+      <a href="gerenciarAlimentos.html">📋 Gerenciar Alimentos</a>
+      <a href="proteinaEGordura.html">🥩 Proteína e Gordura</a>
+    </div>
+  </div>
+
+  <h1>Calculadora de Proteína e Gordura</h1>
+
+  <div class="card">
+    <label for="tipo">Tipo de Cálculo:</label>
+    <select id="tipo" onchange="tipoCalculo = this.value">
+      <option value="gramas">Gramas/ml</option>
+      <option value="caseira">Medida caseira</option>
+    </select>
+
+    <label for="alimento">Alimento:</label>
+    <input list="listaAlimentos" id="alimento" placeholder="Digite o nome do alimento" />
+    <datalist id="listaAlimentos"></datalist>
+
+    <label for="peso">Quantidade (g/ml ou número de medidas):</label>
+    <input type="number" id="peso" inputmode="numeric" min="1" placeholder="Ex: 100" />
+
+    <button onclick="adicionarAlimento()">Adicionar</button>
+  </div>
+
+  <div class="card">
+    <table id="tabelaAlimentos">
+      <thead>
+        <tr>
+          <th>Alimento</th>
+          <th>QTD</th>
+          <th>Proteína (g)</th>
+          <th>Gordura (g)</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="result-section">
+      <button class="result-button" id="proteinaTotal">Proteína Total: 0g</button>
+      <button class="result-button" id="gorduraTotal">Gordura Total: 0g</button>
+    </div>
+  </div>
+</body>
+</html>
+>>>>>>> 0deda21be11e42c404b52ca61703e49ee8cf6ed6
