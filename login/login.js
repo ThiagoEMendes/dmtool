@@ -1,42 +1,36 @@
-// js/login.js
+// login.js
 
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
+  const password = document.getElementById('password').value;
   const errorMsg = document.getElementById('errorMsg');
-  errorMsg.textContent = "";
-
-  if (!email || !password) {
-    errorMsg.textContent = "Preencha todos os campos.";
-    return;
-  }
+  errorMsg.textContent = '';
 
   try {
     const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-    const uid = userCredential.user.uid;
 
-    // Buscar dados do usuário no Firestore
-    const userDoc = await firebase.firestore().collection("usuarios").doc(uid).get();
+    console.log("Login realizado com sucesso:", userCredential.user.uid);
 
-    if (userDoc.exists) {
-      const userData = userDoc.data();
-      console.log("Usuário logado:", userData);
-
-      // Redirecionar ou mostrar mensagem
-      alert("Login realizado com sucesso!");
-      // window.location.href = "index.html"; // descomente para redirecionar
-    } else {
-      errorMsg.textContent = "Usuário autenticado, mas dados não encontrados.";
-    }
+    // Redireciona para a página principal após login
+    window.location.href = "../choEInsulina.html";
 
   } catch (error) {
-    console.error("Erro no login:", error);
-    if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-      errorMsg.textContent = "E-mail ou senha incorretos.";
-    } else {
-      errorMsg.textContent = "Erro ao entrar. Tente novamente.";
+    console.error("Erro ao fazer login:", error);
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errorMsg.textContent = 'Usuário não encontrado.';
+        break;
+      case 'auth/wrong-password':
+        errorMsg.textContent = 'Senha incorreta.';
+        break;
+      case 'auth/invalid-email':
+        errorMsg.textContent = 'E-mail inválido.';
+        break;
+      default:
+        errorMsg.textContent = 'Erro desconhecido.';
     }
   }
 });
