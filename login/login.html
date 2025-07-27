@@ -71,7 +71,7 @@
     }
 
     .extra-actions a {
-      display: block;
+      width: 100%;
       text-align: center;
       background-color: #f3f4f6;
       padding: 12px;
@@ -80,22 +80,11 @@
       text-decoration: none;
       font-weight: 500;
       font-size: 15px;
+      display: inline-block;
     }
 
     .extra-actions a:hover {
       background-color: #e5e7eb;
-    }
-
-    @media (min-width: 768px) {
-      .extra-actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-
-      .extra-actions a {
-        width: 48%;
-      }
     }
   </style>
 </head>
