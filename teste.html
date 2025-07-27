@@ -13,12 +13,12 @@
     }
 
     .header {
-      background-color: #2563eb;
-      color: white;
+      color: #1f2937;
       padding: 16px;
       border-radius: 12px;
       text-align: center;
       margin-bottom: 24px;
+      background-color: transparent;
     }
 
     .form-group {
@@ -32,7 +32,9 @@
       color: #111827;
     }
 
-    input[type="number"], select {
+    input[type="number"],
+    input[type="text"],
+    select {
       width: 100%;
       padding: 12px;
       font-size: 16px;
@@ -67,36 +69,61 @@
     .btn:hover {
       background-color: #1e40af;
     }
+
+    .voltar {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .voltar a {
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <h2>Oi <span id="nomeUsuario">!</span> !👋</h2>
+    <h2>Olá, <span id="nomeUsuario">!</span></h2>
   </div>
 
-  <div class="form-group">
-    <label for="glicemia">Quanto tá a glicemia agora?</label>
-    <input type="number" id="glicemia" inputmode="numeric" placeholder="Digite sua glicemia (mg/dL)" />
+  <div id="fase1">
+    <div class="form-group">
+      <label for="glicemia">Quanto tá a glicemia agora?</label>
+      <input type="number" id="glicemia" inputmode="numeric" placeholder="Digite sua glicemia (mg/dL)" />
+    </div>
+
+    <div id="perguntaRefeicao" class="question" style="display: none;"></div>
+
+    <div id="botoesSimNao" class="btn-group" style="display: none;">
+      <button class="btn" onclick="respostaSim()">Sim</button>
+      <button class="btn" onclick="respostaNao()">Não</button>
+    </div>
+
+    <div id="selecionarRefeicao" class="form-group" style="display: none;">
+      <label for="refeicaoManual">Qual refeição vai fazer agora?</label>
+      <select id="refeicaoManual">
+        <option value="">Selecione</option>
+        <option value="cafe_da_manha">Café da manhã</option>
+        <option value="lanche_manha">Lanche da manhã</option>
+        <option value="almoco">Almoço</option>
+        <option value="lanche_tarde">Lanche</option>
+        <option value="jantar">Jantar</option>
+        <option value="ceia">Ceia</option>
+      </select>
+      <button class="btn" onclick="confirmarRefeicaoManual()">Confirmar</button>
+    </div>
   </div>
 
-  <div id="perguntaRefeicao" class="question" style="display: none;"></div>
-
-  <div id="botoesSimNao" class="btn-group" style="display: none;">
-    <button class="btn" onclick="respostaSim()">Sim</button>
-    <button class="btn" onclick="respostaNao()">Não</button>
-  </div>
-
-  <div id="selecionarRefeicao" style="display: none;">
-    <label for="refeicaoManual">Qual refeição vai fazer agora?</label>
-    <select id="refeicaoManual">
-      <option value="">Selecione</option>
-      <option value="cafe_da_manha">Café da manhã</option>
-      <option value="lanche_manha">Lanche da manhã</option>
-      <option value="almoco">Almoço</option>
-      <option value="lanche_tarde">Lanche</option>
-      <option value="jantar">Jantar</option>
-      <option value="ceia">Ceia</option>
-    </select>
+  <div id="fase2" style="display: none;">
+    <div class="form-group">
+      <label for="alimento">O que vai comer?</label>
+      <input type="text" id="alimento" placeholder="Digite o nome do alimento" />
+    </div>
+    <div class="voltar">
+      <a onclick="voltarParaFase1()">← Voltar</a>
+    </div>
   </div>
 
   <!-- Firebase -->
@@ -104,46 +131,80 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  <!-- Seus scripts -->
+  <!-- Scripts -->
   <script src="./login/firebase.js"></script>
   <script src="./choEInsulina.js"></script>
 
   <script>
+    let refeicaoSelecionada = '';
+
+    // Detectar e exibir pergunta sobre refeição
     document.getElementById('glicemia').addEventListener('change', function () {
       const agora = new Date();
       const hora = agora.getHours();
       let pergunta = '';
+      let tipo = '';
 
       if (hora >= 5 && hora < 9) {
         pergunta = 'Vai tomar o café?';
+        tipo = 'cafe_da_manha';
       } else if (hora >= 9 && hora < 11) {
         pergunta = 'Vai lanchar?';
+        tipo = 'lanche_manha';
       } else if (hora >= 11 && hora < 14) {
         pergunta = 'Vai almoçar?';
+        tipo = 'almoco';
       } else if (hora >= 14 && hora < 17) {
         pergunta = 'Vai lanchar?';
+        tipo = 'lanche_tarde';
       } else if (hora >= 17 && hora < 21) {
         pergunta = 'Vai jantar?';
+        tipo = 'jantar';
       } else if (hora >= 21 && hora <= 23) {
         pergunta = 'Vai fazer a ceia?';
+        tipo = 'ceia';
       } else {
         pergunta = 'Vai se alimentar agora?';
+        tipo = '';
       }
 
       document.getElementById('perguntaRefeicao').innerText = pergunta;
+      document.getElementById('perguntaRefeicao').dataset.tipo = tipo;
       document.getElementById('perguntaRefeicao').style.display = 'block';
       document.getElementById('botoesSimNao').style.display = 'flex';
       document.getElementById('selecionarRefeicao').style.display = 'none';
     });
 
     function respostaSim() {
-      // Seguir fluxo padrão
-      document.getElementById('selecionarRefeicao').style.display = 'none';
+      refeicaoSelecionada = document.getElementById('perguntaRefeicao').dataset.tipo;
+      mostrarFase2();
     }
 
     function respostaNao() {
-      // Mostra lista para o usuário escolher manualmente
       document.getElementById('selecionarRefeicao').style.display = 'block';
+    }
+
+    function confirmarRefeicaoManual() {
+      const valor = document.getElementById('refeicaoManual').value;
+      if (valor) {
+        refeicaoSelecionada = valor;
+        mostrarFase2();
+      } else {
+        alert('Por favor, selecione uma refeição.');
+      }
+    }
+
+    function mostrarFase2() {
+      document.getElementById('fase1').style.display = 'none';
+      document.getElementById('fase2').style.display = 'block';
+      console.log('Refeição selecionada:', refeicaoSelecionada);
+    }
+
+    function voltarParaFase1() {
+      document.getElementById('fase2').style.display = 'none';
+      document.getElementById('fase1').style.display = 'block';
+      document.getElementById('perguntaRefeicao').style.display = 'block';
+      document.getElementById('botoesSimNao').style.display = 'flex';
     }
   </script>
 </body>
