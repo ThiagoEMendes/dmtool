@@ -20,14 +20,37 @@
       text-align: center;
       margin-bottom: 24px;
     }
+
+    .form-group {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <h2>Olá, <span id="nomeUsuario">Usuário</span> 👋</h2>
+    <h2>Oi <span id="nomeUsuario">!</span> !👋</h2>
   </div>
 
-  <!-- Aqui vai o restante do conteúdo da sua página -->
+  <div class="form-group">
+    <label for="glicemia">Quanto tá a glicemia agora?</label>
+    <input type="number" id="glicemia" inputmode="numeric" placeholder="Digite sua glicemia (mg/dL)" />
+  </div>
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
