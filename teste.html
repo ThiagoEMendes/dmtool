@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Carboidratos e Insulina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9fafb;
+    }
+
+    .header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+
+    .question {
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Oi <span id="nomeUsuario">!</span> !👋</h2>
+  </div>
+
+  <div class="form-group">
+    <label for="glicemia">Quanto tá a glicemia agora?</label>
+    <input type="number" id="glicemia" inputmode="numeric" placeholder="Digite sua glicemia (mg/dL)" />
+  </div>
+
+  <div id="perguntaRefeicao" class="question" style="display: none;"></div>
+
+  <div id="botoesSimNao" class="btn-group" style="display: none;">
+    <button class="btn" onclick="respostaSim()">Sim</button>
+    <button class="btn" onclick="respostaNao()">Não</button>
+  </div>
+
+  <div id="selecionarRefeicao" style="display: none;">
+    <label for="refeicaoManual">Qual refeição vai fazer agora?</label>
+    <select id="refeicaoManual">
+      <option value="">Selecione</option>
+      <option value="cafe_da_manha">Café da manhã</option>
+      <option value="lanche_manha">Lanche da manhã</option>
+      <option value="almoco">Almoço</option>
+      <option value="lanche_tarde">Lanche</option>
+      <option value="jantar">Jantar</option>
+      <option value="ceia">Ceia</option>
+    </select>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Seus scripts -->
+  <script src="./login/firebase.js"></script>
+  <script src="./choEInsulina.js"></script>
+
+  <script>
+    document.getElementById('glicemia').addEventListener('change', function () {
+      const agora = new Date();
+      const hora = agora.getHours();
+      let pergunta = '';
+
+      if (hora >= 5 && hora < 9) {
+        pergunta = 'Vai tomar o café?';
+      } else if (hora >= 9 && hora < 11) {
+        pergunta = 'Vai lanchar?';
+      } else if (hora >= 11 && hora < 14) {
+        pergunta = 'Vai almoçar?';
+      } else if (hora >= 14 && hora < 17) {
+        pergunta = 'Vai lanchar?';
+      } else if (hora >= 17 && hora < 21) {
+        pergunta = 'Vai jantar?';
+      } else if (hora >= 21 && hora <= 23) {
+        pergunta = 'Vai fazer a ceia?';
+      } else {
+        pergunta = 'Vai se alimentar agora?';
+      }
+
+      document.getElementById('perguntaRefeicao').innerText = pergunta;
+      document.getElementById('perguntaRefeicao').style.display = 'block';
+      document.getElementById('botoesSimNao').style.display = 'flex';
+      document.getElementById('selecionarRefeicao').style.display = 'none';
+    });
+
+    function respostaSim() {
+      // Seguir fluxo padrão
+      document.getElementById('selecionarRefeicao').style.display = 'none';
+    }
+
+    function respostaNao() {
+      // Mostra lista para o usuário escolher manualmente
+      document.getElementById('selecionarRefeicao').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
