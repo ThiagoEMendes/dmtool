@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro - dmtool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fafb;
+      padding: 30px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input.invalid {
+      border-color: red;
+    }
+
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1e40af;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .switch-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .switch-label {
+      font-weight: bold;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #10b981;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    .btn-cancelar {
+      background-color: #6b7280;
+    }
+
+    .btn-cancelar:hover {
+      background-color: #374151;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Usuário</h2>
+    <form id="cadastroForm">
+      <label>Nome completo</label>
+      <input type="text" id="nome" required />
+
+      <label>CPF</label>
+      <input type="text" id="cpf" required />
+
+      <label>Data de nascimento</label>
+      <input type="date" id="nascimento" required />
+
+      <label>Telefone com WhatsApp</label>
+      <input type="text" id="telefone" required />
+
+      <label>E-mail</label>
+      <input type="email" id="email" required />
+
+      <label>Confirme o e-mail</label>
+      <input type="email" id="confirmEmail" required />
+      <div id="emailError" class="error hidden">Os e-mails não coincidem.</div>
+
+      <label>Senha</label>
+      <input type="password" id="senha" required />
+
+      <label>Confirme a senha</label>
+      <input type="password" id="confirmSenha" required />
+      <div id="senhaError" class="error hidden">As senhas não coincidem.</div>
+
+      <div class="switch-container">
+        <span class="switch-label">É paciente DM?</span>
+        <label class="switch">
+          <input type="checkbox" id="isDM">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div id="dmCampos" class="hidden">
+        <label>Glicemia alvo</label>
+        <input type="number" id="glicemiaAlvo" />
+
+        <label>Fator de correção (sensibilidade)</label>
+        <input type="number" id="fatorCorrecao" />
+
+        <label>Dose máxima de correção (UI)</label>
+        <input type="number" id="doseMaxima" />
+
+        <label>Proporção padrão (CHO para 1 UI)</label>
+        <input type="number" id="proporcaoPadrao" />
+
+        <div class="switch-container">
+          <span class="switch-label">Usar proporções diferentes por refeição</span>
+          <label class="switch">
+            <input type="checkbox" id="proporcaoPorRefeicao">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="refeicoesCampos" class="hidden">
+          <label>Proporção - Café da manhã</label>
+          <input type="number" id="refCafe" />
+          <label>Proporção - Lanche da manhã</label>
+          <input type="number" id="refLancheManha" />
+          <label>Proporção - Almoço</label>
+          <input type="number" id="refAlmoco" />
+          <label>Proporção - Lanche da tarde</label>
+          <input type="number" id="refLancheTarde" />
+          <label>Proporção - Jantar</label>
+          <input type="number" id="refJantar" />
+          <label>Proporção - Ceia</label>
+          <input type="number" id="refCeia" />
+        </div>
+      </div>
+
+      <button type="submit">Cadastrar</button>
+      <button type="button" class="btn-cancelar" onclick="window.location.href='../login/login.html'">Cancelar</button>
+    </form>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="./firebase.js"></script>
+  <script>
+    const isDM = document.getElementById('isDM');
+    const proporcaoToggle = document.getElementById('proporcaoPorRefeicao');
+    const dmCampos = document.getElementById('dmCampos');
+    const refeicoesCampos = document.getElementById('refeicoesCampos');
+    const proporcaoPadrao = document.getElementById('proporcaoPadrao');
+
+    const email = document.getElementById('email');
+    const confirmEmail = document.getElementById('confirmEmail');
+    const senha = document.getElementById('senha');
+    const confirmSenha = document.getElementById('confirmSenha');
+    const emailError = document.getElementById('emailError');
+    const senhaError = document.getElementById('senhaError');
+
+    function validarCamposEmailSenha() {
+      let valido = true;
+
+      if (email.value !== confirmEmail.value) {
+        confirmEmail.classList.add('invalid');
+        emailError.classList.remove('hidden');
+        valido = false;
+      } else {
+        confirmEmail.classList.remove('invalid');
+        emailError.classList.add('hidden');
+      }
+
+      if (senha.value !== confirmSenha.value) {
+        confirmSenha.classList.add('invalid');
+        senhaError.classList.remove('hidden');
+        valido = false;
+      } else {
+        confirmSenha.classList.remove('invalid');
+        senhaError.classList.add('hidden');
+      }
+
+      return valido;
+    }
+
+    confirmEmail.addEventListener('blur', validarCamposEmailSenha);
+    confirmSenha.addEventListener('blur', validarCamposEmailSenha);
+
+    isDM.addEventListener('change', () => {
+      dmCampos.classList.toggle('hidden', !isDM.checked);
+    });
+
+    proporcaoToggle.addEventListener('change', () => {
+      refeicoesCampos.classList.toggle('hidden', !proporcaoToggle.checked);
+    });
+
+    proporcaoPadrao.addEventListener('input', () => {
+      const valor = parseFloat(proporcaoPadrao.value);
+      if (!isNaN(valor) && !proporcaoToggle.checked) {
+        document.getElementById('refCafe').value = valor;
+        document.getElementById('refLancheManha').value = valor;
+        document.getElementById('refAlmoco').value = valor;
+        document.getElementById('refLancheTarde').value = valor;
+        document.getElementById('refJantar').value = valor;
+        document.getElementById('refCeia').value = valor;
+      }
+    });
+
+    document.getElementById('cadastroForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (!validarCamposEmailSenha()) return;
+
+      try {
+        // Verificar se e-mail já está em uso
+        const fetchSignInMethods = await firebase.auth().fetchSignInMethodsForEmail(email.value);
+        if (fetchSignInMethods.length > 0) {
+          alert("Este e-mail já está cadastrado. Use outro ou faça login.");
+          return;
+        }
+
+        // Criar usuário no Firebase Auth
+        const cred = await firebase.auth().createUserWithEmailAndPassword(email.value, senha.value);
+        const uid = cred.user.uid;
+
+        const dados = {
+          nome: document.getElementById('nome').value,
+          cpf: document.getElementById('cpf').value,
+          nascimento: document.getElementById('nascimento').value,
+          telefone: document.getElementById('telefone').value,
+          email: email.value,
+          dm: isDM.checked
+        };
+
+        if (isDM.checked) {
+          dados.glicemiaAlvo = parseFloat(document.getElementById('glicemiaAlvo').value);
+          dados.fatorCorrecao = parseFloat(document.getElementById('fatorCorrecao').value);
+          dados.doseMaxima = parseFloat(document.getElementById('doseMaxima').value);
+          dados.proporcaoPadrao = parseFloat(document.getElementById('proporcaoPadrao').value);
+          dados.proporcaoPorRefeicao = proporcaoToggle.checked;
+
+          if (proporcaoToggle.checked) {
+            dados.proporcoes = {
+              cafe: parseFloat(document.getElementById('refCafe').value),
+              lancheManha: parseFloat(document.getElementById('refLancheManha').value),
+              almoco: parseFloat(document.getElementById('refAlmoco').value),
+              lancheTarde: parseFloat(document.getElementById('refLancheTarde').value),
+              jantar: parseFloat(document.getElementById('refJantar').value),
+              ceia: parseFloat(document.getElementById('refCeia').value),
+            };
+          }
+        }
+
+        await firebase.firestore().collection('usuarios').doc(uid).set(dados);
+
+        alert("Usuário cadastrado com sucesso!");
+        window.location.href = "../login/login.html";
+      } catch (error) {
+        alert("Erro ao cadastrar: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
