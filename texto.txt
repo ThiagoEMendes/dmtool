@@ -1,0 +1,20 @@
+Ajuste os pontos a seguir:
+1) o botão tipo slide deve ficar fixado abaixo do campo onde o alimento será informado indicando que se habilitado o calculo será feito com base na medida caseira / porção
+
+2) O calculo do CHO quando a opção selecionada for a do peso(g/ml) deve seguir a seguinte lógica:
+
+(peso informado) * carboidrato(da coleção alimentos) / quantidade_mg_l(da colecao alimentos) 
+
+
+3) no campo onde sera digitado o peso/medida, o teclado numérico deve ser ativado.
+
+5) ao clicar no botão calcular a tela deve ser limpa e os seguintes dados exibidos:
+
+
+recurso em desenvolvimento.
+
+dois botoes abaixo , lado a lado, o da esquerda retornar, e o da direita confirmar.
+
+coloque o codigo completo dos arquivos alterados aqui mantendo tudo que já foi implementado, inclusive o estilo.
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menu - DMTool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #nomeUsuario {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .btn-tile {
+      background-color: white;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 30px 10px;
+      border-radius: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-tile:hover {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .btn-tile span {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DMTool</h1>
+    <div id="nomeUsuario">Usuário</div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="btn-tile" onclick="irPara('ajustes.html')">
+        <span>⚙️</span>
+        Ajustes
+      </div>
+      <div class="btn-tile" onclick="irPara('meusDados.html')">
+        <span>👤</span>
+        Meus Dados
+      </div>
+      <div class="btn-tile" onclick="irPara('choEInsulina.html')">
+        <span>🍽️</span>
+        Calcular Refeição
+      </div>
+      <div class="btn-tile" onclick="logout()">
+        <span>🚪</span>
+        Logoff
+      </div>
+    </div>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Firebase config -->
+  <script src="./login/firebase.js"></script>
+
+  <script>
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const doc = await db.collection('usuarios').doc(user.uid).get();
+        if (doc.exists) {
+          const usuario = doc.data();
+          document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+        }
+      } else {
+        window.location.href = "./login.html";
+      }
+    });
+
+    function irPara(pagina) {
+      window.location.href = pagina;
+    }
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "./login.html";
+      });
+    }
+  </script>
+</body>
+</html>

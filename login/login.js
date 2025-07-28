@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     console.log("Login realizado com sucesso:", userCredential.user.uid);
 
     // Redireciona para a página principal após login
-    window.location.href = "../choEInsulina.html";
+    window.location.href = "../menu.html";
 
   } catch (error) {
     console.error("Erro ao fazer login:", error);
