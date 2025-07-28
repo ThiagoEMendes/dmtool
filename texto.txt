@@ -1,20 +1,56 @@
-Ajuste os pontos a seguir:
-1) o botão tipo slide deve ficar fixado abaixo do campo onde o alimento será informado indicando que se habilitado o calculo será feito com base na medida caseira / porção
+mantenha o mesmo estilo da página menu.html, mostrando o nome do sistema e do usuário logado no topo da pagina.
 
-2) O calculo do CHO quando a opção selecionada for a do peso(g/ml) deve seguir a seguinte lógica:
+solicite ao usuário que digite a glicemia atual,
+o teclado númerico deve ser acionado para que o usuário digite a glicemia.
 
-(peso informado) * carboidrato(da coleção alimentos) / quantidade_mg_l(da colecao alimentos) 
+solicite ao usuário que informe o tipo de refeição que fará entre: café da manhã, lanche da manhã,
+almoço, sobremesa, lanche da tarde, jantar, ceia e lanche avulso.
 
+um botão abaixo com texto inserir alimentos
 
-3) no campo onde sera digitado o peso/medida, o teclado numérico deve ser ativado.
+a tela deve ser limpa neste momento, as informações de glicemia e tipo de refeição devem ser exibidas
+em um texto discreto acima do formulario.
 
-5) ao clicar no botão calcular a tela deve ser limpa e os seguintes dados exibidos:
+um campo de texto com o texto inserir alimento deve ser exibida, o usuário diritará o nome do alimento
+, o sistema buscará o nome na coleção alimentos.nome e exibirá abaixo, botoes com o nome do alimento para 
+que o usuário o selecione.
 
+neste momento o sistema exibirá um campo de texto para que o usuário digite a quantidade, acima desta
+caixa de texto aparecerá um botão tipo slide que se habilitado alternará o tipo da quantidade de gr para medida caseira
 
-recurso em desenvolvimento.
+uma tabela com as colunas: alimento, QTD, CHO e remover, aparecera, a medida que o usuário adiciona
+alimentos os alimentos aparecerão na tabela.
 
-dois botoes abaixo , lado a lado, o da esquerda retornar, e o da direita confirmar.
+se o usuário informar medida caseira, a quantidade de CHO será calculada com base no calculo (valor informado)*alimentos.carboidrato
 
-coloque o codigo completo dos arquivos alterados aqui mantendo tudo que já foi implementado, inclusive o estilo.
+se o usuário informar gr, o cálculo do CHO será o seguinte: (valor informado)*alimentos.carboidrato/alimentos.quantidade_mg_l
+
+abaixo ficarão dois botoes lado a lado com as opções retornar, que retornará para a página menu.html e calcular
+
+quando o botão calcular for acionado os seguintes cálculos serão executados:
+
+Insulina CHO= total de cho de todos os alimentos da lista / usuarios.proporcoes.(refeição escolhida)
+
+calculo da insulina de correção:
+
+caso a glicemia informada seja menor ou igual a usuarios.glicemiaAlvo, a insulina de correção é 0,
+caso seja maior o sistema deve verificar usuarios.doseMaxima e inserir 1 unidade a cada valor de usuarios.fatorCorrecao
+percebido acima de usuarios.glicemiaAlvo até o limite de usuarios.doseMaxima.
+
+ex: se usuarios.doseMaxima=2, e usuarios.fatorCorrecao=20 o sistema deve adicionar 1 unidade, se 
+glicemia entre 131 e 150, e 2 unidades se glicemia entre 151 e 170. se glicemia maior que 170 respeitar
+a dosagem máxima que no caso é 2.
+
+ao final o sistema deve exibir o total de CHO e dosagem de insulina recomendada: insulina CHO + insulina de correção.
+
+e abaixo dois botoes, lado a lado,
+cancelar, que volta para a página menu.html
+e gravar, que gravará os seguintes dados na coleção recordatorio
+usuários.cpf em recordatorio.cpf
+data em recordatorio.data
+hora em recordatorio.hora
+total de cho em recordatorio.cho_total
+total de insulina em recordatorio.insulina_administrada
+uma string com os alimentos separados por virgula em recordatorio.alimentos_consumidos
 
 
