@@ -6,26 +6,28 @@ o teclado númerico deve ser acionado para que o usuário digite a glicemia.
 solicite ao usuário que informe o tipo de refeição que fará entre: café da manhã, lanche da manhã,
 almoço, sobremesa, lanche da tarde, jantar, ceia e lanche avulso.
 
-um botão abaixo com texto inserir alimentos
-
-a tela deve ser limpa neste momento, as informações de glicemia e tipo de refeição devem ser exibidas
+um botão abaixo com texto inserir alimentos, deve aparecer, e quando clicado deve limpar a tela,
+ as informações de glicemia e tipo de refeição devem ser exibidas
 em um texto discreto acima do formulario.
 
-um campo de texto com o texto inserir alimento deve ser exibida, o usuário diritará o nome do alimento
-, o sistema buscará o nome na coleção alimentos.nome e exibirá abaixo, botoes com o nome do alimento para 
-que o usuário o selecione.
+um campo de texto com o texto inserir alimento deve ser exibido, o usuário digitará o nome do alimento
+, o sistema buscará o nome na coleção alimentos.nome e exibirá abaixo, botoes com o nome dos alimentos
+ que correspondem com a buca que quando clicado o texto digitado será
+ substituido pelo alimento correspondente.
 
 neste momento o sistema exibirá um campo de texto para que o usuário digite a quantidade, acima desta
-caixa de texto aparecerá um botão tipo slide que se habilitado alternará o tipo da quantidade de gr para medida caseira
-
-uma tabela com as colunas: alimento, QTD, CHO e remover, aparecera, a medida que o usuário adiciona
-alimentos os alimentos aparecerão na tabela.
+caixa de texto, aparecerá um botão tipo slide que se habilitado alternará o tipo da quantidade de 
+gr para medida caseira
 
 se o usuário informar medida caseira, a quantidade de CHO será calculada com base no calculo (valor informado)*alimentos.carboidrato
 
 se o usuário informar gr, o cálculo do CHO será o seguinte: (valor informado)*alimentos.carboidrato/alimentos.quantidade_mg_l
 
-abaixo ficarão dois botoes lado a lado com as opções retornar, que retornará para a página menu.html e calcular
+uma tabela com as colunas: alimento, QTD, CHO e remover, aparecera, a medida que o usuário adiciona
+alimentos.
+
+abaixo ficarão dois botoes lado a lado com as opções retornar, que retornará para a página menu.html
+ e calcular
 
 quando o botão calcular for acionado os seguintes cálculos serão executados:
 
