@@ -93,18 +93,13 @@
       text-align: center;
     }
 
-    .switch-container {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-      gap: 10px;
-    }
-
     .switch {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
+      margin-left: 10px;
+      vertical-align: middle;
     }
 
     .switch input {
@@ -184,14 +179,11 @@
     <div id="quantidadeContainer" class="form-group" style="display: none;">
       <label for="quantidade">Quantidade:</label>
       <input type="number" id="quantidade" min="0" step="any" placeholder="Digite a quantidade" />
-      <div class="switch-container">
-        <span>g/ml</span>
-        <label class="switch">
-          <input type="checkbox" id="tipoMedida" />
-          <span class="slider"></span>
-        </label>
-        <span>mc/p</span>
-      </div>
+      <label class="switch">
+        <input type="checkbox" id="tipoMedida" />
+        <span class="slider"></span>
+        <span id="tipoLabel">g/ml</span>
+      </label>
       <button class="btn" onclick="adicionarAlimento()">Adicionar</button>
     </div>
 
