@@ -6,6 +6,8 @@ o teclado númerico deve ser acionado para que o usuário digite a glicemia.
 solicite ao usuário que informe o tipo de refeição que fará entre: café da manhã, lanche da manhã,
 almoço, sobremesa, lanche da tarde, jantar, ceia e lanche avulso.
 
+
+
 um botão abaixo com texto inserir alimentos, deve aparecer, e quando clicado deve limpar a tela,
  as informações de glicemia e tipo de refeição devem ser exibidas
 em um texto discreto acima do formulario.

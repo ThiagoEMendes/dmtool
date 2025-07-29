@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DMTool - Cálculo de Refeição</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #nomeUsuario {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    label {
+      font-weight: 500;
+      margin-top: 20px;
+      display: block;
+      color: #1f2937;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 8px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1e40af;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DMTool</h1>
+    <div id="nomeUsuario">Usuário</div>
+  </header>
+
+  <main>
+    <h2>Informações da Refeição</h2>
+
+    <label for="glicemia">Glicemia Atual (mg/dL):</label>
+    <input type="number" id="glicemia" inputmode="numeric" pattern="[0-9]*" placeholder="Ex: 110" />
+
+    <label for="refeicao">Tipo de Refeição:</label>
+    <select id="refeicao">
+      <option value="">Selecione...</option>
+      <option value="cafe_da_manha">Café da Manhã</option>
+      <option value="lanche_da_manha">Lanche da Manhã</option>
+      <option value="almoco">Almoço</option>
+      <option value="sobremesa">Sobremesa</option>
+      <option value="lanche_da_tarde">Lanche da Tarde</option>
+      <option value="jantar">Jantar</option>
+      <option value="ceia">Ceia</option>
+      <option value="lanche_avulso">Lanche Avulso</option>
+    </select>
+
+    <button onclick="prosseguir()">Avançar</button>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
+  <!-- Configuração Firebase -->
+  <script src="./login/firebase.js"></script>
+
+  <script>
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const doc = await db.collection('usuarios').doc(user.uid).get();
+        if (doc.exists) {
+          const usuario = doc.data();
+          document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+        }
+      } else {
+        window.location.href = "./login/login.html";
+      }
+    });
+
+    function prosseguir() {
+      const glicemia = document.getElementById('glicemia').value;
+      const refeicao = document.getElementById('refeicao').value;
+
+      if (!glicemia || !refeicao) {
+        alert("Preencha todos os campos antes de continuar.");
+        return;
+      }
+
+      // Armazena dados temporariamente no localStorage
+      localStorage.setItem('glicemia', glicemia);
+      localStorage.setItem('refeicao', refeicao);
+
+      // Redireciona para próxima etapa (ex: adicionar alimentos)
+      window.location.href = "choEInsulinaEtapa2.html";
+    }
+  </script>
+</body>
+</html>
