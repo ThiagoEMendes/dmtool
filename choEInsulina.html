@@ -103,6 +103,21 @@
     button#avancar:hover {
       background-color: #1e40af;
     }
+    
+    button#retornar {
+      margin-top: 30px;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #e5e7eb;
+      color: #1f2937;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button#retornar:hover {
+      background-color: #d1d5db;
+    }
 
     @media (max-width: 480px) {
       main {
@@ -139,6 +154,9 @@
     </div>
 
     <button id="avancar" onclick="prosseguir()">Avançar</button>
+    <button id="retornar" class="refeicao-btn" onclick="window.location.href='menu.html'">Retornar</button>
+    
+
   </main>
 
   <!-- Firebase -->
