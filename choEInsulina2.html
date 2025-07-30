@@ -42,10 +42,11 @@
       padding: 20px;
     }
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
+    .info-refeicao {
+      font-size: 18px;
+      margin-bottom: 20px;
       color: #111827;
+      font-weight: 600;
     }
 
     button {
@@ -231,13 +232,15 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    #slide-in-panel .panel-buttons {
+    /* Ajuste para botões Cancelar/Adicionar mais acima no painel */
+    #slide-in-panel .panel-buttons-top {
       display: flex;
       gap: 10px;
-      margin-top: auto; /* Empurra os botões para baixo */
+      margin-top: 20px; /* Ajuste a margem superior conforme necessário */
+      margin-bottom: 20px; /* Espaço antes dos outros campos */
     }
 
-    #slide-in-panel .panel-buttons button {
+    #slide-in-panel .panel-buttons-top button {
       flex: 1;
     }
 
@@ -261,7 +264,9 @@
   </header>
 
   <main>
-    <h2>Cálculo de CHO e Insulina</h2>
+    <div class="info-refeicao">
+      <span id="glicemiaExibida"></span> | <span id="refeicaoExibida"></span>
+    </div>
 
     <button id="adicionarAlimentoBtn" onclick="abrirPainelAdicionarAlimento()">Adicionar Alimentos</button>
 
@@ -309,7 +314,7 @@
     <input type="number" id="campoQuantidade" inputmode="numeric" pattern="[0-9]*" placeholder="Ex: 100" />
     <span id="unidadeQuantidade" style="font-size: 0.9em; color: #6b7280; margin-top: 5px;">g/ml</span>
 
-    <div class="panel-buttons">
+    <div class="panel-buttons-top">
       <button class="btn-secondary" onclick="fecharPainelAdicionarAlimento()">Cancelar</button>
       <button onclick="adicionarAlimentoNaTabela()">Adicionar</button>
     </div>
@@ -325,7 +330,19 @@
     let alimentosAdicionados = []; // Array para armazenar os alimentos na tabela
     let tipoQuantidadeAtual = 'gml'; // Padrão: g/ml
 
-    // Marcar usuário logado
+    // Mapeamento de valores de refeição para exibição
+    const nomeDasRefeicoes = {
+      cafe_da_manha: "Café da Manhã",
+      lanche_da_manha: "Lanche da Manhã",
+      almoco: "Almoço",
+      sobremesa: "Sobremesa",
+      lanche_da_tarde: "Lanche da Tarde",
+      jantar: "Jantar",
+      ceia: "Ceia",
+      lanche_avulso: "Lanche Avulso"
+    };
+
+    // Marcar usuário logado e carregar dados da página anterior
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const doc = await db.collection('usuarios').doc(user.uid).get();
@@ -333,6 +350,20 @@
           const usuario = doc.data();
           document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
         }
+
+        // Carregar e exibir glicemia e tipo de refeição do localStorage
+        const glicemia = localStorage.getItem('glicemia');
+        const tipoRefeicao = localStorage.getItem('refeicao');
+
+        if (glicemia && tipoRefeicao) {
+          document.getElementById('glicemiaExibida').innerText = `Glicemia: ${glicemia} mg/dL`;
+          document.getElementById('refeicaoExibida').innerText = nomeDasRefeicoes[tipoRefeicao] || tipoRefeicao;
+        } else {
+          // Se os dados não existirem, pode ser um erro ou acesso direto. Redireciona de volta.
+          alert("Dados da refeição não encontrados. Retornando para a página anterior.");
+          window.location.href = "index.html"; // Ajuste para o nome da sua página anterior
+        }
+        
         // Carrega alimentos salvos no localStorage (se houver)
         const savedFoods = localStorage.getItem('alimentosAdicionados');
         if (savedFoods) {
@@ -402,8 +433,8 @@
               item.innerText = alimento.nome;
               item.dataset.id = doc.id;
               item.dataset.nome = alimento.nome;
-              item.dataset.carboidrato = alimento.carboidrato; // CHO por medida caseira
-              item.dataset.quantidadeMl = alimento.quantidade_ml || ''; // QTD em g/ml para 100g/ml
+              item.dataset.carboidrato = alimento.carboidrato; // CHO por medida caseira/porção
+              item.dataset.quantidadeMl = alimento.quantidade_ml || alimento.quantidade_g || 100; // QTD em g/ml para o carboidrato padrão, padrão 100
               item.dataset.medidaCaseira = alimento.medida_caseira || ''; // Descrição da medida caseira
 
               item.addEventListener('click', () => {
@@ -411,7 +442,7 @@
                 document.getElementById('alimentoSelecionadoId').value = doc.id;
                 document.getElementById('alimentoSelecionadoNome').value = alimento.nome;
                 document.getElementById('alimentoSelecionadoCHO').value = alimento.carboidrato;
-                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_ml || alimento.quantidade_g || 100; // Usa ml ou g, padrão 100
+                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_ml || alimento.quantidade_g || 100;
                 document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimento.medida_caseira || '';
                 resultadosBusca.innerHTML = ''; // Limpa os resultados após seleção
               });
@@ -459,10 +490,10 @@
 
       let choCalculado = 0;
       if (tipoQuantidadeAtual === 'gml') {
-        // Cálculo para g/ml: (quantidade_informada * CHO_por_porcao_ou_100g) / quantidade_padrao_g_ml
+        // Cálculo para g/ml: (quantidade_informada * CHO_por_padrao) / quantidade_padrao_gml
         choCalculado = (quantidade * carboidratoPorPadrao) / quantidadePadraoGml;
       } else { // mc/p (medida caseira/porção)
-        // Cálculo para medida caseira: quantidade_informada * CHO_por_porcao_ou_medida_caseira
+        // Cálculo para medida caseira: quantidade_informada * CHO_por_padrao
         choCalculado = quantidade * carboidratoPorPadrao;
       }
 
