@@ -284,7 +284,7 @@
     </table>
 
     <div class="footer-buttons">
-      <button class="btn-secondary" onclick="window.location.href='choEInsulina.html'">Retornar</button>
+      <button class="btn-secondary" onclick="window.location.href='index.html'">Retornar</button>
       <button onclick="window.location.href='choEInsulina3.html'">Calcular</button>
     </div>
   </main>
@@ -434,7 +434,7 @@
               item.dataset.id = doc.id;
               item.dataset.nome = alimento.nome;
               item.dataset.carboidrato = alimento.carboidrato; // CHO por medida caseira/porção
-              item.dataset.quantidadeMl = alimento.quantidade_ml || alimento.quantidade_g || 100; // QTD em g/ml para o carboidrato padrão, padrão 100
+              item.dataset.quantidadeMl = alimento.quantidade_mg_l || alimento.quantidade_g_ml || null; // QTD em g/ml para o CHO informado, pode ser null
               item.dataset.medidaCaseira = alimento.medida_caseira || ''; // Descrição da medida caseira
 
               item.addEventListener('click', () => {
@@ -442,7 +442,7 @@
                 document.getElementById('alimentoSelecionadoId').value = doc.id;
                 document.getElementById('alimentoSelecionadoNome').value = alimento.nome;
                 document.getElementById('alimentoSelecionadoCHO').value = alimento.carboidrato;
-                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_ml || alimento.quantidade_g || 100;
+                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_mg_l || alimento.quantidade_g_ml || ''; // Garante que é string vazia se nulo
                 document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimento.medida_caseira || '';
                 resultadosBusca.innerHTML = ''; // Limpa os resultados após seleção
               });
@@ -479,28 +479,36 @@
     // --- Lógica para Adicionar Alimento na Tabela ---
     function adicionarAlimentoNaTabela() {
       const alimentoNome = document.getElementById('alimentoSelecionadoNome').value;
-      const quantidade = parseFloat(document.getElementById('campoQuantidade').value);
-      const carboidratoPorPadrao = parseFloat(document.getElementById('alimentoSelecionadoCHO').value); // CHO por porção/medida caseira
-      const quantidadePadraoGml = parseFloat(document.getElementById('alimentoSelecionadoQTDML').value); // QTD em g/ml para o carboidrato padrão
+      const quantidadeInformada = parseFloat(document.getElementById('campoQuantidade').value);
+      const carboidratoPadrao = parseFloat(document.getElementById('alimentoSelecionadoCHO').value); // CHO para a "quantidade_ml/g" ou "medida_caseira"
+      const quantidadePadraoGml = parseFloat(document.getElementById('alimentoSelecionadoQTDML').value); // Valor em g/ml que o carboidratoPadrao se refere
 
-      if (!alimentoNome || isNaN(quantidade) || quantidade <= 0 || isNaN(carboidratoPorPadrao) || carboidratoPorPadrao <= 0) {
+      if (!alimentoNome || isNaN(quantidadeInformada) || quantidadeInformada <= 0 || isNaN(carboidratoPadrao) || carboidratoPadrao <= 0) {
         alert("Por favor, selecione um alimento e digite uma quantidade válida.");
         return;
       }
 
       let choCalculado = 0;
+      let quantidadeExibida = "";
+
       if (tipoQuantidadeAtual === 'gml') {
-        // Cálculo para g/ml: (quantidade_informada * CHO_por_padrao) / quantidade_padrao_gml
-        choCalculado = (quantidade * carboidratoPorPadrao) / quantidadePadraoGml;
+        // Cálculo para g/ml: (valor informado) * alimentos.carboidrato / alimentos.quantidade_mg_l
+        if (isNaN(quantidadePadraoGml) || quantidadePadraoGml <= 0) {
+            alert("Erro: Informação de 'quantidade_ml' ou 'quantidade_g' do alimento está ausente ou inválida no banco de dados para cálculo em g/ml.");
+            return;
+        }
+        choCalculado = (quantidadeInformada * carboidratoPadrao) / quantidadePadraoGml;
+        quantidadeExibida = `${quantidadeInformada} g/ml`;
       } else { // mc/p (medida caseira/porção)
-        // Cálculo para medida caseira: quantidade_informada * CHO_por_padrao
-        choCalculado = quantidade * carboidratoPorPadrao;
+        // Cálculo para medida caseira: (valor informado) * alimentos.carboidrato
+        choCalculado = quantidadeInformada * carboidratoPadrao;
+        const medidaCaseiraTexto = document.getElementById('alimentoSelecionadoMedidaCaseira').value || 'unidade';
+        quantidadeExibida = `${quantidadeInformada}x ${medidaCaseiraTexto}`;
       }
 
       const novoAlimento = {
         nome: alimentoNome,
-        quantidade: quantidade,
-        unidade: tipoQuantidadeAtual === 'gml' ? 'g/ml' : (document.getElementById('alimentoSelecionadoMedidaCaseira').value || 'mc/p'),
+        quantidadeExibida: quantidadeExibida, // Campo para exibição formatada
         cho: choCalculado.toFixed(1) // Arredonda para 1 casa decimal
       };
 
@@ -518,7 +526,7 @@
       alimentosAdicionados.forEach((alimento, index) => {
         const row = tabelaAlimentosBody.insertRow();
         row.insertCell(0).innerText = alimento.nome;
-        row.insertCell(1).innerText = `${alimento.quantidade} ${alimento.unidade}`;
+        row.insertCell(1).innerText = alimento.quantidadeExibida; // Usa o campo formatado
         row.insertCell(2).innerText = alimento.cho;
 
         const cellRemover = row.insertCell(3);
