@@ -1,7 +1,7 @@
 [
   {
     "nome": "Aipim cozido",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "3 colheres de sopa cheias picado",
     "energia": 107.82,
     "proteina": 0.54,
@@ -10,7 +10,7 @@
   },
   {
     "nome": "Amido de Milho",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "2 colheres de sopa rasas",
     "energia": 70.32,
     "proteina": 0.06,
@@ -19,7 +19,7 @@
   },
   {
     "nome": "Aveia em flocos",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "2 colheres de sopa cheias",
     "energia": 104.62,
     "proteina": 4.5,
@@ -28,7 +28,7 @@
   },
   {
     "nome": "Batata doce cozida",
-    "quantidade_mg_l": 126,
+    "quantidade_g_ml": 126,
     "medida_caseira": "3 colheres de sopa cheias picado (3x3 cm)",
     "energia": 129.99,
     "proteina": 1.38,
@@ -37,7 +37,7 @@
   },
   {
     "nome": "Cream craker integral",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "4 unidades",
     "energia": 114.51,
     "proteina": 2.25,
@@ -46,7 +46,7 @@
   },
   {
     "nome": "Farinha de tapioca",
-    "quantidade_mg_l": 40,
+    "quantidade_g_ml": 40,
     "medida_caseira": "2 colheres de sopa",
     "energia": 138.07,
     "proteina": 0.1,
@@ -55,7 +55,7 @@
   },
   {
     "nome": "Granola",
-    "quantidade_mg_l": 40,
+    "quantidade_g_ml": 40,
     "medida_caseira": "1/2 xícara de chá",
     "energia": 162.6,
     "proteina": 4.4,
@@ -64,7 +64,7 @@
   },
   {
     "nome": "Inhame cozido",
-    "quantidade_mg_l": 105,
+    "quantidade_g_ml": 105,
     "medida_caseira": "3 colheres de sopa cheias picado",
     "energia": 108.6,
     "proteina": 1.89,
@@ -73,7 +73,7 @@
   },
   {
     "nome": "Milho cozido",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "1 espiga",
     "energia": 131.6,
     "proteina": 3.3,
@@ -82,7 +82,7 @@
   },
   {
     "nome": "Pão com fibras",
-    "quantidade_mg_l": 50,
+    "quantidade_g_ml": 50,
     "medida_caseira": "2 fatias",
     "energia": 117.92,
     "proteina": 5.78,
@@ -91,7 +91,7 @@
   },
   {
     "nome": "Pão forma branco",
-    "quantidade_mg_l": 50,
+    "quantidade_g_ml": 50,
     "medida_caseira": "2 fatias",
     "energia": 124.18,
     "proteina": 4.34,
@@ -100,7 +100,7 @@
   },
   {
     "nome": "Pão frances",
-    "quantidade_mg_l": 50,
+    "quantidade_g_ml": 50,
     "medida_caseira": "1 unidade",
     "energia": 134.3,
     "proteina": 4.65,
@@ -109,7 +109,7 @@
   },
   {
     "nome": "Torrada industrializada",
-    "quantidade_mg_l": 32,
+    "quantidade_g_ml": 32,
     "medida_caseira": "4 unidades",
     "energia": 119.16,
     "proteina": 4.24,
@@ -118,7 +118,7 @@
   },
   {
     "nome": "Leite semi-desnatado líquido",
-    "quantidade_mg_l": 165,
+    "quantidade_g_ml": 165,
     "medida_caseira": "1 copo pequeno cheio",
     "energia": 74.79,
     "proteina": 5.12,
@@ -127,7 +127,7 @@
   },
   {
     "nome": "Leite semi-desnatado em pó",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "2 colheres de sopa cheias",
     "energia": 82.5,
     "proteina": 6.26,
@@ -136,7 +136,7 @@
   },
   {
     "nome": "Leite desnatado líquido",
-    "quantidade_mg_l": 200,
+    "quantidade_g_ml": 200,
     "medida_caseira": "1 copo duplo raso",
     "energia": 70.6,
     "proteina": 7.2,
@@ -145,7 +145,7 @@
   },
   {
     "nome": "Leite desnatado em pó",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "2 colheres de sopa cheias",
     "energia": 70.64,
     "proteina": 6.94,
@@ -154,7 +154,7 @@
   },
   {
     "nome": "Coalhada desnatada",
-    "quantidade_mg_l": 130,
+    "quantidade_g_ml": 130,
     "medida_caseira": "1 pote",
     "energia": 42.4,
     "proteina": 4.6,
@@ -163,7 +163,7 @@
   },
   {
     "nome": "Iogurte natural integral",
-    "quantidade_mg_l": 85,
+    "quantidade_g_ml": 85,
     "medida_caseira": "1/2 pote",
     "energia": 53.14,
     "proteina": 3.37,
@@ -172,7 +172,7 @@
   },
   {
     "nome": "Iogurte natural desnatado",
-    "quantidade_mg_l": 185,
+    "quantidade_g_ml": 185,
     "medida_caseira": "1 pote",
     "energia": 79.16,
     "proteina": 7.95,
@@ -181,7 +181,7 @@
   },
   {
     "nome": "Iogurte sabores light",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "1 pote",
     "energia": 34.88,
     "proteina": 3.72,
@@ -190,7 +190,7 @@
   },
   {
     "nome": "Queijo minas frescal",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "1 fatia pequena",
     "energia": 68.87,
     "proteina": 4.99,
@@ -199,7 +199,7 @@
   },
   {
     "nome": "Queijo ricota",
-    "quantidade_mg_l": 70,
+    "quantidade_g_ml": 70,
     "medida_caseira": "1 fatia grande",
     "energia": 66.5,
     "proteina": 4.9,
@@ -208,7 +208,7 @@
   },
   {
     "nome": "Queijo cottage",
-    "quantidade_mg_l": 45,
+    "quantidade_g_ml": 45,
     "medida_caseira": "2 colheres de sopa rasas",
     "energia": 55.34,
     "proteina": 5.76,
@@ -217,7 +217,7 @@
   },
   {
     "nome": "Ovo",
-    "quantidade_mg_l": 45,
+    "quantidade_g_ml": 45,
     "medida_caseira": "1 unidade",
     "energia": 70.9,
     "proteina": 5.76,
@@ -226,7 +226,7 @@
   },
   {
     "nome": "Queijo prato",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1/2 fatia media (aquela de supermercado)",
     "energia": 52.08,
     "proteina": 3.66,
@@ -235,7 +235,7 @@
   },
   {
     "nome": "Requeijão light",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "1 colher de sopa cheia",
     "energia": 54,
     "proteina": 3.5,
@@ -244,7 +244,7 @@
   },
   {
     "nome": "Requeijão comum",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1 colher de sopa rasa",
     "energia": 40.1,
     "proteina": 1.65,
@@ -253,7 +253,7 @@
   },
   {
     "nome": "Abacaxi",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "2 fatias finas",
     "energia": 58.2,
     "proteina": 0.4,
@@ -262,7 +262,7 @@
   },
   {
     "nome": "Acerola",
-    "quantidade_mg_l": 200,
+    "quantidade_g_ml": 200,
     "medida_caseira": "17 unidades",
     "energia": 72.08,
     "proteina": 0.85,
@@ -271,7 +271,7 @@
   },
   {
     "nome": "Água de coco",
-    "quantidade_mg_l": 240,
+    "quantidade_g_ml": 240,
     "medida_caseira": "1 copo duplo cheio",
     "energia": 43.49,
     "proteina": 0.31,
@@ -280,7 +280,7 @@
   },
   {
     "nome": "Ameixa preta fresca",
-    "quantidade_mg_l": 155,
+    "quantidade_g_ml": 155,
     "medida_caseira": "3 unidades grandes",
     "energia": 69.39,
     "proteina": 1.26,
@@ -289,7 +289,7 @@
   },
   {
     "nome": "Ameixa vermelha",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "6 unidades pequenas",
     "energia": 54,
     "proteina": 0,
@@ -298,7 +298,7 @@
   },
   {
     "nome": "Ameixa seca",
-    "quantidade_mg_l": 40,
+    "quantidade_g_ml": 40,
     "medida_caseira": "8 unidades médias",
     "energia": 74.4,
     "proteina": 0.96,
@@ -307,7 +307,7 @@
   },
   {
     "nome": "Banana d´água",
-    "quantidade_mg_l": 70,
+    "quantidade_g_ml": 70,
     "medida_caseira": "1 unidade média",
     "energia": 68.04,
     "proteina": 0.84,
@@ -316,7 +316,7 @@
   },
   {
     "nome": "Banana-da-terra",
-    "quantidade_mg_l": 50,
+    "quantidade_g_ml": 50,
     "medida_caseira": "1/2 unidade grande",
     "energia": 58.5,
     "proteina": 1.1,
@@ -325,7 +325,7 @@
   },
   {
     "nome": "Banana-maçã",
-    "quantidade_mg_l": 65,
+    "quantidade_g_ml": 65,
     "medida_caseira": "1 unidade média",
     "energia": 72.45,
     "proteina": 1.11,
@@ -334,7 +334,7 @@
   },
   {
     "nome": "Banana-ouro",
-    "quantidade_mg_l": 80,
+    "quantidade_g_ml": 80,
     "medida_caseira": "2 unidades médias",
     "energia": 82.8,
     "proteina": 1.92,
@@ -343,7 +343,7 @@
   },
   {
     "nome": "Banana-passa",
-    "quantidade_mg_l": 42,
+    "quantidade_g_ml": 42,
     "medida_caseira": "3 unidades grandes",
     "energia": 64.05,
     "proteina": 0.72,
@@ -352,7 +352,7 @@
   },
   {
     "nome": "Banana-prata",
-    "quantidade_mg_l": 55,
+    "quantidade_g_ml": 55,
     "medida_caseira": "1 unidade grande",
     "energia": 54.57,
     "proteina": 0.72,
@@ -361,7 +361,7 @@
   },
   {
     "nome": "Cajá",
-    "quantidade_mg_l": 150,
+    "quantidade_g_ml": 150,
     "medida_caseira": "2 unidades grandes",
     "energia": 77.04,
     "proteina": 0.3,
@@ -370,7 +370,7 @@
   },
   {
     "nome": "Caju",
-    "quantidade_mg_l": 160,
+    "quantidade_g_ml": 160,
     "medida_caseira": "2 unidades pequenas",
     "energia": 82.24,
     "proteina": 1.28,
@@ -379,7 +379,7 @@
   },
   {
     "nome": "Caqui",
-    "quantidade_mg_l": 85,
+    "quantidade_g_ml": 85,
     "medida_caseira": "1 unidade pequena",
     "energia": 73.78,
     "proteina": 0.68,
@@ -388,7 +388,7 @@
   },
   {
     "nome": "Carambola",
-    "quantidade_mg_l": 210,
+    "quantidade_g_ml": 210,
     "medida_caseira": "2 unidades grandes",
     "energia": 67.58,
     "proteina": "01.06",
@@ -397,7 +397,7 @@
   },
   {
     "nome": "Cereja",
-    "quantidade_mg_l": 48,
+    "quantidade_g_ml": 48,
     "medida_caseira": "7 unidades",
     "energia": 67.83,
     "proteina": 0.84,
@@ -406,7 +406,7 @@
   },
   {
     "nome": "Damasco seco",
-    "quantidade_mg_l": 50,
+    "quantidade_g_ml": 50,
     "medida_caseira": "7 unidades",
     "energia": 64.12,
     "proteina": 1.54,
@@ -415,7 +415,7 @@
   },
   {
     "nome": "Figo",
-    "quantidade_mg_l": 110,
+    "quantidade_g_ml": 110,
     "medida_caseira": "2 unidades médias",
     "energia": 75.72,
     "proteina": 1.32,
@@ -424,7 +424,7 @@
   },
   {
     "nome": "Fruta do conde",
-    "quantidade_mg_l": 60,
+    "quantidade_g_ml": 60,
     "medida_caseira": "1 unidade média",
     "energia": 63.96,
     "proteina": 0.96,
@@ -433,7 +433,7 @@
   },
   {
     "nome": "Goiaba pequena",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "1unidade pequena",
     "energia": 76.4,
     "proteina": 0.9,
@@ -442,7 +442,7 @@
   },
   {
     "nome": "Jaca",
-    "quantidade_mg_l": 95,
+    "quantidade_g_ml": 95,
     "medida_caseira": "8 bagos",
     "energia": 66,
     "proteina": 2.6,
@@ -451,7 +451,7 @@
   },
   {
     "nome": "Jabuticaba",
-    "quantidade_mg_l": 160,
+    "quantidade_g_ml": 160,
     "medida_caseira": "1 copo duplo cheio",
     "energia": 76.96,
     "proteina": 1.6,
@@ -460,7 +460,7 @@
   },
   {
     "nome": "Jambo",
-    "quantidade_mg_l": 80,
+    "quantidade_g_ml": 80,
     "medida_caseira": "2 unidades médias",
     "energia": 44.96,
     "proteina": 0.64,
@@ -469,7 +469,7 @@
   },
   {
     "nome": "Kiwi",
-    "quantidade_mg_l": 115,
+    "quantidade_g_ml": 115,
     "medida_caseira": "1.5 unid média",
     "energia": 76.53,
     "proteina": 1.13,
@@ -478,7 +478,7 @@
   },
   {
     "nome": "Laranja",
-    "quantidade_mg_l": 180,
+    "quantidade_g_ml": 180,
     "medida_caseira": "1 unidade média",
     "energia": 86.85,
     "proteina": 1.13,
@@ -487,7 +487,7 @@
   },
   {
     "nome": "Maçã",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "1 unidade pequena",
     "energia": 58.23,
     "proteina": 0.27,
@@ -496,7 +496,7 @@
   },
   {
     "nome": "Mamão",
-    "quantidade_mg_l": 170,
+    "quantidade_g_ml": 170,
     "medida_caseira": "1 fatia média",
     "energia": 61.37,
     "proteina": 0.85,
@@ -505,7 +505,7 @@
   },
   {
     "nome": "Mamão papaya",
-    "quantidade_mg_l": 155,
+    "quantidade_g_ml": 155,
     "medida_caseira": "1/2 unidade média",
     "energia": 55.96,
     "proteina": 0.77,
@@ -514,7 +514,7 @@
   },
   {
     "nome": "Manga espada",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "2 unidades pequenas",
     "energia": 78.48,
     "proteina": 0.6,
@@ -523,7 +523,7 @@
   },
   {
     "nome": "Maracujá",
-    "quantidade_mg_l": 45,
+    "quantidade_g_ml": 45,
     "medida_caseira": "1 unidade média",
     "energia": 44.91,
     "proteina": 0.99,
@@ -532,7 +532,7 @@
   },
   {
     "nome": "Melancia",
-    "quantidade_mg_l": 370,
+    "quantidade_g_ml": 370,
     "medida_caseira": "1 fatia grande",
     "energia": 89.17,
     "proteina": 1.85,
@@ -541,7 +541,7 @@
   },
   {
     "nome": "Melão",
-    "quantidade_mg_l": 230,
+    "quantidade_g_ml": 230,
     "medida_caseira": "2 fatias grandes",
     "energia": 63.84,
     "proteina": 1.16,
@@ -550,7 +550,7 @@
   },
   {
     "nome": "Morango",
-    "quantidade_mg_l": 200,
+    "quantidade_g_ml": 200,
     "medida_caseira": "10 unidades grandes",
     "energia": 79.8,
     "proteina": 1.6,
@@ -559,7 +559,7 @@
   },
   {
     "nome": "Pêra",
-    "quantidade_mg_l": 130,
+    "quantidade_g_ml": 130,
     "medida_caseira": "1 undidade média",
     "energia": 80.86,
     "proteina": 0.39,
@@ -568,7 +568,7 @@
   },
   {
     "nome": "Pêssego",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "2 unidades médias",
     "energia": 57,
     "proteina": 0.96,
@@ -577,7 +577,7 @@
   },
   {
     "nome": "Salada de frutas sem calda",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "4 colheres de sopa cheias",
     "energia": 58.74,
     "proteina": 0.73,
@@ -586,7 +586,7 @@
   },
   {
     "nome": "Tangerina",
-    "quantidade_mg_l": 135,
+    "quantidade_g_ml": 135,
     "medida_caseira": "1 unidade média",
     "energia": 65.11,
     "proteina": 0.95,
@@ -595,7 +595,7 @@
   },
   {
     "nome": "Uva",
-    "quantidade_mg_l": 80,
+    "quantidade_g_ml": 80,
     "medida_caseira": "10 unidades",
     "energia": 61,
     "proteina": 0.5,
@@ -604,7 +604,7 @@
   },
   {
     "nome": "Uva passa",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "2 colheres de sopa rasas",
     "energia": 64,
     "proteina": 0.48,
@@ -613,7 +613,7 @@
   },
   {
     "nome": "Yacon",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "4 colheres de sopa cheias",
     "energia": 36.92,
     "proteina": 0.82,
@@ -622,7 +622,7 @@
   },
   {
     "nome": "Feijão preto cozido",
-    "quantidade_mg_l": 140,
+    "quantidade_g_ml": 140,
     "medida_caseira": "1 concha média cheia",
     "energia": 96.74,
     "proteina": 6.16,
@@ -631,7 +631,7 @@
   },
   {
     "nome": "Feijão branco cozido",
-    "quantidade_mg_l": 65,
+    "quantidade_g_ml": 65,
     "medida_caseira": "1 concha pequena rasa",
     "energia": 92.63,
     "proteina": 6.32,
@@ -640,7 +640,7 @@
   },
   {
     "nome": "Grão de bico",
-    "quantidade_mg_l": 66,
+    "quantidade_g_ml": 66,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 89.76,
     "proteina": 4.35,
@@ -649,7 +649,7 @@
   },
   {
     "nome": "Lentilha cozida",
-    "quantidade_mg_l": 78,
+    "quantidade_g_ml": 78,
     "medida_caseira": "1/2 concha média",
     "energia": 81.7,
     "proteina": 5.55,
@@ -658,7 +658,7 @@
   },
   {
     "nome": "Ervilha vagem cozida",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 86.19,
     "proteina": 4.2,
@@ -667,7 +667,7 @@
   },
   {
     "nome": "Ervilha enlatada",
-    "quantidade_mg_l": 135,
+    "quantidade_g_ml": 135,
     "medida_caseira": "5 colheres de sopa cheias",
     "energia": 89.6,
     "proteina": 4.75,
@@ -676,7 +676,7 @@
   },
   {
     "nome": "Proteína de soja",
-    "quantidade_mg_l": 72,
+    "quantidade_g_ml": 72,
     "medida_caseira": "3 colheres de sopa",
     "energia": 60.84,
     "proteina": 9,
@@ -685,7 +685,7 @@
   },
   {
     "nome": "Arroz integral cozido",
-    "quantidade_mg_l": 60,
+    "quantidade_g_ml": 60,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 154.05,
     "proteina": 2.91,
@@ -694,7 +694,7 @@
   },
   {
     "nome": "Arroz cozido",
-    "quantidade_mg_l": 75,
+    "quantidade_g_ml": 75,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 123.51,
     "proteina": 1.74,
@@ -703,7 +703,7 @@
   },
   {
     "nome": "Angu",
-    "quantidade_mg_l": 105,
+    "quantidade_g_ml": 105,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 130.71,
     "proteina": 3.48,
@@ -712,7 +712,7 @@
   },
   {
     "nome": "Aipim cozido",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "3 colheres de sopa cheias picado",
     "energia": 107.82,
     "proteina": 0.54,
@@ -721,7 +721,7 @@
   },
   {
     "nome": "Batata baroa cozida",
-    "quantidade_mg_l": 105,
+    "quantidade_g_ml": 105,
     "medida_caseira": "3 colheres de sopa cheias picada",
     "energia": 140.61,
     "proteina": 1.65,
@@ -730,7 +730,7 @@
   },
   {
     "nome": "Batata doce cozida",
-    "quantidade_mg_l": 126,
+    "quantidade_g_ml": 126,
     "medida_caseira": "3 colheres de sopa cheias picada",
     "energia": 129.99,
     "proteina": 1.38,
@@ -739,7 +739,7 @@
   },
   {
     "nome": "Batata inglesa",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "4 colheres de sopa cheias picada",
     "energia": 102.68,
     "proteina": 2.4,
@@ -748,7 +748,7 @@
   },
   {
     "nome": "Inhame cozido",
-    "quantidade_mg_l": 140,
+    "quantidade_g_ml": 140,
     "medida_caseira": "4 colheres de sopa cheias picado",
     "energia": 144.8,
     "proteina": 2.52,
@@ -757,7 +757,7 @@
   },
   {
     "nome": "Macarrão integral",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "1 colher de servir bem cheia",
     "energia": 154.72,
     "proteina": 5.6,
@@ -766,7 +766,7 @@
   },
   {
     "nome": "Macarrão comum",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "1 colher de servir bem cheia",
     "energia": 109.2,
     "proteina": 3.4,
@@ -775,7 +775,7 @@
   },
   {
     "nome": "Farinha de mandioca",
-    "quantidade_mg_l": 36,
+    "quantidade_g_ml": 36,
     "medida_caseira": "3 colheres de sopa rasas",
     "energia": 127.92,
     "proteina": 0.6,
@@ -784,7 +784,7 @@
   },
   {
     "nome": "Farofa simples",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "1 colher de sopa cheia",
     "energia": 141.18,
     "proteina": 0.54,
@@ -793,7 +793,7 @@
   },
   {
     "nome": "Abóbora madura cozida",
-    "quantidade_mg_l": 36,
+    "quantidade_g_ml": 36,
     "medida_caseira": "1 colher de sopa cheia picada",
     "energia": 25.2,
     "proteina": 0.65,
@@ -802,7 +802,7 @@
   },
   {
     "nome": "Abobrinha cozida",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "1 colher de sopa cheia picada",
     "energia": 16.68,
     "proteina": 0.6,
@@ -811,7 +811,7 @@
   },
   {
     "nome": "Berinjela ensopada",
-    "quantidade_mg_l": 25,
+    "quantidade_g_ml": 25,
     "medida_caseira": "1 colher de sopa cheia",
     "energia": 17.35,
     "proteina": 0.19,
@@ -820,7 +820,7 @@
   },
   {
     "nome": "Beterraba cozida",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "1 colher de sopa cheia picada ou fatiada",
     "energia": 8.82,
     "proteina": 0.2,
@@ -829,7 +829,7 @@
   },
   {
     "nome": "Beterraba crua ralada",
-    "quantidade_mg_l": 16,
+    "quantidade_g_ml": 16,
     "medida_caseira": "1 colher de sopa cheia",
     "energia": 7.34,
     "proteina": 0.27,
@@ -838,7 +838,7 @@
   },
   {
     "nome": "Cenoura cozida",
-    "quantidade_mg_l": 25,
+    "quantidade_g_ml": 25,
     "medida_caseira": "1 colher de sopa cheia picada",
     "energia": 13.5,
     "proteina": 0.33,
@@ -847,7 +847,7 @@
   },
   {
     "nome": "Cenoura crua ralada",
-    "quantidade_mg_l": 12,
+    "quantidade_g_ml": 12,
     "medida_caseira": "1 colher de sopa cheia picada",
     "energia": 7.42,
     "proteina": 0.65,
@@ -856,7 +856,7 @@
   },
   {
     "nome": "Chuchu cozido",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "1 colher de sopa cheia picada",
     "energia": 8.73,
     "proteina": 0.22,
@@ -865,7 +865,7 @@
   },
   {
     "nome": "Jiló cozido",
-    "quantidade_mg_l": 30,
+    "quantidade_g_ml": 30,
     "medida_caseira": "1colher de sopa rasa",
     "energia": 15.68,
     "proteina": 0.5,
@@ -874,7 +874,7 @@
   },
   {
     "nome": "Quiabo refogado",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "1colher de sopa rasa",
     "energia": 18.04,
     "proteina": 0.43,
@@ -883,7 +883,7 @@
   },
   {
     "nome": "Vagem cozida",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "1 colher de sopa cheia",
     "energia": 11.8,
     "proteina": 0.6,
@@ -892,7 +892,7 @@
   },
   {
     "nome": "Atum",
-    "quantidade_mg_l": 80,
+    "quantidade_g_ml": 80,
     "medida_caseira": "5 colheres de sopa cheias",
     "energia": 119.5,
     "proteina": 20.95,
@@ -901,7 +901,7 @@
   },
   {
     "nome": "Sardinha",
-    "quantidade_mg_l": 83,
+    "quantidade_g_ml": 83,
     "medida_caseira": "3 unidades pequenas",
     "energia": 146.3,
     "proteina": 17.9,
@@ -910,7 +910,7 @@
   },
   {
     "nome": "File de peixe ensopado",
-    "quantidade_mg_l": 120,
+    "quantidade_g_ml": 120,
     "medida_caseira": "1 unidade pequena",
     "energia": 156.17,
     "proteina": 21.52,
@@ -919,7 +919,7 @@
   },
   {
     "nome": "Peixe em posta ensopado",
-    "quantidade_mg_l": 150,
+    "quantidade_g_ml": 150,
     "medida_caseira": "1 unidade pequena",
     "energia": 195.22,
     "proteina": 26.9,
@@ -928,7 +928,7 @@
   },
   {
     "nome": "File de peito assado",
-    "quantidade_mg_l": 140,
+    "quantidade_g_ml": 140,
     "medida_caseira": "1 unidade pequena",
     "energia": 169.96,
     "proteina": 25.48,
@@ -937,7 +937,7 @@
   },
   {
     "nome": "Coxa sem pele",
-    "quantidade_mg_l": 110,
+    "quantidade_g_ml": 110,
     "medida_caseira": "2 unidades grandes",
     "energia": 133.54,
     "proteina": 20.02,
@@ -946,7 +946,7 @@
   },
   {
     "nome": "Sobrecoxa sem pele",
-    "quantidade_mg_l": 95,
+    "quantidade_g_ml": 95,
     "medida_caseira": "1 unidade grande",
     "energia": 115.33,
     "proteina": 17.29,
@@ -955,7 +955,7 @@
   },
   {
     "nome": "Bife",
-    "quantidade_mg_l": 80,
+    "quantidade_g_ml": 80,
     "medida_caseira": "1 unidade ppequena",
     "energia": 182.5,
     "proteina": 22.36,
@@ -964,7 +964,7 @@
   },
   {
     "nome": "Carne assada",
-    "quantidade_mg_l": 75,
+    "quantidade_g_ml": 75,
     "medida_caseira": "1 fatia pequena",
     "energia": 215.8,
     "proteina": 18.94,
@@ -973,7 +973,7 @@
   },
   {
     "nome": "Carne ensopada",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "3 colheres de sopa cheias",
     "energia": 167.31,
     "proteina": 19.35,
@@ -982,7 +982,7 @@
   },
   {
     "nome": "Carne moída",
-    "quantidade_mg_l": 100,
+    "quantidade_g_ml": 100,
     "medida_caseira": "4 colheres de sopa cheias",
     "energia": 195.36,
     "proteina": 21.8,
@@ -991,7 +991,7 @@
   },
   {
     "nome": "Ovos",
-    "quantidade_mg_l": 90,
+    "quantidade_g_ml": 90,
     "medida_caseira": "2 unidades",
     "energia": 141.8,
     "proteina": 11.52,
@@ -1000,7 +1000,7 @@
   },
   {
     "nome": "Azeite",
-    "quantidade_mg_l": 5,
+    "quantidade_g_ml": 5,
     "medida_caseira": "1 colher de sobremesa rasa",
     "energia": 44.72,
     "proteina": 0,
@@ -1009,7 +1009,7 @@
   },
   {
     "nome": "Manteiga",
-    "quantidade_mg_l": 5,
+    "quantidade_g_ml": 5,
     "medida_caseira": "1 colher de chá cheia",
     "energia": 37.08,
     "proteina": 0,
@@ -1018,7 +1018,7 @@
   },
   {
     "nome": "Margarina",
-    "quantidade_mg_l": 8,
+    "quantidade_g_ml": 8,
     "medida_caseira": "1 colher de chá cheia",
     "energia": 54.86,
     "proteina": 0.05,
@@ -1027,7 +1027,7 @@
   },
   {
     "nome": "Margarina light",
-    "quantidade_mg_l": 8,
+    "quantidade_g_ml": 8,
     "medida_caseira": "1 colher de chá cheia",
     "energia": 27.09,
     "proteina": 0,
@@ -1036,7 +1036,7 @@
   },
   {
     "nome": "Maionese",
-    "quantidade_mg_l": 17,
+    "quantidade_g_ml": 17,
     "medida_caseira": "1 colher de sobremesa cheia",
     "energia": 66.54,
     "proteina": 0.19,
@@ -1045,7 +1045,7 @@
   },
   {
     "nome": "Maionese light",
-    "quantidade_mg_l": 17,
+    "quantidade_g_ml": 17,
     "medida_caseira": "1 colher de sobremesa cheia",
     "energia": 52.87,
     "proteina": 1.36,
@@ -1054,7 +1054,7 @@
   },
   {
     "nome": "Óleo de coco",
-    "quantidade_mg_l": 6.5,
+    "quantidade_g_ml": 6.5,
     "medida_caseira": "1 colher de sobremesa rasa",
     "energia": 54,
     "proteina": 0,
@@ -1063,7 +1063,7 @@
   },
   {
     "nome": "Semente de Chia",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1 colher de sopa",
     "energia": 57.5,
     "proteina": 3.1,
@@ -1072,7 +1072,7 @@
   },
   {
     "nome": "Gérmen de Trigo",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sopa",
     "energia": 33,
     "proteina": 3,
@@ -1081,7 +1081,7 @@
   },
   {
     "nome": "Quinua em Flocos",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sopa",
     "energia": 38.88,
     "proteina": 7.25,
@@ -1090,7 +1090,7 @@
   },
   {
     "nome": "Linhaça Dourada",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1 colher de sopa",
     "energia": 77.9,
     "proteina": 2.9,
@@ -1099,7 +1099,7 @@
   },
   {
     "nome": "Farelo de aveia",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sopa",
     "energia": 33.9,
     "proteina": 1.8,
@@ -1108,7 +1108,7 @@
   },
   {
     "nome": "Farelo de Trigo",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sopa",
     "energia": 8,
     "proteina": 1,
@@ -1117,7 +1117,7 @@
   },
   {
     "nome": "Amaranto Flocos",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sopa",
     "energia": 39.18,
     "proteina": 0.76,
@@ -1126,7 +1126,7 @@
   },
   {
     "nome": "Açúcar",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sobremesa rasa",
     "energia": 40,
     "proteina": 0,
@@ -1135,7 +1135,7 @@
   },
   {
     "nome": "Açúcar mascavo",
-    "quantidade_mg_l": 11,
+    "quantidade_g_ml": 11,
     "medida_caseira": "1 colher de sopa rasa",
     "energia": 40.49,
     "proteina": 0.04,
@@ -1144,7 +1144,7 @@
   },
   {
     "nome": "Geleia",
-    "quantidade_mg_l": 20,
+    "quantidade_g_ml": 20,
     "medida_caseira": "1 colher de sopa rasa",
     "energia": 49.54,
     "proteina": 0.02,
@@ -1153,7 +1153,7 @@
   },
   {
     "nome": "Mel",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1 colher de sopa",
     "energia": 46.92,
     "proteina": 0.03,
@@ -1162,7 +1162,7 @@
   },
   {
     "nome": "Melado de Cana",
-    "quantidade_mg_l": 16,
+    "quantidade_g_ml": 16,
     "medida_caseira": "1 colher de sopa",
     "energia": 47.07,
     "proteina": 0.08,
@@ -1171,7 +1171,7 @@
   },
   {
     "nome": "Castanha de cajú",
-    "quantidade_mg_l": 12.5,
+    "quantidade_g_ml": 12.5,
     "medida_caseira": "5 unidades",
     "energia": 63.1,
     "proteina": 2.45,
@@ -1180,7 +1180,7 @@
   },
   {
     "nome": "Castanha do pará",
-    "quantidade_mg_l": 12,
+    "quantidade_g_ml": 12,
     "medida_caseira": "3 unidades",
     "energia": 82.08,
     "proteina": 1.68,
@@ -1189,7 +1189,7 @@
   },
   {
     "nome": "Nozes",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "2 unidades inteiras",
     "energia": 69.84,
     "proteina": 1.48,
@@ -1198,7 +1198,7 @@
   },
   {
     "nome": "Pasta de amendoim integral",
-    "quantidade_mg_l": 15,
+    "quantidade_g_ml": 15,
     "medida_caseira": "1 colher de sopa",
     "energia": 92.7,
     "proteina": 3.8,
@@ -1207,7 +1207,7 @@
   },
   {
     "nome": "Amendoim torrado com sal",
-    "quantidade_mg_l": 10,
+    "quantidade_g_ml": 10,
     "medida_caseira": "1 colher de sobremesa rasa",
     "energia": 63.77,
     "proteina": 2.32,
@@ -1216,7 +1216,7 @@
   },
   {
     "nome": "Abacate",
-    "quantidade_mg_l": 45,
+    "quantidade_g_ml": 45,
     "medida_caseira": "1 colher de sopa cheia picado",
     "energia": 79.56,
     "proteina": 0.81,
@@ -1225,7 +1225,7 @@
   },
   {
     "nome": "Whey Protein concentrado Performance (BIO Whey)",
-    "quantidade_mg_l": 28,
+    "quantidade_g_ml": 28,
     "medida_caseira": "1 copo medidor",
     "energia": 99.2,
     "proteina": 20,
@@ -1234,7 +1234,7 @@
   },
   {
     "nome": "Whey Protein Isolado Performance (ISO Whey)",
-    "quantidade_mg_l": 33,
+    "quantidade_g_ml": 33,
     "medida_caseira": "1 copo medidor",
     "energia": 108,
     "proteina": 27,
@@ -1243,7 +1243,7 @@
   },
   {
     "nome": "Whey Protein Blend Performance (BIO Whey)",
-    "quantidade_mg_l": 31,
+    "quantidade_g_ml": 31,
     "medida_caseira": "1 copo medidor",
     "energia": 123.5,
     "proteina": 25,
@@ -1252,7 +1252,7 @@
   },
   {
     "nome": "Pure BEEF (Ptn da carne)",
-    "quantidade_mg_l": 29,
+    "quantidade_g_ml": 29,
     "medida_caseira": "1 copo medidor",
     "energia": 103.31,
     "proteina": 23,
@@ -1261,7 +1261,7 @@
   },
   {
     "nome": "Whey Protein concentrado Probiótica",
-    "quantidade_mg_l": 33,
+    "quantidade_g_ml": 33,
     "medida_caseira": "3 colheres de sopa",
     "energia": 130,
     "proteina": 23,
@@ -1270,7 +1270,7 @@
   },
   {
     "nome": "Whey Protein Isolado Probiótica",
-    "quantidade_mg_l": 21.3,
+    "quantidade_g_ml": 21.3,
     "medida_caseira": "1  copo medidor",
     "energia": 78.32,
     "proteina": 18.3,
@@ -1279,7 +1279,7 @@
   },
   {
     "nome": "Whey Protein Blend Probiótica (3 WP)",
-    "quantidade_mg_l": 32,
+    "quantidade_g_ml": 32,
     "medida_caseira": "2 copos medidores",
     "energia": 126.3,
     "proteina": 24,
@@ -1288,7 +1288,7 @@
   },
   {
     "nome": "Veg Protein Probiótica",
-    "quantidade_mg_l": 25,
+    "quantidade_g_ml": 25,
     "medida_caseira": "1 copo medidor",
     "energia": 86.4,
     "proteina": 17,
