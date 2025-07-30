@@ -1,1298 +1,803 @@
 [
   {
-    "nome": "Aipim cozido",
-    "quantidade_g_ml": 90,
-    "medida_caseira": "3 colheres de sopa cheias picado",
-    "energia": 107.82,
-    "proteina": 0.54,
-    "carboidrato": 26.01,
-    "gordura": 0.18
+    "nome": "Farofa",
+    "quantidade_g_ml": 35,
+    "medida_caseira": "1 col. sopa",
+    "energia": 144,
+    "proteina": 1.9,
+    "carboidrato": 24,
+    "gordura": 4.6
   },
   {
-    "nome": "Amido de Milho",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "2 colheres de sopa rasas",
-    "energia": 70.32,
-    "proteina": 0.06,
-    "carboidrato": 17.52,
-    "gordura": 0
+    "nome": "Batata Cozida",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1/2 xícara",
+    "energia": 78,
+    "proteina": 1.8,
+    "carboidrato": 17.2,
+    "gordura": 0.1
   },
   {
-    "nome": "Aveia em flocos",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "2 colheres de sopa cheias",
-    "energia": 104.62,
-    "proteina": 4.5,
-    "carboidrato": 15.76,
-    "gordura": 2.62
-  },
-  {
-    "nome": "Batata doce cozida",
-    "quantidade_g_ml": 126,
-    "medida_caseira": "3 colheres de sopa cheias picado (3x3 cm)",
-    "energia": 129.99,
-    "proteina": 1.38,
-    "carboidrato": 30.24,
-    "gordura": 0.39
-  },
-  {
-    "nome": "Cream craker integral",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "4 unidades",
-    "energia": 114.51,
-    "proteina": 2.25,
-    "carboidrato": 18.75,
-    "gordura": 3.39
-  },
-  {
-    "nome": "Farinha de tapioca",
-    "quantidade_g_ml": 40,
-    "medida_caseira": "2 colheres de sopa",
-    "energia": 138.07,
-    "proteina": 0.1,
-    "carboidrato": 34.4,
-    "gordura": 0.01
-  },
-  {
-    "nome": "Granola",
-    "quantidade_g_ml": 40,
-    "medida_caseira": "1/2 xícara de chá",
-    "energia": 162.6,
-    "proteina": 4.4,
-    "carboidrato": 25,
+    "nome": "Batata Frita",
+    "quantidade_g_ml": 50,
+    "medida_caseira": "10 palitos",
+    "energia": 130,
+    "proteina": 2,
+    "carboidrato": 15,
     "gordura": 5
   },
   {
-    "nome": "Inhame cozido",
-    "quantidade_g_ml": 105,
-    "medida_caseira": "3 colheres de sopa cheias picado",
-    "energia": 108.6,
-    "proteina": 1.89,
-    "carboidrato": 24.99,
-    "gordura": 0.12
-  },
-  {
-    "nome": "Milho cozido",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "1 espiga",
-    "energia": 131.6,
-    "proteina": 3.3,
-    "carboidrato": 27.8,
-    "gordura": 0.8
-  },
-  {
-    "nome": "Pão com fibras",
-    "quantidade_g_ml": 50,
-    "medida_caseira": "2 fatias",
-    "energia": 117.92,
-    "proteina": 5.78,
-    "carboidrato": 21.9,
-    "gordura": 0.8
-  },
-  {
-    "nome": "Pão forma branco",
-    "quantidade_g_ml": 50,
-    "medida_caseira": "2 fatias",
-    "energia": 124.18,
-    "proteina": 4.34,
-    "carboidrato": 24.5,
-    "gordura": 0.98
-  },
-  {
-    "nome": "Pão frances",
-    "quantidade_g_ml": 50,
-    "medida_caseira": "1 unidade",
-    "energia": 134.3,
-    "proteina": 4.65,
-    "carboidrato": 28.7,
-    "gordura": 0.1
-  },
-  {
-    "nome": "Torrada industrializada",
-    "quantidade_g_ml": 32,
-    "medida_caseira": "4 unidades",
-    "energia": 119.16,
-    "proteina": 4.24,
-    "carboidrato": 22.4,
-    "gordura": 1.4
-  },
-  {
-    "nome": "Leite semi-desnatado líquido",
-    "quantidade_g_ml": 165,
-    "medida_caseira": "1 copo pequeno cheio",
-    "energia": 74.79,
-    "proteina": 5.12,
-    "carboidrato": 8.74,
-    "gordura": 2.15
-  },
-  {
-    "nome": "Leite semi-desnatado em pó",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "2 colheres de sopa cheias",
-    "energia": 82.5,
-    "proteina": 6.26,
-    "carboidrato": 8.74,
-    "gordura": 2.5
-  },
-  {
-    "nome": "Leite desnatado líquido",
-    "quantidade_g_ml": 200,
-    "medida_caseira": "1 copo duplo raso",
-    "energia": 70.6,
-    "proteina": 7.2,
-    "carboidrato": 10,
-    "gordura": 0.2
-  },
-  {
-    "nome": "Leite desnatado em pó",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "2 colheres de sopa cheias",
-    "energia": 70.64,
-    "proteina": 6.94,
-    "carboidrato": 10.36,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Coalhada desnatada",
-    "quantidade_g_ml": 130,
-    "medida_caseira": "1 pote",
-    "energia": 42.4,
-    "proteina": 4.6,
-    "carboidrato": 6,
-    "gordura": 0
-  },
-  {
-    "nome": "Iogurte natural integral",
-    "quantidade_g_ml": 85,
-    "medida_caseira": "1/2 pote",
-    "energia": 53.14,
-    "proteina": 3.37,
-    "carboidrato": 6.45,
-    "gordura": 1.54
-  },
-  {
-    "nome": "Iogurte natural desnatado",
-    "quantidade_g_ml": 185,
-    "medida_caseira": "1 pote",
-    "energia": 79.16,
-    "proteina": 7.95,
-    "carboidrato": 11.84,
-    "gordura": 0
-  },
-  {
-    "nome": "Iogurte sabores light",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "1 pote",
-    "energia": 34.88,
-    "proteina": 3.72,
-    "carboidrato": 5,
-    "gordura": 0
-  },
-  {
-    "nome": "Queijo minas frescal",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "1 fatia pequena",
-    "energia": 68.87,
-    "proteina": 4.99,
-    "carboidrato": 1,
-    "gordura": 4.99
-  },
-  {
-    "nome": "Queijo ricota",
-    "quantidade_g_ml": 70,
-    "medida_caseira": "1 fatia grande",
-    "energia": 66.5,
-    "proteina": 4.9,
-    "carboidrato": 0.7,
-    "gordura": 4.9
-  },
-  {
-    "nome": "Queijo cottage",
-    "quantidade_g_ml": 45,
-    "medida_caseira": "2 colheres de sopa rasas",
-    "energia": 55.34,
-    "proteina": 5.76,
-    "carboidrato": 1.46,
-    "gordura": 2.94
-  },
-  {
-    "nome": "Ovo",
-    "quantidade_g_ml": 45,
-    "medida_caseira": "1 unidade",
-    "energia": 70.9,
-    "proteina": 5.76,
-    "carboidrato": 0.31,
-    "gordura": 5.18
-  },
-  {
-    "nome": "Queijo prato",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1/2 fatia media (aquela de supermercado)",
-    "energia": 52.08,
-    "proteina": 3.66,
-    "carboidrato": 0,
-    "gordura": 4.16
-  },
-  {
-    "nome": "Requeijão light",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "1 colher de sopa cheia",
-    "energia": 54,
-    "proteina": 3.5,
-    "carboidrato": 1,
-    "gordura": 4
-  },
-  {
-    "nome": "Requeijão comum",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1 colher de sopa rasa",
-    "energia": 40.1,
-    "proteina": 1.65,
-    "carboidrato": 0.5,
-    "gordura": 3.5
-  },
-  {
-    "nome": "Abacaxi",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "2 fatias finas",
-    "energia": 58.2,
-    "proteina": 0.4,
-    "carboidrato": 13.7,
-    "gordura": 0.2
-  },
-  {
-    "nome": "Acerola",
-    "quantidade_g_ml": 200,
-    "medida_caseira": "17 unidades",
-    "energia": 72.08,
-    "proteina": 0.85,
-    "carboidrato": 15.64,
-    "gordura": 0.68
-  },
-  {
-    "nome": "Água de coco",
-    "quantidade_g_ml": 240,
-    "medida_caseira": "1 copo duplo cheio",
-    "energia": 43.49,
-    "proteina": 0.31,
-    "carboidrato": 9.91,
-    "gordura": 0.29
-  },
-  {
-    "nome": "Ameixa preta fresca",
-    "quantidade_g_ml": 155,
-    "medida_caseira": "3 unidades grandes",
-    "energia": 69.39,
-    "proteina": 1.26,
-    "carboidrato": 15.75,
-    "gordura": 0.15
-  },
-  {
-    "nome": "Ameixa vermelha",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "6 unidades pequenas",
-    "energia": 54,
-    "proteina": 0,
-    "carboidrato": 13.5,
-    "gordura": 0
-  },
-  {
-    "nome": "Ameixa seca",
-    "quantidade_g_ml": 40,
-    "medida_caseira": "8 unidades médias",
-    "energia": 74.4,
-    "proteina": 0.96,
-    "carboidrato": 17.28,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Banana d´água",
-    "quantidade_g_ml": 70,
-    "medida_caseira": "1 unidade média",
-    "energia": 68.04,
-    "proteina": 0.84,
-    "carboidrato": 15.54,
-    "gordura": 0.28
-  },
-  {
-    "nome": "Banana-da-terra",
-    "quantidade_g_ml": 50,
-    "medida_caseira": "1/2 unidade grande",
-    "energia": 58.5,
-    "proteina": 1.1,
-    "carboidrato": 13.3,
-    "gordura": 0.1
-  },
-  {
-    "nome": "Banana-maçã",
-    "quantidade_g_ml": 65,
-    "medida_caseira": "1 unidade média",
-    "energia": 72.45,
-    "proteina": 1.11,
-    "carboidrato": 16.71,
-    "gordura": 0.13
-  },
-  {
-    "nome": "Banana-ouro",
-    "quantidade_g_ml": 80,
-    "medida_caseira": "2 unidades médias",
-    "energia": 82.8,
-    "proteina": 1.92,
-    "carboidrato": 18.24,
-    "gordura": 0.24
-  },
-  {
-    "nome": "Banana-passa",
-    "quantidade_g_ml": 42,
-    "medida_caseira": "3 unidades grandes",
-    "energia": 64.05,
-    "proteina": 0.72,
-    "carboidrato": 15.09,
-    "gordura": 0.09
-  },
-  {
-    "nome": "Banana-prata",
-    "quantidade_g_ml": 55,
-    "medida_caseira": "1 unidade grande",
-    "energia": 54.57,
-    "proteina": 0.72,
-    "carboidrato": 12.54,
-    "gordura": 0.17
-  },
-  {
-    "nome": "Cajá",
-    "quantidade_g_ml": 150,
-    "medida_caseira": "2 unidades grandes",
-    "energia": 77.04,
-    "proteina": 0.3,
-    "carboidrato": 18.6,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Caju",
-    "quantidade_g_ml": 160,
-    "medida_caseira": "2 unidades pequenas",
-    "energia": 82.24,
-    "proteina": 1.28,
-    "carboidrato": 18.56,
-    "gordura": 0.32
-  },
-  {
-    "nome": "Caqui",
-    "quantidade_g_ml": 85,
-    "medida_caseira": "1 unidade pequena",
-    "energia": 73.78,
-    "proteina": 0.68,
-    "carboidrato": 17,
-    "gordura": 0.34
-  },
-  {
-    "nome": "Carambola",
-    "quantidade_g_ml": 210,
-    "medida_caseira": "2 unidades grandes",
-    "energia": 67.58,
-    "proteina": "01.06",
-    "carboidrato": 15.34,
-    "gordura": 0.22
-  },
-  {
-    "nome": "Cereja",
-    "quantidade_g_ml": 48,
-    "medida_caseira": "7 unidades",
-    "energia": 67.83,
-    "proteina": 0.84,
-    "carboidrato": 15.96,
-    "gordura": 0.07
-  },
-  {
-    "nome": "Damasco seco",
-    "quantidade_g_ml": 50,
-    "medida_caseira": "7 unidades",
-    "energia": 64.12,
-    "proteina": 1.54,
-    "carboidrato": 14.49,
-    "gordura": 0
-  },
-  {
-    "nome": "Figo",
-    "quantidade_g_ml": 110,
-    "medida_caseira": "2 unidades médias",
-    "energia": 75.72,
-    "proteina": 1.32,
-    "carboidrato": 17.16,
-    "gordura": 0.2
-  },
-  {
-    "nome": "Fruta do conde",
-    "quantidade_g_ml": 60,
-    "medida_caseira": "1 unidade média",
-    "energia": 63.96,
-    "proteina": 0.96,
-    "carboidrato": 14.76,
-    "gordura": 0.12
-  },
-  {
-    "nome": "Goiaba pequena",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "1unidade pequena",
-    "energia": 76.4,
-    "proteina": 0.9,
-    "carboidrato": 17.3,
-    "gordura": 0.4
-  },
-  {
-    "nome": "Jaca",
-    "quantidade_g_ml": 95,
-    "medida_caseira": "8 bagos",
-    "energia": 66,
-    "proteina": 2.6,
-    "carboidrato": 13,
-    "gordura": 0.4
-  },
-  {
-    "nome": "Jabuticaba",
-    "quantidade_g_ml": 160,
-    "medida_caseira": "1 copo duplo cheio",
-    "energia": 76.96,
-    "proteina": 1.6,
-    "carboidrato": 17.28,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Jambo",
-    "quantidade_g_ml": 80,
-    "medida_caseira": "2 unidades médias",
-    "energia": 44.96,
-    "proteina": 0.64,
-    "carboidrato": 10.24,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Kiwi",
-    "quantidade_g_ml": 115,
-    "medida_caseira": "1.5 unid média",
-    "energia": 76.53,
-    "proteina": 1.13,
-    "carboidrato": 16.9,
-    "gordura": 0.49
-  },
-  {
-    "nome": "Laranja",
-    "quantidade_g_ml": 180,
-    "medida_caseira": "1 unidade média",
-    "energia": 86.85,
-    "proteina": 1.13,
-    "carboidrato": 19.48,
-    "gordura": 0.49
-  },
-  {
-    "nome": "Maçã",
+    "nome": "Nuggets",
     "quantidade_g_ml": 90,
-    "medida_caseira": "1 unidade pequena",
-    "energia": 58.23,
-    "proteina": 0.27,
-    "carboidrato": 13.68,
-    "gordura": 0.27
+    "medida_caseira": "3 unidades",
+    "energia": 200,
+    "proteina": 10,
+    "carboidrato": 9,
+    "gordura": 12
   },
   {
-    "nome": "Mamão",
-    "quantidade_g_ml": 170,
+    "nome": "Batata palha",
+    "quantidade_g_ml": 15,
+    "medida_caseira": "1 colher sopa",
+    "energia": 120,
+    "proteina": 0.8,
+    "carboidrato": 10.8,
+    "gordura": 7.2
+  },
+  {
+    "nome": "Torta de frango",
+    "quantidade_g_ml": 100,
     "medida_caseira": "1 fatia média",
-    "energia": 61.37,
-    "proteina": 0.85,
-    "carboidrato": 14.11,
-    "gordura": 0.17
+    "energia": 230,
+    "proteina": 10,
+    "carboidrato": 20,
+    "gordura": 12
   },
   {
-    "nome": "Mamão papaya",
-    "quantidade_g_ml": 155,
-    "medida_caseira": "1/2 unidade média",
-    "energia": 55.96,
-    "proteina": 0.77,
-    "carboidrato": 12.86,
-    "gordura": 0.16
+    "nome": "Bolo sem farinha",
+    "quantidade_g_ml": 70,
+    "medida_caseira": "1 fatia média",
+    "energia": 170,
+    "proteina": 3,
+    "carboidrato": 18,
+    "gordura": 7
   },
   {
-    "nome": "Manga espada",
+    "nome": "Biscoito Vitarella",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "3 unidades",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 20,
+    "gordura": 6
+  },
+  {
+    "nome": "Nutella",
+    "quantidade_g_ml": 20,
+    "medida_caseira": "1 colher sopa",
+    "energia": 190,
+    "proteina": 1.2,
+    "carboidrato": 11,
+    "gordura": 11
+  },
+  {
+    "nome": "Salgado",
+    "quantidade_g_ml": 130,
+    "medida_caseira": "1 unidade",
+    "energia": 300,
+    "proteina": 10,
+    "carboidrato": 25,
+    "gordura": 15
+  },
+  {
+    "nome": "Milho Espiga",
     "quantidade_g_ml": 120,
-    "medida_caseira": "2 unidades pequenas",
-    "energia": 78.48,
-    "proteina": 0.6,
-    "carboidrato": 18.48,
-    "gordura": 0.24
+    "medida_caseira": "1 espiga média",
+    "energia": 120,
+    "proteina": 4,
+    "carboidrato": 27,
+    "gordura": 1.5
   },
   {
-    "nome": "Maracujá",
-    "quantidade_g_ml": 45,
-    "medida_caseira": "1 unidade média",
-    "energia": 44.91,
-    "proteina": 0.99,
-    "carboidrato": 9.54,
-    "gordura": 0.31
-  },
-  {
-    "nome": "Melancia",
-    "quantidade_g_ml": 370,
-    "medida_caseira": "1 fatia grande",
-    "energia": 89.17,
-    "proteina": 1.85,
-    "carboidrato": 19.61,
-    "gordura": 0.37
-  },
-  {
-    "nome": "Melão",
-    "quantidade_g_ml": 230,
-    "medida_caseira": "2 fatias grandes",
-    "energia": 63.84,
-    "proteina": 1.16,
-    "carboidrato": 14.26,
-    "gordura": 0.24
+    "nome": "Leite fermentado",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1 garrafinha",
+    "energia": 80,
+    "proteina": 1.6,
+    "carboidrato": 12.8,
+    "gordura": 1.6
   },
   {
     "nome": "Morango",
-    "quantidade_g_ml": 200,
-    "medida_caseira": "10 unidades grandes",
-    "energia": 79.8,
-    "proteina": 1.6,
-    "carboidrato": 17,
-    "gordura": 0.6
-  },
-  {
-    "nome": "Pêra",
-    "quantidade_g_ml": 130,
-    "medida_caseira": "1 undidade média",
-    "energia": 80.86,
-    "proteina": 0.39,
-    "carboidrato": 19.24,
-    "gordura": 0.26
-  },
-  {
-    "nome": "Pêssego",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "2 unidades médias",
-    "energia": 57,
-    "proteina": 0.96,
-    "carboidrato": 12.48,
-    "gordura": 0.36
-  },
-  {
-    "nome": "Salada de frutas sem calda",
     "quantidade_g_ml": 100,
-    "medida_caseira": "4 colheres de sopa cheias",
-    "energia": 58.74,
-    "proteina": 0.73,
-    "carboidrato": 13.55,
-    "gordura": 0.18
-  },
-  {
-    "nome": "Tangerina",
-    "quantidade_g_ml": 135,
-    "medida_caseira": "1 unidade média",
-    "energia": 65.11,
-    "proteina": 0.95,
-    "carboidrato": 14.72,
-    "gordura": 0.27
+    "medida_caseira": "5 unidades",
+    "energia": 39,
+    "proteina": 1,
+    "carboidrato": 7.4,
+    "gordura": 0.6
   },
   {
     "nome": "Uva",
     "quantidade_g_ml": 80,
     "medida_caseira": "10 unidades",
-    "energia": 61,
+    "energia": 60,
     "proteina": 0.5,
-    "carboidrato": 13.4,
-    "gordura": 0.6
-  },
-  {
-    "nome": "Uva passa",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "2 colheres de sopa rasas",
-    "energia": 64,
-    "proteina": 0.48,
-    "carboidrato": 15.52,
-    "gordura": 0
-  },
-  {
-    "nome": "Yacon",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "4 colheres de sopa cheias",
-    "energia": 36.92,
-    "proteina": 0.82,
-    "carboidrato": 8.41,
-    "gordura": 0
-  },
-  {
-    "nome": "Feijão preto cozido",
-    "quantidade_g_ml": 140,
-    "medida_caseira": "1 concha média cheia",
-    "energia": 96.74,
-    "proteina": 6.16,
-    "carboidrato": 17.08,
-    "gordura": 0.42
-  },
-  {
-    "nome": "Feijão branco cozido",
-    "quantidade_g_ml": 65,
-    "medida_caseira": "1 concha pequena rasa",
-    "energia": 92.63,
-    "proteina": 6.32,
-    "carboidrato": 16.32,
-    "gordura": 0.23
-  },
-  {
-    "nome": "Grão de bico",
-    "quantidade_g_ml": 66,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 89.76,
-    "proteina": 4.35,
-    "carboidrato": 15.12,
-    "gordura": 1.32
-  },
-  {
-    "nome": "Lentilha cozida",
-    "quantidade_g_ml": 78,
-    "medida_caseira": "1/2 concha média",
-    "energia": 81.7,
-    "proteina": 5.55,
-    "carboidrato": 14.2,
-    "gordura": 0.3
-  },
-  {
-    "nome": "Ervilha vagem cozida",
-    "quantidade_g_ml": 90,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 86.19,
-    "proteina": 4.2,
-    "carboidrato": 17.01,
-    "gordura": 0.15
-  },
-  {
-    "nome": "Ervilha enlatada",
-    "quantidade_g_ml": 135,
-    "medida_caseira": "5 colheres de sopa cheias",
-    "energia": 89.6,
-    "proteina": 4.75,
-    "carboidrato": 16.75,
-    "gordura": 0.4
-  },
-  {
-    "nome": "Proteína de soja",
-    "quantidade_g_ml": 72,
-    "medida_caseira": "3 colheres de sopa",
-    "energia": 60.84,
-    "proteina": 9,
-    "carboidrato": 5.4,
-    "gordura": 0.36
-  },
-  {
-    "nome": "Arroz integral cozido",
-    "quantidade_g_ml": 60,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 154.05,
-    "proteina": 2.91,
-    "carboidrato": 27.57,
-    "gordura": 3.57
-  },
-  {
-    "nome": "Arroz cozido",
-    "quantidade_g_ml": 75,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 123.51,
-    "proteina": 1.74,
-    "carboidrato": 24.21,
-    "gordura": 2.19
-  },
-  {
-    "nome": "Angu",
-    "quantidade_g_ml": 105,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 130.71,
-    "proteina": 3.48,
-    "carboidrato": 27.51,
-    "gordura": 0.75
-  },
-  {
-    "nome": "Aipim cozido",
-    "quantidade_g_ml": 90,
-    "medida_caseira": "3 colheres de sopa cheias picado",
-    "energia": 107.82,
-    "proteina": 0.54,
-    "carboidrato": 26.01,
-    "gordura": 0.18
-  },
-  {
-    "nome": "Batata baroa cozida",
-    "quantidade_g_ml": 105,
-    "medida_caseira": "3 colheres de sopa cheias picada",
-    "energia": 140.61,
-    "proteina": 1.65,
-    "carboidrato": 32.76,
-    "gordura": 0.33
-  },
-  {
-    "nome": "Batata doce cozida",
-    "quantidade_g_ml": 126,
-    "medida_caseira": "3 colheres de sopa cheias picada",
-    "energia": 129.99,
-    "proteina": 1.38,
-    "carboidrato": 30.24,
-    "gordura": 0.39
-  },
-  {
-    "nome": "Batata inglesa",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "4 colheres de sopa cheias picada",
-    "energia": 102.68,
-    "proteina": 2.4,
-    "carboidrato": 23,
-    "gordura": 0.12
-  },
-  {
-    "nome": "Inhame cozido",
-    "quantidade_g_ml": 140,
-    "medida_caseira": "4 colheres de sopa cheias picado",
-    "energia": 144.8,
-    "proteina": 2.52,
-    "carboidrato": 33.32,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Macarrão integral",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "1 colher de servir bem cheia",
-    "energia": 154.72,
-    "proteina": 5.6,
-    "carboidrato": 32,
-    "gordura": 0.48
-  },
-  {
-    "nome": "Macarrão comum",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "1 colher de servir bem cheia",
-    "energia": 109.2,
-    "proteina": 3.4,
-    "carboidrato": 23,
-    "gordura": 0.4
-  },
-  {
-    "nome": "Farinha de mandioca",
-    "quantidade_g_ml": 36,
-    "medida_caseira": "3 colheres de sopa rasas",
-    "energia": 127.92,
-    "proteina": 0.6,
-    "carboidrato": 31.11,
-    "gordura": 0.12
-  },
-  {
-    "nome": "Farofa simples",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "1 colher de sopa cheia",
-    "energia": 141.18,
-    "proteina": 0.54,
-    "carboidrato": 23.64,
-    "gordura": 4.94
-  },
-  {
-    "nome": "Abóbora madura cozida",
-    "quantidade_g_ml": 36,
-    "medida_caseira": "1 colher de sopa cheia picada",
-    "energia": 25.2,
-    "proteina": 0.65,
-    "carboidrato": 5.29,
-    "gordura": 0.16
-  },
-  {
-    "nome": "Abobrinha cozida",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "1 colher de sopa cheia picada",
-    "energia": 16.68,
-    "proteina": 0.6,
-    "carboidrato": 3.3,
-    "gordura": 0.12
-  },
-  {
-    "nome": "Berinjela ensopada",
-    "quantidade_g_ml": 25,
-    "medida_caseira": "1 colher de sopa cheia",
-    "energia": 17.35,
-    "proteina": 0.19,
-    "carboidrato": 1.2,
-    "gordura": 1.31
-  },
-  {
-    "nome": "Beterraba cozida",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "1 colher de sopa cheia picada ou fatiada",
-    "energia": 8.82,
-    "proteina": 0.2,
-    "carboidrato": 1.96,
-    "gordura": 0.02
-  },
-  {
-    "nome": "Beterraba crua ralada",
-    "quantidade_g_ml": 16,
-    "medida_caseira": "1 colher de sopa cheia",
-    "energia": 7.34,
-    "proteina": 0.27,
-    "carboidrato": 1.52,
-    "gordura": 0.02
-  },
-  {
-    "nome": "Cenoura cozida",
-    "quantidade_g_ml": 25,
-    "medida_caseira": "1 colher de sopa cheia picada",
-    "energia": 13.5,
-    "proteina": 0.33,
-    "carboidrato": 2.91,
-    "gordura": 0.06
-  },
-  {
-    "nome": "Cenoura crua ralada",
-    "quantidade_g_ml": 12,
-    "medida_caseira": "1 colher de sopa cheia picada",
-    "energia": 7.42,
-    "proteina": 0.65,
-    "carboidrato": 1.16,
-    "gordura": 0.02
-  },
-  {
-    "nome": "Chuchu cozido",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "1 colher de sopa cheia picada",
-    "energia": 8.73,
-    "proteina": 0.22,
-    "carboidrato": 1.85,
-    "gordura": 0.05
-  },
-  {
-    "nome": "Jiló cozido",
-    "quantidade_g_ml": 30,
-    "medida_caseira": "1colher de sopa rasa",
-    "energia": 15.68,
-    "proteina": 0.5,
-    "carboidrato": 2.52,
-    "gordura": 0.4
-  },
-  {
-    "nome": "Quiabo refogado",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "1colher de sopa rasa",
-    "energia": 18.04,
-    "proteina": 0.43,
-    "carboidrato": 1.74,
-    "gordura": "01.04"
-  },
-  {
-    "nome": "Vagem cozida",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "1 colher de sopa cheia",
-    "energia": 11.8,
-    "proteina": 0.6,
-    "carboidrato": 1.9,
+    "carboidrato": 13,
     "gordura": 0.2
   },
   {
-    "nome": "Atum",
-    "quantidade_g_ml": 80,
-    "medida_caseira": "5 colheres de sopa cheias",
-    "energia": 119.5,
-    "proteina": 20.95,
-    "carboidrato": "01.05",
-    "gordura": 3.5
-  },
-  {
-    "nome": "Sardinha",
-    "quantidade_g_ml": 83,
-    "medida_caseira": "3 unidades pequenas",
-    "energia": 146.3,
-    "proteina": 17.9,
-    "carboidrato": 0,
-    "gordura": 8.3
-  },
-  {
-    "nome": "File de peixe ensopado",
-    "quantidade_g_ml": 120,
-    "medida_caseira": "1 unidade pequena",
-    "energia": 156.17,
-    "proteina": 21.52,
-    "carboidrato": 2.29,
-    "gordura": 6.77
-  },
-  {
-    "nome": "Peixe em posta ensopado",
-    "quantidade_g_ml": 150,
-    "medida_caseira": "1 unidade pequena",
-    "energia": 195.22,
-    "proteina": 26.9,
-    "carboidrato": 2.87,
-    "gordura": 8.46
-  },
-  {
-    "nome": "File de peito assado",
-    "quantidade_g_ml": 140,
-    "medida_caseira": "1 unidade pequena",
-    "energia": 169.96,
-    "proteina": 25.48,
-    "carboidrato": 0,
-    "gordura": 7.56
-  },
-  {
-    "nome": "Coxa sem pele",
-    "quantidade_g_ml": 110,
-    "medida_caseira": "2 unidades grandes",
-    "energia": 133.54,
-    "proteina": 20.02,
-    "carboidrato": 0,
-    "gordura": 5.94
-  },
-  {
-    "nome": "Sobrecoxa sem pele",
-    "quantidade_g_ml": 95,
-    "medida_caseira": "1 unidade grande",
-    "energia": 115.33,
-    "proteina": 17.29,
-    "carboidrato": 0,
-    "gordura": 5.13
-  },
-  {
-    "nome": "Bife",
-    "quantidade_g_ml": 80,
-    "medida_caseira": "1 unidade ppequena",
-    "energia": 182.5,
-    "proteina": 22.36,
-    "carboidrato": 0,
-    "gordura": 10.34
-  },
-  {
-    "nome": "Carne assada",
-    "quantidade_g_ml": 75,
-    "medida_caseira": "1 fatia pequena",
-    "energia": 215.8,
-    "proteina": 18.94,
-    "carboidrato": 0,
-    "gordura": 15.56
-  },
-  {
-    "nome": "Carne ensopada",
-    "quantidade_g_ml": 90,
-    "medida_caseira": "3 colheres de sopa cheias",
-    "energia": 167.31,
-    "proteina": 19.35,
-    "carboidrato": 0,
-    "gordura": 9.99
-  },
-  {
-    "nome": "Carne moída",
-    "quantidade_g_ml": 100,
-    "medida_caseira": "4 colheres de sopa cheias",
-    "energia": 195.36,
-    "proteina": 21.8,
-    "carboidrato": 1.84,
-    "gordura": 11.2
-  },
-  {
-    "nome": "Ovos",
-    "quantidade_g_ml": 90,
+    "nome": "Biscoito waffler chocolate",
+    "quantidade_g_ml": 30,
     "medida_caseira": "2 unidades",
-    "energia": 141.8,
-    "proteina": 11.52,
-    "carboidrato": 0.62,
-    "gordura": 10.36
-  },
-  {
-    "nome": "Azeite",
-    "quantidade_g_ml": 5,
-    "medida_caseira": "1 colher de sobremesa rasa",
-    "energia": 44.72,
-    "proteina": 0,
-    "carboidrato": 0.02,
-    "gordura": 4.96
-  },
-  {
-    "nome": "Manteiga",
-    "quantidade_g_ml": 5,
-    "medida_caseira": "1 colher de chá cheia",
-    "energia": 37.08,
-    "proteina": 0,
-    "carboidrato": 0,
-    "gordura": 4.12
-  },
-  {
-    "nome": "Margarina",
-    "quantidade_g_ml": 8,
-    "medida_caseira": "1 colher de chá cheia",
-    "energia": 54.86,
-    "proteina": 0.05,
-    "carboidrato": 0.03,
-    "gordura": "06.06"
-  },
-  {
-    "nome": "Margarina light",
-    "quantidade_g_ml": 8,
-    "medida_caseira": "1 colher de chá cheia",
-    "energia": 27.09,
-    "proteina": 0,
-    "carboidrato": 0,
-    "gordura": "03.01"
-  },
-  {
-    "nome": "Maionese",
-    "quantidade_g_ml": 17,
-    "medida_caseira": "1 colher de sobremesa cheia",
-    "energia": 66.54,
-    "proteina": 0.19,
-    "carboidrato": 2.36,
-    "gordura": 6.26
-  },
-  {
-    "nome": "Maionese light",
-    "quantidade_g_ml": 17,
-    "medida_caseira": "1 colher de sobremesa cheia",
-    "energia": 52.87,
-    "proteina": 1.36,
-    "carboidrato": 0,
-    "gordura": 5.27
-  },
-  {
-    "nome": "Óleo de coco",
-    "quantidade_g_ml": 6.5,
-    "medida_caseira": "1 colher de sobremesa rasa",
-    "energia": 54,
-    "proteina": 0,
-    "carboidrato": 0,
+    "energia": 170,
+    "proteina": 2,
+    "carboidrato": 21,
     "gordura": 6
   },
   {
-    "nome": "Semente de Chia",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 57.5,
-    "proteina": 3.1,
-    "carboidrato": 0.7,
-    "gordura": 4.7
+    "nome": "Feijão",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1 concha",
+    "energia": 76,
+    "proteina": 5.2,
+    "carboidrato": 13,
+    "gordura": 0.5
   },
   {
-    "nome": "Gérmen de Trigo",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 33,
-    "proteina": 3,
-    "carboidrato": 3,
-    "gordura": 1
-  },
-  {
-    "nome": "Quinua em Flocos",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 38.88,
-    "proteina": 7.25,
-    "carboidrato": 1.3,
-    "gordura": 0.52
-  },
-  {
-    "nome": "Linhaça Dourada",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 77.9,
-    "proteina": 2.9,
-    "carboidrato": 5.1,
-    "gordura": 5.1
-  },
-  {
-    "nome": "Farelo de aveia",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 33.9,
-    "proteina": 1.8,
-    "carboidrato": 4.2,
-    "gordura": 1.1
-  },
-  {
-    "nome": "Farelo de Trigo",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 8,
-    "proteina": 1,
-    "carboidrato": 1,
-    "gordura": 0
-  },
-  {
-    "nome": "Amaranto Flocos",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 39.18,
-    "proteina": 0.76,
-    "carboidrato": 8,
-    "gordura": 0.46
-  },
-  {
-    "nome": "Açúcar",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sobremesa rasa",
-    "energia": 40,
-    "proteina": 0,
-    "carboidrato": 10,
-    "gordura": 0
-  },
-  {
-    "nome": "Açúcar mascavo",
-    "quantidade_g_ml": 11,
-    "medida_caseira": "1 colher de sopa rasa",
-    "energia": 40.49,
-    "proteina": 0.04,
-    "carboidrato": 9.97,
-    "gordura": 0.05
-  },
-  {
-    "nome": "Geleia",
-    "quantidade_g_ml": 20,
-    "medida_caseira": "1 colher de sopa rasa",
-    "energia": 49.54,
-    "proteina": 0.02,
-    "carboidrato": 12.32,
-    "gordura": 0.02
-  },
-  {
-    "nome": "Mel",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 46.92,
-    "proteina": 0.03,
-    "carboidrato": 11.7,
-    "gordura": 0
-  },
-  {
-    "nome": "Melado de Cana",
-    "quantidade_g_ml": 16,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 47.07,
-    "proteina": 0.08,
-    "carboidrato": 11.62,
-    "gordura": 0.03
-  },
-  {
-    "nome": "Castanha de cajú",
-    "quantidade_g_ml": 12.5,
-    "medida_caseira": "5 unidades",
-    "energia": 63.1,
-    "proteina": 2.45,
-    "carboidrato": 5.9,
-    "gordura": 3.3
-  },
-  {
-    "nome": "Castanha do pará",
-    "quantidade_g_ml": 12,
-    "medida_caseira": "3 unidades",
-    "energia": 82.08,
-    "proteina": 1.68,
-    "carboidrato": 1.56,
-    "gordura": 7.68
-  },
-  {
-    "nome": "Nozes",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "2 unidades inteiras",
-    "energia": 69.84,
-    "proteina": 1.48,
-    "carboidrato": 1.58,
-    "gordura": 6.4
-  },
-  {
-    "nome": "Pasta de amendoim integral",
-    "quantidade_g_ml": 15,
-    "medida_caseira": "1 colher de sopa",
-    "energia": 92.7,
-    "proteina": 3.8,
-    "carboidrato": 1.6,
-    "gordura": 7.9
-  },
-  {
-    "nome": "Amendoim torrado com sal",
-    "quantidade_g_ml": 10,
-    "medida_caseira": "1 colher de sobremesa rasa",
-    "energia": 63.77,
-    "proteina": 2.32,
-    "carboidrato": 2.17,
-    "gordura": "05.09"
-  },
-  {
-    "nome": "Abacate",
-    "quantidade_g_ml": 45,
-    "medida_caseira": "1 colher de sopa cheia picado",
-    "energia": 79.56,
-    "proteina": 0.81,
-    "carboidrato": 2.88,
-    "gordura": 7.2
-  },
-  {
-    "nome": "Whey Protein concentrado Performance (BIO Whey)",
-    "quantidade_g_ml": 28,
-    "medida_caseira": "1 copo medidor",
-    "energia": 99.2,
-    "proteina": 20,
-    "carboidrato": 3,
-    "gordura": 0.8
-  },
-  {
-    "nome": "Whey Protein Isolado Performance (ISO Whey)",
-    "quantidade_g_ml": 33,
-    "medida_caseira": "1 copo medidor",
-    "energia": 108,
-    "proteina": 27,
-    "carboidrato": 0,
-    "gordura": 0
-  },
-  {
-    "nome": "Whey Protein Blend Performance (BIO Whey)",
-    "quantidade_g_ml": 31,
-    "medida_caseira": "1 copo medidor",
-    "energia": 123.5,
-    "proteina": 25,
-    "carboidrato": 2.5,
-    "gordura": 1.5
-  },
-  {
-    "nome": "Pure BEEF (Ptn da carne)",
-    "quantidade_g_ml": 29,
-    "medida_caseira": "1 copo medidor",
-    "energia": 103.31,
-    "proteina": 23,
-    "carboidrato": 1.5,
-    "gordura": 0.59
-  },
-  {
-    "nome": "Whey Protein concentrado Probiótica",
-    "quantidade_g_ml": 33,
-    "medida_caseira": "3 colheres de sopa",
+    "nome": "Pão",
+    "quantidade_g_ml": 50,
+    "medida_caseira": "1 fatia",
     "energia": 130,
-    "proteina": 23,
-    "carboidrato": 4.1,
-    "gordura": 2.4
+    "proteina": 4.4,
+    "carboidrato": 25,
+    "gordura": 1.2
   },
   {
-    "nome": "Whey Protein Isolado Probiótica",
-    "quantidade_g_ml": 21.3,
-    "medida_caseira": "1  copo medidor",
-    "energia": 78.32,
-    "proteina": 18.3,
-    "carboidrato": 0.83,
+    "nome": "Mandioca cozida",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 xícara",
+    "energia": 119,
+    "proteina": 0.6,
+    "carboidrato": 28.9,
     "gordura": 0.2
   },
   {
-    "nome": "Whey Protein Blend Probiótica (3 WP)",
-    "quantidade_g_ml": 32,
-    "medida_caseira": "2 copos medidores",
-    "energia": 126.3,
-    "proteina": 24,
-    "carboidrato": 3.3,
-    "gordura": 1.9
+    "nome": "Biscoito wafer piraquê",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 unidades",
+    "energia": 170,
+    "proteina": 2,
+    "carboidrato": 21,
+    "gordura": 6
   },
   {
-    "nome": "Veg Protein Probiótica",
+    "nome": "Maçã",
+    "quantidade_g_ml": 130,
+    "medida_caseira": "1 unidade média",
+    "energia": 80,
+    "proteina": 0.5,
+    "carboidrato": 18.5,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Macarrão",
+    "quantidade_g_ml": 140,
+    "medida_caseira": "1 xícara cozido",
+    "energia": 180,
+    "proteina": 5.5,
+    "carboidrato": 31.5,
+    "gordura": 1.2
+  },
+  {
+    "nome": "Biscoito de chocolate",
     "quantidade_g_ml": 25,
-    "medida_caseira": "1 copo medidor",
-    "energia": 86.4,
-    "proteina": 17,
-    "carboidrato": 2.8,
+    "medida_caseira": "2 unidades",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 18,
+    "gordura": 5
+  },
+  {
+    "nome": "Wafer limão",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 unidades",
+    "energia": 170,
+    "proteina": 2,
+    "carboidrato": 22,
+    "gordura": 6
+  },
+  {
+    "nome": "Purê de batatas",
+    "quantidade_g_ml": 120,
+    "medida_caseira": "1/2 xícara",
+    "energia": 140,
+    "proteina": 2,
+    "carboidrato": 20,
+    "gordura": 4
+  },
+  {
+    "nome": "Batata doce",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 xícara",
+    "energia": 89,
+    "proteina": 1.9,
+    "carboidrato": 20,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Chocolate",
+    "quantidade_g_ml": 25,
+    "medida_caseira": "1 quadrado",
+    "energia": 150,
+    "proteina": 2.5,
+    "carboidrato": 12,
+    "gordura": 10
+  },
+  {
+    "nome": "Cuscuz",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 xícara",
+    "energia": 110,
+    "proteina": 3,
+    "carboidrato": 23,
+    "gordura": 1
+  },
+  {
+    "nome": "Café com leite",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 xícara",
+    "energia": 90,
+    "proteina": 4,
+    "carboidrato": 10,
+    "gordura": 2
+  },
+  {
+    "nome": "Cookie",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 unidade",
+    "energia": 150,
+    "proteina": 2,
+    "carboidrato": 20,
+    "gordura": 6
+  },
+  {
+    "nome": "Bisnaguinha",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 unidade",
+    "energia": 100,
+    "proteina": 2,
+    "carboidrato": 14,
+    "gordura": 1.5
+  },
+  {
+    "nome": "Pizza",
+    "quantidade_g_ml": 120,
+    "medida_caseira": "1 fatia",
+    "energia": 290,
+    "proteina": 12,
+    "carboidrato": 30,
+    "gordura": 10
+  },
+  {
+    "nome": "Biscoito polvilho",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "10 unidades",
+    "energia": 150,
+    "proteina": 0.5,
+    "carboidrato": 23,
+    "gordura": 4
+  },
+  {
+    "nome": "Suco de uva",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 copo (200ml)",
+    "energia": 130,
+    "proteina": 0.2,
+    "carboidrato": 32,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Pimentinha",
+    "quantidade_g_ml": 10,
+    "medida_caseira": "1 unidade",
+    "energia": 10,
+    "proteina": 0.2,
+    "carboidrato": 2,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Petit four casadinho",
+    "quantidade_g_ml": 40,
+    "medida_caseira": "2 unidades",
+    "energia": 220,
+    "proteina": 2,
+    "carboidrato": 25,
+    "gordura": 10
+  },
+  {
+    "nome": "Pão de queijo",
+    "quantidade_g_ml": 60,
+    "medida_caseira": "1 unidade média",
+    "energia": 160,
+    "proteina": 3,
+    "carboidrato": 15,
+    "gordura": 7
+  },
+  {
+    "nome": "Sorvete",
+    "quantidade_g_ml": 60,
+    "medida_caseira": "1 bola",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 20,
+    "gordura": 7
+  },
+  {
+    "nome": "Wafer grande",
+    "quantidade_g_ml": 40,
+    "medida_caseira": "1 unidade",
+    "energia": 220,
+    "proteina": 2.5,
+    "carboidrato": 30,
+    "gordura": 9
+  },
+  {
+    "nome": "Manga",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 unidade",
+    "energia": 64,
+    "proteina": 0.4,
+    "carboidrato": 15,
+    "gordura": 0.3
+  },
+  {
+    "nome": "Biscoito queijo palito",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "4 unidades",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 22,
+    "gordura": 6
+  },
+  {
+    "nome": "Salgadinho Doritos",
+    "quantidade_g_ml": 55,
+    "medida_caseira": "1 pacote pequeno",
+    "energia": 270,
+    "proteina": 3,
+    "carboidrato": 30,
+    "gordura": 8
+  },
+  {
+    "nome": "Biscoito de arroz doce",
+    "quantidade_g_ml": 20,
+    "medida_caseira": "3 unidades",
+    "energia": 90,
+    "proteina": 1.2,
+    "carboidrato": 15,
+    "gordura": 0.5
+  },
+  {
+    "nome": "Pipoca",
+    "quantidade_g_ml": 20,
+    "medida_caseira": "1 xícara estourada",
+    "energia": 110,
+    "proteina": 1.8,
+    "carboidrato": 14,
+    "gordura": 4.5
+  },
+  {
+    "nome": "Wafer morango Piraquê",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 unidades",
+    "energia": 170,
+    "proteina": 2,
+    "carboidrato": 22,
+    "gordura": 6
+  },
+  {
+    "nome": "Banana prata",
+    "quantidade_g_ml": 90,
+    "medida_caseira": "1 unidade",
+    "energia": 86,
+    "proteina": 1.1,
+    "carboidrato": 20.3,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Milho em lata",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 xícara",
+    "energia": 96,
+    "proteina": 2.5,
+    "carboidrato": 17,
+    "gordura": 1.5
+  },
+  {
+    "nome": "Pão careca",
+    "quantidade_g_ml": 60,
+    "medida_caseira": "1 unidade",
+    "energia": 180,
+    "proteina": 5,
+    "carboidrato": 30,
+    "gordura": 2.5
+  },
+  {
+    "nome": "Bolo simples trigo",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1 fatia",
+    "energia": 220,
+    "proteina": 4,
+    "carboidrato": 26,
+    "gordura": 8
+  },
+  {
+    "nome": "Pera",
+    "quantidade_g_ml": 130,
+    "medida_caseira": "1 unidade",
+    "energia": 85,
+    "proteina": 0.5,
+    "carboidrato": 17,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Panetone",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1 fatia",
+    "energia": 270,
+    "proteina": 5,
+    "carboidrato": 28,
+    "gordura": 9
+  },
+  {
+    "nome": "Bolo de limão",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1 fatia",
+    "energia": 210,
+    "proteina": 4,
+    "carboidrato": 25,
+    "gordura": 8
+  },
+  {
+    "nome": "Chantilly",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 colheres sopa",
+    "energia": 90,
+    "proteina": 0.2,
+    "carboidrato": 7,
+    "gordura": 10
+  },
+  {
+    "nome": "Prestígio",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 unidade",
+    "energia": 180,
+    "proteina": 1.5,
+    "carboidrato": 16,
+    "gordura": 9
+  },
+  {
+    "nome": "Steak de frango",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1 unidade",
+    "energia": 200,
+    "proteina": 10,
+    "carboidrato": 12,
+    "gordura": 10
+  },
+  {
+    "nome": "Suco de maracujá",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 copo (200ml)",
+    "energia": 70,
+    "proteina": 0.6,
+    "carboidrato": 16,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Biscoito do ursinho",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "6 unidades",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 20,
+    "gordura": 6
+  },
+  {
+    "nome": "Bombom Eclipse",
+    "quantidade_g_ml": 18,
+    "medida_caseira": "1 unidade",
+    "energia": 110,
+    "proteina": 1,
+    "carboidrato": 10,
+    "gordura": 5
+  },
+  {
+    "nome": "Bombom Triple Choc",
+    "quantidade_g_ml": 18,
+    "medida_caseira": "1 unidade",
+    "energia": 120,
+    "proteina": 1,
+    "carboidrato": 11,
+    "gordura": 6
+  },
+  {
+    "nome": "Kiwi",
+    "quantidade_g_ml": 75,
+    "medida_caseira": "1 unidade",
+    "energia": 52,
+    "proteina": 1.2,
+    "carboidrato": 10.8,
+    "gordura": 0.6
+  },
+  {
+    "nome": "Pitaya",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1/2 unidade",
+    "energia": 50,
+    "proteina": 1,
+    "carboidrato": 9,
+    "gordura": 0.6
+  },
+  {
+    "nome": "Melão",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1 fatia",
+    "energia": 34,
+    "proteina": 0.5,
+    "carboidrato": 8,
+    "gordura": 0.1
+  },
+  {
+    "nome": "Biscoito caseiro",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "3 unidades",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 21,
+    "gordura": 7
+  },
+  {
+    "nome": "Laranja",
+    "quantidade_g_ml": 130,
+    "medida_caseira": "1 unidade",
+    "energia": 80,
+    "proteina": 1,
+    "carboidrato": 17,
+    "gordura": 0.2
+  },
+  {
+    "nome": "Balinha",
+    "quantidade_g_ml": 5,
+    "medida_caseira": "1 unidade",
+    "energia": 18,
+    "proteina": 0,
+    "carboidrato": 4.5,
+    "gordura": 0
+  },
+  {
+    "nome": "Lasanha",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 porção",
+    "energia": 350,
+    "proteina": 15,
+    "carboidrato": 30,
+    "gordura": 12
+  },
+  {
+    "nome": "Ovomaltine",
+    "quantidade_g_ml": 20,
+    "medida_caseira": "2 colheres sopa",
+    "energia": 80,
+    "proteina": 1.2,
+    "carboidrato": 17,
     "gordura": 0.8
+  },
+  {
+    "nome": "Wafer baunilha",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 unidades",
+    "energia": 170,
+    "proteina": 2,
+    "carboidrato": 22,
+    "gordura": 6
+  },
+  {
+    "nome": "Biscoito sal com gergelim",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "4 unidades",
+    "energia": 160,
+    "proteina": 2.5,
+    "carboidrato": 20,
+    "gordura": 6
+  },
+  {
+    "nome": "Canudo chocolate",
+    "quantidade_g_ml": 15,
+    "medida_caseira": "1 unidade",
+    "energia": 90,
+    "proteina": 1,
+    "carboidrato": 11,
+    "gordura": 4
+  },
+  {
+    "nome": "Miojo",
+    "quantidade_g_ml": 80,
+    "medida_caseira": "1 pacote",
+    "energia": 370,
+    "proteina": 7,
+    "carboidrato": 51,
+    "gordura": 13
+  },
+  {
+    "nome": "Ovo mexido",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "2 ovos",
+    "energia": 143,
+    "proteina": 12,
+    "carboidrato": 1.2,
+    "gordura": 10
+  },
+  {
+    "nome": "Queijo mussarela",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 fatia",
+    "energia": 90,
+    "proteina": 7,
+    "carboidrato": 1.2,
+    "gordura": 6
+  },
+  {
+    "nome": "Farinha láctea",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "2 colheres sopa",
+    "energia": 120,
+    "proteina": 2.6,
+    "carboidrato": 22,
+    "gordura": 2
+  },
+  {
+    "nome": "Leite condensado",
+    "quantidade_g_ml": 40,
+    "medida_caseira": "2 colheres sopa",
+    "energia": 130,
+    "proteina": 2.6,
+    "carboidrato": 32,
+    "gordura": 3.2
+  },
+  {
+    "nome": "Biscoitinho TUCs",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "4 unidades",
+    "energia": 165,
+    "proteina": 2.4,
+    "carboidrato": 20,
+    "gordura": 7
+  },
+  {
+    "nome": "Suco couve/maracujá/kiwi",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 copo",
+    "energia": 85,
+    "proteina": 1,
+    "carboidrato": 20,
+    "gordura": 0.5
+  },
+  {
+    "nome": "Misto quente",
+    "quantidade_g_ml": 100,
+    "medida_caseira": "1 unidade",
+    "energia": 280,
+    "proteina": 10,
+    "carboidrato": 24,
+    "gordura": 10
+  },
+  {
+    "nome": "Rap 10",
+    "quantidade_g_ml": 45,
+    "medida_caseira": "1 unidade",
+    "energia": 140,
+    "proteina": 5,
+    "carboidrato": 23,
+    "gordura": 3.5
+  },
+  {
+    "nome": "Cookie chocolate",
+    "quantidade_g_ml": 35,
+    "medida_caseira": "1 unidade",
+    "energia": 180,
+    "proteina": 2.5,
+    "carboidrato": 24,
+    "gordura": 8
+  },
+  {
+    "nome": "Biscoito Equilibri",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "3 unidades",
+    "energia": 140,
+    "proteina": 2,
+    "carboidrato": 19,
+    "gordura": 4
+  },
+  {
+    "nome": "Salgado calabresa Big San",
+    "quantidade_g_ml": 130,
+    "medida_caseira": "1 unidade",
+    "energia": 320,
+    "proteina": 12,
+    "carboidrato": 32,
+    "gordura": 14
+  },
+  {
+    "nome": "Pão de mel",
+    "quantidade_g_ml": 50,
+    "medida_caseira": "1 unidade",
+    "energia": 160,
+    "proteina": 2,
+    "carboidrato": 24,
+    "gordura": 5
+  },
+  {
+    "nome": "Bolo de aniversário",
+    "quantidade_g_ml": 90,
+    "medida_caseira": "1 fatia",
+    "energia": 300,
+    "proteina": 4,
+    "carboidrato": 35,
+    "gordura": 10
+  },
+  {
+    "nome": "Salgadinhos",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 punhado",
+    "energia": 150,
+    "proteina": 2,
+    "carboidrato": 18,
+    "gordura": 6
+  },
+  {
+    "nome": "Salada de frutas",
+    "quantidade_g_ml": 150,
+    "medida_caseira": "1 taça",
+    "energia": 90,
+    "proteina": 1,
+    "carboidrato": 20,
+    "gordura": 0.4
+  },
+  {
+    "nome": "Salgadinho Skiny",
+    "quantidade_g_ml": 50,
+    "medida_caseira": "1 pacote pequeno",
+    "energia": 240,
+    "proteina": 2.2,
+    "carboidrato": 27,
+    "gordura": 8
+  },
+  {
+    "nome": "Cookie caseiro",
+    "quantidade_g_ml": 40,
+    "medida_caseira": "1 unidade",
+    "energia": 200,
+    "proteina": 3,
+    "carboidrato": 25,
+    "gordura": 10
+  },
+  {
+    "nome": "Sopa",
+    "quantidade_g_ml": 200,
+    "medida_caseira": "1 concha",
+    "energia": 110,
+    "proteina": 4,
+    "carboidrato": 12,
+    "gordura": 4
+  },
+  {
+    "nome": "Mini pão careca",
+    "quantidade_g_ml": 30,
+    "medida_caseira": "1 unidade",
+    "energia": 90,
+    "proteina": 2.2,
+    "carboidrato": 15,
+    "gordura": 1
   }
 ]
