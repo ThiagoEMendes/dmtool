@@ -1,16 +1,35 @@
 mantenha o mesmo estilo da página menu.html, mostrando o nome do sistema e do usuário logado no topo da pagina.
-
+------------------------------------------
 solicite ao usuário que digite a glicemia atual,
 o teclado númerico deve ser acionado para que o usuário digite a glicemia.
 
 solicite ao usuário que informe o tipo de refeição que fará entre: café da manhã, lanche da manhã,
 almoço, sobremesa, lanche da tarde, jantar, ceia e lanche avulso.
+---------------------------------------------
+
+Um botão com o texto adicionar alimentos
+
+uma tabela com as colunas: Alimento, QTD, CHO e remover.
+
+Abaixo, aparecerão dois botões, no mesmo padrão adotado pelo sistema, com as opções retornar(que
+retornará para a pagina anterior) e calcular(função que será implementada em outra etapa na página choEInsulina3.html).
+
+Quando o botão adicionar alimentos for acionado uma tela deslizará da esquerda para a direita com o seguinte:
+um campo de texto para que o usuário digite o nome do alimento, a medida que o usuário digita o nome do alimento, no campo de texto, o sistema
+deverá buscar os nomes que correspondem com a busca na coleção
+alimentos do firebase e exibi-los abaixo, para que o usuário selecione o alimento correspondente, abaixo deve haver um campo
+de texto para que o usuário digite a quantidade, acima deste botão deve haver um botão tipo slide
+para que o usuário altere o tipo de quantidade entre g/ml e mc/p, o tipo g/ml deve ser
+o padrão. abaixo devem existir dois botões, cancelar(que recolherá a tela para a esquerda sem incluir nenhum alimento) e adicionar.
+Quando o usuario clicar em adicionar, o seguinte calculo deve ser feito:
+se o usuário informar medida caseira, a quantidade de CHO será calculada com base no calculo (valor informado)*alimentos.carboidrato
+se o usuário informar gr, o cálculo do CHO será o seguinte: (valor informado)*alimentos.carboidrato/alimentos.quantidade_mg_l
+A tela deslizará para a esquerda e os dados serão inseridos na tabela definida.
 
 
 
-um botão abaixo com texto inserir alimentos, deve aparecer, e quando clicado deve limpar a tela,
- as informações de glicemia e tipo de refeição devem ser exibidas
-em um texto discreto acima do formulario.
+-----------------------------------------
+
 
 um campo de texto com o texto inserir alimento deve ser exibido, o usuário digitará o nome do alimento
 , o sistema buscará o nome na coleção alimentos.nome e exibirá abaixo, botoes com o nome dos alimentos
