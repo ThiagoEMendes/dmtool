@@ -434,7 +434,7 @@
               item.dataset.id = doc.id;
               item.dataset.nome = alimento.nome;
               item.dataset.carboidrato = alimento.carboidrato; // CHO por medida caseira/porção
-              item.dataset.quantidadeMl = alimento.quantidade_mg_l || alimento.quantidade_g_ml || null; // QTD em g/ml para o CHO informado, pode ser null
+              item.dataset.quantidadeMl = alimento.quantidade_g_ml || null; // QTD em g/ml para o CHO informado, pode ser null
               item.dataset.medidaCaseira = alimento.medida_caseira || ''; // Descrição da medida caseira
 
               item.addEventListener('click', () => {
@@ -442,7 +442,7 @@
                 document.getElementById('alimentoSelecionadoId').value = doc.id;
                 document.getElementById('alimentoSelecionadoNome').value = alimento.nome;
                 document.getElementById('alimentoSelecionadoCHO').value = alimento.carboidrato;
-                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_mg_l || alimento.quantidade_g_ml || ''; // Garante que é string vazia se nulo
+                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_g_ml || ''; // Garante que é string vazia se nulo
                 document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimento.medida_caseira || '';
                 resultadosBusca.innerHTML = ''; // Limpa os resultados após seleção
               });

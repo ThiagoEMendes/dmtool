@@ -316,7 +316,7 @@
 
     if (tipoCalculo === 'gramas') {
       const carboMedida = dados.carboidrato || 0;
-      const pesoMedida = dados.quantidade_mg_l || 100;
+      const pesoMedida = dados.quantidade_g_ml || 100;
       carboTotal = (peso * carboMedida) / pesoMedida;
       descricaoQuantidade = `${peso} g/ml`;
     } else if (tipoCalculo === 'medida') {

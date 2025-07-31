@@ -227,7 +227,7 @@
         detalhes.className = 'detalhes';
         detalhes.innerHTML = `
           <p><strong>Medida:</strong> ${data.medida_caseira}</p>
-          <p><strong>Quantidade:</strong> ${data.quantidade_mg_l} g/ml</p>
+          <p><strong>Quantidade:</strong> ${data.quantidade_g_ml} g/ml</p>
           <p><strong>Carboidrato:</strong> ${data.carboidrato} g</p>
           <p><strong>Proteína:</strong> ${data.proteina || 0} g</p>
           <p><strong>Gordura:</strong> ${data.gordura || 0} g</p>
@@ -260,7 +260,7 @@
 
       try {
         await db.collection('alimentos').add({
-          nome, medida_caseira: medida, quantidade_mg_l: quantidade,
+          nome, medida_caseira: medida, quantidade_g_ml: quantidade,
           carboidrato, proteina, energia, gordura
         });
         mostrarMensagem('Alimento cadastrado com sucesso!');
