@@ -50,9 +50,10 @@ alimentos.
 abaixo ficarão dois botoes lado a lado com as opções retornar, que retornará para a página menu.html
  e calcular
 
-quando o botão calcular for acionado os seguintes cálculos serão executados:
 
-Insulina CHO= total de cho de todos os alimentos da lista / usuarios.proporcoes.(refeição escolhida)
+os seguintes cálculos serão executados:
+
+Insulina CHO:(somatorio dos CHO)/usuarios.proporcoes.(refeição escolhida)
 
 calculo da insulina de correção:
 
@@ -60,15 +61,21 @@ caso a glicemia informada seja menor ou igual a usuarios.glicemiaAlvo, a insulin
 caso seja maior o sistema deve verificar usuarios.doseMaxima e inserir 1 unidade a cada valor de usuarios.fatorCorrecao
 percebido acima de usuarios.glicemiaAlvo até o limite de usuarios.doseMaxima.
 
-ex: se usuarios.doseMaxima=2, e usuarios.fatorCorrecao=20 o sistema deve adicionar 1 unidade, se 
+for (let insulinaDeCorrecao = 0; insulinaDeCorrecao < usuarios.doseMaxima; i++) {
+  str += i;
+}
+
+ex: se usuarios.glicemiaAlvo=130, usuarios.doseMaxima=2,  usuarios.fatorCorrecao=20 o sistema deve adicionar 1 unidade, se 
 glicemia entre 131 e 150, e 2 unidades se glicemia entre 151 e 170. se glicemia maior que 170 respeitar
 a dosagem máxima que no caso é 2.
 
 ao final o sistema deve exibir o total de CHO e dosagem de insulina recomendada: insulina CHO + insulina de correção.
 
 e abaixo dois botoes, lado a lado,
-cancelar, que volta para a página menu.html
-e gravar, que gravará os seguintes dados na coleção recordatorio
+retornar, que volta para a página choEInsulina2.html
+e gravar(funcionalidade que sera implementada)
+
+ que gravará os seguintes dados na coleção recordatorio:
 usuários.cpf em recordatorio.cpf
 data em recordatorio.data
 hora em recordatorio.hora

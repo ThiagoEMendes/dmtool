@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DMTool - Resultado do Cálculo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="flex flex-col h-screen">
+  <!-- Cabeçalho -->
+  <header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
+    <h1 class="text-xl font-bold">DMTool</h1>
+    <div id="nomeUsuario" class="text-sm opacity-80">Usuário</div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-1 flex flex-col justify-center items-center p-4">
+    <div class="bg-white p-8 md:p-10 rounded-xl shadow-lg max-w-lg w-full text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Resultado do Cálculo de Insulina</h2>
+
+      <div class="mb-4 text-left">
+        <p class="text-gray-700">Glicemia pré-refeição: <strong id="glicemiaExibida" class="text-gray-900"></strong></p>
+        <p class="text-gray-700">Refeição: <strong id="refeicaoExibida" class="text-gray-900"></strong></p>
+      </div>
+      
+      <p class="text-gray-700 mb-2">Total de Carboidratos (CHO) da refeição:</p>
+      <div id="totalCho" class="text-4xl font-extrabold text-blue-600 mb-4"></div>
+
+      <p id="insulinaChoInfo" class="text-gray-700 mb-2"></p>
+      <p id="insulinaCorrecaoInfo" class="text-gray-700 mb-2"></p>
+
+      <p class="text-gray-700 mt-6 mb-2">Dosagem de Insulina Recomendada:</p>
+      <div id="insulinaTotal" class="text-5xl font-extrabold text-blue-600"></div>
+
+      <!-- Detalhes do cálculo adicionados aqui -->
+      <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500">
+        <p id="glicemiaAlvoInfo"></p>
+        <p id="fatorCorrecaoInfo"></p>
+        <p id="proporcaoChoInfo"></p>
+      </div>
+      
+      <div class="flex justify-between gap-4 mt-8">
+        <button class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors" onclick="window.location.href='choEInsulina2.html'">Retornar</button>
+        <button class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors" onclick="gravar()">Gravar</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="./login/firebase.js"></script>
+
+  <script>
+    // Mapeamento de valores de refeição para exibição
+    const nomeDasRefeicoes = {
+      cafe_da_manha: "Café da Manhã",
+      lanche_da_manha: "Lanche da Manhã",
+      almoco: "Almoço",
+      sobremesa: "Sobremesa",
+      lanche_da_tarde: "Lanche da Tarde",
+      jantar: "Jantar",
+      ceia: "Ceia",
+      lanche_avulso: "Lanche Avulso"
+    };
+
+    // Marcar usuário logado e iniciar os cálculos
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const doc = await db.collection('usuarios').doc(user.uid).get();
+          if (doc.exists) {
+            const usuario = doc.data();
+            document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+            
+            // Chamar a função de cálculo principal
+            realizarCalculos(usuario);
+          } else {
+            // Se o usuário não tiver dados no Firestore, retornar
+            alert("Dados do usuário não encontrados. Por favor, complete seu perfil.");
+            window.location.href = "menu.html";
+          }
+        } catch (error) {
+          console.error("Erro ao carregar dados do usuário:", error);
+          alert("Ocorreu um erro ao carregar seus dados. Tente novamente.");
+          window.location.href = "./login/login.html";
+        }
+      } else {
+        window.location.href = "./login/login.html";
+      }
+    });
+
+    // Função principal para realizar todos os cálculos
+    function realizarCalculos(usuario) {
+      const glicemia = parseFloat(localStorage.getItem('glicemia'));
+      const tipoRefeicao = localStorage.getItem('refeicao');
+      const alimentosAdicionados = JSON.parse(localStorage.getItem('alimentosAdicionados'));
+
+      if (isNaN(glicemia) || !tipoRefeicao || !alimentosAdicionados || alimentosAdicionados.length === 0) {
+        alert("Dados para o cálculo não encontrados. Retornando para a página anterior.");
+        window.location.href = "choEInsulina2.html";
+        return;
+      }
+      
+      // Exibir glicemia e refeição
+      document.getElementById('glicemiaExibida').innerText = `${glicemia.toFixed(0)} mg/dL`;
+      document.getElementById('refeicaoExibida').innerText = nomeDasRefeicoes[tipoRefeicao] || tipoRefeicao;
+
+      // 1. Calcular o somatório de CHO
+      const totalCho = alimentosAdicionados.reduce((sum, alimento) => sum + parseFloat(alimento.cho), 0);
+      document.getElementById('totalCho').innerText = `${totalCho.toFixed(1)} g`;
+
+      // 2. Calcular Insulina de CHO
+      const proporcaoCho = usuario.proporcoes[tipoRefeicao];
+      let insulinaCho = 0;
+      if (proporcaoCho && proporcaoCho > 0) {
+        insulinaCho = totalCho / proporcaoCho;
+      }
+      document.getElementById('insulinaChoInfo').innerHTML = `Insulina para CHO: <strong>${insulinaCho.toFixed(1)} UI</strong>`;
+
+      // 3. Calcular Insulina de Correção usando a nova lógica
+      const glicemiaAlvo = parseFloat(usuario.glicemiaAlvo);
+      const doseMaxima = parseFloat(usuario.doseMaxima);
+      const fatorCorrecao = parseFloat(usuario.fatorCorrecao);
+      
+      // Chamar a função para calcular a insulina de correção
+      const insulinaCorrecao = calculaInsulinaDeCorrecao(glicemia, glicemiaAlvo, fatorCorrecao, doseMaxima);
+      document.getElementById('insulinaCorrecaoInfo').innerHTML = `Insulina de Correção: <strong>${insulinaCorrecao.toFixed(1)} UI</strong>`;
+
+      // 4. Calcular Insulina Total
+      const insulinaTotal = insulinaCho + insulinaCorrecao;
+      
+      // Exibir resultados
+      document.getElementById('insulinaTotal').innerText = `${insulinaTotal.toFixed(1)} UI`;
+
+      // Exibir as informações adicionais de forma discreta
+      document.getElementById('glicemiaAlvoInfo').innerHTML = `Glicemia Alvo: <strong>${glicemiaAlvo.toFixed(0)} mg/dL</strong>`;
+      document.getElementById('fatorCorrecaoInfo').innerHTML = `Fator de Correção: <strong>${fatorCorrecao.toFixed(0)} mg/dL/UI</strong>`;
+      document.getElementById('proporcaoChoInfo').innerHTML = `Proporção CHO (${nomeDasRefeicoes[tipoRefeicao]}): <strong>1 UI para ${proporcaoCho.toFixed(1)} g</strong>`;
+
+      // Armazenar os resultados no localStorage para o botão "Gravar"
+      localStorage.setItem('resultadoCalculo', JSON.stringify({
+        glicemia,
+        tipoRefeicao,
+        totalCho,
+        insulinaCho,
+        insulinaCorrecao,
+        insulinaTotal
+      }));
+    }
+
+    /**
+     * Função para calcular a insulina de correção com base na glicemia atual.
+     * @param {number} glicemiaAtual
+     * @param {number} glicemiaAlvo
+     * @param {number} fatorCorrecao
+     * @param {number} doseMaxima
+     * @returns {number} A quantidade de insulina de correção.
+     */
+    function calculaInsulinaDeCorrecao(glicemiaAtual, glicemiaAlvo, fatorCorrecao, doseMaxima) {
+        let insulinaDeCorrecao = 0; // Inicializa a insulina de correção
+        let intervalo = fatorCorrecao;
+
+        // Se a glicemia atual for maior que o limite máximo, retorna a dose máxima
+        if (glicemiaAtual > (glicemiaAlvo + (fatorCorrecao * doseMaxima))) {
+            return doseMaxima;
+        }
+
+        // Se a glicemia atual for menor ou igual ao alvo, não precisa de correção
+        if (glicemiaAtual <= glicemiaAlvo) {
+            return insulinaDeCorrecao;
+        } else {
+            // Se a glicemia atual for maior que a glicemia alvo, calcula a insulina de correção em etapas
+            for (let i = 1; i <= doseMaxima; i++) {
+                if (glicemiaAtual <= (glicemiaAlvo + intervalo)) {
+                    return i;
+                }
+                intervalo += fatorCorrecao;
+            }
+        }
+        return 0; // Retorna 0 se nenhuma condição for atendida
+    }
+
+    function gravar() {
+      alert("Funcionalidade de gravação será implementada em breve!");
+      // Aqui, você implementará a lógica de gravação no Firestore
+      // Exemplo: Salvar o objeto `resultadoCalculo` em uma nova coleção
+    }
+  </script>
+</body>
+</html>
