@@ -63,14 +63,14 @@
   <script>
     // Mapeamento de valores de refeição para exibição
     const nomeDasRefeicoes = {
-      cafe_da_manha: "Café da Manhã",
-      lanche_da_manha: "Lanche da Manhã",
+      cafe: "Café da Manhã",
+      lancheManha: "Lanche da Manhã",
       almoco: "Almoço",
       sobremesa: "Sobremesa",
-      lanche_da_tarde: "Lanche da Tarde",
+      lancheTarde: "Lanche da Tarde",
       jantar: "Jantar",
       ceia: "Ceia",
-      lanche_avulso: "Lanche Avulso"
+      lancheAvulso: "Lanche Avulso"
     };
 
     // Marcar usuário logado e iniciar os cálculos
@@ -92,7 +92,7 @@
         } catch (error) {
           console.error("Erro ao carregar dados do usuário:", error);
           alert("Ocorreu um erro ao carregar seus dados. Tente novamente.");
-          window.location.href = "./login/login.html";
+          window.location.href = "choEInsulina.html";
         }
       } else {
         window.location.href = "./login/login.html";
