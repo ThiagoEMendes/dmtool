@@ -80,8 +80,8 @@
     }
 
     .refeicao-btn {
-      background-color: #e5e7eb;
-      color: #1f2937;
+      background-color: #2563eb; /* Cor azul para "Selecionar Refeição" */
+      color: white;
       border: none;
       padding: 12px;
       font-size: 16px;
@@ -89,8 +89,12 @@
       text-align: center;
       cursor: pointer;
       transition: background-color 0.2s;
-      width: 100%; /* Para o botão "Selecionar Refeição" */
+      width: 100%;
       margin-top: 10px;
+    }
+    
+    .refeicao-btn:hover {
+        background-color: #1e40af;
     }
 
     .refeicao-btn.selected {
@@ -109,20 +113,25 @@
       flex: 1;
       padding: 14px;
       font-size: 16px;
-      background-color: #2563eb;
-      color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.2s;
     }
 
-    .footer-buttons button:hover {
+    /* Botão "Avançar" */
+    .footer-buttons button:not(.btn-secondary) {
+      background-color: #2563eb;
+      color: white;
+    }
+    
+    .footer-buttons button:not(.btn-secondary):hover {
       background-color: #1e40af;
     }
 
+    /* Botão "Retornar" */
     .btn-secondary {
-      background-color: #e5e7eb;
+      background-color: #e5e7eb; /* Cor cinza para "Retornar" */
       color: #1f2937;
     }
 
@@ -146,7 +155,7 @@
       position: fixed;
       top: 0;
       left: -100%; /* Começa fora da tela */
-      width: 80%; /* Ajuste conforme necessário */
+      width: 80%;
       max-width: 400px;
       height: 100%;
       background-color: #ffffff;
@@ -170,17 +179,17 @@
 
     .opcoes-refeicao {
       display: flex;
-      flex-direction: column; /* Botões um acima do outro */
-      gap: 10px; /* Espaço entre os botões */
-      flex-grow: 1; /* Permite que ocupe espaço disponível */
-      overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
-      padding-right: 5px; /* Para evitar corte do scrollbar */
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+      overflow-y: auto;
+      padding-right: 5px;
     }
 
     .opcoes-refeicao .refeicao-btn-panel {
-      flex: 0 0 auto; /* Não cresce nem encolhe, largura automática */
-      width: 100%; /* Ocupa 100% da largura do contêiner */
-      background-color: #e5e7eb; /* Garante que os botões são cinza por padrão */
+      flex: 0 0 auto;
+      width: 100%;
+      background-color: #e5e7eb;
       color: #1f2937;
       border: none;
       padding: 12px;
@@ -197,7 +206,7 @@
     }
 
     .panel-buttons-refeicao {
-      display: none; /* Oculta os botões Cancelar/Confirmar, pois o clique no item já confirma */
+      display: none;
       gap: 10px;
       margin-top: 20px;
     }
@@ -269,9 +278,8 @@
   <script src="./login/firebase.js"></script>
 
   <script>
-    let refeicaoFinalSelecionada = ""; // Armazena a seleção final
+    let refeicaoFinalSelecionada = "";
 
-    // Mapeamento de valores de refeição para exibição
     const nomeDasRefeicoes = {
       cafe: "Café da Manhã",
       lancheManha: "Lanche da Manhã",
@@ -283,7 +291,6 @@
       lancheAvulso: "Lanche Avulso"
     };
 
-    // Marcar usuário logado
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const doc = await db.collection('usuarios').doc(user.uid).get();
@@ -292,7 +299,6 @@
           document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
         }
 
-        // Carregar a refeição salva do localStorage ao carregar a página
         const savedRefeicao = localStorage.getItem('refeicao');
         if (savedRefeicao) {
           refeicaoFinalSelecionada = savedRefeicao;
@@ -304,20 +310,15 @@
       }
     });
 
-    // --- Lógica da Tela Deslizante de Refeição ---
     const botoesRefeicaoPanel = document.querySelectorAll(".refeicao-btn-panel");
     botoesRefeicaoPanel.forEach(btn => {
       btn.addEventListener("click", () => {
-        // Remove a seleção de todos os botões
         botoesRefeicaoPanel.forEach(b => b.classList.remove("selected"));
-        // Adiciona a seleção ao botão clicado
         btn.classList.add("selected");
         
-        // Define a refeição final selecionada e atualiza a exibição
         refeicaoFinalSelecionada = btn.dataset.refeicao;
         document.getElementById('refeicaoSelecionadaDisplay').innerText = nomeDasRefeicoes[refeicaoFinalSelecionada] || refeicaoFinalSelecionada;
         
-        // Fecha a tela deslizante imediatamente após a seleção
         fecharPainelSelecaoRefeicao(true);
       });
     });
@@ -326,7 +327,6 @@
       document.getElementById('overlay-refeicao').style.display = 'block';
       document.getElementById('slide-in-panel-refeicao').classList.add('active');
 
-      // Marca a opção selecionada anteriormente se houver
       botoesRefeicaoPanel.forEach(b => b.classList.remove("selected"));
       if (refeicaoFinalSelecionada) {
         const btnParaMarcar = document.querySelector(`.refeicao-btn-panel[data-refeicao="${refeicaoFinalSelecionada}"]`);
@@ -334,20 +334,14 @@
           btnParaMarcar.classList.add("selected");
         }
       }
-      // Não precisamos mais de refeicaoTemporariaSelecionada
     }
 
     function fecharPainelSelecaoRefeicao(confirmado) {
       document.getElementById('slide-in-panel-refeicao').classList.remove('active');
       document.getElementById('overlay-refeicao').style.display = 'none';
-      // Não precisamos mais de lógica de "cancelado" aqui, pois a seleção já é final
     }
 
-    // A função confirmarRefeicao() não é mais necessária, mas a mantive vazia caso algo a chame
-    // ou se você quiser reintroduzir a funcionalidade de confirmação.
     function confirmarRefeicao() {
-        // Este botão está oculto e esta função não será chamada com o novo fluxo.
-        // Se você reativar os botões Confirmar/Cancelar, esta lógica será necessária.
     }
 
     function prosseguir() {
@@ -358,11 +352,9 @@
         return;
       }
 
-      // Armazena dados temporariamente no localStorage
       localStorage.setItem('glicemia', glicemia);
       localStorage.setItem('refeicao', refeicaoFinalSelecionada);
 
-      // Redireciona para próxima etapa
       window.location.href = "choEInsulina2.html";
     }
   </script>
