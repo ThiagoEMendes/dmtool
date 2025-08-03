@@ -180,27 +180,34 @@
       border-radius: 8px;
       box-sizing: border-box;
     }
-
+    
     #resultadosBusca {
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      margin-top: 15px; /* Espaço entre o campo de busca e os resultados */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       max-height: 150px;
       overflow-y: auto;
-      margin-top: 10px;
     }
 
-    .resultado-item {
-      padding: 10px;
+    .resultado-item-btn {
+      padding: 10px 15px;
+      background-color: #4CAF50; /* Verde */
+      color: white;
+      border: none;
+      border-radius: 20px;
       cursor: pointer;
-      border-bottom: 1px solid #f1f5f9;
+      font-size: 14px;
+      transition: background-color 0.2s;
     }
 
-    .resultado-item:last-child {
-      border-bottom: none;
+    .resultado-item-btn:hover {
+      background-color: #45a049; /* Verde mais escuro no hover */
     }
 
-    .resultado-item:hover {
-      background-color: #f1f5f9;
+    .resultado-item-btn.selected {
+      background-color: #2563eb; /* Azul */
+      border: 1px solid #1e40af;
     }
 
     .toggle-container {
@@ -242,6 +249,17 @@
 
     #slide-in-panel .panel-buttons-top button {
       flex: 1;
+    }
+    
+    .info-frame {
+      background-color: #e5e7eb;
+      color: #1f2937;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     @media (max-width: 480px) {
@@ -295,6 +313,7 @@
 
     <label for="campoBuscaAlimento">Nome do Alimento:</label>
     <input type="text" id="campoBuscaAlimento" placeholder="Ex: Arroz, Pão Francês" />
+    <div class="info-frame">Selecione o alimento:</div>
     <div id="resultadosBusca">
       </div>
     <input type="hidden" id="alimentoSelecionadoId" />
@@ -318,7 +337,7 @@
       <button class="btn-secondary" onclick="fecharPainelAdicionarAlimento()">Cancelar</button>
       <button onclick="adicionarAlimentoNaTabela()">Adicionar</button>
     </div>
-  </div>
+  </main>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -327,12 +346,12 @@
   <script src="./login/firebase.js"></script>
 
   <script>
-    let alimentosAdicionados = []; // Array para armazenar os alimentos na tabela
-    let tipoQuantidadeAtual = 'gml'; // Padrão: g/ml
+    let alimentosAdicionados = [];
+    let tipoQuantidadeAtual = 'gml';
+    let selectedAlimentoButton = null;
 
-    // Mapeamento de valores de refeição para exibição
     const nomeDasRefeicoes = {
-      cafe: "Café da Manhã",
+      cafe: "Café da Manã",
       lancheManha: "Lanche da Manhã",
       almoco: "Almoço",
       sobremesa: "Sobremesa",
@@ -342,7 +361,6 @@
       lancheAvulso: "Lanche Avulso"
     };
 
-    // Marcar usuário logado e carregar dados da página anterior
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const doc = await db.collection('usuarios').doc(user.uid).get();
@@ -351,7 +369,6 @@
           document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
         }
 
-        // Carregar e exibir glicemia e tipo de refeição do localStorage
         const glicemia = localStorage.getItem('glicemia');
         const tipoRefeicao = localStorage.getItem('refeicao');
 
@@ -359,12 +376,10 @@
           document.getElementById('glicemiaExibida').innerText = `Glicemia: ${glicemia} mg/dL`;
           document.getElementById('refeicaoExibida').innerText = nomeDasRefeicoes[tipoRefeicao] || tipoRefeicao;
         } else {
-          // Se os dados não existirem, pode ser um erro ou acesso direto. Redireciona de volta.
           alert("Dados da refeição não encontrados. Retornando para a página anterior.");
-          window.location.href = "menu.html"; // Ajuste para o nome da sua página anterior
+          window.location.href = "menu.html";
         }
         
-        // Carrega alimentos salvos no localStorage (se houver)
         const savedFoods = localStorage.getItem('alimentosAdicionados');
         if (savedFoods) {
           alimentosAdicionados = JSON.parse(savedFoods);
@@ -375,11 +390,10 @@
       }
     });
 
-    // --- Funções do Painel Deslizante ---
     function abrirPainelAdicionarAlimento() {
       document.getElementById('overlay-alimento').style.display = 'block';
       document.getElementById('slide-in-panel').classList.add('active');
-      // Limpa campos ao abrir
+      
       document.getElementById('campoBuscaAlimento').value = '';
       document.getElementById('resultadosBusca').innerHTML = '';
       document.getElementById('campoQuantidade').value = '';
@@ -388,7 +402,11 @@
       document.getElementById('alimentoSelecionadoCHO').value = '';
       document.getElementById('alimentoSelecionadoQTDML').value = '';
       document.getElementById('alimentoSelecionadoMedidaCaseira').value = '';
-      // Reseta para g/ml
+
+      if (selectedAlimentoButton) {
+        document.getElementById('resultadosBusca').appendChild(selectedAlimentoButton);
+      }
+
       tipoQuantidadeAtual = 'gml';
       document.getElementById('btnGml').classList.add('active');
       document.getElementById('btnMcP').classList.remove('active');
@@ -400,7 +418,6 @@
       document.getElementById('overlay-alimento').style.display = 'none';
     }
 
-    // --- Lógica de Busca de Alimentos ---
     const campoBuscaAlimento = document.getElementById('campoBuscaAlimento');
     const resultadosBusca = document.getElementById('resultadosBusca');
     let timeoutBusca = null;
@@ -409,16 +426,16 @@
       clearTimeout(timeoutBusca);
       const termoBusca = campoBuscaAlimento.value.trim();
 
-      if (termoBusca.length > 2) { // Começa a buscar após 2 caracteres
+      if (termoBusca.length > 2) {
         timeoutBusca = setTimeout(async () => {
-          resultadosBusca.innerHTML = ''; // Limpa resultados anteriores
+          resultadosBusca.innerHTML = '';
+          selectedAlimentoButton = null;
           try {
             const alimentosRef = db.collection('alimentos');
-            // Busca por nomes que começam com o termo (case-insensitive)
             const querySnapshot = await alimentosRef
               .where('nome', '>=', termoBusca)
               .where('nome', '<=', termoBusca + '\uf8ff')
-              .limit(10) // Limita o número de resultados
+              .limit(10)
               .get();
 
             if (querySnapshot.empty) {
@@ -428,23 +445,28 @@
 
             querySnapshot.forEach(doc => {
               const alimento = doc.data();
-              const item = document.createElement('div');
-              item.classList.add('resultado-item');
+              const item = document.createElement('button');
+              item.classList.add('resultado-item-btn');
               item.innerText = alimento.nome;
               item.dataset.id = doc.id;
               item.dataset.nome = alimento.nome;
-              item.dataset.carboidrato = alimento.carboidrato; // CHO por medida caseira/porção
-              item.dataset.quantidadeMl = alimento.quantidade_g_ml || null; // QTD em g/ml para o CHO informado, pode ser null
-              item.dataset.medidaCaseira = alimento.medida_caseira || ''; // Descrição da medida caseira
+              item.dataset.carboidrato = alimento.carboidrato;
+              item.dataset.quantidadeMl = alimento.quantidade_g_ml || '';
+              item.dataset.medidaCaseira = alimento.medida_caseira || '';
 
               item.addEventListener('click', () => {
+                resultadosBusca.innerHTML = ''; // Limpa todos os resultados
+                item.classList.add('selected');
+                resultadosBusca.appendChild(item); // Adiciona apenas o item selecionado de volta
+
                 campoBuscaAlimento.value = alimento.nome;
                 document.getElementById('alimentoSelecionadoId').value = doc.id;
                 document.getElementById('alimentoSelecionadoNome').value = alimento.nome;
                 document.getElementById('alimentoSelecionadoCHO').value = alimento.carboidrato;
-                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_g_ml || ''; // Garante que é string vazia se nulo
+                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_g_ml || '';
                 document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimento.medida_caseira || '';
-                resultadosBusca.innerHTML = ''; // Limpa os resultados após seleção
+                
+                selectedAlimentoButton = item;
               });
               resultadosBusca.appendChild(item);
             });
@@ -452,13 +474,13 @@
             console.error("Erro ao buscar alimentos:", error);
             resultadosBusca.innerHTML = '<div style="padding: 10px; color: #ef4444;">Erro ao buscar alimentos.</div>';
           }
-        }, 300); // Atraso de 300ms para evitar muitas requisições
+        }, 300);
       } else {
-        resultadosBusca.innerHTML = ''; // Limpa se o termo for muito curto
+        resultadosBusca.innerHTML = '';
+        selectedAlimentoButton = null;
       }
     });
 
-    // --- Lógica do Toggle g/ml vs mc/p ---
     document.getElementById('btnGml').addEventListener('click', function() {
       tipoQuantidadeAtual = 'gml';
       this.classList.add('active');
@@ -476,12 +498,11 @@
       document.getElementById('campoQuantidade').placeholder = 'Ex: 1 ou 2';
     });
 
-    // --- Lógica para Adicionar Alimento na Tabela ---
     function adicionarAlimentoNaTabela() {
       const alimentoNome = document.getElementById('alimentoSelecionadoNome').value;
       const quantidadeInformada = parseFloat(document.getElementById('campoQuantidade').value);
-      const carboidratoPadrao = parseFloat(document.getElementById('alimentoSelecionadoCHO').value); // CHO para a "quantidade_ml/g" ou "medida_caseira"
-      const quantidadePadraoGml = parseFloat(document.getElementById('alimentoSelecionadoQTDML').value); // Valor em g/ml que o carboidratoPadrao se refere
+      const carboidratoPadrao = parseFloat(document.getElementById('alimentoSelecionadoCHO').value);
+      const quantidadePadraoGml = parseFloat(document.getElementById('alimentoSelecionadoQTDML').value);
 
       if (!alimentoNome || isNaN(quantidadeInformada) || quantidadeInformada <= 0 || isNaN(carboidratoPadrao) || carboidratoPadrao <= 0) {
         alert("Por favor, selecione um alimento e digite uma quantidade válida.");
@@ -492,15 +513,13 @@
       let quantidadeExibida = "";
 
       if (tipoQuantidadeAtual === 'gml') {
-        // Cálculo para g/ml: (valor informado) * alimentos.carboidrato / alimentos.quantidade_mg_l
         if (isNaN(quantidadePadraoGml) || quantidadePadraoGml <= 0) {
             alert("Erro: Informação de 'quantidade_ml' ou 'quantidade_g' do alimento está ausente ou inválida no banco de dados para cálculo em g/ml.");
             return;
         }
         choCalculado = (quantidadeInformada * carboidratoPadrao) / quantidadePadraoGml;
         quantidadeExibida = `${quantidadeInformada} g/ml`;
-      } else { // mc/p (medida caseira/porção)
-        // Cálculo para medida caseira: (valor informado) * alimentos.carboidrato
+      } else {
         choCalculado = quantidadeInformada * carboidratoPadrao;
         const medidaCaseiraTexto = document.getElementById('alimentoSelecionadoMedidaCaseira').value || 'unidade';
         quantidadeExibida = `${quantidadeInformada}x ${medidaCaseiraTexto}`;
@@ -508,8 +527,8 @@
 
       const novoAlimento = {
         nome: alimentoNome,
-        quantidadeExibida: quantidadeExibida, // Campo para exibição formatada
-        cho: choCalculado.toFixed(1) // Arredonda para 1 casa decimal
+        quantidadeExibida: quantidadeExibida,
+        cho: choCalculado.toFixed(1)
       };
 
       alimentosAdicionados.push(novoAlimento);
@@ -518,15 +537,14 @@
       fecharPainelAdicionarAlimento();
     }
 
-    // --- Renderizar Tabela de Alimentos ---
     function renderizarTabelaAlimentos() {
       const tabelaAlimentosBody = document.getElementById('tabelaAlimentos');
-      tabelaAlimentosBody.innerHTML = ''; // Limpa a tabela antes de renderizar
+      tabelaAlimentosBody.innerHTML = '';
 
       alimentosAdicionados.forEach((alimento, index) => {
         const row = tabelaAlimentosBody.insertRow();
         row.insertCell(0).innerText = alimento.nome;
-        row.insertCell(1).innerText = alimento.quantidadeExibida; // Usa o campo formatado
+        row.insertCell(1).innerText = alimento.quantidadeExibida;
         row.insertCell(2).innerText = alimento.cho;
 
         const cellRemover = row.insertCell(3);
@@ -538,19 +556,15 @@
       });
     }
 
-    // --- Remover Alimento da Tabela ---
     function removerAlimento(index) {
       alimentosAdicionados.splice(index, 1);
       renderizarTabelaAlimentos();
       salvarAlimentosNoLocalStorage();
     }
 
-    // --- Salvar e Carregar do LocalStorage ---
     function salvarAlimentosNoLocalStorage() {
       localStorage.setItem('alimentosAdicionados', JSON.stringify(alimentosAdicionados));
     }
-
-    // Ao carregar a página, os alimentos já são carregados via onAuthStateChanged
   </script>
 </body>
 </html>
