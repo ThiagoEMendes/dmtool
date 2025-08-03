@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMTool - Controle e Cálculo de CHO e Insulina</title>
+    <style>
+        /* Estilos básicos e reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Seção de Destaque (Hero) */
+        #hero {
+            background-color: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+        }
+
+        /* Seção de Recursos */
+        #features {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        #features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #111827;
+            position: relative;
+            display: inline-block;
+        }
+
+        #features h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #2563eb;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            background-color: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Seção de Depoimento */
+        #testimonial {
+            background-color: #e5e7eb;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #testimonial blockquote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #1f2937;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        #testimonial p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4b5563;
+        }
+
+        /* Seção Final (Call to Action) */
+        #final-cta {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        
+        #final-cta h2 {
+            font-size: 2.5rem;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            #features h2, #final-cta h2 {
+                font-size: 2rem;
+            }
+            
+            #testimonial blockquote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="hero">
+        <div class="container">
+            <h1>DMTool: O controle do seu diabetes na palma da sua mão.</h1>
+            <p>Cansado de cálculos manuais e anotações perdidas? O DMTool é a solução definitiva para simplificar sua rotina de controle do diabetes tipo 1, oferecendo agilidade, precisão e o apoio que você precisa.</p>
+            <a href="menu.html" class="cta-button">Começar a Usar Agora</a>
+        </div>
+    </header>
+
+    <section id="features">
+        <div class="container">
+            <h2>O seu aliado diário no tratamento do DM1</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Cálculo de CHO e Insulina</h3>
+                    <p>Diga adeus às planilhas e calculadoras. Basta registrar os alimentos e o DMTool faz o cálculo de carboidratos e a sugestão de insulina de forma instantânea e precisa.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Auxílio na Dieta</h3>
+                    <p>Conte com uma vasta base de dados de alimentos, incluindo informações nutricionais detalhadas para ajudar você a fazer escolhas mais conscientes e alinhadas com seu plano alimentar.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Registro Inteligente</h3>
+                    <p>Mantenha um histórico completo de suas informações de glicemia, refeições e doses de insulina. Visualize seu progresso de forma clara e organizada.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Relatórios e Análises</h3>
+                    <p>Transforme seus dados em relatórios visuais e intuitivos. Compartilhe-os com sua equipe de saúde para otimizar o seu tratamento e tomar decisões mais embasadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonial">
+        <div class="container">
+            <blockquote>"O DMTool mudou a minha rotina. Os cálculos são rápidos, os registros são fáceis e finalmente consigo ter uma visão clara do meu tratamento. Recomendo para todos!"</blockquote>
+            <p>— Maria, Usuária do DMTool</p>
+        </div>
+    </section>
+
+    <section id="final-cta">
+        <div class="container">
+            <h2>Pronto para simplificar a sua vida?</h2>
+            <p>Experimente o DMTool hoje mesmo e descubra como o controle do diabetes pode ser mais fácil, rápido e eficiente.</p>
+            <br>
+            <a href="menu.html" class="cta-button">Começar a Usar Agora</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DMTool. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
