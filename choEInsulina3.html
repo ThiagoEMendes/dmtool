@@ -14,13 +14,11 @@
   </style>
 </head>
 <body class="flex flex-col h-screen">
-  <!-- Cabeçalho -->
   <header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
     <h1 class="text-xl font-bold">DMTool</h1>
     <div id="nomeUsuario" class="text-sm opacity-80">Usuário</div>
   </header>
 
-  <!-- Conteúdo Principal -->
   <main class="flex-1 flex flex-col justify-center items-center p-4">
     <div class="bg-white p-8 md:p-10 rounded-xl shadow-lg max-w-lg w-full text-center">
       <h2 class="text-2xl font-bold text-gray-900 mb-6">Cálculo de Insulina</h2>
@@ -39,7 +37,6 @@
       <p class="text-gray-700 mt-6 mb-2">Dosagem de Insulina Recomendada:</p>
       <div id="insulinaTotal" class="text-5xl font-extrabold text-blue-600"></div>
 
-      <!-- Detalhes do cálculo adicionados aqui -->
       <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500">
         <p id="glicemiaAlvoInfo"></p>
         <p id="fatorCorrecaoInfo"></p>
@@ -53,7 +50,6 @@
     </div>
   </main>
 
-  <!-- Scripts do Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -136,11 +132,21 @@
       const insulinaCorrecao = calculaInsulinaDeCorrecao(glicemia, glicemiaAlvo, fatorCorrecao, doseMaxima);
       document.getElementById('insulinaCorrecaoInfo').innerHTML = `Insulina de Correção: <strong>${insulinaCorrecao.toFixed(1)} UI</strong>`;
 
-      // 4. Calcular Insulina Total
-      const insulinaTotal = insulinaCho + insulinaCorrecao;
+      // 4. Calcular Insulina Total e aplicar o arredondamento
+      const insulinaTotalBruta = insulinaCho + insulinaCorrecao;
+      const dosagemCaneta = parseFloat(usuario.dosagemDaCaneta);
+
+      let insulinaTotalFinal;
+      if (dosagemCaneta === 0.5) {
+        // Arredonda para o 0.5 mais próximo
+        insulinaTotalFinal = Math.round(insulinaTotalBruta * 2) / 2;
+      } else {
+        // Arredonda para o número inteiro mais próximo (padrão 1)
+        insulinaTotalFinal = Math.round(insulinaTotalBruta);
+      }
       
       // Exibir resultados
-      document.getElementById('insulinaTotal').innerText = `${insulinaTotal.toFixed(1)} UI`;
+      document.getElementById('insulinaTotal').innerText = `${insulinaTotalFinal.toFixed(1)} UI`;
 
       // Exibir as informações adicionais de forma discreta
       document.getElementById('glicemiaAlvoInfo').innerHTML = `Glicemia Alvo: <strong>${glicemiaAlvo.toFixed(0)} mg/dL</strong>`;
@@ -154,7 +160,7 @@
         totalCho,
         insulinaCho,
         insulinaCorrecao,
-        insulinaTotal
+        insulinaTotal: insulinaTotalFinal
       }));
     }
 
