@@ -5,12 +5,12 @@
   <title>Meus Dados - DMTool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Estilos gerais baseados em menu.html */
+    /* Estilos gerais */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: auto;
+      overflow-x: hidden; /* Evita rolagem horizontal em telas pequenas */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9fafb;
       display: flex;
@@ -35,6 +35,7 @@
     #nomeUsuario {
       font-size: 14px;
       opacity: 0.8;
+      text-align: right;
     }
 
     main {
@@ -43,10 +44,10 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 20px;
+      padding: 10px; /* Ajuste para telas pequenas */
     }
 
-    /* Estilos do formulário e componentes de meusDados.html */
+    /* Estilos do formulário e componentes */
     .container {
       background: white;
       padding: 20px;
@@ -55,6 +56,7 @@
       margin: 20px auto;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
     }
 
     h2 {
@@ -186,6 +188,36 @@
     .btn-cancelar:hover {
       background-color: #374151;
     }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 600px) {
+      header {
+        padding: 12px;
+        flex-direction: column;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 20px;
+      }
+      #nomeUsuario {
+        margin-top: 5px;
+        font-size: 12px;
+        text-align: center;
+      }
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      label, input, select, button {
+        font-size: 15px;
+      }
+      button {
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -303,7 +335,7 @@
     const emailInput = document.getElementById('email');
     const isDMCheckbox = document.getElementById('isDM');
     const dmCamposDiv = document.getElementById('dmCampos');
-    const dosagemDaCanetaInput = document.getElementById('dosagemDaCaneta'); // Novo campo
+    const dosagemDaCanetaInput = document.getElementById('dosagemDaCaneta');
     const glicemiaAlvoInput = document.getElementById('glicemiaAlvo');
     const fatorCorrecaoInput = document.getElementById('fatorCorrecao');
     const doseMaximaInput = document.getElementById('doseMaxima');
@@ -316,8 +348,8 @@
     const refLancheTardeInput = document.getElementById('refLancheTarde');
     const refJantarInput = document.getElementById('refJantar');
     const refCeiaInput = document.getElementById('refCeia');
-    const refLancheAvulsoInput = document.getElementById('refLancheAvulso'); // Novo campo
-    const refSobremesaInput = document.getElementById('refSobremesa'); // Novo campo
+    const refLancheAvulsoInput = document.getElementById('refLancheAvulso');
+    const refSobremesaInput = document.getElementById('refSobremesa');
 
     // Listener para o estado de autenticação do Firebase
     auth.onAuthStateChanged(async (user) => {
@@ -359,6 +391,7 @@
       
       // Carrega e exibe os dados de DM
       isDMCheckbox.checked = userData.isDM || false;
+      // Atualiza a visibilidade dos campos de DM com base no estado do checkbox
       dmCamposDiv.classList.toggle('hidden', !isDMCheckbox.checked);
 
       if (isDMCheckbox.checked) {
@@ -370,6 +403,7 @@
 
         // Carrega e exibe as proporções de refeição
         proporcaoPorRefeicaoCheckbox.checked = userData.proporcaoPorRefeicao || false;
+        // Atualiza a visibilidade dos campos de refeição com base no estado do checkbox
         refeicoesCamposDiv.classList.toggle('hidden', !proporcaoPorRefeicaoCheckbox.checked);
 
         if (proporcaoPorRefeicaoCheckbox.checked && userData.proporcoes) {
@@ -387,8 +421,10 @@
 
     // Listener para o checkbox "É paciente DM?"
     isDMCheckbox.addEventListener('change', () => {
+      // Habilita/desabilita os campos de DM
       dmCamposDiv.classList.toggle('hidden', !isDMCheckbox.checked);
       if (!isDMCheckbox.checked) {
+        // Limpa os campos quando a opção é desmarcada
         dosagemDaCanetaInput.value = '';
         glicemiaAlvoInput.value = '';
         fatorCorrecaoInput.value = '';
@@ -401,8 +437,10 @@
 
     // Listener para o checkbox "Usar proporções diferentes por refeição"
     proporcaoPorRefeicaoCheckbox.addEventListener('change', () => {
+      // Habilita/desabilita os campos de refeição
       refeicoesCamposDiv.classList.toggle('hidden', !proporcaoPorRefeicaoCheckbox.checked);
       if (!proporcaoPorRefeicaoCheckbox.checked) {
+        // Limpa os campos quando a opção é desmarcada
         refCafeInput.value = '';
         refLancheManhaInput.value = '';
         refAlmocoInput.value = '';
