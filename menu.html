@@ -5,11 +5,12 @@
   <title>Menu - DMTool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* Estilos baseados no código fornecido, com pequenas otimizações de responsividade */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9fafb;
       display: flex;
@@ -23,6 +24,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
@@ -33,6 +35,7 @@
     #nomeUsuario {
       font-size: 14px;
       opacity: 0.8;
+      text-align: right;
     }
 
     main {
@@ -49,7 +52,7 @@
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 20px;
       width: 100%;
-      max-width: 400px;
+      max-width: 600px; /* Aumentado para melhor visualização em desktops e tablets */
     }
 
     .btn-tile {
@@ -75,6 +78,29 @@
       font-size: 32px;
       margin-bottom: 8px;
     }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 12px;
+        text-align: center;
+      }
+      #nomeUsuario {
+        margin-top: 5px;
+      }
+      .grid {
+        max-width: 100%;
+        gap: 15px;
+      }
+      .btn-tile {
+        padding: 20px 10px;
+        font-size: 14px;
+      }
+      .btn-tile span {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -85,18 +111,32 @@
 
   <main>
     <div class="grid">
+      <!-- Botão "Corrigir" com ícones de seringa e cookie -->
       <div class="btn-tile" onclick="irPara('ajustes.html')">
-        <span>⚙️</span>
-        Ajustes
+        <span>💉🍪</span>
+        Corrigir
       </div>
+      <!-- Botão "Meus Dados" -->
       <div class="btn-tile" onclick="irPara('meusDados.html')">
         <span>👤</span>
         Meus Dados
       </div>
+      <!-- Botão "Calcular Refeição" -->
       <div class="btn-tile" onclick="irPara('choEInsulina.html')">
         <span>🍽️</span>
         Calcular Refeição
       </div>
+      <!-- Novo botão para "Alimentos" -->
+      <div class="btn-tile" onclick="irPara('alimentos.html')">
+        <span>🍎</span>
+        Alimentos
+      </div>
+      <!-- Novo botão para "Relatórios" -->
+      <div class="btn-tile" onclick="irPara('relatorios.html')">
+        <span>📊</span>
+        Relatórios
+      </div>
+      <!-- Botão "Logoff" -->
       <div class="btn-tile" onclick="logout()">
         <span>🚪</span>
         Logoff
