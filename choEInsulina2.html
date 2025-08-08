@@ -261,6 +261,40 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
+    
+    /* Novo estilo para a lista de alimentos buscados */
+    .lista-alimentos-panel {
+      width: 100%;
+      max-height: 200px; /* Altura máxima para a lista de resultados */
+      overflow-y: auto; /* Adiciona rolagem vertical se a lista for longa */
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-top: 10px;
+      background-color: #ffffff;
+    }
+    
+    .alimento-item-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .alimento-item-panel:last-child {
+      border-bottom: none;
+    }
+    
+    .alimento-item-panel:hover {
+      background-color: #f3f4f6;
+    }
+    
+    .alimento-item-panel.selected {
+      background-color: #d1fae5;
+      border-color: #10b981;
+    }
 
     @media (max-width: 480px) {
       main {
@@ -313,9 +347,9 @@
 
     <label for="campoBuscaAlimento">Nome do Alimento:</label>
     <input type="text" id="campoBuscaAlimento" placeholder="Ex: Arroz, Pão Francês" />
-    <div class="info-frame">Selecione o alimento:</div>
-    <div id="resultadosBusca">
-      </div>
+    <div class="lista-alimentos-panel" id="resultadosBusca">
+        </div>
+
     <input type="hidden" id="alimentoSelecionadoId" />
     <input type="hidden" id="alimentoSelecionadoNome" />
     <input type="hidden" id="alimentoSelecionadoCHO" />
@@ -338,6 +372,7 @@
       <button onclick="adicionarAlimentoNaTabela()">Adicionar</button>
     </div>
   </main>
+  
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -348,7 +383,9 @@
   <script>
     let alimentosAdicionados = [];
     let tipoQuantidadeAtual = 'gml';
-    let selectedAlimentoButton = null;
+    let allAlimentos = [];
+    let filteredAlimentos = [];
+    let selectedFoodId = null;
 
     const nomeDasRefeicoes = {
       cafe: "Café da Manã",
@@ -385,6 +422,14 @@
           alimentosAdicionados = JSON.parse(savedFoods);
           renderizarTabelaAlimentos();
         }
+        
+        // Carrega todos os alimentos uma vez e fica "escutando" mudanças
+        db.collection('alimentos').onSnapshot(snapshot => {
+          allAlimentos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          // Filtra a lista com base no que já está no campo de busca ao carregar
+          filtrarAlimentos(campoBuscaAlimento.value);
+        });
+
       } else {
         window.location.href = "./login/login.html";
       }
@@ -394,19 +439,13 @@
       document.getElementById('overlay-alimento').style.display = 'block';
       document.getElementById('slide-in-panel').classList.add('active');
       
+      // Reseta os campos
       document.getElementById('campoBuscaAlimento').value = '';
       document.getElementById('resultadosBusca').innerHTML = '';
       document.getElementById('campoQuantidade').value = '';
-      document.getElementById('alimentoSelecionadoId').value = '';
-      document.getElementById('alimentoSelecionadoNome').value = '';
-      document.getElementById('alimentoSelecionadoCHO').value = '';
-      document.getElementById('alimentoSelecionadoQTDML').value = '';
-      document.getElementById('alimentoSelecionadoMedidaCaseira').value = '';
-
-      if (selectedAlimentoButton) {
-        document.getElementById('resultadosBusca').appendChild(selectedAlimentoButton);
-      }
-
+      selectedFoodId = null;
+      
+      // Reseta a exibição do tipo de quantidade
       tipoQuantidadeAtual = 'gml';
       document.getElementById('btnGml').classList.add('active');
       document.getElementById('btnMcP').classList.remove('active');
@@ -416,71 +455,77 @@
     function fecharPainelAdicionarAlimento() {
       document.getElementById('slide-in-panel').classList.remove('active');
       document.getElementById('overlay-alimento').style.display = 'none';
+      selectedFoodId = null;
+      renderizarTabelaAlimentosBusca(); // Limpa a lista na próxima abertura
     }
-
+    
+    // Funções de busca e renderização dos alimentos no painel
     const campoBuscaAlimento = document.getElementById('campoBuscaAlimento');
-    const resultadosBusca = document.getElementById('resultadosBusca');
+    const listaAlimentosBusca = document.getElementById('resultadosBusca');
     let timeoutBusca = null;
 
     campoBuscaAlimento.addEventListener('input', () => {
       clearTimeout(timeoutBusca);
       const termoBusca = campoBuscaAlimento.value.trim();
-
+      
       if (termoBusca.length > 2) {
-        timeoutBusca = setTimeout(async () => {
-          resultadosBusca.innerHTML = '';
-          selectedAlimentoButton = null;
-          try {
-            const alimentosRef = db.collection('alimentos');
-            const querySnapshot = await alimentosRef
-              .where('nome', '>=', termoBusca)
-              .where('nome', '<=', termoBusca + '\uf8ff')
-              .limit(10)
-              .get();
-
-            if (querySnapshot.empty) {
-              resultadosBusca.innerHTML = '<div style="padding: 10px; color: #6b7280;">Nenhum alimento encontrado.</div>';
-              return;
-            }
-
-            querySnapshot.forEach(doc => {
-              const alimento = doc.data();
-              const item = document.createElement('button');
-              item.classList.add('resultado-item-btn');
-              item.innerText = alimento.nome;
-              item.dataset.id = doc.id;
-              item.dataset.nome = alimento.nome;
-              item.dataset.carboidrato = alimento.carboidrato;
-              item.dataset.quantidadeMl = alimento.quantidade_g_ml || '';
-              item.dataset.medidaCaseira = alimento.medida_caseira || '';
-
-              item.addEventListener('click', () => {
-                resultadosBusca.innerHTML = ''; // Limpa todos os resultados
-                item.classList.add('selected');
-                resultadosBusca.appendChild(item); // Adiciona apenas o item selecionado de volta
-
-                campoBuscaAlimento.value = alimento.nome;
-                document.getElementById('alimentoSelecionadoId').value = doc.id;
-                document.getElementById('alimentoSelecionadoNome').value = alimento.nome;
-                document.getElementById('alimentoSelecionadoCHO').value = alimento.carboidrato;
-                document.getElementById('alimentoSelecionadoQTDML').value = alimento.quantidade_g_ml || '';
-                document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimento.medida_caseira || '';
-                
-                selectedAlimentoButton = item;
-              });
-              resultadosBusca.appendChild(item);
-            });
-          } catch (error) {
-            console.error("Erro ao buscar alimentos:", error);
-            resultadosBusca.innerHTML = '<div style="padding: 10px; color: #ef4444;">Erro ao buscar alimentos.</div>';
-          }
+        timeoutBusca = setTimeout(() => {
+          filtrarAlimentos(termoBusca);
         }, 300);
       } else {
-        resultadosBusca.innerHTML = '';
-        selectedAlimentoButton = null;
+        // Limpa a lista se o termo for muito curto
+        filteredAlimentos = [];
+        renderizarTabelaAlimentosBusca();
       }
     });
 
+    function filtrarAlimentos(query) {
+      const termo = query.toLowerCase();
+      filteredAlimentos = allAlimentos.filter(alimento => 
+        (alimento.nome || '').toLowerCase().includes(termo)
+      );
+      renderizarTabelaAlimentosBusca();
+    }
+    
+    function renderizarTabelaAlimentosBusca() {
+        listaAlimentosBusca.innerHTML = '';
+        if (filteredAlimentos.length === 0) {
+            listaAlimentosBusca.innerHTML = '<p style="padding: 10px; text-align: center; color: #6b7280;">Nenhum alimento encontrado.</p>';
+            return;
+        }
+
+        filteredAlimentos.forEach(alimento => {
+            const div = document.createElement('div');
+            div.classList.add('alimento-item-panel');
+            if (alimento.id === selectedFoodId) {
+                div.classList.add('selected');
+            }
+            div.setAttribute('data-id', alimento.id);
+            div.innerText = alimento.nome;
+
+            div.addEventListener('click', () => {
+                handleAlimentoClick(alimento.id);
+            });
+            
+            listaAlimentosBusca.appendChild(div);
+        });
+    }
+
+    function handleAlimentoClick(id) {
+        selectedFoodId = id;
+        renderizarTabelaAlimentosBusca();
+        
+        const alimentoSelecionado = allAlimentos.find(a => a.id === selectedFoodId);
+        if (alimentoSelecionado) {
+          document.getElementById('alimentoSelecionadoId').value = alimentoSelecionado.id;
+          document.getElementById('alimentoSelecionadoNome').value = alimentoSelecionado.nome;
+          document.getElementById('alimentoSelecionadoCHO').value = alimentoSelecionado.carboidrato;
+          document.getElementById('alimentoSelecionadoQTDML').value = alimentoSelecionado.quantidade_g_ml || '';
+          document.getElementById('alimentoSelecionadoMedidaCaseira').value = alimentoSelecionado.medida_caseira || '';
+        }
+    }
+    
+    // Lógica para o botão de quantidade
     document.getElementById('btnGml').addEventListener('click', function() {
       tipoQuantidadeAtual = 'gml';
       this.classList.add('active');
@@ -493,8 +538,9 @@
       tipoQuantidadeAtual = 'mc_p';
       this.classList.add('active');
       document.getElementById('btnGml').classList.remove('active');
-      const medidaCaseiraTexto = document.getElementById('alimentoSelecionadoMedidaCaseira').value;
-      document.getElementById('unidadeQuantidade').innerText = medidaCaseiraTexto ? `(${medidaCaseiraTexto})` : 'mc/p';
+      const alimentoSelecionado = allAlimentos.find(a => a.id === selectedFoodId);
+      const medidaCaseiraTexto = alimentoSelecionado ? alimentoSelecionado.medida_caseira || 'unidade' : 'mc/p';
+      document.getElementById('unidadeQuantidade').innerText = `(${medidaCaseiraTexto})`;
       document.getElementById('campoQuantidade').placeholder = 'Ex: 1 ou 2';
     });
 
@@ -503,12 +549,12 @@
       const quantidadeInformada = parseFloat(document.getElementById('campoQuantidade').value);
       const carboidratoPadrao = parseFloat(document.getElementById('alimentoSelecionadoCHO').value);
       const quantidadePadraoGml = parseFloat(document.getElementById('alimentoSelecionadoQTDML').value);
-
+      
       if (!alimentoNome || isNaN(quantidadeInformada) || quantidadeInformada <= 0 || isNaN(carboidratoPadrao) || carboidratoPadrao <= 0) {
         alert("Por favor, selecione um alimento e digite uma quantidade válida.");
         return;
       }
-
+      
       let choCalculado = 0;
       let quantidadeExibida = "";
 
