@@ -13,7 +13,7 @@
       background-color: #f9fafb;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden; /* Evita rolagem horizontal devido à tela deslizante */
+      overflow-x: hidden;
     }
 
     header {
@@ -23,16 +23,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
     header h1 {
       margin: 0;
       font-size: 24px;
+      cursor: pointer;
     }
 
-    #nomeUsuario {
-      font-size: 14px;
-      opacity: 0.8;
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    
+    #header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
 
     main {
@@ -63,8 +76,17 @@
       border: 1px solid #cbd5e0;
       border-radius: 8px;
       box-sizing: border-box;
+      text-align: left; /* Alinhado à esquerda */
     }
 
+    #glicemia-info {
+        font-size: 12px;
+        color: #6b7280;
+        text-align: left; /* Alinhado à esquerda */
+        margin-top: 5px;
+        min-height: 15px;
+    }
+    
     .refeicoes-selecionada-display {
       font-size: 16px;
       font-weight: 500;
@@ -74,13 +96,13 @@
       border: 1px solid #cbd5e0;
       border-radius: 8px;
       background-color: #f3f4f6;
-      min-height: 44px; /* Garante altura mínima para alinhamento */
+      min-height: 44px;
       display: flex;
       align-items: center;
     }
 
     .refeicao-btn {
-      background-color: #2563eb; /* Cor azul para "Selecionar Refeição" */
+      background-color: #2563eb;
       color: white;
       border: none;
       padding: 12px;
@@ -119,7 +141,6 @@
       transition: background-color 0.2s;
     }
 
-    /* Botão "Avançar" */
     .footer-buttons button:not(.btn-secondary) {
       background-color: #2563eb;
       color: white;
@@ -129,9 +150,8 @@
       background-color: #1e40af;
     }
 
-    /* Botão "Retornar" */
     .btn-secondary {
-      background-color: #e5e7eb; /* Cor cinza para "Retornar" */
+      background-color: #e5e7eb;
       color: #1f2937;
     }
 
@@ -139,7 +159,6 @@
       background-color: #d1d5db;
     }
 
-    /* Estilos para a tela deslizante (slide-in-panel) */
     #overlay-refeicao {
       position: fixed;
       top: 0;
@@ -148,13 +167,13 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 1000;
-      display: none; /* Inicia oculto */
+      display: none;
     }
 
     #slide-in-panel-refeicao {
       position: fixed;
       top: 0;
-      left: -100%; /* Começa fora da tela */
+      left: -100%;
       width: 80%;
       max-width: 400px;
       height: 100%;
@@ -215,6 +234,49 @@
       flex: 1;
     }
 
+    /* Estilos do Menu Lateral */
+    aside {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      padding-top: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    aside.open {
+      left: 0;
+    }
+
+    #nomeUsuarioMenu {
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      margin-bottom: 10px;
+    }
+
+    aside .menu-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.2s;
+    }
+
+    aside .menu-item:hover {
+      background-color: #555;
+    }
+
     @media (max-width: 480px) {
       main {
         padding: 16px;
@@ -228,20 +290,29 @@
     }
   </style>
 </head>
-<body>
+<body onclick="fecharMenu(event)">
   <header>
-    <h1>DMTool</h1>
-    <div id="nomeUsuario">Usuário</div>
+    <div id="header-content">
+      <button id="menu-toggle" onclick="toggleMenu(event)">☰</button>
+      <h1 onclick="toggleMenu(event)">DMTool</h1>
+    </div>
   </header>
+
+  <aside id="menu-lateral">
+    <div id="nomeUsuarioMenu"></div>
+    <div class="menu-item" onclick="irPara('meusDados.html')">Meus Dados</div>
+    <div class="menu-item" onclick="logout()">Sair</div>
+  </aside>
 
   <main>
     <h2>Informações da Refeição</h2>
 
     <label for="glicemia">Glicemia Atual (mg/dL):</label>
     <input type="number" id="glicemia" inputmode="numeric" pattern="[0-9]*" placeholder="Ex: 110" />
+    <div id="glicemia-info"></div>
 
     <label>Tipo de Refeição:</label>
-    <button class="refeicao-btn" id="selecionarRefeicaoBtn" onclick="abrirPainelSelecaoRefeicao()">Selecionar Refeição</button>
+    <button class="refeicao-btn" id="selecionarRefeicaoBtn" onclick="abrirPainelSelecaoRefeicao()">Selecionar Refeicao</button>
     <div class="refeicoes-selecionada-display" id="refeicaoSelecionadaDisplay">Nenhuma refeição selecionada</div>
 
     <div class="footer-buttons">
@@ -291,12 +362,60 @@
       lancheAvulso: "Lanche Avulso"
     };
 
+    async function fetchGlicemia(nightscoutUrl) {
+      const glicemiaInput = document.getElementById('glicemia');
+      const glicemiaInfo = document.getElementById('glicemia-info');
+      
+      if (!nightscoutUrl) {
+        glicemiaInfo.innerText = "URL do Nightscout não configurada.";
+        glicemiaInput.focus();
+        return;
+      }
+      
+      glicemiaInfo.innerText = "Buscando glicemia...";
+      glicemiaInput.placeholder = "";
+
+      const apiEndpoint = `${nightscoutUrl}/api/v1/entries.json?count=1`;
+
+      try {
+        const response = await fetch(apiEndpoint);
+        if (!response.ok) {
+          throw new Error(`Erro na API: ${response.statusText}`);
+        }
+        const data = await response.json();
+        
+        if (data && data.length > 0) {
+          const glicemia = data[0].sgv;
+          const dataLeitura = new Date(data[0].dateString);
+          
+          glicemiaInput.value = glicemia;
+          glicemiaInfo.innerText = `Nightscout (${dataLeitura.toLocaleTimeString()})`;
+        } else {
+          glicemiaInput.value = "";
+          glicemiaInput.placeholder = "Glicemia não encontrada.";
+          glicemiaInfo.innerText = "";
+          glicemiaInput.focus();
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados da glicemia:", error);
+        glicemiaInput.value = "";
+        glicemiaInput.placeholder = "Erro ao buscar. Digite manualmente.";
+        glicemiaInfo.innerText = "";
+        glicemiaInput.focus();
+      }
+    }
+
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const doc = await db.collection('usuarios').doc(user.uid).get();
         if (doc.exists) {
           const usuario = doc.data();
-          document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+          document.getElementById('nomeUsuarioMenu').innerText = usuario.nome || "Usuário";
+          
+          const nightscoutUrl = usuario.nightscout;
+          fetchGlicemia(nightscoutUrl);
+        } else {
+          document.getElementById('glicemia').focus();
         }
 
         const savedRefeicao = localStorage.getItem('refeicao');
@@ -304,7 +423,7 @@
           refeicaoFinalSelecionada = savedRefeicao;
           document.getElementById('refeicaoSelecionadaDisplay').innerText = nomeDasRefeicoes[refeicaoFinalSelecionada] || savedRefeicao;
         }
-
+        
       } else {
         window.location.href = "./login/login.html";
       }
@@ -341,9 +460,6 @@
       document.getElementById('overlay-refeicao').style.display = 'none';
     }
 
-    function confirmarRefeicao() {
-    }
-
     function prosseguir() {
       const glicemia = document.getElementById('glicemia').value;
 
@@ -356,6 +472,34 @@
       localStorage.setItem('refeicao', refeicaoFinalSelecionada);
 
       window.location.href = "choEInsulina2.html";
+    }
+
+    function irPara(pagina) {
+      window.location.href = pagina;
+    }
+
+    function logout() {
+      const confirmar = confirm("Tem certeza de que deseja sair?");
+      if (confirmar) {
+        auth.signOut().then(() => {
+          window.location.href = "./login/login.html";
+        });
+      }
+    }
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('menu-lateral');
+      menu.classList.toggle('open');
+    }
+
+    function fecharMenu(event) {
+      const menu = document.getElementById('menu-lateral');
+      const menuToggle = document.getElementById('menu-toggle');
+      const headerH1 = document.querySelector('header h1');
+      if (menu.classList.contains('open') && !menu.contains(event.target) && !menuToggle.contains(event.target) && !headerH1.contains(event.target)) {
+        menu.classList.remove('open');
+      }
     }
   </script>
 </body>
