@@ -36,19 +36,30 @@
       cursor: pointer;
     }
 
-    #nomeUsuario {
-      font-size: 14px;
-      opacity: 0.8;
-      text-align: right;
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px; /* Espaço entre o ícone e o texto */
     }
 
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start; /* Altera para alinhar ao topo */
       align-items: center;
       padding: 20px;
+    }
+
+    #saudacaoUsuario {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: left; /* Alinhado à esquerda */
+      width: 100%;
     }
 
     .grid {
@@ -65,7 +76,7 @@
       color: #2563eb;
       font-size: 16px;
       font-weight: 500;
-      padding: 20px 10px; /* Padding ajustado para o novo tamanho do ícone */
+      padding: 20px 10px;
       border-radius: 16px;
       text-align: center;
       cursor: pointer;
@@ -79,8 +90,16 @@
 
     .btn-tile span {
       display: block;
-      font-size: 64px; /* Aumentado para ícones maiores */
+      font-size: 64px;
+      margin-bottom: 5px; /* Espaço entre o ícone e a descrição */
     }
+    
+    .btn-tile p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
 
     /* Estilos do Menu Lateral */
     aside {
@@ -122,11 +141,6 @@
         padding: 12px;
         position: relative;
       }
-      #nomeUsuario {
-        margin-top: 0;
-        position: absolute;
-        right: 16px;
-      }
       header h1 {
         text-align: left; /* Alinhamento do nome para o lado esquerdo */
         flex-grow: 0;
@@ -147,8 +161,8 @@
 </head>
 <body onclick="fecharMenu(event)">
   <header>
+    <button id="menu-toggle" onclick="toggleMenu(event)">☰</button>
     <h1 onclick="toggleMenu(event)">DMTool</h1>
-    <div id="nomeUsuario">Usuário</div>
   </header>
 
   <aside id="menu-lateral">
@@ -157,24 +171,31 @@
   </aside>
 
   <main>
+    <div id="saudacaoUsuario"></div>
     <div class="grid">
       <div class="btn-tile" onclick="irPara('insulina.html')">
         <span>💉</span>
+        <p>Insulina</p>
       </div>
       <div class="btn-tile" onclick="irPara('correcao.html')">
         <span>🍪</span>
+        <p>Correção hipo</p>
       </div>
       <div class="btn-tile" onclick="irPara('choEInsulina.html')">
         <span>🍽️</span>
+        <p>Calcular refeição</p>
       </div>
       <div class="btn-tile" onclick="irPara('alimentos.html')">
         <span>🍎</span>
+        <p>Alimentos</p>
       </div>
       <div class="btn-tile" onclick="irPara('relatorios.html')">
         <span>📊</span>
+        <p>Relatórios</p>
       </div>
       <div class="btn-tile" onclick="irPara('ajustes.html')">
         <span>⚙️</span>
+        <p>Ajustes</p>
       </div>
     </div>
   </main>
@@ -191,7 +212,7 @@
         const doc = await db.collection('usuarios').doc(user.uid).get();
         if (doc.exists) {
           const usuario = doc.data();
-          document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+          document.getElementById('saudacaoUsuario').innerText = `Olá, ${usuario.nome}` || "Olá, Usuário";
         }
       } else {
         window.location.href = "./login/login.html";
@@ -219,8 +240,9 @@
 
     function fecharMenu(event) {
       const menu = document.getElementById('menu-lateral');
+      const menuToggle = document.getElementById('menu-toggle');
       const headerH1 = document.querySelector('header h1');
-      if (menu.classList.contains('open') && !menu.contains(event.target) && !headerH1.contains(event.target)) {
+      if (menu.classList.contains('open') && !menu.contains(event.target) && !menuToggle.contains(event.target) && !headerH1.contains(event.target)) {
         menu.classList.remove('open');
       }
     }
