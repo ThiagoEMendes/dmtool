@@ -25,11 +25,15 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
     header h1 {
       margin: 0;
       font-size: 24px;
+      flex-grow: 1;
+      text-align: left; /* Alinhamento do nome para o lado esquerdo */
+      cursor: pointer;
     }
 
     #nomeUsuario {
@@ -52,7 +56,7 @@
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 20px;
       width: 100%;
-      max-width: 600px; /* Aumentado para melhor visualização em desktops e tablets */
+      max-width: 600px;
     }
 
     .btn-tile {
@@ -76,18 +80,56 @@
     .btn-tile span {
       display: block;
       font-size: 32px;
-      margin-bottom: 8px;
+    }
+
+    /* Estilos do Menu Lateral */
+    aside {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      padding-top: 60px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    aside.open {
+      left: 0;
+    }
+
+    aside .menu-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.2s;
+    }
+
+    aside .menu-item:hover {
+      background-color: #555;
     }
 
     /* Media Queries para responsividade */
     @media (max-width: 600px) {
       header {
-        flex-direction: column;
+        flex-direction: row;
         padding: 12px;
-        text-align: center;
+        position: relative;
       }
       #nomeUsuario {
-        margin-top: 5px;
+        margin-top: 0;
+        position: absolute;
+        right: 16px;
+      }
+      header h1 {
+        text-align: left; /* Alinhamento do nome para o lado esquerdo */
+        flex-grow: 0;
       }
       .grid {
         max-width: 100%;
@@ -103,53 +145,41 @@
     }
   </style>
 </head>
-<body>
+<body onclick="fecharMenu(event)">
   <header>
-    <h1>DMTool</h1>
+    <h1 onclick="toggleMenu(event)">DMTool</h1>
     <div id="nomeUsuario">Usuário</div>
   </header>
 
+  <aside id="menu-lateral">
+    <div class="menu-item" onclick="irPara('meusDados.html')">Meus Dados</div>
+    <div class="menu-item" onclick="logout()">Sair</div>
+  </aside>
+
   <main>
     <div class="grid">
-      <!-- Botão "Corrigir" com ícones de seringa e cookie -->
-      <div class="btn-tile" onclick="irPara('ajustes.html')">
-        <span>💉🍪</span>
-        Corrigir
+      <div class="btn-tile" onclick="irPara('insulina.html')">
+        <span>💉</span>
       </div>
-      <!-- Botão "Meus Dados" -->
-      <div class="btn-tile" onclick="irPara('meusDados.html')">
-        <span>👤</span>
-        Meus Dados
+      <div class="btn-tile" onclick="irPara('correcao.html')">
+        <span>🍪</span>
       </div>
-      <!-- Botão "Calcular Refeição" -->
       <div class="btn-tile" onclick="irPara('choEInsulina.html')">
         <span>🍽️</span>
-        Calcular Refeição
       </div>
-      <!-- Novo botão para "Alimentos" -->
       <div class="btn-tile" onclick="irPara('alimentos.html')">
         <span>🍎</span>
-        Alimentos
       </div>
-      <!-- Novo botão para "Relatórios" -->
       <div class="btn-tile" onclick="irPara('relatorios.html')">
         <span>📊</span>
-        Relatórios
-      </div>
-      <!-- Botão "Logoff" -->
-      <div class="btn-tile" onclick="logout()">
-        <span>🚪</span>
-        Logoff
       </div>
     </div>
   </main>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  <!-- Firebase config -->
   <script src="./login/firebase.js"></script>
 
   <script>
@@ -175,6 +205,20 @@
         auth.signOut().then(() => {
           window.location.href = "./login/login.html";
         });
+      }
+    }
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('menu-lateral');
+      menu.classList.toggle('open');
+    }
+
+    function fecharMenu(event) {
+      const menu = document.getElementById('menu-lateral');
+      const headerH1 = document.querySelector('header h1');
+      if (menu.classList.contains('open') && !menu.contains(event.target) && !headerH1.contains(event.target)) {
+        menu.classList.remove('open');
       }
     }
   </script>
