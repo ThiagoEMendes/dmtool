@@ -397,9 +397,9 @@
           glicemiaInput.focus();
         }
       } catch (error) {
-        console.error("Erro ao buscar dados da glicemia:", error);
+        console.error("Digite a glicemia.", error);
         glicemiaInput.value = "";
-        glicemiaInput.placeholder = "Erro ao buscar. Digite manualmente.";
+        glicemiaInput.placeholder = "Digite a glicemia.";
         glicemiaInfo.innerText = "";
         glicemiaInput.focus();
       }
