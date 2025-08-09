@@ -49,17 +49,9 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Altera para alinhar ao topo */
+      justify-content: center; /* Alinha o conteúdo verticalmente no centro */
       align-items: center;
       padding: 20px;
-    }
-
-    #saudacaoUsuario {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 20px;
-      text-align: left; /* Alinhado à esquerda */
-      width: 100%;
     }
 
     .grid {
@@ -110,7 +102,7 @@
       height: 100%;
       background-color: #333;
       color: white;
-      padding-top: 60px;
+      padding-top: 20px; /* Reduz o padding para o nome do usuário */
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
       transition: left 0.3s ease-in-out;
       z-index: 100;
@@ -120,6 +112,16 @@
 
     aside.open {
       left: 0;
+    }
+
+    #nomeUsuarioMenu {
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      margin-bottom: 10px;
     }
 
     aside .menu-item {
@@ -166,12 +168,12 @@
   </header>
 
   <aside id="menu-lateral">
+    <div id="nomeUsuarioMenu"></div>
     <div class="menu-item" onclick="irPara('meusDados.html')">Meus Dados</div>
     <div class="menu-item" onclick="logout()">Sair</div>
   </aside>
 
   <main>
-    <div id="saudacaoUsuario"></div>
     <div class="grid">
       <div class="btn-tile" onclick="irPara('insulina.html')">
         <span>💉</span>
@@ -212,7 +214,7 @@
         const doc = await db.collection('usuarios').doc(user.uid).get();
         if (doc.exists) {
           const usuario = doc.data();
-          document.getElementById('saudacaoUsuario').innerText = `Olá, ${usuario.nome}` || "Olá, Usuário";
+          document.getElementById('nomeUsuarioMenu').innerText = usuario.nome || "Usuário";
         }
       } else {
         window.location.href = "./login/login.html";
