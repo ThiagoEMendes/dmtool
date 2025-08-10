@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajustes - DMTool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Estilos gerais, reaproveitados do menu.html */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      margin-left: auto; /* Ajusta o alinhamento para o lado direito */
+      cursor: pointer;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    
+    /* Estilos do Menu Lateral */
+    aside {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      padding-top: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    aside.open {
+      left: 0;
+    }
+
+    #nomeUsuarioMenu {
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      margin-bottom: 10px;
+    }
+
+    aside .menu-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.2s;
+    }
+
+    aside .menu-item:hover {
+      background-color: #555;
+    }
+    
+    /* Estilos da página de ajustes */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .ajustes-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2563eb;
+      margin-bottom: 20px;
+    }
+    
+    .campo {
+      margin-bottom: 15px;
+    }
+    
+    .campo label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .campo input, .campo select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    
+    .campo input:focus, .campo select:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+    
+    .opcoes-proporcao {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    #proporcao-avancada-toggle {
+      accent-color: #2563eb;
+    }
+    
+    .botoes-acao {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .botoes-acao button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    
+    #btn-cancelar {
+      background-color: #ccc;
+      color: #333;
+    }
+    
+    #btn-cancelar:hover {
+      background-color: #bbb;
+    }
+    
+    #btn-salvar {
+      background-color: #2563eb;
+      color: white;
+    }
+    
+    #btn-salvar:hover {
+      background-color: #1e40af;
+    }
+    
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 101;
+    }
+    
+    .loading-overlay.visible {
+      display: flex;
+    }
+    
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 20px;
+      }
+      .ajustes-container {
+        padding: 15px;
+      }
+      .campo label, .campo input, .campo select {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body onclick="fecharMenu(event)">
+  <header>
+    <button id="menu-toggle" onclick="toggleMenu(event)">☰</button>
+    <h1 onclick="toggleMenu(event)">DMTool</h1>
+  </header>
+
+  <aside id="menu-lateral">
+    <div id="nomeUsuarioMenu"></div>
+    <div class="menu-item" onclick="irPara('meusDados.html')">Meus Dados</div>
+    <div class="menu-item" onclick="irPara('menu.html')">Menu Inicial</div>
+    <div class="menu-item" onclick="logout()">Sair</div>
+  </aside>
+
+  <main>
+    <div class="ajustes-container">
+      <h2>Ajustes</h2>
+      
+      <div class="campo">
+        <label for="glicemiaAlvo">Glicemia Alvo:</label>
+        <input type="number" id="glicemiaAlvo" name="glicemiaAlvo" required min="1" step="1">
+      </div>
+      
+      <div class="campo">
+        <label for="fatorCorrecao">Fator de Correção (sensibilidade):</label>
+        <input type="number" id="fatorCorrecao" name="fatorCorrecao" required min="1" step="1">
+      </div>
+      
+      <div class="campo">
+        <label for="doseMaxima">Dose Máxima de Correção:</label>
+        <input type="number" id="doseMaxima" name="doseMaxima" required min="0" step="1">
+      </div>
+      
+      <div class="campo">
+        <label for="dosagemDaCaneta">Dosagem da Caneta:</label>
+        <select id="dosagemDaCaneta" name="dosagemDaCaneta">
+          <option value="0.5">0.5</option>
+          <option value="1.0">1.0</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="enderecoNightscout">Endereço NightScout:</label>
+        <input type="url" id="enderecoNightscout" name="enderecoNightscout">
+      </div>
+      
+      <div class="opcoes-proporcao">
+        <label for="proporcao-avancada-toggle">Proporção por refeição:</label>
+        <input type="checkbox" id="proporcao-avancada-toggle">
+      </div>
+      
+      <div id="proporcao-container">
+        </div>
+
+      <div class="botoes-acao">
+        <button id="btn-cancelar" onclick="irPara('menu.html')">Cancelar</button>
+        <button id="btn-salvar" onclick="salvarAjustes()">Salvar</button>
+      </div>
+    </div>
+  </main>
+  
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="./login/firebase.js"></script>
+
+  <script>
+    let usuarioDocRef;
+    let proporcoesPadraoData = {};
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        usuarioDocRef = db.collection('usuarios').doc(user.uid);
+        carregarAjustes();
+        
+        const doc = await usuarioDocRef.get();
+        if (doc.exists) {
+          const usuario = doc.data();
+          document.getElementById('nomeUsuarioMenu').innerText = usuario.nome || "Usuário";
+        }
+      } else {
+        window.location.href = "./login/login.html";
+      }
+    });
+
+    function irPara(pagina) {
+      window.location.href = pagina;
+    }
+
+    function logout() {
+      const confirmar = confirm("Tem certeza de que deseja sair?");
+      if (confirmar) {
+        auth.signOut().then(() => {
+          window.location.href = "./login/login.html";
+        });
+      }
+    }
+    
+    function toggleMenu(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('menu-lateral');
+      menu.classList.toggle('open');
+    }
+
+    function fecharMenu(event) {
+      const menu = document.getElementById('menu-lateral');
+      const menuToggle = document.getElementById('menu-toggle');
+      const headerH1 = document.querySelector('header h1');
+      if (menu.classList.contains('open') && !menu.contains(event.target) && !menuToggle.contains(event.target) && !headerH1.contains(event.target)) {
+        menu.classList.remove('open');
+      }
+    }
+
+    async function carregarAjustes() {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      loadingOverlay.classList.add('visible');
+
+      try {
+        const doc = await usuarioDocRef.get();
+        if (doc.exists) {
+          const dados = doc.data();
+          
+          document.getElementById('glicemiaAlvo').value = dados.glicemiaAlvo || '';
+          document.getElementById('fatorCorrecao').value = dados.fatorCorrecao || '';
+          document.getElementById('doseMaxima').value = dados.doseMaxima || '';
+          document.getElementById('dosagemDaCaneta').value = dados.dosagemDaCaneta || '1.0';
+          document.getElementById('enderecoNightscout').value = dados.nightscout || '';
+          
+          const proporcaoAvancadaToggle = document.getElementById('proporcao-avancada-toggle');
+          if (dados.proporcaoPorRefeicao) {
+            proporcaoAvancadaToggle.checked = true;
+            proporcoesPadraoData = dados.proporcoes || {};
+          } else {
+            proporcaoAvancadaToggle.checked = false;
+            proporcoesPadraoData.proporcaoPadrao = dados.proporcaoPadrao || 1;
+          }
+          
+          gerarCamposProporcao();
+        }
+      } catch (error) {
+        console.error("Erro ao carregar ajustes: ", error);
+        alert("Erro ao carregar ajustes. Tente novamente.");
+      } finally {
+        loadingOverlay.classList.remove('visible');
+      }
+    }
+    
+    document.getElementById('proporcao-avancada-toggle').addEventListener('change', gerarCamposProporcao);
+
+    function gerarCamposProporcao() {
+      const proporcaoContainer = document.getElementById('proporcao-container');
+      const proporcaoAvancadaAtivada = document.getElementById('proporcao-avancada-toggle').checked;
+      
+      proporcaoContainer.innerHTML = '';
+      
+      if (proporcaoAvancadaAtivada) {
+        const refeicoes = ['cafe', 'almoco', 'lancheManha', 'lancheTarde', 'ceia', 'jantar', 'lancheAvulso', 'sobremesa'];
+        const labels = {
+          cafe: 'Café da manhã',
+          almoco: 'Almoço',
+          lancheManha: 'Lanche da manhã',
+          lancheTarde: 'Lanche da tarde',
+          ceia: 'Ceia',
+          jantar: 'Jantar',
+          lancheAvulso: 'Lanche avulso',
+          sobremesa: 'Sobremesa'
+        };
+        
+        // Se mudou de proporção padrão para por refeição, preenche com o valor padrão
+        const valorInicial = proporcoesPadraoData.proporcaoPadrao || 1;
+        
+        refeicoes.forEach(refeicao => {
+          const campo = document.createElement('div');
+          campo.classList.add('campo');
+          campo.innerHTML = `
+            <label for="proporcao-${refeicao}">${labels[refeicao]}:</label>
+            <input type="number" id="proporcao-${refeicao}" name="proporcao-${refeicao}" value="${proporcoesPadraoData[refeicao] || valorInicial}" required min="0.1" step="0.1">
+          `;
+          proporcaoContainer.appendChild(campo);
+        });
+        
+      } else {
+        const proporcaoPadrao = proporcoesPadraoData.proporcaoPadrao || 1;
+        
+        const campo = document.createElement('div');
+        campo.classList.add('campo');
+        campo.innerHTML = `
+          <label for="proporcaoPadrao">Proporção padrão:</label>
+          <input type="number" id="proporcaoPadrao" name="proporcaoPadrao" value="${proporcaoPadrao}" required min="0.1" step="0.1">
+        `;
+        proporcaoContainer.appendChild(campo);
+      }
+    }
+    
+    async function salvarAjustes() {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      loadingOverlay.classList.add('visible');
+      
+      try {
+        const dadosParaSalvar = {};
+        
+        dadosParaSalvar.glicemiaAlvo = parseFloat(document.getElementById('glicemiaAlvo').value);
+        dadosParaSalvar.fatorCorrecao = parseFloat(document.getElementById('fatorCorrecao').value);
+        dadosParaSalvar.doseMaxima = parseFloat(document.getElementById('doseMaxima').value);
+        dadosParaSalvar.dosagemDaCaneta = parseFloat(document.getElementById('dosagemDaCaneta').value);
+        dadosParaSalvar.nightscout = document.getElementById('enderecoNightscout').value.trim();
+
+        // Validação de campos numéricos
+        if (isNaN(dadosParaSalvar.glicemiaAlvo) || isNaN(dadosParaSalvar.fatorCorrecao) || isNaN(dadosParaSalvar.doseMaxima)) {
+          alert('Por favor, preencha todos os campos numéricos corretamente.');
+          return;
+        }
+
+        const proporcaoAvancadaAtivada = document.getElementById('proporcao-avancada-toggle').checked;
+        dadosParaSalvar.proporcaoPorRefeicao = proporcaoAvancadaAtivada;
+        
+        if (proporcaoAvancadaAtivada) {
+          const proporcoes = {};
+          const refeicoes = ['cafe', 'almoco', 'lancheManha', 'lancheTarde', 'ceia', 'jantar', 'lancheAvulso', 'sobremesa'];
+          let dadosInvalidos = false;
+          
+          refeicoes.forEach(refeicao => {
+            const valor = parseFloat(document.getElementById(`proporcao-${refeicao}`).value);
+            if (isNaN(valor)) {
+              dadosInvalidos = true;
+            }
+            proporcoes[refeicao] = valor;
+          });
+          
+          if (dadosInvalidos) {
+            alert('Por favor, preencha todas as proporções por refeição corretamente.');
+            return;
+          }
+          dadosParaSalvar.proporcoes = proporcoes;
+        } else {
+          const proporcaoPadrao = parseFloat(document.getElementById('proporcaoPadrao').value);
+          if (isNaN(proporcaoPadrao)) {
+            alert('Por favor, preencha a proporção padrão corretamente.');
+            return;
+          }
+          dadosParaSalvar.proporcaoPadrao = proporcaoPadrao;
+        }
+        
+        await usuarioDocRef.update(dadosParaSalvar);
+        alert("Ajustes salvos com sucesso!");
+        window.location.href = "menu.html";
+        
+      } catch (error) {
+        console.error("Erro ao salvar ajustes: ", error);
+        alert("Erro ao salvar ajustes. Tente novamente.");
+      } finally {
+        loadingOverlay.classList.remove('visible');
+      }
+    }
+  </script>
+</body>
+</html>
