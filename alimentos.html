@@ -52,12 +52,12 @@
       margin-right: 10px;
     }
 
-    /* Estilos da barra lateral (sidebar) */
+    /* Estilos da barra lateral (sidebar) - Agora com largura fixa */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -50%;
-      width: 50%; /* Metade da tela em desktop */
+      left: -250px; /* Esconde o menu com largura fixa */
+      width: 250px; /* Largura fixa em todos os dispositivos */
       height: 100%;
       background-color: #2e3a51;
       color: white;
@@ -71,13 +71,17 @@
       left: 0;
     }
     
-    @media (max-width: 768px) {
-      .sidebar {
-        left: -100%;
-        width: 100%; /* Tela inteira em mobile */
-      }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 98;
+      display: none;
     }
-
+    
     .sidebar a {
       display: block;
       padding: 15px 20px;
@@ -98,17 +102,6 @@
         font-size: 1rem;
         border-bottom: 1px solid #4a5568;
         padding-bottom: 15px;
-    }
-    
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 98;
-      display: none;
     }
 
     main {
@@ -292,7 +285,7 @@
         background-color: #d97706;
     }
 
-    /* Modal de alerta e confirmação */
+    /* Modal personalizado para alertas e confirmações */
     .custom-modal {
       position: fixed;
       top: 0;
@@ -361,7 +354,7 @@
     <a href="relatorios.html">Relatórios</a>
     <a href="meusDados.html">Meus dados</a>
     <a href="menu.html">Menu inicial</a>
-    <a href="./login/login.html">Sair</a>
+    <a href="#" id="logoutLink">Sair</a>
   </nav>
 
   <div id="overlay" class="overlay"></div>
@@ -491,6 +484,7 @@
     const customModal = document.getElementById('customModal');
     const modalMessage = document.getElementById('modalMessage');
     const modalButtons = document.getElementById('modalButtons');
+    const logoutLink = document.getElementById('logoutLink');
 
     let currentUserUid = null;
     let selectedFood = null;
@@ -554,6 +548,20 @@
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.style.display = 'none';
+    });
+
+    // Evento de clique para o link "Sair" do menu
+    logoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showModal("Tem certeza de que deseja sair?", true, async () => {
+        try {
+          await auth.signOut();
+          window.location.href = "./login/login.html";
+        } catch (error) {
+          console.error("Erro ao fazer logout:", error);
+          showModal("Erro ao tentar sair: " + error.message, false);
+        }
+      });
     });
 
     // Função para buscar e exibir alimentos
