@@ -1,86 +1,32 @@
-mantenha o mesmo estilo da página menu.html, mostrando o nome do sistema e do usuário logado no topo da pagina.
-------------------------------------------
-solicite ao usuário que digite a glicemia atual,
-o teclado númerico deve ser acionado para que o usuário digite a glicemia.
+Quando o usuário clicar em Gravar as seguintes ações devem ser tomadas:
 
-solicite ao usuário que informe o tipo de refeição que fará entre: café da manhã, lanche da manhã,
-almoço, sobremesa, lanche da tarde, jantar, ceia e lanche avulso.
----------------------------------------------
+Se usuarios.(uid).premium for falso, redirecionar para assinar.html.
 
-Um botão com o texto adicionar alimentos
+Se usuarios(uid).premium for verdadeiro gravar no firebase :
 
-uma tabela com as colunas: Alimento, QTD, CHO e remover.
+Na tabela alimentosConsumidos(uma entrada para cada alimento da lista):
 
-Abaixo, aparecerão dois botões, no mesmo padrão adotado pelo sistema, com as opções retornar(que
-retornará para a pagina anterior) e calcular(função que será implementada em outra etapa na página choEInsulina3.html).
+carboidrato
+data
+energia
+gMl(peso em g/ml)
+gordura
+nome
+ocasiao(A refeição selecionada)
+proteina
+uid(uid do usuário logado)
 
-Quando o botão adicionar alimentos for acionado uma tela deslizará da esquerda para a direita com o seguinte:
-um campo de texto para que o usuário digite o nome do alimento, a medida que o usuário digita o nome do alimento, no campo de texto, o sistema
-deverá buscar os nomes que correspondem com a busca na coleção
-alimentos do firebase e exibi-los abaixo, para que o usuário selecione o alimento correspondente, abaixo deve haver um campo
-de texto para que o usuário digite a quantidade, acima deste botão deve haver um botão tipo slide
-para que o usuário altere o tipo de quantidade entre g/ml e mc/p, o tipo g/ml deve ser
-o padrão. abaixo devem existir dois botões, cancelar(que recolherá a tela para a esquerda sem incluir nenhum alimento) e adicionar.
-Quando o usuario clicar em adicionar, o seguinte calculo deve ser feito:
-se o usuário informar medida caseira, a quantidade de CHO será calculada com base no calculo (valor informado)*alimentos.carboidrato
-se o usuário informar gr, o cálculo do CHO será o seguinte: (valor informado)*alimentos.carboidrato/alimentos.quantidade_mg_l
-A tela deslizará para a esquerda e os dados serão inseridos na tabela definida.
+Na tabela insulinaAdministrada(uma entrada para insulina calculada para carboidrato, e outra entrada
+para insulina calculada para correção, se houver):
 
+data
+ocasiao(A refeição selecionada)
+quantidade()
+tipo(que sempre será "rapida")
+correcao(verdadeiro se for o valor calculado para correção.)
+uid(uid do usuário logado)
 
+obs: Os parâmetros dos alimentos devem ser buscados nas tabelas alimentos e meusAlimentos.
 
------------------------------------------
-
-
-um campo de texto com o texto inserir alimento deve ser exibido, o usuário digitará o nome do alimento
-, o sistema buscará o nome na coleção alimentos.nome e exibirá abaixo, botoes com o nome dos alimentos
- que correspondem com a buca que quando clicado o texto digitado será
- substituido pelo alimento correspondente.
-
-neste momento o sistema exibirá um campo de texto para que o usuário digite a quantidade, acima desta
-caixa de texto, aparecerá um botão tipo slide que se habilitado alternará o tipo da quantidade de 
-gr para medida caseira
-
-se o usuário informar medida caseira, a quantidade de CHO será calculada com base no calculo (valor informado)*alimentos.carboidrato
-
-se o usuário informar gr, o cálculo do CHO será o seguinte: (valor informado)*alimentos.carboidrato/alimentos.quantidade_mg_l
-
-uma tabela com as colunas: alimento, QTD, CHO e remover, aparecera, a medida que o usuário adiciona
-alimentos.
-
-abaixo ficarão dois botoes lado a lado com as opções retornar, que retornará para a página menu.html
- e calcular
-
-
-os seguintes cálculos serão executados:
-
-Insulina CHO:(somatorio dos CHO)/usuarios.proporcoes.(refeição escolhida)
-
-calculo da insulina de correção:
-
-caso a glicemia informada seja menor ou igual a usuarios.glicemiaAlvo, a insulina de correção é 0,
-caso seja maior o sistema deve verificar usuarios.doseMaxima e inserir 1 unidade a cada valor de usuarios.fatorCorrecao
-percebido acima de usuarios.glicemiaAlvo até o limite de usuarios.doseMaxima.
-
-for (let insulinaDeCorrecao = 0; insulinaDeCorrecao < usuarios.doseMaxima; i++) {
-  str += i;
-}
-
-ex: se usuarios.glicemiaAlvo=130, usuarios.doseMaxima=2,  usuarios.fatorCorrecao=20 o sistema deve adicionar 1 unidade, se 
-glicemia entre 131 e 150, e 2 unidades se glicemia entre 151 e 170. se glicemia maior que 170 respeitar
-a dosagem máxima que no caso é 2.
-
-ao final o sistema deve exibir o total de CHO e dosagem de insulina recomendada: insulina CHO + insulina de correção.
-
-e abaixo dois botoes, lado a lado,
-retornar, que volta para a página choEInsulina2.html
-e gravar(funcionalidade que sera implementada)
-
- que gravará os seguintes dados na coleção recordatorio:
-usuários.cpf em recordatorio.cpf
-data em recordatorio.data
-hora em recordatorio.hora
-total de cho em recordatorio.cho_total
-total de insulina em recordatorio.insulina_administrada
-uma string com os alimentos separados por virgula em recordatorio.alimentos_consumidos
 
 

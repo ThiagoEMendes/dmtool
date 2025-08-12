@@ -384,8 +384,11 @@
     let alimentosAdicionados = [];
     let tipoQuantidadeAtual = 'gml';
     let allAlimentos = [];
+    let publicAlimentos = [];
+    let meusAlimentos = [];
     let filteredAlimentos = [];
     let selectedFoodId = null;
+    let currentUserId = null;
 
     const nomeDasRefeicoes = {
       cafe: "Café da Manã",
@@ -400,7 +403,8 @@
 
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const doc = await db.collection('usuarios').doc(user.uid).get();
+        currentUserId = user.uid;
+        const doc = await db.collection('usuarios').doc(currentUserId).get();
         if (doc.exists) {
           const usuario = doc.data();
           document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
@@ -423,17 +427,38 @@
           renderizarTabelaAlimentos();
         }
         
-        // Carrega todos os alimentos uma vez e fica "escutando" mudanças
+        // Escuta por mudanças na coleção pública de alimentos
         db.collection('alimentos').onSnapshot(snapshot => {
-          allAlimentos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          // Filtra a lista com base no que já está no campo de busca ao carregar
-          filtrarAlimentos(campoBuscaAlimento.value);
+          publicAlimentos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          combineAndFilterAlimentos();
+        });
+        
+        // Escuta por mudanças na coleção de alimentos do usuário
+        db.collection('meusAlimentos').where('uid', '==', currentUserId).onSnapshot(snapshot => {
+          meusAlimentos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          combineAndFilterAlimentos();
         });
 
       } else {
         window.location.href = "./login/login.html";
       }
     });
+    
+    // Função para combinar as listas de alimentos e filtrar
+    function combineAndFilterAlimentos() {
+        // Combina as duas listas, removendo duplicatas pelo nome, priorizando o alimento do usuário
+        const combined = [...meusAlimentos, ...publicAlimentos];
+        const unique = new Map();
+        combined.forEach(alimento => {
+            if (!unique.has(alimento.nome)) {
+                unique.set(alimento.nome, alimento);
+            }
+        });
+        allAlimentos = Array.from(unique.values());
+        
+        // Aplica o filtro atual da barra de busca
+        filtrarAlimentos(campoBuscaAlimento.value.trim());
+    }
 
     function abrirPainelAdicionarAlimento() {
       document.getElementById('overlay-alimento').style.display = 'block';

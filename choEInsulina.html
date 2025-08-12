@@ -389,7 +389,7 @@
           const dataLeitura = new Date(data[0].dateString);
           
           glicemiaInput.value = glicemia;
-          glicemiaInfo.innerText = `Nightscout (${dataLeitura.toLocaleTimeString()})`;
+          glicemiaInfo.innerText = `Recuperado de Nightscout às ${dataLeitura.toLocaleTimeString()}`;
         } else {
           glicemiaInput.value = "";
           glicemiaInput.placeholder = "Glicemia não encontrada.";
