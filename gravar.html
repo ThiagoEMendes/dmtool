@@ -237,6 +237,18 @@
             lancheAvulso: "Lanche Avulso"
         };
         
+        // Mapeamento de valores de refeição para gravação no banco de dados
+        const mapaRefeicoesDb = {
+            "cafe": "cafeDaManha",
+            "lancheManha": "lancheDaManha",
+            "almoco": "almoco",
+            "sobremesa": "sobremesa",
+            "lancheTarde": "lancheDaTarde",
+            "jantar": "jantar",
+            "ceia": "ceia",
+            "lancheAvulso": "lancheAvulso"
+        };
+        
         let currentUserUid = null;
         let alimentosParaGravar = [];
         let insulinaParaGravar = [];
@@ -324,6 +336,7 @@
             alimentosParaGravar = await Promise.all(alimentosAdicionados.map(async alimento => {
                 const now = new Date();
                 const dataFormatada = now.toISOString();
+                const ocasiaoDb = mapaRefeicoesDb[resultadoCalculo.tipoRefeicao] || resultadoCalculo.tipoRefeicao;
 
                 let alimentoReferencia = null;
 
@@ -365,7 +378,7 @@
                     gMl: pesoCalculado,
                     gordura: gorduraCalculada,
                     nome: alimento.nome,
-                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    ocasiao: ocasiaoDb,
                     proteina: proteinaCalculada,
                     uid: uid
                 };
@@ -375,11 +388,12 @@
             insulinaParaGravar = [];
             const now = new Date();
             const dataFormatada = now.toISOString();
+            const ocasiaoDb = mapaRefeicoesDb[resultadoCalculo.tipoRefeicao] || resultadoCalculo.tipoRefeicao;
             
             if (resultadoCalculo.insulinaCho > 0) {
                 insulinaParaGravar.push({
                     data: dataFormatada,
-                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    ocasiao: ocasiaoDb,
                     quantidade: resultadoCalculo.insulinaCho,
                     tipo: "rapida",
                     correcao: false,
@@ -389,7 +403,7 @@
             if (resultadoCalculo.insulinaCorrecao > 0) {
                 insulinaParaGravar.push({
                     data: dataFormatada,
-                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    ocasiao: ocasiaoDb,
                     quantidade: resultadoCalculo.insulinaCorrecao,
                     tipo: "rapida",
                     correcao: true,
@@ -400,8 +414,8 @@
             // Reconstroi o objeto da glicemia para gravação
             glicemiaParaGravar = {
                 data: dataFormatada,
-                ocasiao: resultadoCalculo.tipoRefeicao,
-                valor: resultadoCalculo.glicemia,
+                ocasiao: ocasiaoDb,
+                glicemia: resultadoCalculo.glicemia,
                 uid: uid
             };
 
@@ -491,8 +505,8 @@
             const db = firebase.firestore();
 
             try {
-                // Gravar na tabela glicemia
-                const glicemiaDocRef = db.collection('glicemia').doc();
+                // Gravar na tabela mapaGlicemico
+                const glicemiaDocRef = db.collection('mapaGlicemico').doc();
                 await glicemiaDocRef.set(glicemiaParaGravar);
 
                 // Gravar nas tabelas alimentosConsumidos e insulinaAdministrada em batch

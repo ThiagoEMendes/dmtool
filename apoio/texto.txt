@@ -33,18 +33,42 @@ obs: Os parâmetros dos alimentos devem ser buscados nas tabelas alimentos e meu
 
 
 
+Cada alimento consumido deve ter uma entrada na tabela alimentosConsumidos com os seguintes dados:
 
-alimentosConsumidos
+carboidrato(cho)
+data(data)
+energia(kcal)
+gMl(peso)
+gordura(gordura)
+nome(nome do alimento)
+proteina(proteina)
+uid(uid do usuário logado)
+ocasiao: cafeDaManha, se for Café da Manhã.
+lancheDaManha, se for Lanche da Manhã.
+almoco, se for Almoço.
+sobremesa, se for Sobremesa.
+lancheDaTarde, se for Lanche da Tarde.
+jantar, se for Jantar.
+ceia, se for Ceia.
+lancheAvulso, se for Lanche Avulso.
 
-carboidrato
+
+Gravar na tabela insulinaAdministrada, os dados das insulinas(uma entrada para cada tipo de correção):
+
+correcao(falso ou verdadeiro )
 data
-energia
-gMl
-gordura
-nome
-ocasiao
-proteina
-uid
+ocasiao(mesmo padrão de alimentosConsumidos)
+quantidade(quantidade de insulina)
+tipo(sempre será rapida)
+uid(uid do usuário logado)
+
+Gravar na tabela mapaGlicemico:
+
+ocasiao:(mesmo padrão de alimentosConsumidos)
+data:data
+glicemia:(glicemia)
+uid:(uid do usuário logado)
+
 
 
 
