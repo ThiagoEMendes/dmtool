@@ -1,8 +1,11 @@
 Quando o usuário clicar em Gravar as seguintes ações devem ser tomadas:
 
-Se usuarios.(uid).premium for falso, redirecionar para assinar.html.
 
-Se usuarios(uid).premium for verdadeiro gravar no firebase :
+Mostrar na tela todos os parametros que serão gravados no banco de dados, abaixo dois botões, um cinza(retornar)
+e um azul(confirmar), que gravará as informações no banco de dados.
+
+A página deve exibir todos os parametros que serão gravados, com descrição:
+
 
 Na tabela alimentosConsumidos(uma entrada para cada alimento da lista):
 
@@ -27,6 +30,24 @@ correcao(verdadeiro se for o valor calculado para correção.)
 uid(uid do usuário logado)
 
 obs: Os parâmetros dos alimentos devem ser buscados nas tabelas alimentos e meusAlimentos.
+
+
+
+
+alimentosConsumidos
+
+carboidrato
+data
+energia
+gMl
+gordura
+nome
+ocasiao
+proteina
+uid
+
+
+
 
 
 

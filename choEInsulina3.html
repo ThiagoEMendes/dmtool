@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>DMTool - Resultado do Cálculo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -11,13 +12,117 @@
       font-family: 'Inter', sans-serif;
       background-color: #f3f4f6;
     }
+    
+    /* Estilos do cabeçalho */
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    /* Estilos da barra lateral (sidebar) - Agora com largura fixa */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Esconde o menu com largura fixa */
+      width: 250px; /* Largura fixa em todos os dispositivos */
+      height: 100%;
+      background-color: #2e3a51;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 99;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .sidebar.open {
+      left: 0;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 98;
+      display: none;
+    }
+    
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #4a5568;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #4a5568;
+    }
+
+    .sidebar h3 {
+        padding: 0 20px;
+        color: #ddd;
+        font-weight: normal;
+        font-size: 1rem;
+        border-bottom: 1px solid #4a5568;
+        padding-bottom: 15px;
+    }
+
+    /* Estilos da página */
+    .container {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
   </style>
 </head>
 <body class="flex flex-col h-screen">
-  <header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
-    <h1 class="text-xl font-bold">DMTool</h1>
-    <div id="nomeUsuario" class="text-sm opacity-80">Usuário</div>
+  <header>
+    <button id="menu-toggle" aria-label="Abrir Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1><strong>DMTool</strong></h1>
   </header>
+
+  <nav id="sidebar" class="sidebar">
+    <h3 id="userNameInMenu">Carregando...</h3>
+    <a href="menu.html">Menu inicial</a>
+    <a href="alimentos.html">Alimentos</a>
+    <a href="ajustes.html">Ajustes</a>
+    <a href="#" id="logoutLink">Sair</a>
+  </nav>
+
+  <div id="overlay" class="overlay"></div>
 
   <main class="flex-1 flex flex-col justify-center items-center p-4">
     <div class="bg-white p-8 md:p-10 rounded-xl shadow-lg max-w-lg w-full text-center">
@@ -69,6 +174,34 @@
       lancheAvulso: "Lanche Avulso"
     };
 
+    // A partir daqui, as variáveis e funções do menu sanduíche
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const overlay = document.getElementById('overlay');
+    const userNameInMenu = document.getElementById('userNameInMenu');
+    const logoutLink = document.getElementById('logoutLink');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.style.display = 'none';
+    });
+
+    logoutLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await auth.signOut();
+        window.location.href = "./login/login.html";
+      } catch (error) {
+        console.error("Erro ao fazer logout:", error);
+        alert("Erro ao tentar sair: " + error.message);
+      }
+    });
+
     // Marcar usuário logado e iniciar os cálculos
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -76,7 +209,8 @@
           const doc = await db.collection('usuarios').doc(user.uid).get();
           if (doc.exists) {
             const usuario = doc.data();
-            document.getElementById('nomeUsuario').innerText = usuario.nome || "Usuário";
+            // Atualiza o nome do usuário no menu
+            userNameInMenu.innerText = usuario.nome || "Usuário";
             
             // Chamar a função de cálculo principal
             realizarCalculos(usuario);
@@ -197,9 +331,8 @@
     }
 
     function gravar() {
-      alert("Funcionalidade de gravação será implementada em breve!");
-      // Aqui, você implementará a lógica de gravação no Firestore
-      // Exemplo: Salvar o objeto `resultadoCalculo` em uma nova coleção
+      // Redireciona para a página gravar.html
+      window.location.href = "gravar.html";
     }
   </script>
 </body>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>DMTool - Confirmar Gravação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        
+        /* Estilos do cabeçalho */
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        /* Estilos da barra lateral (sidebar) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #2e3a51;
+            color: white;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            display: none;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #4a5568;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #4a5568;
+        }
+
+        .sidebar h3 {
+            padding: 0 20px;
+            color: #ddd;
+            font-weight: normal;
+            font-size: 1rem;
+            border-bottom: 1px solid #4a5568;
+            padding-bottom: 15px;
+        }
+
+        /* Estilos específicos da página */
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .data-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Linha de totais */
+        .data-table tfoot td {
+            font-weight: bold;
+            background-color: #e5e7eb;
+            border-top: 2px solid #9ca3af;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+    <header>
+        <button id="menu-toggle" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1><strong>DMTool</strong></h1>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <h3 id="userNameInMenu">Carregando...</h3>
+        <a href="menu.html">Menu inicial</a>
+        <a href="alimentos.html">Alimentos</a>
+        <a href="ajustes.html">Ajustes</a>
+        <a href="#" id="logoutLink">Sair</a>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="flex-1 p-4">
+        <div class="container">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Confirmar Gravação</h2>
+            <p class="text-gray-700 mb-6 text-center">Verifique os dados abaixo antes de confirmar a gravação no banco de dados.</p>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6 text-center">
+                <p class="text-lg font-bold mb-2">Refeição: <span id="ocasiaoRefeicao" class="font-normal text-gray-700">Carregando...</span></p>
+                <p class="text-lg font-bold">Glicemia: <span id="valorGlicemia" class="font-normal text-gray-700">Carregando...</span></p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Alimentos Consumidos</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Peso (g/ml)</th>
+                                <th>CHO (g)</th>
+                                <th>Proteína (g)</th>
+                                <th>Gordura (g)</th>
+                                <th>Energia (kcal)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alimentosTbody">
+                        </tbody>
+                        <tfoot id="alimentosTfoot">
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Insulina Administrada</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Correção</th>
+                                <th>Quantidade (UI)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="insulinaTbody">
+                        </tbody>
+                        <tfoot id="insulinaTfoot">
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div id="loading" class="text-center text-gray-600 my-4 hidden">
+                <i class="fas fa-spinner fa-spin text-xl"></i> Gravando dados...
+            </div>
+            <div id="message" class="text-center text-green-600 my-4 hidden"></div>
+
+            <div class="flex justify-between gap-4 mt-8">
+                <button id="retornarBtn" class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors">Retornar</button>
+                <button id="confirmarBtn" class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">Confirmar</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./login/firebase.js"></script>
+
+    <script>
+        // Mapeamento de valores de refeição para exibição
+        const nomeDasRefeicoes = {
+            cafe: "Café da Manhã",
+            lancheManha: "Lanche da Manhã",
+            almoco: "Almoço",
+            sobremesa: "Sobremesa",
+            lancheTarde: "Lanche da Tarde",
+            jantar: "Jantar",
+            ceia: "Ceia",
+            lancheAvulso: "Lanche Avulso"
+        };
+        
+        let currentUserUid = null;
+        let alimentosParaGravar = [];
+        let insulinaParaGravar = [];
+        let glicemiaParaGravar = {};
+
+        // Inicialização do cabeçalho e menu deslizante
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const userNameInMenu = document.getElementById('userNameInMenu');
+        const logoutLink = document.getElementById('logoutLink');
+        const retornarBtn = document.getElementById('retornarBtn');
+        const confirmarBtn = document.getElementById('confirmarBtn');
+        const ocasiaoRefeicaoSpan = document.getElementById('ocasiaoRefeicao');
+        const valorGlicemiaSpan = document.getElementById('valorGlicemia');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.style.display = 'none';
+        });
+
+        logoutLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await auth.signOut();
+                window.location.href = "./login/login.html";
+            } catch (error) {
+                console.error("Erro ao fazer logout:", error);
+                alert("Erro ao tentar sair: " + error.message);
+            }
+        });
+
+        retornarBtn.addEventListener('click', () => {
+            window.location.href = "choEInsulina3.html";
+        });
+
+        confirmarBtn.addEventListener('click', gravarDados);
+
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUserUid = user.uid;
+                try {
+                    const doc = await db.collection('usuarios').doc(user.uid).get();
+                    if (doc.exists) {
+                        const usuario = doc.data();
+                        userNameInMenu.innerText = usuario.nome || "Usuário";
+                        carregarDadosParaExibicao(user.uid);
+                    } else {
+                        alert("Dados do usuário não encontrados.");
+                        window.location.href = "menu.html";
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar dados do usuário:", error);
+                    alert("Ocorreu um erro ao carregar seus dados.");
+                    window.location.href = "menu.html";
+                }
+            } else {
+                window.location.href = "./login/login.html";
+            }
+        });
+
+        // Função para carregar os dados do localStorage e exibir na tela
+        async function carregarDadosParaExibicao(uid) {
+            const alimentosAdicionados = JSON.parse(localStorage.getItem('alimentosAdicionados'));
+            const resultadoCalculo = JSON.parse(localStorage.getItem('resultadoCalculo'));
+
+            if (!alimentosAdicionados || !resultadoCalculo) {
+                alert("Dados de cálculo não encontrados. Por favor, refaça o cálculo.");
+                window.location.href = "choEInsulina.html";
+                return;
+            }
+            
+            // Exibe a refeição e a glicemia
+            ocasiaoRefeicaoSpan.innerText = nomeDasRefeicoes[resultadoCalculo.tipoRefeicao] || resultadoCalculo.tipoRefeicao;
+            valorGlicemiaSpan.innerText = `${resultadoCalculo.glicemia} mg/dL`;
+            
+            const db = firebase.firestore();
+
+            // Reconstroi o objeto para gravação
+            alimentosParaGravar = await Promise.all(alimentosAdicionados.map(async alimento => {
+                const now = new Date();
+                const dataFormatada = now.toISOString();
+
+                let alimentoReferencia = null;
+
+                // Tenta buscar na coleção 'alimentos'
+                const alimentosRef = db.collection('alimentos').where('nome', '==', alimento.nome);
+                const alimentosSnapshot = await alimentosRef.get();
+                if (!alimentosSnapshot.empty) {
+                    alimentoReferencia = alimentosSnapshot.docs[0].data();
+                } else {
+                    // Se não encontrou, tenta buscar em 'meusAlimentos' com o UID do usuário
+                    const meusAlimentosRef = db.collection('meusAlimentos').where('nome', '==', alimento.nome).where('uid', '==', uid);
+                    const meusAlimentosSnapshot = await meusAlimentosRef.get();
+                    if (!meusAlimentosSnapshot.empty) {
+                        alimentoReferencia = meusAlimentosSnapshot.docs[0].data();
+                    }
+                }
+
+                // Se encontrou a referência, calcula o peso com base no CHO do usuário
+                let pesoCalculado = 0;
+                let choCalculado = parseFloat(alimento.cho);
+                let proteinaCalculada = 0;
+                let gorduraCalculada = 0;
+                let energiaCalculada = 0;
+
+                if (alimentoReferencia && alimentoReferencia.carboidrato > 0) {
+                    // Calcula o peso (g/ml) usando a fórmula
+                    pesoCalculado = (choCalculado * alimentoReferencia.quantidade_g_ml) / alimentoReferencia.carboidrato;
+                    
+                    // Calcula os outros valores nutricionais proporcionalmente
+                    proteinaCalculada = (pesoCalculado * alimentoReferencia.proteina) / alimentoReferencia.quantidade_g_ml;
+                    gorduraCalculada = (pesoCalculado * alimentoReferencia.gordura) / alimentoReferencia.quantidade_g_ml;
+                    energiaCalculada = (pesoCalculado * alimentoReferencia.energia) / alimentoReferencia.quantidade_g_ml;
+                }
+
+                return {
+                    carboidrato: choCalculado,
+                    data: dataFormatada,
+                    energia: energiaCalculada,
+                    gMl: pesoCalculado,
+                    gordura: gorduraCalculada,
+                    nome: alimento.nome,
+                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    proteina: proteinaCalculada,
+                    uid: uid
+                };
+            }));
+
+            // Reconstroi o objeto da insulina para gravação
+            insulinaParaGravar = [];
+            const now = new Date();
+            const dataFormatada = now.toISOString();
+            
+            if (resultadoCalculo.insulinaCho > 0) {
+                insulinaParaGravar.push({
+                    data: dataFormatada,
+                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    quantidade: resultadoCalculo.insulinaCho,
+                    tipo: "rapida",
+                    correcao: false,
+                    uid: uid
+                });
+            }
+            if (resultadoCalculo.insulinaCorrecao > 0) {
+                insulinaParaGravar.push({
+                    data: dataFormatada,
+                    ocasiao: resultadoCalculo.tipoRefeicao,
+                    quantidade: resultadoCalculo.insulinaCorrecao,
+                    tipo: "rapida",
+                    correcao: true,
+                    uid: uid
+                });
+            }
+
+            // Reconstroi o objeto da glicemia para gravação
+            glicemiaParaGravar = {
+                data: dataFormatada,
+                ocasiao: resultadoCalculo.tipoRefeicao,
+                valor: resultadoCalculo.glicemia,
+                uid: uid
+            };
+
+            // Exibir na tabela de alimentos
+            const alimentosTbody = document.getElementById('alimentosTbody');
+            const alimentosTfoot = document.getElementById('alimentosTfoot');
+            alimentosTbody.innerHTML = ''; // Limpa tabela
+            alimentosTfoot.innerHTML = ''; // Limpa o rodapé da tabela
+
+            let totalPeso = 0;
+            let totalCHO = 0;
+            let totalProteina = 0;
+            let totalGordura = 0;
+            let totalEnergia = 0;
+            
+            alimentosParaGravar.forEach(alimento => {
+                const row = alimentosTbody.insertRow();
+                row.innerHTML = `
+                    <td>${alimento.nome}</td>
+                    <td>${alimento.gMl.toFixed(1)}</td>
+                    <td>${alimento.carboidrato.toFixed(1)}</td>
+                    <td>${alimento.proteina.toFixed(1)}</td>
+                    <td>${alimento.gordura.toFixed(1)}</td>
+                    <td>${alimento.energia.toFixed(1)}</td>
+                `;
+                totalPeso += alimento.gMl;
+                totalCHO += alimento.carboidrato;
+                totalProteina += alimento.proteina;
+                totalGordura += alimento.gordura;
+                totalEnergia += alimento.energia;
+            });
+
+            // Adiciona a linha de totais na tabela de alimentos
+            if (alimentosParaGravar.length > 0) {
+                const totalRow = alimentosTfoot.insertRow();
+                totalRow.innerHTML = `
+                    <td><strong>Total</strong></td>
+                    <td><strong>${totalPeso.toFixed(1)}</strong></td>
+                    <td><strong>${totalCHO.toFixed(1)}</strong></td>
+                    <td><strong>${totalProteina.toFixed(1)}</strong></td>
+                    <td><strong>${totalGordura.toFixed(1)}</strong></td>
+                    <td><strong>${totalEnergia.toFixed(1)}</strong></td>
+                `;
+            }
+
+            // Exibir na tabela de insulina
+            const insulinaTbody = document.getElementById('insulinaTbody');
+            const insulinaTfoot = document.getElementById('insulinaTfoot');
+            insulinaTbody.innerHTML = ''; // Limpa tabela
+            insulinaTfoot.innerHTML = ''; // Limpa o rodapé da tabela
+
+            let totalInsulina = 0;
+
+            insulinaParaGravar.forEach(insulina => {
+                const row = insulinaTbody.insertRow();
+                row.innerHTML = `
+                    <td>${insulina.tipo}</td>
+                    <td>${insulina.correcao ? 'Sim' : 'Não'}</td>
+                    <td>${insulina.quantidade.toFixed(1)}</td>
+                `;
+                totalInsulina += insulina.quantidade;
+            });
+
+            // Adiciona a linha de totais na tabela de insulina
+            if (insulinaParaGravar.length > 0) {
+                const totalRow = insulinaTfoot.insertRow();
+                totalRow.innerHTML = `
+                    <td><strong>Total</strong></td>
+                    <td></td>
+                    <td><strong>${totalInsulina.toFixed(1)}</strong></td>
+                `;
+            }
+        }
+
+        async function gravarDados() {
+            if (!currentUserUid || alimentosParaGravar.length === 0) {
+                alert("Nenhum dado para gravar.");
+                return;
+            }
+
+            const loading = document.getElementById('loading');
+            const message = document.getElementById('message');
+            confirmarBtn.disabled = true;
+            retornarBtn.disabled = true;
+            loading.classList.remove('hidden');
+
+            const db = firebase.firestore();
+
+            try {
+                // Gravar na tabela glicemia
+                const glicemiaDocRef = db.collection('glicemia').doc();
+                await glicemiaDocRef.set(glicemiaParaGravar);
+
+                // Gravar nas tabelas alimentosConsumidos e insulinaAdministrada em batch
+                const batch = db.batch();
+                alimentosParaGravar.forEach(alimento => {
+                    const newDocRef = db.collection('alimentosConsumidos').doc();
+                    batch.set(newDocRef, alimento);
+                });
+
+                insulinaParaGravar.forEach(insulina => {
+                    const newDocRef = db.collection('insulinaAdministrada').doc();
+                    batch.set(newDocRef, insulina);
+                });
+
+                await batch.commit();
+
+                // Sucesso
+                loading.classList.add('hidden');
+                message.innerText = "Dados gravados com sucesso!";
+                message.classList.remove('hidden', 'text-red-600');
+                message.classList.add('text-green-600');
+                
+                // Limpar localStorage e redirecionar
+                localStorage.removeItem('alimentosAdicionados');
+                localStorage.removeItem('resultadoCalculo');
+                setTimeout(() => {
+                    window.location.href = "menu.html";
+                }, 2000);
+
+            } catch (error) {
+                console.error("Erro ao gravar os dados:", error);
+                loading.classList.add('hidden');
+                message.innerText = `Erro ao gravar os dados: ${error.message}`;
+                message.classList.remove('hidden', 'text-green-600');
+                message.classList.add('text-red-600');
+                confirmarBtn.disabled = false;
+                retornarBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
