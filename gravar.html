@@ -371,7 +371,7 @@
             
             const db = firebase.firestore();
 
-            const dataTimestamp = getLocalTimestamp();
+            const dataTimestamp = new Date(); // Using new Date() to get the local date/time
             const ocasiaoDb = mapaRefeicoesDb[resultadoCalculo.tipoRefeicao] || resultadoCalculo.tipoRefeicao;
 
             // Reconstroi o objeto para gravação
