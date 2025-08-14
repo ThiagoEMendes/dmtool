@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>DMTool - Glicemia Nightscout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #2e3a51;
+            color: white;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            display: none;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #4a5568;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #4a5568;
+        }
+
+        .sidebar h3 {
+            padding: 0 20px;
+            color: #ddd;
+            font-weight: normal;
+            font-size: 1rem;
+            border-bottom: 1px solid #4a5568;
+            padding-bottom: 15px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group button {
+            width: 100%;
+        }
+
+        .result-box {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .glicemia-valor {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .glicemia-label {
+            font-size: 1.25rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+    <header>
+        <button id="menu-toggle" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1><strong>DMTool</strong></h1>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <h3 id="userNameInMenu">Carregando...</h3>
+        <a href="menu.html">Menu inicial</a>
+        <a href="alimentos.html">Alimentos</a>
+        <a href="ajustes.html">Ajustes</a>
+        <a href="#" id="logoutLink">Sair</a>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="flex-1 p-4">
+        <div class="container">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Glicemia Nightscout</h2>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Informações do Nightscout</h3>
+                <p id="nightscoutUrl" class="text-gray-700 mb-2"><strong>Endereço Nightscout:</strong> Carregando...</p>
+                <div class="result-box mt-4">
+                    <p class="glicemia-label">Glicemia Atual</p>
+                    <p id="glicemiaAtualValor" class="glicemia-valor">...</p>
+                    <p id="glicemiaAtualData" class="text-sm text-gray-500 mt-2">...</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Buscar Glicemia por Data e Hora</h3>
+                <div class="form-group">
+                    <label for="dataHoraGlicemia">Data e Hora:</label>
+                    <input type="datetime-local" id="dataHoraGlicemia" class="w-full">
+                </div>
+                <button id="buscarGlicemiaBtn" class="w-full py-3 px-6 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">Buscar Glicemia</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6 hidden" id="resultadoBusca">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Resultado da Busca</h3>
+                <div class="result-box">
+                    <p class="glicemia-label">Glicemia na data/hora informada</p>
+                    <p id="glicemiaBuscadaValor" class="glicemia-valor">...</p>
+                    <p id="glicemiaBuscadaData" class="text-sm text-gray-500 mt-2">...</p>
+                </div>
+            </div>
+
+            <div id="loading" class="text-center text-gray-600 my-4 hidden">
+                <i class="fas fa-spinner fa-spin text-xl"></i> Carregando dados...
+            </div>
+            <div id="message" class="text-center text-red-600 my-4 hidden"></div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./login/firebase.js"></script>
+
+    <script>
+        let currentUserUid = null;
+        let nightscoutBaseUrl = null;
+
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const userNameInMenu = document.getElementById('userNameInMenu');
+        const logoutLink = document.getElementById('logoutLink');
+        const nightscoutUrlP = document.getElementById('nightscoutUrl');
+        const glicemiaAtualValorP = document.getElementById('glicemiaAtualValor');
+        const glicemiaAtualDataP = document.getElementById('glicemiaAtualData');
+        const dataHoraGlicemiaInput = document.getElementById('dataHoraGlicemia');
+        const buscarGlicemiaBtn = document.getElementById('buscarGlicemiaBtn');
+        const resultadoBuscaDiv = document.getElementById('resultadoBusca');
+        const glicemiaBuscadaValorP = document.getElementById('glicemiaBuscadaValor');
+        const glicemiaBuscadaDataP = document.getElementById('glicemiaBuscadaData');
+        const loadingDiv = document.getElementById('loading');
+        const messageDiv = document.getElementById('message');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.style.display = 'none';
+        });
+
+        logoutLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await auth.signOut();
+                window.location.href = "./login/login.html";
+            } catch (error) {
+                console.error("Erro ao fazer logout:", error);
+                alert("Erro ao tentar sair: " + error.message);
+            }
+        });
+
+        buscarGlicemiaBtn.addEventListener('click', buscarGlicemiaNaData);
+
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUserUid = user.uid;
+                try {
+                    const doc = await db.collection('usuarios').doc(user.uid).get();
+                    if (doc.exists) {
+                        const usuario = doc.data();
+                        userNameInMenu.innerText = usuario.nome || "Usuário";
+                        nightscoutBaseUrl = usuario.nightscout;
+                        if (nightscoutBaseUrl) {
+                            nightscoutUrlP.innerHTML = `<strong>Endereço Nightscout:</strong> <a href="${nightscoutBaseUrl}" target="_blank" class="text-blue-600 hover:underline">${nightscoutBaseUrl}</a>`;
+                            carregarGlicemiaAtual();
+                        } else {
+                            nightscoutUrlP.innerText = "<strong>Endereço Nightscout:</strong> Não configurado.";
+                            glicemiaAtualValorP.innerText = "N/A";
+                            glicemiaAtualDataP.innerText = "Configurar Nightscout em 'Ajustes'";
+                            messageDiv.innerText = "O endereço do Nightscout não está configurado. Por favor, adicione-o na página 'Ajustes'.";
+                            messageDiv.classList.remove('hidden');
+                        }
+                    } else {
+                        alert("Dados do usuário não encontrados.");
+                        window.location.href = "menu.html";
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar dados do usuário:", error);
+                    alert("Ocorreu um erro ao carregar seus dados.");
+                    window.location.href = "menu.html";
+                }
+            } else {
+                window.location.href = "./login/login.html";
+            }
+        });
+
+        async function carregarGlicemiaAtual() {
+            if (!nightscoutBaseUrl) return;
+
+            loadingDiv.classList.remove('hidden');
+            messageDiv.classList.add('hidden');
+            glicemiaAtualValorP.innerText = "...";
+            glicemiaAtualDataP.innerText = "Carregando...";
+
+            try {
+                const url = `${nightscoutBaseUrl}/api/v1/entries.json?count=1`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    const latestEntry = data[0];
+                    const sgv = latestEntry.sgv;
+                    const dateString = latestEntry.dateString;
+                    const date = new Date(dateString);
+
+                    glicemiaAtualValorP.innerText = `${sgv} mg/dL`;
+                    glicemiaAtualDataP.innerText = `Última leitura: ${date.toLocaleString('pt-BR')}`;
+                } else {
+                    glicemiaAtualValorP.innerText = "N/A";
+                    glicemiaAtualDataP.innerText = "Nenhuma leitura encontrada.";
+                }
+            } catch (error) {
+                console.error("Erro ao buscar glicemia atual:", error);
+                messageDiv.innerText = `Erro ao buscar glicemia atual: ${error.message}. Verifique a URL do Nightscout.`;
+                messageDiv.classList.remove('hidden');
+                glicemiaAtualValorP.innerText = "Erro";
+                glicemiaAtualDataP.innerText = "Tente novamente mais tarde.";
+            } finally {
+                loadingDiv.classList.add('hidden');
+            }
+        }
+
+        async function buscarGlicemiaNaData() {
+            if (!nightscoutBaseUrl) return;
+
+            const dataHora = dataHoraGlicemiaInput.value;
+            if (!dataHora) {
+                alert("Por favor, selecione uma data e hora.");
+                return;
+            }
+
+            loadingDiv.classList.remove('hidden');
+            messageDiv.classList.add('hidden');
+            resultadoBuscaDiv.classList.add('hidden');
+
+            const timestamp = new Date(dataHora).getTime();
+            
+            try {
+                // A Nightscout API search for an entry closest to a given timestamp
+                const url = `${nightscoutBaseUrl}/api/v1/entries.json?find[date][$gte]=${timestamp - 150000}&find[date][$lte]=${timestamp + 150000}&count=1`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+                const data = await response.json();
+
+                resultadoBuscaDiv.classList.remove('hidden');
+                if (data && data.length > 0) {
+                    const entry = data[0];
+                    const sgv = entry.sgv;
+                    const date = new Date(entry.date);
+                    
+                    glicemiaBuscadaValorP.innerText = `${sgv} mg/dL`;
+                    glicemiaBuscadaDataP.innerText = `Leitura encontrada em: ${date.toLocaleString('pt-BR')}`;
+                } else {
+                    glicemiaBuscadaValorP.innerText = "N/A";
+                    glicemiaBuscadaDataP.innerText = "Nenhuma leitura encontrada para a data/hora informada.";
+                }
+
+            } catch (error) {
+                console.error("Erro ao buscar glicemia por data:", error);
+                messageDiv.innerText = `Erro ao buscar glicemia: ${error.message}. Verifique a URL do Nightscout.`;
+                messageDiv.classList.remove('hidden');
+                glicemiaBuscadaValorP.innerText = "Erro";
+                glicemiaBuscadaDataP.innerText = "Tente novamente mais tarde.";
+            } finally {
+                loadingDiv.classList.add('hidden');
+            }
+        }
+
+    </script>
+</body>
+</html>

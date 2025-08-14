@@ -454,7 +454,8 @@
                 data: dataTimestamp,
                 ocasiao: ocasiaoDb,
                 glicemia: resultadoCalculo.glicemia,
-                uid: uid
+                uid: uid,
+                verificado: true // Adicionando o campo 'verificado' com o valor 'true'
             };
 
             // Exibir na tabela de alimentos
@@ -543,9 +544,25 @@
             const db = firebase.firestore();
 
             try {
-                // Gravar na tabela mapaGlicemico
+                // Objeto para a primeira entrada de glicemia
                 const glicemiaDocRef = db.collection('mapaGlicemico').doc();
                 await glicemiaDocRef.set(glicemiaParaGravar);
+
+                // Cria o timestamp para 2 horas depois
+                const data2hDepois = new Date(glicemiaParaGravar.data.getTime() + 2 * 60 * 60 * 1000);
+                
+                // Cria o objeto para a entrada de glicemia 2 horas depois
+                const glicemia2hDepois = {
+                    data: data2hDepois,
+                    glicemia: null, // Glicemia em branco
+                    ocasiao: `${glicemiaParaGravar.ocasiao}2hDepois`,
+                    uid: currentUserUid,
+                    verificado: false
+                };
+
+                // Grava a nova entrada no mapaGlicemico
+                const glicemia2hDepoisDocRef = db.collection('mapaGlicemico').doc();
+                await glicemia2hDepoisDocRef.set(glicemia2hDepois);
 
                 // Gravar nas tabelas alimentosConsumidos e insulinaAdministrada em batch
                 const batch = db.batch();
