@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>DMTool - Informar Glicemia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #2e3a51;
+            color: white;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            display: none;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #4a5568;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #4a5568;
+        }
+
+        .sidebar h3 {
+            padding: 0 20px;
+            color: #ddd;
+            font-weight: normal;
+            font-size: 1rem;
+            border-bottom: 1px solid #4a5568;
+            padding-bottom: 15px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        .data-table input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e40af;
+        }
+        
+        .btn-disabled {
+            background-color: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .date-input-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+    <header>
+        <button id="menu-toggle" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1><strong>DMTool</strong></h1>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <h3 id="userNameInMenu">Carregando...</h3>
+        <a href="menu.html">Menu inicial</a>
+        <a href="alimentos.html">Alimentos</a>
+        <a href="ajustes.html">Ajustes</a>
+        <a href="#" id="logoutLink">Sair</a>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="flex-1 p-4">
+        <div class="container">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Informar Glicemia</h2>
+            <p class="text-gray-700 mb-6 text-center">Informe os valores de glicemia pós-refeição.</p>
+            
+            <div class="date-input-container">
+                <label for="date-picker" class="mr-2 text-gray-700">Data:</label>
+                <input type="date" id="date-picker" class="p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div id="loading" class="text-center text-gray-600 my-4 hidden">
+                <i class="fas fa-spinner fa-spin text-xl"></i> Carregando dados...
+            </div>
+            <div id="message" class="text-center my-4 hidden"></div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Refeição</th>
+                            <th>Hora</th>
+                            <th>Pré refeição</th>
+                            <th>2h Depois</th>
+                        </tr>
+                    </thead>
+                    <tbody id="glicemiaTbody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-end gap-4 mt-8">
+                <button id="gravarBtn" class="btn btn-primary" disabled>Gravar</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./login/firebase.js"></script>
+
+    <script>
+        const nomeDasRefeicoes = {
+            "cafeDaManha": "Café da Manã",
+            "lancheDaManha": "Lanche da Manã",
+            "almoco": "Almoço",
+            "sobremesa": "Sobremesa",
+            "lancheDaTarde": "Lanche da Tarde",
+            "jantar": "Jantar",
+            "ceia": "Ceia",
+            "lancheAvulso": "Lanche Avulso"
+        };
+        
+        let currentUserUid = null;
+        let glicemiasParaAtualizar = {};
+        
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const userNameInMenu = document.getElementById('userNameInMenu');
+        const logoutLink = document.getElementById('logoutLink');
+        const glicemiaTbody = document.getElementById('glicemiaTbody');
+        const gravarBtn = document.getElementById('gravarBtn');
+        const loadingDiv = document.getElementById('loading');
+        const messageDiv = document.getElementById('message');
+        const datePicker = document.getElementById('date-picker');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.style.display = 'none';
+        });
+
+        logoutLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await auth.signOut();
+                window.location.href = "./login/login.html";
+            } catch (error) {
+                console.error("Erro ao fazer logout:", error);
+                alert("Erro ao tentar sair: " + error.message);
+            }
+        });
+        
+        gravarBtn.addEventListener('click', gravarGlicemias);
+        datePicker.addEventListener('change', (e) => {
+            if (currentUserUid) {
+                carregarGlicemias(e.target.value);
+            }
+        });
+
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUserUid = user.uid;
+                try {
+                    const doc = await db.collection('usuarios').doc(user.uid).get();
+                    if (doc.exists) {
+                        const usuario = doc.data();
+                        userNameInMenu.innerText = usuario.nome || "Usuário";
+                        const today = new Date();
+                        const year = today.getFullYear();
+                        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+                        const day = today.getDate().toString().padStart(2, '0');
+                        datePicker.value = `${year}-${month}-${day}`;
+                        carregarGlicemias();
+                    } else {
+                        alert("Dados do usuário não encontrados.");
+                        window.location.href = "menu.html";
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar dados do usuário:", error);
+                    alert("Ocorreu um erro ao carregar seus dados.");
+                    window.location.href = "menu.html";
+                }
+            } else {
+                window.location.href = "./login/login.html";
+            }
+        });
+
+        async function carregarGlicemias(dateString) {
+            loadingDiv.classList.remove('hidden');
+            messageDiv.classList.add('hidden');
+            glicemiaTbody.innerHTML = '';
+            gravarBtn.disabled = true;
+            gravarBtn.classList.add('btn-disabled');
+
+            const db = firebase.firestore();
+            
+            try {
+                let startOfDay;
+                let endOfDay;
+
+                if (dateString) {
+                    const [year, month, day] = dateString.split('-').map(Number);
+                    const selectedDate = new Date(year, month - 1, day);
+                    startOfDay = selectedDate;
+                    endOfDay = new Date(year, month - 1, day, 23, 59, 59, 999);
+                } else {
+                    const today = new Date();
+                    startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
+                    endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+                }
+
+                const querySnapshot = await db.collection('mapaGlicemico')
+                    .where('uid', '==', currentUserUid)
+                    .where('data', '>=', startOfDay)
+                    .where('data', '<=', endOfDay)
+                    .orderBy('data', 'desc')
+                    .get();
+
+                if (querySnapshot.empty) {
+                    messageDiv.innerText = "Nenhum registro de glicemia encontrado para a data selecionada.";
+                    messageDiv.classList.remove('hidden');
+                    loadingDiv.classList.add('hidden');
+                    return;
+                }
+
+                const glicemias = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                const refeicoesMap = {};
+
+                glicemias.forEach(glicemia => {
+                    const ocasiao = glicemia.ocasiao;
+                    if (ocasiao.includes('2hDepois')) {
+                        const ocasiaoBase = ocasiao.replace('2hDepois', '');
+                        if (!refeicoesMap[ocasiaoBase]) {
+                            refeicoesMap[ocasiaoBase] = {};
+                        }
+                        refeicoesMap[ocasiaoBase].depois = glicemia;
+                    } else {
+                        if (!refeicoesMap[ocasiao]) {
+                            refeicoesMap[ocasiao] = {};
+                        }
+                        refeicoesMap[ocasiao].pre = glicemia;
+                    }
+                });
+
+                let rowCount = 0;
+                for (const ocasiaoBase in refeicoesMap) {
+                    const refeicao = refeicoesMap[ocasiaoBase];
+                    if (refeicao.pre) {
+                        const preGlicemia = refeicao.pre.glicemia || "N/A";
+                        const hora = refeicao.pre.data.toDate().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                        const nomeRefeicao = nomeDasRefeicoes[ocasiaoBase] || ocasiaoBase;
+                        
+                        const row = glicemiaTbody.insertRow();
+                        
+                        const after2hGlicemia = (refeicao.depois && refeicao.depois.glicemia) ? refeicao.depois.glicemia : '';
+                        const isDisabled = refeicao.depois && refeicao.depois.verificado;
+                        const inputId = `input-${refeicao.depois ? refeicao.depois.id : 'nao-encontrado'}`;
+                        const inputHTML = `<input type="number" id="${inputId}" value="${after2hGlicemia}" placeholder="Glicemia" class="w-24 text-center" ${isDisabled ? 'disabled' : ''}>`;
+
+                        row.innerHTML = `
+                            <td>${nomeRefeicao}</td>
+                            <td>${hora}</td>
+                            <td>${preGlicemia} mg/dL</td>
+                            <td>${inputHTML}</td>
+                        `;
+                        
+                        if (refeicao.depois && !isDisabled) {
+                            const inputElement = document.getElementById(inputId);
+                            inputElement.addEventListener('input', (e) => {
+                                const docId = refeicao.depois.id;
+                                glicemiasParaAtualizar[docId] = e.target.value;
+                                verificarBotaoGravar();
+                            });
+                        }
+                        rowCount++;
+                    }
+                }
+                
+                if (rowCount === 0) {
+                    messageDiv.innerText = "Nenhum registro de glicemia pré-refeição encontrado para a data selecionada.";
+                    messageDiv.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Erro ao buscar glicemias:", error);
+                messageDiv.innerText = `Erro ao buscar glicemias: ${error.message}`;
+                messageDiv.classList.remove('hidden');
+                messageDiv.classList.add('text-red-600');
+            } finally {
+                loadingDiv.classList.add('hidden');
+                verificarBotaoGravar();
+            }
+        }
+        
+        function verificarBotaoGravar() {
+            const hasUpdates = Object.values(glicemiasParaAtualizar).some(value => value !== null && value.trim() !== '');
+            if (hasUpdates) {
+                gravarBtn.classList.remove('btn-disabled');
+                gravarBtn.disabled = false;
+            } else {
+                gravarBtn.classList.add('btn-disabled');
+                gravarBtn.disabled = true;
+            }
+        }
+        
+        async function gravarGlicemias() {
+            gravarBtn.disabled = true;
+            gravarBtn.classList.add('btn-disabled');
+            loadingDiv.classList.remove('hidden');
+            messageDiv.classList.add('hidden');
+            
+            const db = firebase.firestore();
+            const batch = db.batch();
+            let hasChanges = false;
+            
+            for (const docId in glicemiasParaAtualizar) {
+                const glicemiaValor = glicemiasParaAtualizar[docId];
+                if (glicemiaValor && glicemiaValor.trim() !== '') {
+                    const docRef = db.collection('mapaGlicemico').doc(docId);
+                    batch.update(docRef, { glicemia: parseFloat(glicemiaValor), verificado: true });
+                    hasChanges = true;
+                }
+            }
+            
+            if (hasChanges) {
+                try {
+                    await batch.commit();
+                    messageDiv.innerText = "Glicemias gravadas com sucesso!";
+                    messageDiv.classList.remove('hidden', 'text-red-600');
+                    messageDiv.classList.add('text-green-600');
+                    glicemiasParaAtualizar = {}; // Resetar o objeto de atualizações
+                    setTimeout(() => carregarGlicemias(datePicker.value), 2000); // Recarregar a tabela após a gravação
+                } catch (error) {
+                    console.error("Erro ao gravar as glicemias:", error);
+                    messageDiv.innerText = `Erro ao gravar as glicemias: ${error.message}`;
+                    messageDiv.classList.remove('hidden', 'text-green-600');
+                    messageDiv.classList.add('text-red-600');
+                    gravarBtn.disabled = false;
+                    gravarBtn.classList.remove('btn-disabled');
+                }
+            } else {
+                messageDiv.innerText = "Nenhuma alteração para gravar.";
+                messageDiv.classList.remove('hidden', 'text-green-600');
+                messageDiv.classList.add('text-blue-600');
+                gravarBtn.disabled = false;
+                gravarBtn.classList.remove('btn-disabled');
+            }
+
+            loadingDiv.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
