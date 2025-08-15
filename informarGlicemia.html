@@ -235,8 +235,8 @@
 
     <script>
         const nomeDasRefeicoes = {
-            "cafeDaManha": "Café da Manã",
-            "lancheDaManha": "Lanche da Manã",
+            "cafeDaManha": "Café da Manhã",
+            "lancheDaManha": "Lanche da Manhã",
             "almoco": "Almoço",
             "sobremesa": "Sobremesa",
             "lancheDaTarde": "Lanche da Tarde",
@@ -246,6 +246,7 @@
         };
         
         let currentUserUid = null;
+        let nightscoutUrl = null;
         let glicemiasParaAtualizar = {};
         
         const sidebar = document.getElementById('sidebar');
@@ -295,6 +296,7 @@
                     if (doc.exists) {
                         const usuario = doc.data();
                         userNameInMenu.innerText = usuario.nome || "Usuário";
+                        nightscoutUrl = usuario.nightscout || null;
                         const today = new Date();
                         const year = today.getFullYear();
                         const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -314,6 +316,22 @@
                 window.location.href = "./login/login.html";
             }
         });
+
+        async function buscarGlicemiaNightscout(timestamp, url) {
+            if (!url) return null;
+            const nightscoutApiUrl = `${url}/api/v1/entries.json?find[dateString][$gte]=${new Date(timestamp - 300000).toISOString()}&find[dateString][$lte]=${new Date(timestamp + 300000).toISOString()}&count=1`;
+            
+            try {
+                const response = await fetch(nightscoutApiUrl);
+                const data = await response.json();
+                if (data && data.length > 0 && data[0].sgv) {
+                    return data[0].sgv;
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados no Nightscout:", error);
+            }
+            return null;
+        }
 
         async function carregarGlicemias(dateString) {
             loadingDiv.classList.remove('hidden');
@@ -339,6 +357,33 @@
                     endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
                 }
 
+                // --- Início da nova lógica de busca e atualização do Nightscout ---
+                const batch = db.batch();
+                let registrosNaoVerificadosQuery = db.collection('mapaGlicemico')
+                    .where('uid', '==', currentUserUid)
+                    .where('data', '>=', startOfDay)
+                    .where('data', '<=', endOfDay)
+                    .where('verificado', '==', false);
+                    
+                const queryNaoVerificadosSnapshot = await registrosNaoVerificadosQuery.get();
+                
+                for (const doc of queryNaoVerificadosSnapshot.docs) {
+                    const glicemiaNaoVerificada = doc.data();
+                    const timestamp = glicemiaNaoVerificada.data.toDate().getTime();
+                    const glicemiaDoNightscout = await buscarGlicemiaNightscout(timestamp, nightscoutUrl);
+                    
+                    if (glicemiaDoNightscout !== null) {
+                        const docRef = db.collection('mapaGlicemico').doc(doc.id);
+                        batch.update(docRef, { glicemia: parseFloat(glicemiaDoNightscout), verificado: true });
+                    }
+                }
+                
+                if (!queryNaoVerificadosSnapshot.empty) {
+                    await batch.commit();
+                }
+                // --- Fim da nova lógica ---
+
+                // Agora, carrega todos os registros (verificados ou não) para exibição na tabela
                 const querySnapshot = await db.collection('mapaGlicemico')
                     .where('uid', '==', currentUserUid)
                     .where('data', '>=', startOfDay)
@@ -384,9 +429,8 @@
                         const row = glicemiaTbody.insertRow();
                         
                         const after2hGlicemia = (refeicao.depois && refeicao.depois.glicemia) ? refeicao.depois.glicemia : '';
-                        const isDisabled = refeicao.depois && refeicao.depois.verificado;
-                        const inputId = `input-${refeicao.depois ? refeicao.depois.id : 'nao-encontrado'}`;
-                        const inputHTML = `<input type="number" id="${inputId}" value="${after2hGlicemia}" placeholder="Glicemia" class="w-24 text-center" ${isDisabled ? 'disabled' : ''}>`;
+                        // Remove o 'disabled' para permitir a edição
+                        const inputHTML = `<input type="number" id="input-${refeicao.depois ? refeicao.depois.id : 'nao-encontrado'}" value="${after2hGlicemia}" placeholder="Glicemia" class="w-24 text-center">`;
 
                         row.innerHTML = `
                             <td>${nomeRefeicao}</td>
@@ -395,8 +439,9 @@
                             <td>${inputHTML}</td>
                         `;
                         
-                        if (refeicao.depois && !isDisabled) {
-                            const inputElement = document.getElementById(inputId);
+                        // Adiciona o event listener para capturar as alterações
+                        if (refeicao.depois) {
+                            const inputElement = document.getElementById(`input-${refeicao.depois.id}`);
                             inputElement.addEventListener('input', (e) => {
                                 const docId = refeicao.depois.id;
                                 glicemiasParaAtualizar[docId] = e.target.value;
@@ -424,6 +469,7 @@
         }
         
         function verificarBotaoGravar() {
+            // Verifica se há pelo menos um valor no objeto de atualizações
             const hasUpdates = Object.values(glicemiasParaAtualizar).some(value => value !== null && value.trim() !== '');
             if (hasUpdates) {
                 gravarBtn.classList.remove('btn-disabled');
@@ -469,14 +515,15 @@
                     gravarBtn.disabled = false;
                     gravarBtn.classList.remove('btn-disabled');
                 }
-            } else {
+            }
+            else {
                 messageDiv.innerText = "Nenhuma alteração para gravar.";
                 messageDiv.classList.remove('hidden', 'text-green-600');
                 messageDiv.classList.add('text-blue-600');
                 gravarBtn.disabled = false;
                 gravarBtn.classList.remove('btn-disabled');
             }
-
+            
             loadingDiv.classList.add('hidden');
         }
     </script>
