@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mapa Glicêmico - DMTool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Estilos baseados no código fornecido, com pequenas otimizações de responsividade */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      flex-grow: 1;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .date-inputs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .date-inputs label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .date-inputs input[type="date"] {
+      padding: 8px;
+      border: 2px solid #ccc;
+    
+      border-radius: 8px;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .search-btn, .pdf-btn {
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-btn:hover, .pdf-btn:hover {
+      background-color: #1d4ed8;
+    }
+
+    .data-table-container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .data-table th, .data-table td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      min-width: 80px; /* Garante que as colunas não fiquem muito estreitas */
+    }
+
+    .data-table th {
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .data-table tbody tr:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+    
+    .data-table tbody tr:hover {
+      background-color: #e5e7eb;
+    }
+
+    /* Estilos para a formatação condicional */
+    .date-column {
+      background-color: #cceeff; /* Azul claro */
+    }
+    .low-glicemia {
+        background-color: #ffcccc; /* Vermelho claro */
+    }
+
+    .high-glicemia {
+        background-color: #ffffcc; /* Amarelo claro */
+    }
+
+    /* Estilos do Menu Lateral */
+    aside {
+      position: fixed;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      padding-top: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    aside.open {
+      left: 0;
+    }
+
+    #nomeUsuarioMenu {
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      margin-bottom: 10px;
+    }
+
+    aside .menu-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.2s;
+    }
+
+    aside .menu-item:hover {
+      background-color: #555;
+    }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: row;
+        padding: 12px;
+        position: relative;
+      }
+      header h1 {
+        text-align: right;
+        flex-grow: 0;
+      }
+      .date-inputs {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body onclick="fecharMenu(event)">
+  <header>
+    <button id="menu-toggle" onclick="toggleMenu(event)">☰</button>
+    <h1 onclick="toggleMenu(event)">DMTool</h1>
+  </header>
+
+  <aside id="menu-lateral">
+    <div id="nomeUsuarioMenu"></div>
+    <div class="menu-item" onclick="irPara('meusDados.html')">Meus Dados</div>
+    <div class="menu-item" onclick="logout()">Sair</div>
+  </aside>
+
+  <main>
+    <h2>Mapa Glicêmico</h2>
+    <div class="date-inputs">
+      <label for="dataInicial">Data Inicial:</label>
+      <input type="date" id="dataInicial" name="dataInicial">
+      <label for="dataFinal">Data Final:</label>
+      <input type="date" id="dataFinal" name="dataFinal">
+    </div>
+    <div class="button-group">
+        <button class="search-btn" onclick="buscarDados()">Pesquisar</button>
+        <button class="pdf-btn" onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+
+    <div class="data-table-container">
+      <table class="data-table" id="glicemia-table">
+        <thead>
+          <tr>
+            <th class="date-column">Dia</th>
+            <th>3h</th>
+            <th>Jejum</th>
+            <th>Café</th>
+            <th>Café 2h</th>
+            <th>Lanche</th>
+            <th>Lanche 2h</th>
+            <th>Almoço</th>
+            <th>Almoço 2h</th>
+            <th>Lanche</th>
+            <th>Lanche 2h</th>
+            <th>Jantar</th>
+            <th>Jantar 2h</th>
+            <th>Ceia</th>
+            <th>Ceia 2h</th>
+            <th>Ao deitar</th>
+          </tr>
+        </thead>
+        <tbody id="glicemia-body">
+          </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="./login/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+  <script>
+    // Inicializa a data atual nos campos
+    window.onload = function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('dataInicial').value = today;
+      document.getElementById('dataFinal').value = today;
+    };
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const doc = await db.collection('usuarios').doc(user.uid).get();
+        if (doc.exists) {
+          const usuario = doc.data();
+          document.getElementById('nomeUsuarioMenu').innerText = usuario.nome || "Usuário";
+        }
+      } else {
+        window.location.href = "./login/login.html";
+      }
+    });
+
+    async function buscarDados() {
+      const dataInicial = document.getElementById('dataInicial').value;
+      const dataFinal = document.getElementById('dataFinal').value;
+      const user = auth.currentUser;
+      const tableBody = document.getElementById('glicemia-body');
+      tableBody.innerHTML = ''; // Limpa a tabela
+
+      if (user && dataInicial && dataFinal) {
+        const inicioTimestamp = new Date(dataInicial + 'T00:00:00');
+        const fimTimestamp = new Date(dataFinal + 'T23:59:59');
+
+        console.log(`Buscando dados para o usuário: ${user.uid}`);
+        console.log(`Período: ${inicioTimestamp.toLocaleString()} a ${fimTimestamp.toLocaleString()}`);
+
+        try {
+          const mapaGlicemicoRef = db.collection('mapaGlicemico');
+          const snapshot = await mapaGlicemicoRef
+            .where('uid', '==', user.uid)
+            .where('data', '>=', inicioTimestamp)
+            .where('data', '<=', fimTimestamp)
+            .orderBy('data')
+            .get();
+
+          if (snapshot.empty) {
+            console.log('Nenhum registro encontrado.');
+            const row = tableBody.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 16;
+            cell.innerText = 'Nenhum registro encontrado para o período selecionado.';
+            return;
+          }
+
+          const dadosAgrupados = {};
+          snapshot.forEach(doc => {
+            const dados = doc.data();
+            const dataFormatada = new Date(dados.data.seconds * 1000).toLocaleDateString('pt-BR');
+            const ocasiao = dados.ocasiao;
+            const glicemia = dados.glicemia;
+            
+            if (!dadosAgrupados[dataFormatada]) {
+              dadosAgrupados[dataFormatada] = {
+                dia: dataFormatada,
+                '3h': '',
+                jejum: '',
+                cafeDaManha: '',
+                cafeDaManha2hDepois: '',
+                lancheDaManha: '',
+                lancheDaManha2hDepois: '',
+                almoco: '',
+                almoco2hDepois: '',
+                lancheDaTarde: '',
+                lancheDaTarde2hDepois: '',
+                jantar: '',
+                jantar2hDepois: '',
+                ceia: '',
+                ceia2hDepois: '',
+                aoDeitar: ''
+              };
+            }
+            if (dadosAgrupados[dataFormatada][ocasiao] !== undefined) {
+                dadosAgrupados[dataFormatada][ocasiao] = glicemia;
+            }
+          });
+
+          console.log(`Encontrados ${Object.keys(dadosAgrupados).length} registros agrupados.`);
+          for (const dia in dadosAgrupados) {
+            const grupo = dadosAgrupados[dia];
+            const row = tableBody.insertRow();
+            
+            const diaCell = row.insertCell(0);
+            diaCell.innerText = grupo.dia;
+            diaCell.classList.add('date-column');
+
+            row.insertCell(1).innerText = grupo['3h'];
+            row.insertCell(2).innerText = grupo.jejum;
+            row.insertCell(3).innerText = grupo.cafeDaManha;
+            row.insertCell(4).innerText = grupo.cafeDaManha2hDepois;
+            row.insertCell(5).innerText = grupo.lancheDaManha;
+            row.insertCell(6).innerText = grupo.lancheDaManha2hDepois;
+            row.insertCell(7).innerText = grupo.almoco;
+            row.insertCell(8).innerText = grupo.almoco2hDepois;
+            row.insertCell(9).innerText = grupo.lancheDaTarde;
+            row.insertCell(10).innerText = grupo.lancheDaTarde2hDepois;
+            row.insertCell(11).innerText = grupo.jantar;
+            row.insertCell(12).innerText = grupo.jantar2hDepois;
+            row.insertCell(13).innerText = grupo.ceia;
+            row.insertCell(14).innerText = grupo.ceia2hDepois;
+            row.insertCell(15).innerText = grupo.aoDeitar;
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+          const row = tableBody.insertRow();
+          const cell = row.insertCell(0);
+          cell.colSpan = 16;
+          cell.innerText = 'Ocorreu um erro ao buscar os dados. Verifique o console para mais detalhes.';
+        }
+      } else {
+        const row = tableBody.insertRow();
+        const cell = row.insertCell(0);
+        cell.colSpan = 16;
+        cell.innerText = 'Por favor, selecione as datas para pesquisar.';
+      }
+
+      // Aplica a formatação condicional após a tabela ser populada
+      const tableCells = document.querySelectorAll('#glicemia-body td:not(.date-column)');
+      tableCells.forEach(cell => {
+          const value = parseInt(cell.innerText);
+          if (!isNaN(value)) {
+              if (value < 60) {
+                  cell.classList.add('low-glicemia');
+              } else if (value > 180) {
+                  cell.classList.add('high-glicemia');
+              }
+          }
+      });
+    }
+    
+    function gerarPDF() {
+        const tabelaContainer = document.getElementById('glicemia-table');
+        if (!tabelaContainer || tabelaContainer.getElementsByTagName('tr').length <= 1) {
+            alert('Não há dados para gerar o PDF. Por favor, faça uma pesquisa primeiro.');
+            return;
+        }
+
+        const elementoParaPDF = document.createElement('div');
+        
+        // Título principal
+        const titulo = document.createElement('h1');
+        titulo.innerText = 'Relatório de Mapa Glicêmico';
+        titulo.style.textAlign = 'center';
+        titulo.style.color = '#333';
+        
+        // Nome do usuário
+        const nomeUsuario = document.getElementById('nomeUsuarioMenu').innerText;
+        const usuarioHeader = document.createElement('h2');
+        usuarioHeader.innerText = `${nomeUsuario}`;
+        usuarioHeader.style.textAlign = 'center';
+        usuarioHeader.style.marginBottom = '20px';
+        usuarioHeader.style.color = '#555';
+
+        // Clona a tabela e aplica estilos para o PDF
+        const clonedTable = tabelaContainer.cloneNode(true);
+        clonedTable.style.width = '100%';
+        clonedTable.style.borderCollapse = 'collapse';
+        clonedTable.style.fontSize = '14px'; // Mantém a fonte dos dados maior
+        
+        // Reduz o padding das células para o PDF
+        const cells = clonedTable.querySelectorAll('th, td');
+        cells.forEach(cell => {
+          cell.style.padding = '2px 3px';
+        });
+
+        // Aplica uma transformação CSS para garantir que a tabela caiba
+        clonedTable.style.transform = 'scale(0.6)'; // Ajusta a escala para que a tabela inteira caiba
+        clonedTable.style.transformOrigin = 'left top';
+
+        // Adiciona a tabela clonada ao elemento que será convertido em PDF
+        elementoParaPDF.appendChild(titulo);
+        elementoParaPDF.appendChild(usuarioHeader);
+        elementoParaPDF.appendChild(clonedTable);
+        
+        const opt = {
+            margin: 0.5,
+            filename: 'Relatorio_Mapa_Glicemico_' + new Date().toLocaleDateString('pt-BR').replace(/\//g, '-') + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2.0, scrollY: 0 }, // Aumenta a escala para melhorar a qualidade
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+
+        html2pdf().set(opt).from(elementoParaPDF).save();
+    }
+
+    function irPara(pagina) {
+      window.location.href = pagina;
+    }
+
+    function logout() {
+      const confirmar = confirm("Tem certeza de que deseja sair?");
+      if (confirmar) {
+        auth.signOut().then(() => {
+          window.location.href = "./login/login.html";
+        });
+      }
+    }
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('menu-lateral');
+      menu.classList.toggle('open');
+    }
+
+    function fecharMenu(event) {
+      const menu = document.getElementById('menu-lateral');
+      const menuToggle = document.getElementById('menu-toggle');
+      const headerH1 = document.querySelector('header h1');
+      if (menu.classList.contains('open') && !menu.contains(event.target) && !menuToggle.contains(event.target) && !headerH1.contains(event.target)) {
+        menu.classList.remove('open');
+      }
+    }
+  </script>
+</body>
+</html>

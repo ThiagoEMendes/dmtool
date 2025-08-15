@@ -46,6 +46,15 @@
       margin-right: 10px;
     }
 
+    #back-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: auto; 
+    }
+
     h1 {
       text-align: center;
       margin: 20px 0;
@@ -179,7 +188,6 @@
     <span id="app-name">DMTool</span>
   </header>
   
-  <h1>Relatórios</h1>
 
   <aside id="menu-lateral">
     <div id="nomeUsuarioMenu"></div>
@@ -192,12 +200,16 @@
 
   <main>
     <div class="grid">
+      <div class="btn-tile" onclick="irPara('menu.html')">
+        <span>❮</span>
+        <p>Retornar</p>
+      </div>
       <div class="btn-tile" onclick="irPara('recordatorio.html')">
-        <span>✅🍎</span>
+        <span>✅</span>
         <p>Recordatório</p>
       </div>
       <div class="btn-tile" onclick="irPara('mapaGlicemico.html')">
-        <span>📈📉</span>
+        <span>📈</span>
         <p>Mapa Glicêmico</p>
       </div>
     </div>

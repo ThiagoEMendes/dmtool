@@ -70,6 +70,47 @@ glicemia:(glicemia)
 uid:(uid do usuário logado)
 
 
+------------------
+
+Construa a pagina mapaGlicemico.html, nos mesmos padrões da página enviada com os seguintes requisitos:
+
+Dois campos para que o usuário informe a data inicial e final da pesquisa.
+
+Por padrão os dois campos de data devem mostrar a data atual.
+
+Com base no intervalo definido pelo usuário o sistema deve buscar dados na tabela mapaGlicemico do firebase para construir a seguinte tabela:
+
+Coluna Dia: primeiro dia do intervalo para a primeira linha, segundo dia do intervalo para a segunda linha etc...
+Coluna Almoço: valor de mapaGlicemico.glicemia do registro do dia onde mapaGlicemico.ocasiao for "almoco".
+Coluna Almoço 2h: valor de mapaGlicemico.glicemia do registro do dia onde mapaGlicemico.ocasiao for "almoco2hDepois".
+
+
+
+3h:3h
+Jejum:jejum
+Café:cafeDaManha
+Café 2h:cafeDaManha2hDepois
+Lanche:lancheDaManha
+Lanche 2h:lancheDaManha2hDepois
+Almoço:almoco
+Almoço 2h:almoco2hDepois
+Lanche:lancheDaTarde
+Lanche 2h:lancheDaTarde2hDepois
+Jantar:jantar
+Jantar 2h:jantar2hDepois
+Ceia:ceia
+Ceia 2h:ceia2hDepois
+Ao deitar:aoDeitar
+
+
+
+
+
+
+
+
+
+
 
 
 
