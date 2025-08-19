@@ -195,7 +195,7 @@
     <main class="flex-1 p-4">
         <div class="container">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Informar Glicemia</h2>
-            <p class="text-gray-700 mb-6 text-center">Informe os valores de glicemia pós-refeição.</p>
+            <p class="text-gray-700 mb-6 text-center">Não se esqueça de atualizar os valores de glicemia.</p>
             
             <div class="date-input-container">
                 <label for="date-picker" class="mr-2 text-gray-700">Data:</label>
@@ -370,7 +370,6 @@
                 .get();
                 
             if (querySnapshot.empty) {
-                // Cria uma referência para o novo documento
                 const newDocRef = db.collection('mapaGlicemico').doc();
                 let novoRegistro = {
                     uid: currentUserUid,
@@ -380,7 +379,6 @@
                     verificado: false
                 };
                 
-                // Tenta buscar a glicemia do Nightscout imediatamente se a hora já passou
                 if (now >= dataAlvo) {
                     const glicemiaDoNightscout = await buscarGlicemiaNightscout(dataAlvo.getTime(), nightscoutUrl);
                     if (glicemiaDoNightscout !== null) {
@@ -394,7 +392,6 @@
                 const doc = querySnapshot.docs[0];
                 const registro = doc.data();
 
-                // Mantém a lógica de verificação para registros existentes que não foram verificados
                 if (registro.verificado === false && now >= registro.data.toDate()) {
                     const glicemiaDoNightscout = await buscarGlicemiaNightscout(registro.data.toDate().getTime(), nightscoutUrl);
                     if (glicemiaDoNightscout !== null) {
@@ -433,6 +430,7 @@
                     endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
                 }
                 
+                // Processa apenas as ocasiões especiais para criação e preenchimento inicial
                 const [jejumHours, jejumMinutes] = userSpecialTimes.jejum.split(':').map(Number);
                 const dataJejum = new Date(startOfDay);
                 dataJejum.setHours(jejumHours, jejumMinutes, 0, 0);
@@ -447,6 +445,29 @@
                 const dataTresH = new Date(startOfDay);
                 dataTresH.setHours(tresHHours, tresHMinutes, 0, 0);
                 await processarOcasiaoEspecial('3h', userSpecialTimes.tresHoras, dataTresH, batch);
+                
+                // Nova lógica para buscar e atualizar todos os registros não verificados (incluindo refeições)
+                const now = new Date();
+                let registrosNaoVerificadosQuery = db.collection('mapaGlicemico')
+                    .where('uid', '==', currentUserUid)
+                    .where('data', '>=', startOfDay)
+                    .where('data', '<=', endOfDay)
+                    .where('verificado', '==', false);
+                    
+                const queryNaoVerificadosSnapshot = await registrosNaoVerificadosQuery.get();
+                
+                for (const doc of queryNaoVerificadosSnapshot.docs) {
+                    const glicemiaNaoVerificada = doc.data();
+                    const timestamp = glicemiaNaoVerificada.data.toDate().getTime();
+                    
+                    if (now >= glicemiaNaoVerificada.data.toDate()) {
+                        const glicemiaDoNightscout = await buscarGlicemiaNightscout(timestamp, nightscoutUrl);
+                        if (glicemiaDoNightscout !== null) {
+                            const docRef = db.collection('mapaGlicemico').doc(doc.id);
+                            batch.update(docRef, { glicemia: parseFloat(glicemiaDoNightscout), verificado: true });
+                        }
+                    }
+                }
                 
                 await batch.commit();
 
