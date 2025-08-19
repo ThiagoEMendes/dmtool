@@ -103,6 +103,72 @@ Ceia 2h:ceia2hDepois
 Ao deitar:aoDeitar
 
 
+****INFORMAR GLICEMIA,  3H , JEJUM E AO ACORDAR...
+
+Preciso que os seguintes requisitos sejam implementados na minha página:
+
+O sistema deve verificar na tabela mapaGlicemico, a existência de registros, da data da pesquisa,
+onde o campo ocasiao tem uma das strings: "3h", "jejum" ou "aoDeitar".
+
+
+Se o registro com a string "3h" no campo ocasiao não for localizado criar a entrada: 
+
+data:Dia atual(definido pelo usuario) e hora definida em usuarios.3h do usuário logado.
+glicemia:null
+ocasiao:3h
+uid:(uid do usuário logado)
+verificado:false
+
+Se o registro com a string "3h" no campo ocasiao for localizado e se o campo vefificado for igual a false
+então se a (data e hora atual) >= campo data(da tabela mapaGlicemico) então o sistema deve buscar a glicemia do nightscout, gravá-la 
+no campo glicemia e alterar o campo verificado para true.
+
+
+Se o registro com a string "jejum" no campo ocasiao não for localizado criar a entrada: 
+
+data:Dia atual(definido pelo usuario) e hora definida em usuarios.jejum do usuário logado.
+glicemia:null
+ocasiao:jejum
+uid:(uid do usuário logado)
+verificado:false
+
+Se o registro com a string "jejum" no campo ocasiao for localizado e se o campo vefificado for igual a false
+então se a (data e hora atual) >= campo data(da tabela mapaGlicemico) então o sistema deve buscar a glicemia do nightscout, gravá-la 
+no campo glicemia e alterar o campo verificado para true.
+
+Se o registro com a string "aoDeitar" no campo ocasiao não for localizado criar a entrada: 
+
+data:Dia atual(definido pelo usuario) e hora definida em usuarios.aoDeitar do usuário logado.
+glicemia:null
+ocasiao:aoDeitar
+uid:(uid do usuário logado)
+verificado:false
+
+Se o registro com a string "aoDeitar" no campo ocasiao for localizado e se o campo vefificado for igual a false
+então se a (data e hora atual) >= campo data(da tabela mapaGlicemico) então o sistema deve buscar a glicemia do nightscout, gravá-la 
+no campo glicemia e alterar o campo verificado para true.
+
+
+
+Abaixo deve haver outra tabela , a primeira coluna é a Ocasião que terá as linhas, 
+3h da manhã, Jejum e Ao Acordar, na segunda coluna ficarão os campos de texto correspondentes.
+
+
+
+O campo de texto que corresponde a 3h deve ser preenchido com o valor de mapaGlicemico.glicemia em que
+data é a data atual, verificado for true e ocasiao=3h. 
+O campo de texto que corresponde a jejum deve ser preenchido com o valor de mapaGlicemico.glicemia em que
+data é a data atual, verificado for true e ocasiao=jejum. 
+O campo de texto que corresponde a aoDeitar deve ser preenchido com o valor de mapaGlicemico.glicemia em que
+data é a data atual, verificado for true e ocasiao=aoDeitar. 
+
+Se o usuário preencher ou editar o campo, o botão Gravar deve ser ativado o valor inserido no campo deve ser gravado em 
+mapaGlicemico.glicemia e mapaGlicemico.verificado deve ser alterado para true.
+Os mesmos passos devem ser realizados para ocasiao "jejum" e "aoDeitar".
+
+
+
+
 
 
 

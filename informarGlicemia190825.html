@@ -222,20 +222,6 @@
                 </table>
             </div>
 
-            <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Outros Registros</h3>
-            <div class="table-container">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Ocasião</th>
-                            <th>Glicemia</th>
-                        </tr>
-                    </thead>
-                    <tbody id="specialGlicemiaTbody">
-                    </tbody>
-                </table>
-            </div>
-
             <div class="flex justify-end gap-4 mt-8">
                 <button id="gravarBtn" class="btn btn-primary" disabled>Gravar</button>
             </div>
@@ -256,15 +242,11 @@
             "lancheDaTarde": "Lanche da Tarde",
             "jantar": "Jantar",
             "ceia": "Ceia",
-            "lancheAvulso": "Lanche Avulso",
-            "jejum": "Jejum",
-            "3h": "3h",
-            "aoDeitar": "Ao Deitar"
+            "lancheAvulso": "Lanche Avulso"
         };
         
         let currentUserUid = null;
         let nightscoutUrl = null;
-        let userSpecialTimes = {};
         let glicemiasParaAtualizar = {};
         
         const sidebar = document.getElementById('sidebar');
@@ -273,7 +255,6 @@
         const userNameInMenu = document.getElementById('userNameInMenu');
         const logoutLink = document.getElementById('logoutLink');
         const glicemiaTbody = document.getElementById('glicemiaTbody');
-        const specialGlicemiaTbody = document.getElementById('specialGlicemiaTbody');
         const gravarBtn = document.getElementById('gravarBtn');
         const loadingDiv = document.getElementById('loading');
         const messageDiv = document.getElementById('message');
@@ -316,11 +297,6 @@
                         const usuario = doc.data();
                         userNameInMenu.innerText = usuario.nome || "Usuário";
                         nightscoutUrl = usuario.nightscout || null;
-                        userSpecialTimes = {
-                            jejum: usuario.jejum || '06:00',
-                            tresHoras: usuario.tresHoras || '03:00',
-                            aoDeitar: usuario.aoDeitar || '22:00'
-                        };
                         const today = new Date();
                         const year = today.getFullYear();
                         const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -343,8 +319,7 @@
 
         async function buscarGlicemiaNightscout(timestamp, url) {
             if (!url) return null;
-            
-            const nightscoutApiUrl = `${url}/api/v1/entries.json?find[date][$gte]=${timestamp - 150000}&find[date][$lte]=${timestamp + 150000}&count=1`;
+            const nightscoutApiUrl = `${url}/api/v1/entries.json?find[dateString][$gte]=${new Date(timestamp - 300000).toISOString()}&find[dateString][$lte]=${new Date(timestamp + 300000).toISOString()}&count=1`;
             
             try {
                 const response = await fetch(nightscoutApiUrl);
@@ -358,162 +333,94 @@
             return null;
         }
 
-        async function processarOcasiaoEspecial(ocasiao, horario, dataAlvo, batch) {
-            const db = firebase.firestore();
-            const now = new Date();
-            
-            const querySnapshot = await db.collection('mapaGlicemico')
-                .where('uid', '==', currentUserUid)
-                .where('ocasiao', '==', ocasiao)
-                .where('data', '>=', new Date(dataAlvo.getTime() - 1000 * 60 * 5))
-                .where('data', '<=', new Date(dataAlvo.getTime() + 1000 * 60 * 5))
-                .get();
-                
-            if (querySnapshot.empty) {
-                // Cria uma referência para o novo documento
-                const newDocRef = db.collection('mapaGlicemico').doc();
-                let novoRegistro = {
-                    uid: currentUserUid,
-                    ocasiao: ocasiao,
-                    data: dataAlvo,
-                    glicemia: null,
-                    verificado: false
-                };
-                
-                // Tenta buscar a glicemia do Nightscout imediatamente se a hora já passou
-                if (now >= dataAlvo) {
-                    const glicemiaDoNightscout = await buscarGlicemiaNightscout(dataAlvo.getTime(), nightscoutUrl);
-                    if (glicemiaDoNightscout !== null) {
-                        novoRegistro.glicemia = parseFloat(glicemiaDoNightscout);
-                        novoRegistro.verificado = true;
-                    }
-                }
-                
-                batch.set(newDocRef, novoRegistro);
-            } else {
-                const doc = querySnapshot.docs[0];
-                const registro = doc.data();
-
-                // Mantém a lógica de verificação para registros existentes que não foram verificados
-                if (registro.verificado === false && now >= registro.data.toDate()) {
-                    const glicemiaDoNightscout = await buscarGlicemiaNightscout(registro.data.toDate().getTime(), nightscoutUrl);
-                    if (glicemiaDoNightscout !== null) {
-                        batch.update(db.collection('mapaGlicemico').doc(doc.id), {
-                            glicemia: parseFloat(glicemiaDoNightscout),
-                            verificado: true
-                        });
-                    }
-                }
-            }
-        }
-
         async function carregarGlicemias(dateString) {
             loadingDiv.classList.remove('hidden');
             messageDiv.classList.add('hidden');
             glicemiaTbody.innerHTML = '';
-            specialGlicemiaTbody.innerHTML = '';
             gravarBtn.disabled = true;
             gravarBtn.classList.add('btn-disabled');
-            glicemiasParaAtualizar = {};
 
             const db = firebase.firestore();
-            const batch = db.batch();
             
             try {
                 let startOfDay;
                 let endOfDay;
+
                 if (dateString) {
                     const [year, month, day] = dateString.split('-').map(Number);
                     const selectedDate = new Date(year, month - 1, day);
-                    startOfDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 0, 0, 0, 0);
-                    endOfDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 23, 59, 59, 999);
+                    startOfDay = selectedDate;
+                    endOfDay = new Date(year, month - 1, day, 23, 59, 59, 999);
                 } else {
                     const today = new Date();
                     startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
                     endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
                 }
+
+                // --- Início da nova lógica de busca e atualização do Nightscout ---
+                const batch = db.batch();
+                let registrosNaoVerificadosQuery = db.collection('mapaGlicemico')
+                    .where('uid', '==', currentUserUid)
+                    .where('data', '>=', startOfDay)
+                    .where('data', '<=', endOfDay)
+                    .where('verificado', '==', false);
+                    
+                const queryNaoVerificadosSnapshot = await registrosNaoVerificadosQuery.get();
                 
-                const [jejumHours, jejumMinutes] = userSpecialTimes.jejum.split(':').map(Number);
-                const dataJejum = new Date(startOfDay);
-                dataJejum.setHours(jejumHours, jejumMinutes, 0, 0);
-                await processarOcasiaoEspecial('jejum', userSpecialTimes.jejum, dataJejum, batch);
-
-                const [aoDeitarHours, aoDeitarMinutes] = userSpecialTimes.aoDeitar.split(':').map(Number);
-                const dataAoDeitar = new Date(startOfDay);
-                dataAoDeitar.setHours(aoDeitarHours, aoDeitarMinutes, 0, 0);
-                await processarOcasiaoEspecial('aoDeitar', userSpecialTimes.aoDeitar, dataAoDeitar, batch);
-
-                const [tresHHours, tresHMinutes] = userSpecialTimes.tresHoras.split(':').map(Number);
-                const dataTresH = new Date(startOfDay);
-                dataTresH.setHours(tresHHours, tresHMinutes, 0, 0);
-                await processarOcasiaoEspecial('3h', userSpecialTimes.tresHoras, dataTresH, batch);
+                for (const doc of queryNaoVerificadosSnapshot.docs) {
+                    const glicemiaNaoVerificada = doc.data();
+                    const timestamp = glicemiaNaoVerificada.data.toDate().getTime();
+                    const glicemiaDoNightscout = await buscarGlicemiaNightscout(timestamp, nightscoutUrl);
+                    
+                    if (glicemiaDoNightscout !== null) {
+                        const docRef = db.collection('mapaGlicemico').doc(doc.id);
+                        batch.update(docRef, { glicemia: parseFloat(glicemiaDoNightscout), verificado: true });
+                    }
+                }
                 
-                await batch.commit();
+                if (!queryNaoVerificadosSnapshot.empty) {
+                    await batch.commit();
+                }
+                // --- Fim da nova lógica ---
 
+                // Agora, carrega todos os registros (verificados ou não) para exibição na tabela
                 const querySnapshot = await db.collection('mapaGlicemico')
                     .where('uid', '==', currentUserUid)
                     .where('data', '>=', startOfDay)
                     .where('data', '<=', endOfDay)
-                    .orderBy('data', 'asc')
+                    .orderBy('data', 'desc')
                     .get();
 
-                const todosRegistros = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                
-                const specialOccasions = ['jejum', '3h', 'aoDeitar'];
-                const regularMeals = {};
-                const specialRecords = [];
+                if (querySnapshot.empty) {
+                    messageDiv.innerText = "Nenhum registro de glicemia encontrado para a data selecionada.";
+                    messageDiv.classList.remove('hidden');
+                    loadingDiv.classList.add('hidden');
+                    return;
+                }
 
-                let mainTableCount = 0;
-                let specialTableCount = 0;
+                const glicemias = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-                todosRegistros.forEach(glicemia => {
+                const refeicoesMap = {};
+
+                glicemias.forEach(glicemia => {
                     const ocasiao = glicemia.ocasiao;
-                    if (specialOccasions.includes(ocasiao)) {
-                        specialRecords.push(glicemia);
-                    } else if (ocasiao.includes('2hDepois')) {
+                    if (ocasiao.includes('2hDepois')) {
                         const ocasiaoBase = ocasiao.replace('2hDepois', '');
-                        if (!regularMeals[ocasiaoBase]) {
-                            regularMeals[ocasiaoBase] = {};
+                        if (!refeicoesMap[ocasiaoBase]) {
+                            refeicoesMap[ocasiaoBase] = {};
                         }
-                        regularMeals[ocasiaoBase].depois = glicemia;
+                        refeicoesMap[ocasiaoBase].depois = glicemia;
                     } else {
-                        if (!regularMeals[ocasiao]) {
-                            regularMeals[ocasiao] = {};
+                        if (!refeicoesMap[ocasiao]) {
+                            refeicoesMap[ocasiao] = {};
                         }
-                        regularMeals[ocasiao].pre = glicemia;
+                        refeicoesMap[ocasiao].pre = glicemia;
                     }
                 });
-                
-                const ordemOcasioes = { '3h': 1, 'jejum': 2, 'aoDeitar': 3 };
-                specialRecords.sort((a, b) => ordemOcasioes[a.ocasiao] - ordemOcasioes[b.ocasiao]);
 
-                specialRecords.forEach(glicemia => {
-                    const row = specialGlicemiaTbody.insertRow();
-                    const glicemiaValor = glicemia.glicemia !== null ? glicemia.glicemia : '';
-                    
-                    const inputHTML = `<input type="number" id="input-${glicemia.id}" value="${glicemiaValor}" placeholder="Glicemia" class="w-24 text-center">`;
-                    
-                    row.innerHTML = `
-                        <td>${nomeDasRefeicoes[glicemia.ocasiao]}</td>
-                        <td>${inputHTML}</td>
-                    `;
-                    
-                    const inputElement = document.getElementById(`input-${glicemia.id}`);
-                    inputElement.addEventListener('input', (e) => {
-                        glicemiasParaAtualizar[glicemia.id] = e.target.value;
-                        verificarBotaoGravar();
-                    });
-                    specialTableCount++;
-                });
-
-                const sortedRegularMealKeys = Object.keys(regularMeals).sort((a, b) => {
-                    const aDate = regularMeals[a].pre?.data.toDate();
-                    const bDate = regularMeals[b].pre?.data.toDate();
-                    return aDate - bDate;
-                });
-
-                for (const ocasiaoBase of sortedRegularMealKeys) {
-                    const refeicao = regularMeals[ocasiaoBase];
+                let rowCount = 0;
+                for (const ocasiaoBase in refeicoesMap) {
+                    const refeicao = refeicoesMap[ocasiaoBase];
                     if (refeicao.pre) {
                         const preGlicemia = refeicao.pre.glicemia || "N/A";
                         const hora = refeicao.pre.data.toDate().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
@@ -522,6 +429,7 @@
                         const row = glicemiaTbody.insertRow();
                         
                         const after2hGlicemia = (refeicao.depois && refeicao.depois.glicemia) ? refeicao.depois.glicemia : '';
+                        // Remove o 'disabled' para permitir a edição
                         const inputHTML = `<input type="number" id="input-${refeicao.depois ? refeicao.depois.id : 'nao-encontrado'}" value="${after2hGlicemia}" placeholder="Glicemia" class="w-24 text-center">`;
 
                         row.innerHTML = `
@@ -531,6 +439,7 @@
                             <td>${inputHTML}</td>
                         `;
                         
+                        // Adiciona o event listener para capturar as alterações
                         if (refeicao.depois) {
                             const inputElement = document.getElementById(`input-${refeicao.depois.id}`);
                             inputElement.addEventListener('input', (e) => {
@@ -539,15 +448,13 @@
                                 verificarBotaoGravar();
                             });
                         }
-                        mainTableCount++;
+                        rowCount++;
                     }
                 }
                 
-                if (mainTableCount === 0 && specialTableCount === 0) {
-                    messageDiv.innerText = "Nenhum registro de glicemia encontrado para a data selecionada.";
+                if (rowCount === 0) {
+                    messageDiv.innerText = "Nenhum registro de glicemia pré-refeição encontrado para a data selecionada.";
                     messageDiv.classList.remove('hidden');
-                } else {
-                    messageDiv.classList.add('hidden');
                 }
 
             } catch (error) {
@@ -562,6 +469,7 @@
         }
         
         function verificarBotaoGravar() {
+            // Verifica se há pelo menos um valor no objeto de atualizações
             const hasUpdates = Object.values(glicemiasParaAtualizar).some(value => value !== null && value.trim() !== '');
             if (hasUpdates) {
                 gravarBtn.classList.remove('btn-disabled');
@@ -597,8 +505,8 @@
                     messageDiv.innerText = "Glicemias gravadas com sucesso!";
                     messageDiv.classList.remove('hidden', 'text-red-600');
                     messageDiv.classList.add('text-green-600');
-                    glicemiasParaAtualizar = {};
-                    setTimeout(() => carregarGlicemias(datePicker.value), 2000);
+                    glicemiasParaAtualizar = {}; // Resetar o objeto de atualizações
+                    setTimeout(() => carregarGlicemias(datePicker.value), 2000); // Recarregar a tabela após a gravação
                 } catch (error) {
                     console.error("Erro ao gravar as glicemias:", error);
                     messageDiv.innerText = `Erro ao gravar as glicemias: ${error.message}`;
