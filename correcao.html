@@ -191,14 +191,29 @@
       color: white;
     }
 
-    .btn-tile.voltar {
-      border-color: #22c55e; /* Verde */
-      color: #22c55e; /* Verde */
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
 
-    .btn-tile.voltar:hover {
-      background-color: #22c55e; /* Verde */
-      color: white;
+    .floating-btn:hover {
+      background-color: #1e40af;
+    }
+
+    .floating-btn i {
+      font-size: 24px;
     }
   </style>
 </head>
@@ -228,12 +243,12 @@
         <span style="color: #f59e0b;">&uarr;💉</span>
         <p>Hiperglicemia</p>
       </div>
-      <div class="btn-tile voltar" onclick="irPara('menu.html')">
-        <span style="color: #22c55e;">&larr;</span>
-        <p>Retornar</p>
-      </div>
     </div>
   </main>
+
+  <div class="floating-btn" onclick="irPara('menu.html')">
+    <i class="fas fa-arrow-left"></i>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
