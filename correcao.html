@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Menu - DMTool</title>
+  <title>Correção - DMTool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -170,6 +170,36 @@
         font-size: 48px;
       }
     }
+    
+    .btn-tile.hipo {
+      border-color: #dc2626; /* Vermelho */
+      color: #dc2626; /* Vermelho */
+    }
+
+    .btn-tile.hipo:hover {
+      background-color: #dc2626; /* Vermelho */
+      color: white;
+    }
+    
+    .btn-tile.hiper {
+      border-color: #f59e0b; /* Amarelo */
+      color: #f59e0b; /* Amarelo */
+    }
+
+    .btn-tile.hiper:hover {
+      background-color: #f59e0b; /* Amarelo */
+      color: white;
+    }
+
+    .btn-tile.voltar {
+      border-color: #22c55e; /* Verde */
+      color: #22c55e; /* Verde */
+    }
+
+    .btn-tile.voltar:hover {
+      background-color: #22c55e; /* Verde */
+      color: white;
+    }
   </style>
 </head>
 <body class="flex flex-col h-screen">
@@ -182,7 +212,7 @@
 
   <nav id="sidebar" class="sidebar">
     <h3 id="userNameInMenu">Carregando...</h3>
-    <a href="meusDados.html">Meus Dados</a>
+    <a href="menu.html">Menu inicial</a>
     <a href="#" id="logoutLink">Sair</a>
   </nav>
 
@@ -190,33 +220,17 @@
 
   <main>
     <div class="grid">
-      <div class="btn-tile" onclick="irPara('correcao.html')">
-        <span>⚡</span>
-        <p>Correção</p>
+      <div class="btn-tile hipo" onclick="alert('Hipoglicemia selecionada!')">
+        <span style="color: #dc2626;">&darr;🍪</span>
+        <p>Hipoglicemia</p>
       </div>
-      <div class="btn-tile" onclick="irPara('choEInsulina.html')">
-        <span>🍽️</span>
-        <p>Calcular refeição</p>
+      <div class="btn-tile hiper" onclick="alert('Hiperglicemia selecionada!')">
+        <span style="color: #f59e0b;">&uarr;💉</span>
+        <p>Hiperglicemia</p>
       </div>
-      <div class="btn-tile" onclick="irPara('informarGlicemia.html')">
-        <span>🩸</span>
-        <p>Informar glicemia</p>
-      </div>
-      <div class="btn-tile" onclick="irPara('glicemiaAtual.html')">
-        <span>📈</span>
-        <p>Nightscout</p>
-      </div>
-      <div class="btn-tile" onclick="irPara('alimentos.html')">
-        <span>🍎</span>
-        <p>Alimentos</p>
-      </div>
-      <div class="btn-tile" onclick="irPara('relatorios.html')">
-        <span>📊</span>
-        <p>Relatórios</p>
-      </div>
-      <div class="btn-tile" onclick="irPara('ajustes.html')">
-        <span>⚙️</span>
-        <p>Ajustes</p>
+      <div class="btn-tile voltar" onclick="irPara('menu.html')">
+        <span style="color: #22c55e;">&larr;</span>
+        <p>Retornar</p>
       </div>
     </div>
   </main>
