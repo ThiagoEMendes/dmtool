@@ -93,7 +93,6 @@
       font-weight: bold;
     }
 
-
     /* Estilos do Menu Lateral */
     .sidebar {
         position: fixed;
@@ -146,51 +145,7 @@
         padding-bottom: 15px;
     }
 
-
-    /* Media Queries para responsividade */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: row;
-        padding: 12px;
-        position: relative;
-      }
-      header h1 {
-        text-align: right;
-        flex-grow: 0;
-      }
-      .grid {
-        max-width: 100%;
-        gap: 15px;
-      }
-      .btn-tile {
-        padding: 15px 10px;
-        font-size: 14px;
-      }
-      .btn-tile span {
-        font-size: 48px;
-      }
-    }
-    
-    .btn-tile.hipo {
-      border-color: #dc2626; /* Vermelho */
-      color: #dc2626; /* Vermelho */
-    }
-
-    .btn-tile.hipo:hover {
-      background-color: #dc2626; /* Vermelho */
-      color: white;
-    }
-    
-    .btn-tile.hiper {
-      border-color: #f59e0b; /* Amarelo */
-      color: #f59e0b; /* Amarelo */
-    }
-
-    .btn-tile.hiper:hover {
-      background-color: #f59e0b; /* Amarelo */
-      color: white;
-    }
-
+    /* Estilos do botão flutuante */
     .floating-btn {
       position: fixed;
       bottom: 20px;
@@ -214,6 +169,162 @@
 
     .floating-btn i {
       font-size: 24px;
+    }
+    
+    .btn-tile.hipo {
+      border-color: #dc2626; /* Vermelho */
+      color: #dc2626; /* Vermelho */
+    }
+
+    .btn-tile.hipo:hover {
+      background-color: #dc2626; /* Vermelho */
+      color: white;
+    }
+    
+    .btn-tile.hiper {
+      border-color: #f59e0b; /* Amarelo */
+      color: #f59e0b; /* Amarelo */
+    }
+
+    .btn-tile.hiper:hover {
+      background-color: #f59e0b; /* Amarelo */
+      color: white;
+    }
+
+    /* Estilos da tela deslizante de correção */
+    .correction-screen {
+      position: fixed;
+      top: 0;
+      left: 100%; /* Inicia fora da tela */
+      width: 100%;
+      height: 100%;
+      background-color: #f9fafb;
+      z-index: 100;
+      transition: left 0.3s ease;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .correction-screen.open {
+      left: 0;
+    }
+
+    .correction-content {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .correction-content h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #4b5563;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .recuperado-text {
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 5px;
+        text-align: left;
+    }
+
+    .insulina-resultado {
+        font-size: 40px;
+        font-weight: bold;
+        color: #2563eb;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .btn-calculate {
+        background-color: #f59e0b;
+        color: white;
+    }
+    
+    .btn-calculate:hover {
+        background-color: #d97706;
+    }
+
+    .btn-save {
+        background-color: #2563eb;
+        color: white;
+    }
+    
+    .btn-save:hover {
+        background-color: #1e40af;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #4b5563;
+    }
+
+    .dados-discretos {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .dados-discretos p {
+      margin: 2px 0;
+    }
+    
+    @media (min-width: 768px) {
+        .correction-screen {
+            width: 50%;
+            left: -50%;
+        }
+        .correction-screen.open {
+            left: 0;
+        }
     }
   </style>
 </head>
@@ -239,7 +350,7 @@
         <span style="color: #dc2626;">&darr;🍪</span>
         <p>Hipoglicemia</p>
       </div>
-      <div class="btn-tile hiper" onclick="alert('Hiperglicemia selecionada!')">
+      <div class="btn-tile hiper" onclick="openCorrectionScreen()">
         <span style="color: #f59e0b;">&uarr;💉</span>
         <p>Hiperglicemia</p>
       </div>
@@ -250,6 +361,34 @@
     <i class="fas fa-arrow-left"></i>
   </div>
 
+  <div id="correction-screen" class="correction-screen">
+    <button class="btn-close" onclick="closeCorrectionScreen()"><i class="fas fa-times"></i></button>
+    <div class="correction-content">
+      <h2>Calcular Correção</h2>
+      <div class="form-group">
+        <label for="glicemia-input">Glicemia (mg/dL)</label>
+        <input type="number" id="glicemia-input" placeholder="Digite a glicemia" autofocus>
+        <p id="recuperado-text" class="recuperado-text"></p>
+      </div>
+      
+      <button class="btn btn-calculate" onclick="calcularCorrecao()">Calcular Correção</button>
+
+      <div id="insulina-resultado" class="insulina-resultado" style="display: none;"></div>
+      
+      <div class="action-buttons">
+          <button id="gravar-btn" class="btn btn-save" style="display: none;" onclick="gravarCorrecao()">Gravar</button>
+      </div>
+      
+      <div id="dados-discretos" class="dados-discretos" style="display: none;">
+        <p>Usuário: <span id="nome-usuario-valor"></span></p>
+        <p>Glicemia Alvo: <span id="glicemia-alvo-valor"></span> mg/dL</p>
+        <p>Fator de Correção: <span id="fator-correcao-valor"></span></p>
+        <p>Dose Máxima: <span id="dose-maxima-valor"></span> UI</p>
+      </div>
+
+    </div>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -257,11 +396,26 @@
   <script src="./login/firebase.js"></script>
 
   <script>
+    let nightscoutBaseUrl = null;
+    let currentUserUid = null;
+    let userData = null;
+    let insulinaCalculada = 0;
+
     const sidebar = document.getElementById('sidebar');
     const menuToggle = document.getElementById('menu-toggle');
     const overlay = document.getElementById('overlay');
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
+    const correctionScreen = document.getElementById('correction-screen');
+    const glicemiaInput = document.getElementById('glicemia-input');
+    const recuperadoText = document.getElementById('recuperado-text');
+    const insulinaResultadoDiv = document.getElementById('insulina-resultado');
+    const gravarBtn = document.getElementById('gravar-btn');
+    const dadosDiscretosDiv = document.getElementById('dados-discretos');
+    const nomeUsuarioValor = document.getElementById('nome-usuario-valor');
+    const glicemiaAlvoValor = document.getElementById('glicemia-alvo-valor');
+    const fatorCorrecaoValor = document.getElementById('fator-correcao-valor');
+    const doseMaximaValor = document.getElementById('dose-maxima-valor');
 
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -269,9 +423,16 @@
         overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
     });
 
-    overlay.addEventListener('click', () => {
+    overlay.addEventListener('click', (e) => {
+        if (correctionScreen.classList.contains('open') && !correctionScreen.contains(e.target)) {
+            closeCorrectionScreen();
+        }
         sidebar.classList.remove('open');
         overlay.style.display = 'none';
+    });
+    
+    correctionScreen.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 
     logoutLink.addEventListener('click', async (e) => {
@@ -287,10 +448,21 @@
 
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const doc = await db.collection('usuarios').doc(user.uid).get();
-        if (doc.exists) {
-          const usuario = doc.data();
-          userNameInMenu.innerText = usuario.nome || "Usuário";
+        currentUserUid = user.uid;
+        try {
+          const doc = await db.collection('usuarios').doc(user.uid).get();
+          if (doc.exists) {
+            userData = doc.data();
+            userNameInMenu.innerText = userData.nome || "Usuário";
+            nightscoutBaseUrl = userData.nightscout;
+          } else {
+            alert("Dados do usuário não encontrados.");
+            window.location.href = "menu.html";
+          }
+        } catch (error) {
+          console.error("Erro ao carregar dados do usuário:", error);
+          alert("Ocorreu um erro ao carregar seus dados.");
+          window.location.href = "menu.html";
         }
       } else {
         window.location.href = "./login/login.html";
@@ -299,6 +471,167 @@
 
     function irPara(pagina) {
       window.location.href = pagina;
+    }
+
+    async function openCorrectionScreen() {
+      correctionScreen.classList.add('open');
+      overlay.style.display = 'block';
+      glicemiaInput.value = '';
+      insulinaResultadoDiv.style.display = 'none';
+      gravarBtn.style.display = 'none';
+      glicemiaInput.focus();
+      
+      recuperadoText.style.display = 'block';
+      recuperadoText.innerText = "Carregando dados...";
+      glicemiaInput.disabled = true;
+
+      try {
+          // Garante que os dados do usuário estejam carregados
+          if (!userData) {
+              const user = auth.currentUser;
+              if (user) {
+                  const doc = await db.collection('usuarios').doc(user.uid).get();
+                  if (doc.exists) {
+                      userData = doc.data();
+                      nightscoutBaseUrl = userData.nightscout;
+                  }
+              }
+          }
+
+          // Preenche os dados do usuário na tela deslizante
+          if (userData) {
+            nomeUsuarioValor.innerText = userData.nome || 'N/A';
+            glicemiaAlvoValor.innerText = userData.glicemiaAlvo || 'N/A';
+            fatorCorrecaoValor.innerText = userData.fatorCorrecao || 'N/A';
+            doseMaximaValor.innerText = userData.doseMaxima || 'N/A';
+            dadosDiscretosDiv.style.display = 'block';
+          } else {
+            console.error("Dados do usuário não disponíveis.");
+            // Oculta os dados discretos se não houver dados
+            dadosDiscretosDiv.style.display = 'none';
+          }
+
+
+          if (nightscoutBaseUrl) {
+              const url = `${nightscoutBaseUrl}/api/v1/entries.json?count=1`;
+              const response = await fetch(url);
+              
+              if (response.ok) {
+                  const data = await response.json();
+                  if (data && data.length > 0) {
+                      const latestEntry = data[0];
+                      const sgv = latestEntry.sgv;
+                      const dateString = latestEntry.dateString;
+                      const entryDate = new Date(dateString);
+                      const now = new Date();
+                      
+                      const diffInMinutes = (now.getTime() - entryDate.getTime()) / (1000 * 60);
+
+                      if (diffInMinutes <= 10) {
+                          glicemiaInput.value = sgv;
+                          recuperadoText.innerText = `Recuperado de Nightscout às ${entryDate.toLocaleTimeString('pt-BR')}`;
+                      } else {
+                          recuperadoText.innerText = "";
+                      }
+                  } else {
+                      recuperadoText.innerText = "";
+                  }
+              } else {
+                  recuperadoText.innerText = "";
+              }
+          } else {
+              recuperadoText.innerText = "";
+          }
+      } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+          recuperadoText.innerText = "";
+      }
+      glicemiaInput.disabled = false;
+      glicemiaInput.focus();
+    }
+
+    function closeCorrectionScreen() {
+      correctionScreen.classList.remove('open');
+      overlay.style.display = 'none';
+    }
+
+    function calcularCorrecao() {
+      const glicemiaAtual = parseFloat(glicemiaInput.value);
+
+      if (isNaN(glicemiaAtual)) {
+          alert("Por favor, digite um valor de glicemia válido.");
+          glicemiaInput.focus();
+          return;
+      }
+      
+      const glicemiaAlvo = parseFloat(userData.glicemiaAlvo);
+      const doseMaxima = parseFloat(userData.doseMaxima);
+      const fatorCorrecao = parseFloat(userData.fatorCorrecao);
+      const dosagemCaneta = parseFloat(userData.dosagemDaCaneta);
+
+      const insulinaBruta = calculaInsulinaDeCorrecao(glicemiaAtual, glicemiaAlvo, fatorCorrecao, doseMaxima);
+      
+      if (dosagemCaneta === 0.5) {
+        insulinaCalculada = Math.round(insulinaBruta * 2) / 2;
+      } else {
+        insulinaCalculada = Math.round(insulinaBruta);
+      }
+      
+      insulinaResultadoDiv.innerText = `${insulinaCalculada.toFixed(1)} UI`;
+      insulinaResultadoDiv.style.display = 'block';
+      gravarBtn.style.display = 'block';
+    }
+
+    function calculaInsulinaDeCorrecao(glicemiaAtual, glicemiaAlvo, fatorCorrecao, doseMaxima) {
+        let insulinaDeCorrecao = 0;
+        let intervalo = fatorCorrecao;
+
+        if (glicemiaAtual > (glicemiaAlvo + (fatorCorrecao * doseMaxima))) {
+            return doseMaxima;
+        }
+
+        if (glicemiaAtual <= glicemiaAlvo) {
+            return insulinaDeCorrecao;
+        } else {
+            for (let i = 1; i <= doseMaxima; i++) {
+                if (glicemiaAtual <= (glicemiaAlvo + intervalo)) {
+                    return i;
+                }
+                intervalo += fatorCorrecao;
+            }
+        }
+        return 0;
+    }
+
+    async function gravarCorrecao() {
+      if (insulinaCalculada > 0) {
+        try {
+            await db.collection('insulinaAdministrada').add({
+                correcao: true,
+                data: firebase.firestore.FieldValue.serverTimestamp(),
+                ocasiao: "correcao",
+                quantidade: insulinaCalculada,
+                tipo: "rapida",
+                uid: currentUserUid
+            });
+            
+            // Mensagem de sucesso na tela deslizante
+            insulinaResultadoDiv.innerText = "Dados gravados com sucesso!";
+            insulinaResultadoDiv.style.color = "#10b981"; // Verde
+            insulinaResultadoDiv.style.fontSize = "20px";
+            
+            // Redireciona após 2 segundos
+            setTimeout(() => {
+                window.location.href = "menu.html";
+            }, 2000);
+            
+        } catch (error) {
+            console.error("Erro ao registrar a correção:", error);
+            alert("Ocorreu um erro ao registrar a correção. Tente novamente.");
+        }
+      } else {
+        alert("Não há insulina para gravar. O cálculo resultou em 0 UI.");
+      }
     }
   </script>
 </body>
