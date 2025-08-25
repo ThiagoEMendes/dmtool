@@ -209,15 +209,24 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      overflow-y: auto; /* Permite rolagem se o conteúdo for maior que a tela */
     }
 
     .correction-screen.open {
       left: 0;
     }
+    
+    /* Botão de voltar na tela deslizante, no canto superior direito */
+    .correction-screen .floating-btn {
+        top: 20px;
+        right: 20px;
+        bottom: auto;
+    }
 
     .correction-content {
       max-width: 400px;
       width: 100%;
+      margin-top: 80px; /* Para não ficar atrás do botão de voltar */
     }
 
     .correction-content h2 {
@@ -245,6 +254,7 @@
       border: 1px solid #d1d5db;
       border-radius: 8px;
       box-sizing: border-box;
+      font-size: 16px; /* Impede o zoom em mobile */
     }
 
     .recuperado-text {
@@ -418,7 +428,7 @@
     const nomeUsuarioValor = document.getElementById('nome-usuario-valor');
     const glicemiaAlvoValor = document.getElementById('glicemia-alvo-valor');
     const fatorCorrecaoValor = document.getElementById('fator-correcao-valor');
-    const doseMaximaValor = document.getElementById('dose-maxima-valor');
+    const doseMaximaValor = document = document.getElementById('dose-maxima-valor');
 
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
