@@ -160,15 +160,10 @@
       justify-content: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
-      transition: background-color 0.2s, opacity 0.3s ease, visibility 0.3s ease;
-      z-index: 101;
+      transition: background-color 0.2s;
+      z-index: 101; /* Garante que o botão fique acima da página principal */
     }
     
-    .floating-btn.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
     .floating-btn:hover {
       background-color: #1e40af;
     }
@@ -205,7 +200,7 @@
       width: 100%;
       height: 100%;
       background-color: #f9fafb;
-      z-index: 100;
+      z-index: 102; /* Maior que o botão flutuante para sobrepô-lo */
       transition: left 0.3s ease;
       padding: 20px;
       box-sizing: border-box;
@@ -220,13 +215,22 @@
     .correction-screen.open {
       left: 0;
     }
-    
-    /* Botão de voltar na tela deslizante, no canto superior direito */
-    .correction-screen .floating-btn-back {
+
+    /* Botão de fechar/voltar na tela deslizante, no canto superior direito */
+    .btn-close {
+        position: absolute;
         top: 20px;
         right: 20px;
-        bottom: auto;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #4b5563;
     }
+    .btn-close:hover {
+        color: #1f2937;
+    }
+
 
     .correction-content {
       max-width: 400px;
@@ -311,17 +315,6 @@
         background-color: #1e40af;
     }
 
-    .btn-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #4b5563;
-    }
-
     .dados-discretos {
       font-size: 12px;
       color: #9ca3af;
@@ -378,9 +371,9 @@
   </div>
 
   <div id="correction-screen" class="correction-screen">
-    <div id="back-btn" class="floating-btn floating-btn-back hidden" onclick="closeCorrectionScreen()">
-        <i class="fas fa-arrow-left"></i>
-    </div>
+    <button class="btn-close" onclick="closeCorrectionScreen()">
+        <i class="fas fa-xmark"></i>
+    </button>
     <div class="correction-content">
       <h2>Calcular Correção</h2>
       <div class="form-group">
@@ -425,7 +418,6 @@
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
     const correctionScreen = document.getElementById('correction-screen');
-    const backBtn = document.getElementById('back-btn');
     const glicemiaInput = document.getElementById('glicemia-input');
     const recuperadoText = document.getElementById('recuperado-text');
     const insulinaResultadoDiv = document.getElementById('insulina-resultado');
@@ -494,7 +486,6 @@
 
     async function openCorrectionScreen() {
       correctionScreen.classList.add('open');
-      backBtn.classList.remove('hidden');
       overlay.style.display = 'block';
       glicemiaInput.value = '';
       insulinaResultadoDiv.style.display = 'none';
@@ -572,7 +563,6 @@
 
     function closeCorrectionScreen() {
       correctionScreen.classList.remove('open');
-      backBtn.classList.add('hidden');
       overlay.style.display = 'none';
     }
 
