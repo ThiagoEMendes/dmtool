@@ -161,6 +161,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
       transition: background-color 0.2s;
+      z-index: 101;
     }
 
     .floating-btn:hover {
@@ -347,11 +348,11 @@
   <main>
     <div class="grid">
       <div class="btn-tile hipo" onclick="alert('Hipoglicemia selecionada!')">
-        <span style="color: #dc2626;">&darr;🍪</span>
+        <span style="color: #dc2626;">🍪</span>
         <p>Hipoglicemia</p>
       </div>
       <div class="btn-tile hiper" onclick="openCorrectionScreen()">
-        <span style="color: #f59e0b;">&uarr;💉</span>
+        <span style="color: #f59e0b;">💉</span>
         <p>Hiperglicemia</p>
       </div>
     </div>
@@ -362,12 +363,14 @@
   </div>
 
   <div id="correction-screen" class="correction-screen">
-    <button class="btn-close" onclick="closeCorrectionScreen()"><i class="fas fa-times"></i></button>
+    <div class="floating-btn" onclick="closeCorrectionScreen()">
+        <i class="fas fa-arrow-left"></i>
+    </div>
     <div class="correction-content">
       <h2>Calcular Correção</h2>
       <div class="form-group">
         <label for="glicemia-input">Glicemia (mg/dL)</label>
-        <input type="number" id="glicemia-input" placeholder="Digite a glicemia" autofocus>
+        <input type="number" id="glicemia-input" inputmode="decimal" placeholder="Digite a glicemia" autofocus>
         <p id="recuperado-text" class="recuperado-text"></p>
       </div>
       
