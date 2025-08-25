@@ -160,8 +160,13 @@
       justify-content: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, opacity 0.3s ease, visibility 0.3s ease;
       z-index: 101;
+    }
+    
+    .floating-btn.hidden {
+      opacity: 0;
+      visibility: hidden;
     }
 
     .floating-btn:hover {
@@ -217,7 +222,7 @@
     }
     
     /* Botão de voltar na tela deslizante, no canto superior direito */
-    .correction-screen .floating-btn {
+    .correction-screen .floating-btn-back {
         top: 20px;
         right: 20px;
         bottom: auto;
@@ -367,13 +372,13 @@
       </div>
     </div>
   </main>
-
+  
   <div class="floating-btn" onclick="irPara('menu.html')">
     <i class="fas fa-arrow-left"></i>
   </div>
 
   <div id="correction-screen" class="correction-screen">
-    <div class="floating-btn" onclick="closeCorrectionScreen()">
+    <div id="back-btn" class="floating-btn floating-btn-back hidden" onclick="closeCorrectionScreen()">
         <i class="fas fa-arrow-left"></i>
     </div>
     <div class="correction-content">
@@ -420,6 +425,7 @@
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
     const correctionScreen = document.getElementById('correction-screen');
+    const backBtn = document.getElementById('back-btn');
     const glicemiaInput = document.getElementById('glicemia-input');
     const recuperadoText = document.getElementById('recuperado-text');
     const insulinaResultadoDiv = document.getElementById('insulina-resultado');
@@ -428,7 +434,7 @@
     const nomeUsuarioValor = document.getElementById('nome-usuario-valor');
     const glicemiaAlvoValor = document.getElementById('glicemia-alvo-valor');
     const fatorCorrecaoValor = document.getElementById('fator-correcao-valor');
-    const doseMaximaValor = document = document.getElementById('dose-maxima-valor');
+    const doseMaximaValor = document.getElementById('dose-maxima-valor');
 
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -488,6 +494,7 @@
 
     async function openCorrectionScreen() {
       correctionScreen.classList.add('open');
+      backBtn.classList.remove('hidden');
       overlay.style.display = 'block';
       glicemiaInput.value = '';
       insulinaResultadoDiv.style.display = 'none';
@@ -565,6 +572,7 @@
 
     function closeCorrectionScreen() {
       correctionScreen.classList.remove('open');
+      backBtn.classList.add('hidden');
       overlay.style.display = 'none';
     }
 
