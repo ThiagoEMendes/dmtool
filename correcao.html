@@ -161,7 +161,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
       transition: background-color 0.2s;
-      z-index: 101; /* Garante que o botão fique acima da página principal */
+      z-index: 101;
     }
     
     .floating-btn:hover {
@@ -192,7 +192,7 @@
       color: white;
     }
 
-    /* Estilos da tela deslizante de correção */
+    /* Estilos das telas deslizantes de correção */
     .correction-screen {
       position: fixed;
       top: 0;
@@ -209,14 +209,13 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow-y: auto; /* Permite rolagem se o conteúdo for maior que a tela */
+      overflow-y: auto;
     }
 
     .correction-screen.open {
       left: 0;
     }
 
-    /* Botão de fechar/voltar na tela deslizante, no canto superior direito */
     .btn-close {
         position: absolute;
         top: 20px;
@@ -235,7 +234,7 @@
     .correction-content {
       max-width: 400px;
       width: 100%;
-      margin-top: 80px; /* Para não ficar atrás do botão de voltar */
+      margin-top: 80px;
     }
 
     .correction-content h2 {
@@ -243,6 +242,36 @@
       font-weight: bold;
       color: #1f2937;
       margin-bottom: 20px;
+    }
+    
+    /* Novo estilo para a lista de alimentos buscados */
+    .lista-alimentos-panel {
+      width: 100%;
+      max-height: 200px; /* Altura máxima para a lista de resultados */
+      overflow-y: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-top: 10px;
+      background-color: #ffffff;
+    }
+
+    .alimento-item-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .alimento-item-panel:last-child {
+      border-bottom: none;
+    }
+    
+    .alimento-item-panel:hover, .alimento-item-panel.selected {
+      background-color: #d1fae5;
+      border-color: #10b981;
     }
 
     .form-group {
@@ -263,7 +292,7 @@
       border: 1px solid #d1d5db;
       border-radius: 8px;
       box-sizing: border-box;
-      font-size: 16px; /* Impede o zoom em mobile */
+      font-size: 16px;
     }
 
     .recuperado-text {
@@ -271,6 +300,21 @@
         color: #6b7280;
         margin-top: 5px;
         text-align: left;
+    }
+    
+    .hipo-calc-text {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 5px;
+        text-align: left;
+    }
+    
+    .hipo-resultado {
+        font-size: 20px;
+        font-weight: bold;
+        color: #10b981; /* Verde para sucesso */
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .insulina-resultado {
@@ -355,7 +399,7 @@
 
   <main>
     <div class="grid">
-      <div class="btn-tile hipo" onclick="alert('Hipoglicemia selecionada!')">
+      <div class="btn-tile hipo" onclick="openHipoScreen()">
         <span style="color: #dc2626;">🍪</span>
         <p>Hipoglicemia</p>
       </div>
@@ -396,10 +440,36 @@
         <p>Fator de Correção: <span id="fator-correcao-valor"></span></p>
         <p>Dose Máxima: <span id="dose-maxima-valor"></span> UI</p>
       </div>
-
     </div>
   </div>
 
+  <div id="hipo-screen" class="correction-screen">
+    <button class="btn-close" onclick="closeHipoScreen()">
+      <i class="fas fa-xmark"></i>
+    </button>
+    <div class="correction-content">
+      <h2>Corrigir Hipoglicemia</h2>
+      <div class="form-group">
+        <label for="campoBuscaAlimentoHipo">Nome do Alimento:</label>
+        <input type="text" id="campoBuscaAlimentoHipo" placeholder="Ex: Glicose, Suco de Laranja" />
+        <div class="lista-alimentos-panel" id="resultadosBuscaHipo"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="campoQuantidadeHipo">Quantidade (g/ml):</label>
+        <input type="number" id="campoQuantidadeHipo" inputmode="decimal" placeholder="Quantidade" readonly>
+        <p id="pesoCalculadoHipo" class="hipo-calc-text">Peso calculado para 15g de CHO.</p>
+      </div>
+
+      <div id="hipo-message-div" class="hipo-resultado" style="display: none;"></div>
+      <p class="hipo-calc-text">Verifique a glicemia novamente em 15 minutos.</p>
+
+      <div class="action-buttons">
+        <button id="gravar-hipo-btn" class="btn btn-save" onclick="gravarHipo()">Corrigir</button>
+      </div>
+    </div>
+  </div>
+  
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -411,12 +481,15 @@
     let currentUserUid = null;
     let userData = null;
     let insulinaCalculada = 0;
+    let allAlimentos = [];
+    let selectedFoodHipo = null;
 
     const sidebar = document.getElementById('sidebar');
     const menuToggle = document.getElementById('menu-toggle');
     const overlay = document.getElementById('overlay');
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
+
     const correctionScreen = document.getElementById('correction-screen');
     const glicemiaInput = document.getElementById('glicemia-input');
     const recuperadoText = document.getElementById('recuperado-text');
@@ -428,6 +501,13 @@
     const fatorCorrecaoValor = document.getElementById('fator-correcao-valor');
     const doseMaximaValor = document.getElementById('dose-maxima-valor');
 
+    const hipoScreen = document.getElementById('hipo-screen');
+    const campoBuscaAlimentoHipo = document.getElementById('campoBuscaAlimentoHipo');
+    const resultadosBuscaHipo = document.getElementById('resultadosBuscaHipo');
+    const campoQuantidadeHipo = document.getElementById('campoQuantidadeHipo');
+    const pesoCalculadoHipo = document.getElementById('pesoCalculadoHipo');
+    const hipoMessageDiv = document.getElementById('hipo-message-div');
+    
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         sidebar.classList.toggle('open');
@@ -435,7 +515,8 @@
     });
 
     overlay.addEventListener('click', (e) => {
-        if (correctionScreen.classList.contains('open') && !correctionScreen.contains(e.target)) {
+        if (correctionScreen.classList.contains('open') || hipoScreen.classList.contains('open')) {
+            closeHipoScreen();
             closeCorrectionScreen();
         }
         sidebar.classList.remove('open');
@@ -443,6 +524,10 @@
     });
     
     correctionScreen.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    
+    hipoScreen.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
@@ -475,15 +560,22 @@
           alert("Ocorreu um erro ao carregar seus dados.");
           window.location.href = "menu.html";
         }
+        
+        const publicAlimentos = await db.collection('alimentos').get();
+        const meusAlimentos = await db.collection('meusAlimentos').where('uid', '==', currentUserUid).get();
+        allAlimentos = [...publicAlimentos.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+                        ...meusAlimentos.docs.map(doc => ({ id: doc.id, ...doc.data() }))];
+
       } else {
         window.location.href = "./login/login.html";
       }
     });
-
+    
     function irPara(pagina) {
       window.location.href = pagina;
     }
 
+    /* Funções para a tela de Hiperglicemia */
     async function openCorrectionScreen() {
       correctionScreen.classList.add('open');
       overlay.style.display = 'block';
@@ -497,7 +589,6 @@
       glicemiaInput.disabled = true;
 
       try {
-          // Garante que os dados do usuário estejam carregados
           if (!userData) {
               const user = auth.currentUser;
               if (user) {
@@ -509,7 +600,6 @@
               }
           }
 
-          // Preenche os dados do usuário na tela deslizante
           if (userData) {
             nomeUsuarioValor.innerText = userData.nome || 'N/A';
             glicemiaAlvoValor.innerText = userData.glicemiaAlvo || 'N/A';
@@ -518,10 +608,8 @@
             dadosDiscretosDiv.style.display = 'block';
           } else {
             console.error("Dados do usuário não disponíveis.");
-            // Oculta os dados discretos se não houver dados
             dadosDiscretosDiv.style.display = 'none';
           }
-
 
           if (nightscoutBaseUrl) {
               const url = `${nightscoutBaseUrl}/api/v1/entries.json?count=1`;
@@ -626,12 +714,10 @@
                 uid: currentUserUid
             });
             
-            // Mensagem de sucesso na tela deslizante
             insulinaResultadoDiv.innerText = "Dados gravados com sucesso!";
-            insulinaResultadoDiv.style.color = "#10b981"; // Verde
+            insulinaResultadoDiv.style.color = "#10b981";
             insulinaResultadoDiv.style.fontSize = "20px";
             
-            // Redireciona após 2 segundos
             setTimeout(() => {
                 window.location.href = "menu.html";
             }, 2000);
@@ -643,6 +729,120 @@
       } else {
         alert("Não há insulina para gravar. O cálculo resultou em 0 UI.");
       }
+    }
+    
+    /* Funções para a nova tela de Hipoglicemia */
+    function openHipoScreen() {
+        hipoScreen.classList.add('open');
+        overlay.style.display = 'block';
+        campoBuscaAlimentoHipo.value = '';
+        resultadosBuscaHipo.innerHTML = '';
+        campoQuantidadeHipo.value = '';
+        hipoMessageDiv.style.display = 'none';
+        selectedFoodHipo = null;
+        campoBuscaAlimentoHipo.focus();
+    }
+    
+    function closeHipoScreen() {
+        hipoScreen.classList.remove('open');
+        overlay.style.display = 'none';
+    }
+
+    const CHO_CORRECAO = 15;
+
+    campoBuscaAlimentoHipo.addEventListener('input', () => {
+        const termoBusca = campoBuscaAlimentoHipo.value.trim().toLowerCase();
+        resultadosBuscaHipo.innerHTML = '';
+        selectedFoodHipo = null;
+        campoQuantidadeHipo.value = '';
+        hipoMessageDiv.style.display = 'none';
+
+        if (termoBusca.length > 2) {
+            const filteredAlimentos = allAlimentos.filter(alimento => 
+                (alimento.nome || '').toLowerCase().includes(termoBusca)
+            );
+            
+            if (filteredAlimentos.length > 0) {
+                filteredAlimentos.forEach(alimento => {
+                    const div = document.createElement('div');
+                    div.classList.add('alimento-item-panel');
+                    div.innerText = alimento.nome;
+                    div.addEventListener('click', () => {
+                        handleAlimentoHipoClick(alimento);
+                    });
+                    resultadosBuscaHipo.appendChild(div);
+                });
+            } else {
+                resultadosBuscaHipo.innerHTML = '<p style="padding: 10px; text-align: center; color: #6b7280;">Nenhum alimento encontrado.</p>';
+            }
+        }
+    });
+
+    function handleAlimentoHipoClick(alimento) {
+        selectedFoodHipo = alimento;
+        campoBuscaAlimentoHipo.value = alimento.nome;
+        resultadosBuscaHipo.innerHTML = '';
+        
+        let pesoCalculado = 0;
+        if (alimento.carboidrato > 0 && (alimento.quantidade_g_ml > 0 || alimento.medida_caseira_cho > 0)) {
+            if (alimento.quantidade_g_ml) {
+                const carboidratoPorGml = alimento.carboidrato / alimento.quantidade_g_ml;
+                pesoCalculado = CHO_CORRECAO / carboidratoPorGml;
+            } else if (alimento.medida_caseira_cho) {
+                const carboidratoPorMedida = alimento.carboidrato / alimento.medida_caseira_cho;
+                pesoCalculado = CHO_CORRECAO / carboidratoPorMedida;
+            }
+            
+            campoQuantidadeHipo.value = pesoCalculado.toFixed(1);
+        } else {
+            alert("Informações nutricionais insuficientes para o cálculo.");
+            campoQuantidadeHipo.value = '';
+        }
+    }
+
+    async function gravarHipo() {
+        if (!selectedFoodHipo) {
+            alert("Por favor, selecione um alimento para correção.");
+            return;
+        }
+
+        const quantidadeGml = parseFloat(campoQuantidadeHipo.value);
+
+        if (isNaN(quantidadeGml) || quantidadeGml <= 0) {
+            alert("Quantidade calculada inválida. Selecione outro alimento.");
+            return;
+        }
+
+        try {
+            const dataHoraAtual = new Date();
+
+            const alimentoData = {
+                carboidrato: CHO_CORRECAO,
+                data: firebase.firestore.Timestamp.fromDate(dataHoraAtual),
+                energia: ((selectedFoodHipo.energia / selectedFoodHipo.quantidade_g_ml) * quantidadeGml) || 0,
+                gml: quantidadeGml,
+                gordura: ((selectedFoodHipo.gordura / selectedFoodHipo.quantidade_g_ml) * quantidadeGml) || 0,
+                nome: selectedFoodHipo.nome,
+                ocasiao: "correcao",
+                proteina: ((selectedFoodHipo.proteina / selectedFoodHipo.quantidade_g_ml) * quantidadeGml) || 0,
+                uid: currentUserUid
+            };
+
+            await db.collection('alimentosConsumidos').add(alimentoData);
+
+            hipoMessageDiv.innerText = "Dados gravados com sucesso!";
+            hipoMessageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                window.location.href = "menu.html";
+            }, 2000);
+            
+        } catch (error) {
+            console.error("Erro ao registrar a correção de hipoglicemia:", error);
+            hipoMessageDiv.innerText = "Erro ao gravar. Tente novamente.";
+            hipoMessageDiv.style.color = "#dc2626";
+            hipoMessageDiv.style.display = 'block';
+        }
     }
   </script>
 </body>
