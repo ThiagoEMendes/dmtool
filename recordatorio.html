@@ -274,7 +274,13 @@
       'almoco': 'Almoço',
       'lancheDaTarde': 'Lanche da tarde',
       'jantar': 'Jantar',
-      'ceia': 'Ceia'
+      'ceia': 'Ceia',
+      'cafeDaManha2hDepois': 'Café da manhã',
+      'lancheDaManha2hDepois': 'Lanche da manhã',
+      'almoco2hDepois': 'Almoço',
+      'lancheDaTarde2hDepois': 'Lanche da tarde',
+      'jantar2hDepois': 'Jantar',
+      'ceia2hDepois': 'Ceia'
     };
 
     const sidebar = document.getElementById('sidebar');
@@ -338,6 +344,11 @@
         console.log(`Período: ${inicioTimestamp.toLocaleString()} a ${fimTimestamp.toLocaleString()}`);
 
         try {
+          // Busca os valores de glicemia min/max do usuário
+          const userDoc = await db.collection('usuarios').doc(user.uid).get();
+          const glicemiaMin = userDoc.exists ? userDoc.data().glicemiaMin : null;
+          const glicemiaMax = userDoc.exists ? userDoc.data().glicemiaMax : null;
+
           // Buscando dados de alimentos consumidos
           const alimentosConsumidosSnapshot = await db.collection('alimentosConsumidos')
             .where('uid', '==', user.uid)
@@ -354,31 +365,55 @@
             .orderBy('data')
             .get();
             
+          // Buscando dados de insulina
+          const insulinaSnapshot = await db.collection('insulinaAdministrada')
+            .where('uid', '==', user.uid)
+            .where('data', '>=', inicioTimestamp)
+            .where('data', '<=', fimTimestamp)
+            .orderBy('data')
+            .get();
+
           const glicemias = {};
           mapaGlicemicoSnapshot.forEach(doc => {
               const data = doc.data();
               const ocasiao = data.ocasiao || 'N/A';
-              const ocasiao2hDepois = data.ocasiao2hDepois || 'N/A';
               const dataFormatada = new Date(data.data.seconds * 1000).toLocaleDateString('pt-BR');
               
               if (!glicemias[dataFormatada]) {
                   glicemias[dataFormatada] = {};
               }
               
-              // Armazena glicemia pré-refeição
-              if (ocasiao !== 'N/A') {
-                  glicemias[dataFormatada][ocasiao] = {
-                      pre: data.glicemia,
-                      pos: null
-                  };
-              }
-              // Armazena glicemia pós-refeição
-              if (ocasiao2hDepois !== 'N/A') {
-                  const ocasiaoAnterior = ocasiao2hDepois.replace('2hDepois', '');
-                  if (glicemias[dataFormatada][ocasiaoAnterior]) {
-                      glicemias[dataFormatada][ocasiaoAnterior].pos = data.glicemia;
+              // Armazena glicemia pré ou pós-refeição
+              if (ocasiao.includes('2hDepois')) {
+                  const ocasiaoAnterior = ocasiao.replace('2hDepois', '');
+                  if (!glicemias[dataFormatada][ocasiaoAnterior]) {
+                    glicemias[dataFormatada][ocasiaoAnterior] = { pre: null, pos: data.glicemia };
+                  } else {
+                    glicemias[dataFormatada][ocasiaoAnterior].pos = data.glicemia;
+                  }
+              } else {
+                  if (!glicemias[dataFormatada][ocasiao]) {
+                    glicemias[dataFormatada][ocasiao] = { pre: data.glicemia, pos: null };
+                  } else {
+                    glicemias[dataFormatada][ocasiao].pre = data.glicemia;
                   }
               }
+          });
+          
+          const insulinas = {};
+          insulinaSnapshot.forEach(doc => {
+              const data = doc.data();
+              const ocasiao = data.ocasiao || 'N/A';
+              const quantidade = data.quantidade || 0;
+              const dataFormatada = new Date(data.data.seconds * 1000).toLocaleDateString('pt-BR');
+              
+              if (!insulinas[dataFormatada]) {
+                  insulinas[dataFormatada] = {};
+              }
+              if (!insulinas[dataFormatada][ocasiao]) {
+                  insulinas[dataFormatada][ocasiao] = 0;
+              }
+              insulinas[dataFormatada][ocasiao] += quantidade;
           });
 
           if (alimentosConsumidosSnapshot.empty) {
@@ -397,7 +432,6 @@
             const ocasiao = dados.ocasiao || 'N/A';
             const nomeAlimento = dados.nome || 'Nenhum alimento registrado.';
             const carboidratos = dados.carboidrato || 0;
-            const insulina = dados.insulina || 0;
             
             const chave = `${dataFormatada}-${ocasiao}`;
 
@@ -406,13 +440,11 @@
                 data: dataFormatada,
                 ocasiao: ocasiao,
                 alimentos: [],
-                totalCarboidratos: 0,
-                totalInsulina: 0
+                totalCarboidratos: 0
               };
             }
             dadosAgrupados[chave].alimentos.push(nomeAlimento);
             dadosAgrupados[chave].totalCarboidratos += carboidratos;
-            dadosAgrupados[chave].totalInsulina += insulina;
           });
 
           console.log(`Encontrados ${Object.keys(dadosAgrupados).length} registros agrupados.`);
@@ -433,11 +465,39 @@
             alimentosCell.innerHTML = grupo.alimentos.join('<br>');
             
             const glicemiaData = glicemias[grupo.data] ? glicemias[grupo.data][grupo.ocasiao] : null;
-            preGlicemiaCell.innerText = glicemiaData && glicemiaData.pre ? glicemiaData.pre.toFixed(0) : 'N/A';
-            posGlicemiaCell.innerText = glicemiaData && glicemiaData.pos ? glicemiaData.pos.toFixed(0) : 'N/A';
+            
+            // Lógica para pré-glicemia e cor da célula
+            const preGlicemia = glicemiaData && glicemiaData.pre ? glicemiaData.pre : null;
+            if (preGlicemia !== null) {
+                preGlicemiaCell.innerText = preGlicemia.toFixed(0);
+                if (glicemiaMax !== null && preGlicemia > glicemiaMax) {
+                    preGlicemiaCell.style.backgroundColor = '#ffffcc'; /* amarelo claro */
+                }
+                if (glicemiaMin !== null && preGlicemia < glicemiaMin) {
+                    preGlicemiaCell.style.backgroundColor = '#ffcccc'; /* vermelho claro */
+                }
+            } else {
+                preGlicemiaCell.innerText = 'N/A';
+            }
+            
+            // Lógica para pós-glicemia e cor da célula
+            const posGlicemia = glicemiaData && glicemiaData.pos ? glicemiaData.pos : null;
+            if (posGlicemia !== null) {
+                posGlicemiaCell.innerText = posGlicemia.toFixed(0);
+                if (glicemiaMax !== null && posGlicemia > glicemiaMax) {
+                    posGlicemiaCell.style.backgroundColor = '#ffffcc'; /* amarelo claro */
+                }
+                if (glicemiaMin !== null && posGlicemia < glicemiaMin) {
+                    posGlicemiaCell.style.backgroundColor = '#ffcccc'; /* vermelho claro */
+                }
+            } else {
+                posGlicemiaCell.innerText = 'N/A';
+            }
             
             carboidratosCell.innerText = grupo.totalCarboidratos.toFixed(2);
-            insulinaCell.innerText = grupo.totalInsulina.toFixed(2);
+            
+            const insulinaTotal = insulinas[grupo.data] ? insulinas[grupo.data][grupo.ocasiao] : 0;
+            insulinaCell.innerText = insulinaTotal.toFixed(2);
           }
         } catch (error) {
           console.error("Erro ao buscar dados:", error);
