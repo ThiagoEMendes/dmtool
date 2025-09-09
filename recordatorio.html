@@ -105,8 +105,9 @@
 
     .data-table-container {
       width: 100%;
-      max-width: 1000px; /* Aumentado para acomodar as novas colunas */
+      max-width: 1000px;
       overflow-x: auto;
+      margin-bottom: 20px;
     }
 
     .data-table {
@@ -193,8 +194,8 @@
       padding-bottom: 15px;
     }
     
-    /* Novos estilos para o resumo */
-    .summary-container {
+    /* Novos estilos para o resumo e rodapé da tabela */
+    .summary-container, .footer-container {
       margin-top: 20px;
       padding: 15px;
       background-color: #fff;
@@ -207,7 +208,7 @@
       flex-direction: column;
       gap: 10px;
     }
-    
+
     .summary-item {
       display: flex;
       justify-content: space-between;
@@ -219,6 +220,11 @@
       font-weight: bold;
     }
 
+    /* Cores para a nova tabela e rodapé */
+    .cell-max-cho { background-color: #60a5fa; color: white; } /* Azul */
+    .cell-min-cho { background-color: #4ade80; color: white; } /* Verde */
+    .cell-max-insulina { background-color: #60a5fa; color: white; } /* Azul */
+    .cell-min-insulina { background-color: #4ade80; color: white; } /* Verde */
 
     /* Media Queries para responsividade */
     @media (max-width: 600px) {
@@ -285,15 +291,25 @@
       </table>
     </div>
 
-    <div id="summary-container" class="summary-container" style="display:none;">
-      <div class="summary-item">
-        <span class="summary-label">Dose média diária de insulina:</span>
-        <span id="insulina-media">--</span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">Quantidade média diária de CHO:</span>
-        <span id="carboidratos-media">--</span>
-      </div>
+    <div class="data-table-container">
+        <table class="data-table" id="resumo-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Total de CHO do dia (g)</th>
+                    <th>Total de insulina do dia (UI)</th>
+                </tr>
+            </thead>
+            <tbody id="resumo-body">
+            </tbody>
+            <tfoot id="resumo-footer">
+                <tr>
+                    <td>Média do Período</td>
+                    <td id="media-cho">--</td>
+                    <td id="media-insulina">--</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
   </main>
 
@@ -325,9 +341,9 @@
     const overlay = document.getElementById('overlay');
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
-    const summaryContainer = document.getElementById('summary-container');
-    const insulinaMediaSpan = document.getElementById('insulina-media');
-    const carboidratosMediaSpan = document.getElementById('carboidratos-media');
+    const resumoBody = document.getElementById('resumo-body');
+    const mediaChoCell = document.getElementById('media-cho');
+    const mediaInsulinaCell = document.getElementById('media-insulina');
 
     window.onload = function() {
       const today = new Date().toISOString().split('T')[0];
@@ -374,11 +390,10 @@
       const dataFinal = document.getElementById('dataFinal').value;
       const user = auth.currentUser;
       const tableBody = document.getElementById('recordatorio-body');
-      tableBody.innerHTML = ''; // Limpa a tabela
-      
-      summaryContainer.style.display = 'none'; // Oculta o resumo por padrão
-      insulinaMediaSpan.innerText = '--';
-      carboidratosMediaSpan.innerText = '--';
+      tableBody.innerHTML = '';
+      resumoBody.innerHTML = '';
+      mediaChoCell.innerText = '--';
+      mediaInsulinaCell.innerText = '--';
 
       if (user && dataInicial && dataFinal) {
         const inicioTimestamp = new Date(dataInicial + 'T00:00:00');
@@ -427,7 +442,6 @@
                   glicemias[dataFormatada] = {};
               }
               
-              // Armazena glicemia pré ou pós-refeição
               if (ocasiao.includes('2hDepois')) {
                   const ocasiaoAnterior = ocasiao.replace('2hDepois', '');
                   if (!glicemias[dataFormatada][ocasiaoAnterior]) {
@@ -461,7 +475,6 @@
           });
 
           if (alimentosConsumidosSnapshot.empty) {
-            console.log('Nenhum registro de alimento encontrado.');
             const row = tableBody.insertRow();
             const cell = row.insertCell(0);
             cell.colSpan = 7;
@@ -470,9 +483,7 @@
           }
 
           const dadosAgrupados = {};
-          let totalCarboidratos = 0;
-          let totalInsulina = 0;
-          const datasUnicas = new Set();
+          const totaisDiarios = {};
           
           alimentosConsumidosSnapshot.forEach(doc => {
             const dados = doc.data();
@@ -494,24 +505,25 @@
             }
             dadosAgrupados[chave].alimentos.push(nomeAlimento);
             dadosAgrupados[chave].totalCarboidratos += carboidratos;
-            
-            // Adiciona o carboidrato total para o cálculo final
-            totalCarboidratos += carboidratos;
+
+            if (!totaisDiarios[dataFormatada]) {
+                totaisDiarios[dataFormatada] = { cho: 0, insulina: 0 };
+            }
+            totaisDiarios[dataFormatada].cho += carboidratos;
           });
 
-          // Calcula o total de insulina por dia para o resumo
           insulinaSnapshot.forEach(doc => {
               const data = doc.data();
               const dataFormatada = new Date(data.data.seconds * 1000).toLocaleDateString('pt-BR');
-              datasUnicas.add(dataFormatada); // Adiciona a data ao conjunto de datas únicas
-              const ocasiao = data.ocasiao || 'N/A';
               const quantidade = data.quantidade || 0;
               
-              totalInsulina += quantidade;
+              if (!totaisDiarios[dataFormatada]) {
+                totaisDiarios[dataFormatada] = { cho: 0, insulina: 0 };
+              }
+              totaisDiarios[dataFormatada].insulina += quantidade;
           });
           
-          // Preenche a tabela com dados agrupados
-          console.log(`Encontrados ${Object.keys(dadosAgrupados).length} registros agrupados.`);
+          // Preenche a tabela principal
           for (const chave in dadosAgrupados) {
             const grupo = dadosAgrupados[chave];
             const row = tableBody.insertRow();
@@ -524,38 +536,33 @@
             const carboidratosCell = row.insertCell(5);
             const insulinaCell = row.insertCell(6);
             
-            // Adiciona a data ao conjunto de datas únicas
-            datasUnicas.add(grupo.data);
-
             dataCell.innerText = grupo.data;
             refeicaoCell.innerText = REFEICAO_MAP[grupo.ocasiao] || grupo.ocasiao;
             alimentosCell.innerHTML = grupo.alimentos.join('<br>');
             
             const glicemiaData = glicemias[grupo.data] ? glicemias[grupo.data][grupo.ocasiao] : null;
             
-            // Lógica para pré-glicemia e cor da célula
             const preGlicemia = glicemiaData && glicemiaData.pre ? glicemiaData.pre : null;
             if (preGlicemia !== null) {
                 preGlicemiaCell.innerText = preGlicemia.toFixed(0);
                 if (glicemiaMax !== null && preGlicemia > glicemiaMax) {
-                    preGlicemiaCell.style.backgroundColor = '#ffffcc'; /* amarelo claro */
+                    preGlicemiaCell.style.backgroundColor = '#ffffcc';
                 }
                 if (glicemiaMin !== null && preGlicemia < glicemiaMin) {
-                    preGlicemiaCell.style.backgroundColor = '#ffcccc'; /* vermelho claro */
+                    preGlicemiaCell.style.backgroundColor = '#ffcccc';
                 }
             } else {
                 preGlicemiaCell.innerText = 'N/A';
             }
             
-            // Lógica para pós-glicemia e cor da célula
             const posGlicemia = glicemiaData && glicemiaData.pos ? glicemiaData.pos : null;
             if (posGlicemia !== null) {
                 posGlicemiaCell.innerText = posGlicemia.toFixed(0);
                 if (glicemiaMax !== null && posGlicemia > glicemiaMax) {
-                    posGlicemiaCell.style.backgroundColor = '#ffffcc'; /* amarelo claro */
+                    posGlicemiaCell.style.backgroundColor = '#ffffcc';
                 }
                 if (glicemiaMin !== null && posGlicemia < glicemiaMin) {
-                    posGlicemiaCell.style.backgroundColor = '#ffcccc'; /* vermelho claro */
+                    posGlicemiaCell.style.backgroundColor = '#ffcccc';
                 }
             } else {
                 posGlicemiaCell.innerText = 'N/A';
@@ -567,14 +574,59 @@
             insulinaCell.innerText = insulinaTotal.toFixed(2);
           }
 
-          // Cálculos para o resumo
-          const numeroDeDias = datasUnicas.size;
+          // Preenche a tabela de resumo diário
+          const totaisDiariosArray = Object.keys(totaisDiarios).map(data => ({
+              data: data,
+              cho: totaisDiarios[data].cho,
+              insulina: totaisDiarios[data].insulina
+          })).sort((a, b) => new Date(a.data.split('/').reverse().join('-')) - new Date(b.data.split('/').reverse().join('-')));
+          
+          let maxCho = -Infinity;
+          let minCho = Infinity;
+          let maxInsulina = -Infinity;
+          let minInsulina = Infinity;
+          let totalChoPeriodo = 0;
+          let totalInsulinaPeriodo = 0;
+          
+          totaisDiariosArray.forEach(dia => {
+              if (dia.cho > maxCho) maxCho = dia.cho;
+              if (dia.cho < minCho) minCho = dia.cho;
+              if (dia.insulina > maxInsulina) maxInsulina = dia.insulina;
+              if (dia.insulina < minInsulina) minInsulina = dia.insulina;
+              
+              totalChoPeriodo += dia.cho;
+              totalInsulinaPeriodo += dia.insulina;
+          });
+          
+          totaisDiariosArray.forEach(dia => {
+              const row = resumoBody.insertRow();
+              const dataCell = row.insertCell(0);
+              const choCell = row.insertCell(1);
+              const insulinaCell = row.insertCell(2);
+              
+              dataCell.innerText = dia.data;
+              choCell.innerText = dia.cho.toFixed(2);
+              insulinaCell.innerText = dia.insulina.toFixed(2);
+              
+              if (dia.cho === maxCho) {
+                  choCell.classList.add('cell-max-cho');
+              }
+              if (dia.cho === minCho) {
+                  choCell.classList.add('cell-min-cho');
+              }
+              if (dia.insulina === maxInsulina) {
+                  insulinaCell.classList.add('cell-max-insulina');
+              }
+              if (dia.insulina === minInsulina) {
+                  insulinaCell.classList.add('cell-min-insulina');
+              }
+          });
+          
+          // Preenche o rodapé com as médias
+          const numeroDeDias = totaisDiariosArray.length;
           if (numeroDeDias > 0) {
-            const mediaInsulina = totalInsulina / numeroDeDias;
-            const mediaCarboidratos = totalCarboidratos / numeroDeDias;
-            insulinaMediaSpan.innerText = `${mediaInsulina.toFixed(2)} UI`;
-            carboidratosMediaSpan.innerText = `${mediaCarboidratos.toFixed(2)} g`;
-            summaryContainer.style.display = 'flex'; // Exibe o resumo
+              mediaChoCell.innerText = `${(totalChoPeriodo / numeroDeDias).toFixed(2)} g`;
+              mediaInsulinaCell.innerText = `${(totalInsulinaPeriodo / numeroDeDias).toFixed(2)} UI`;
           }
 
         } catch (error) {
@@ -593,23 +645,21 @@
     }
     
     function gerarPDF() {
-        const tabelaContainer = document.getElementById('recordatorio-table');
-        const summary = document.getElementById('summary-container');
+        const recordatorioTable = document.getElementById('recordatorio-table');
+        const resumoTable = document.getElementById('resumo-table');
         
-        if (!tabelaContainer || tabelaContainer.getElementsByTagName('tr').length <= 1) {
+        if (recordatorioTable.getElementsByTagName('tr').length <= 1) {
             alert('Não há dados para gerar o PDF. Por favor, faça uma pesquisa primeiro.');
             return;
         }
 
         const elementoParaPDF = document.createElement('div');
         
-        // Título principal
         const titulo = document.createElement('h1');
         titulo.innerText = 'Relatório de Alimentos Consumidos';
         titulo.style.textAlign = 'center';
         titulo.style.color = '#333';
         
-        // Nome do usuário
         const nomeUsuario = document.getElementById('userNameInMenu').innerText;
         const usuarioHeader = document.createElement('h2');
         usuarioHeader.innerText = `${nomeUsuario}`;
@@ -619,13 +669,23 @@
         
         elementoParaPDF.appendChild(titulo);
         elementoParaPDF.appendChild(usuarioHeader);
-        elementoParaPDF.appendChild(tabelaContainer.cloneNode(true));
+        elementoParaPDF.appendChild(recordatorioTable.cloneNode(true));
         
-        // Adiciona o resumo ao PDF se estiver visível
-        if (summary.style.display === 'flex') {
-            elementoParaPDF.appendChild(summary.cloneNode(true));
-        }
+        const subTitulo = document.createElement('h3');
+        subTitulo.innerText = 'Resumo Diário';
+        subTitulo.style.marginTop = '40px';
+        subTitulo.style.color = '#333';
         
+        elementoParaPDF.appendChild(subTitulo);
+        
+        // Remove classes de cor para o PDF
+        const clonedResumoTable = resumoTable.cloneNode(true);
+        clonedResumoTable.querySelectorAll('.cell-max-cho, .cell-min-cho, .cell-max-insulina, .cell-min-insulina').forEach(cell => {
+            cell.style.backgroundColor = '';
+            cell.style.color = '';
+        });
+        elementoParaPDF.appendChild(clonedResumoTable);
+
         const opt = {
             margin: 1,
             filename: 'Relatorio_Alimentos_' + new Date().toLocaleDateString('pt-BR').replace(/\//g, '-') + '.pdf',
