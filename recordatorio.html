@@ -192,6 +192,32 @@
       border-bottom: 1px solid #4a5568;
       padding-bottom: 15px;
     }
+    
+    /* Novos estilos para o resumo */
+    .summary-container {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 1000px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    
+    .summary-label {
+      font-weight: bold;
+    }
 
 
     /* Media Queries para responsividade */
@@ -258,6 +284,17 @@
           </tbody>
       </table>
     </div>
+
+    <div id="summary-container" class="summary-container" style="display:none;">
+      <div class="summary-item">
+        <span class="summary-label">Dose média diária de insulina:</span>
+        <span id="insulina-media">--</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Quantidade média diária de CHO:</span>
+        <span id="carboidratos-media">--</span>
+      </div>
+    </div>
   </main>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -288,6 +325,9 @@
     const overlay = document.getElementById('overlay');
     const userNameInMenu = document.getElementById('userNameInMenu');
     const logoutLink = document.getElementById('logoutLink');
+    const summaryContainer = document.getElementById('summary-container');
+    const insulinaMediaSpan = document.getElementById('insulina-media');
+    const carboidratosMediaSpan = document.getElementById('carboidratos-media');
 
     window.onload = function() {
       const today = new Date().toISOString().split('T')[0];
@@ -335,6 +375,10 @@
       const user = auth.currentUser;
       const tableBody = document.getElementById('recordatorio-body');
       tableBody.innerHTML = ''; // Limpa a tabela
+      
+      summaryContainer.style.display = 'none'; // Oculta o resumo por padrão
+      insulinaMediaSpan.innerText = '--';
+      carboidratosMediaSpan.innerText = '--';
 
       if (user && dataInicial && dataFinal) {
         const inicioTimestamp = new Date(dataInicial + 'T00:00:00');
@@ -426,6 +470,10 @@
           }
 
           const dadosAgrupados = {};
+          let totalCarboidratos = 0;
+          let totalInsulina = 0;
+          const datasUnicas = new Set();
+          
           alimentosConsumidosSnapshot.forEach(doc => {
             const dados = doc.data();
             const dataFormatada = new Date(dados.data.seconds * 1000).toLocaleDateString('pt-BR');
@@ -440,13 +488,29 @@
                 data: dataFormatada,
                 ocasiao: ocasiao,
                 alimentos: [],
-                totalCarboidratos: 0
+                totalCarboidratos: 0,
+                totalInsulina: 0
               };
             }
             dadosAgrupados[chave].alimentos.push(nomeAlimento);
             dadosAgrupados[chave].totalCarboidratos += carboidratos;
+            
+            // Adiciona o carboidrato total para o cálculo final
+            totalCarboidratos += carboidratos;
           });
 
+          // Calcula o total de insulina por dia para o resumo
+          insulinaSnapshot.forEach(doc => {
+              const data = doc.data();
+              const dataFormatada = new Date(data.data.seconds * 1000).toLocaleDateString('pt-BR');
+              datasUnicas.add(dataFormatada); // Adiciona a data ao conjunto de datas únicas
+              const ocasiao = data.ocasiao || 'N/A';
+              const quantidade = data.quantidade || 0;
+              
+              totalInsulina += quantidade;
+          });
+          
+          // Preenche a tabela com dados agrupados
           console.log(`Encontrados ${Object.keys(dadosAgrupados).length} registros agrupados.`);
           for (const chave in dadosAgrupados) {
             const grupo = dadosAgrupados[chave];
@@ -459,6 +523,9 @@
             const posGlicemiaCell = row.insertCell(4);
             const carboidratosCell = row.insertCell(5);
             const insulinaCell = row.insertCell(6);
+            
+            // Adiciona a data ao conjunto de datas únicas
+            datasUnicas.add(grupo.data);
 
             dataCell.innerText = grupo.data;
             refeicaoCell.innerText = REFEICAO_MAP[grupo.ocasiao] || grupo.ocasiao;
@@ -499,6 +566,17 @@
             const insulinaTotal = insulinas[grupo.data] ? insulinas[grupo.data][grupo.ocasiao] : 0;
             insulinaCell.innerText = insulinaTotal.toFixed(2);
           }
+
+          // Cálculos para o resumo
+          const numeroDeDias = datasUnicas.size;
+          if (numeroDeDias > 0) {
+            const mediaInsulina = totalInsulina / numeroDeDias;
+            const mediaCarboidratos = totalCarboidratos / numeroDeDias;
+            insulinaMediaSpan.innerText = `${mediaInsulina.toFixed(2)} UI`;
+            carboidratosMediaSpan.innerText = `${mediaCarboidratos.toFixed(2)} g`;
+            summaryContainer.style.display = 'flex'; // Exibe o resumo
+          }
+
         } catch (error) {
           console.error("Erro ao buscar dados:", error);
           const row = tableBody.insertRow();
@@ -516,6 +594,8 @@
     
     function gerarPDF() {
         const tabelaContainer = document.getElementById('recordatorio-table');
+        const summary = document.getElementById('summary-container');
+        
         if (!tabelaContainer || tabelaContainer.getElementsByTagName('tr').length <= 1) {
             alert('Não há dados para gerar o PDF. Por favor, faça uma pesquisa primeiro.');
             return;
@@ -540,6 +620,11 @@
         elementoParaPDF.appendChild(titulo);
         elementoParaPDF.appendChild(usuarioHeader);
         elementoParaPDF.appendChild(tabelaContainer.cloneNode(true));
+        
+        // Adiciona o resumo ao PDF se estiver visível
+        if (summary.style.display === 'flex') {
+            elementoParaPDF.appendChild(summary.cloneNode(true));
+        }
         
         const opt = {
             margin: 1,
